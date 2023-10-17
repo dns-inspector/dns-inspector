@@ -1,0 +1,730 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9AA8C13A2ADCA98000B93E45 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C1392ADCA98000B93E45 /* App.swift */; };
+		9AA8C13C2ADCA98000B93E45 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C13B2ADCA98000B93E45 /* MainView.swift */; };
+		9AA8C13E2ADCA98200B93E45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA8C13D2ADCA98200B93E45 /* Assets.xcassets */; };
+		9AA8C1412ADCA98200B93E45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA8C1402ADCA98200B93E45 /* Preview Assets.xcassets */; };
+		9AA8C1562ADCAE9C00B93E45 /* DNSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA8C14C2ADCAE9C00B93E45 /* DNSKit.framework */; };
+		9AA8C15D2ADCAE9C00B93E45 /* DNSKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C15C2ADCAE9C00B93E45 /* DNSKitTests.m */; };
+		9AA8C15E2ADCAE9C00B93E45 /* DNSKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA8C14E2ADCAE9C00B93E45 /* DNSKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9AA8C1612ADCAE9C00B93E45 /* DNSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA8C14C2ADCAE9C00B93E45 /* DNSKit.framework */; };
+		9AA8C1622ADCAE9C00B93E45 /* DNSKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA8C14C2ADCAE9C00B93E45 /* DNSKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9AA8C1782ADCB40800B93E45 /* DNSQuestion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA8C1762ADCB40800B93E45 /* DNSQuestion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9AA8C1792ADCB40800B93E45 /* DNSQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C1772ADCB40800B93E45 /* DNSQuestion.m */; };
+		9AA8C17C2ADCB40F00B93E45 /* DNSAnswer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA8C17A2ADCB40F00B93E45 /* DNSAnswer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9AA8C17D2ADCB40F00B93E45 /* DNSAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C17B2ADCB40F00B93E45 /* DNSAnswer.m */; };
+		9AA8C1802ADCB41600B93E45 /* DNSMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA8C17E2ADCB41600B93E45 /* DNSMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9AA8C1812ADCB41600B93E45 /* DNSMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C17F2ADCB41600B93E45 /* DNSMessage.m */; };
+		9AA8C1852ADCB74D00B93E45 /* Types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA8C1842ADCB74A00B93E45 /* Types.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9AA8C1862ADCB85300B93E45 /* RecordType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C1822ADCB6BD00B93E45 /* RecordType.swift */; };
+		9AA8C18A2ADCBD7A00B93E45 /* ServerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C1882ADCBD7800B93E45 /* ServerType.swift */; };
+		9AA8C18C2ADCC2CD00B93E45 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C18B2ADCC2CD00B93E45 /* AboutView.swift */; };
+		9AA8C18E2ADD9B4600B93E45 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C18D2ADD9B4600B93E45 /* OptionsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9AA8C1572ADCAE9C00B93E45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA8C12E2ADCA98000B93E45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA8C14B2ADCAE9C00B93E45;
+			remoteInfo = DNSKit;
+		};
+		9AA8C1592ADCAE9C00B93E45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA8C12E2ADCA98000B93E45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA8C1352ADCA98000B93E45;
+			remoteInfo = "DNS Inspector";
+		};
+		9AA8C15F2ADCAE9C00B93E45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AA8C12E2ADCA98000B93E45 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA8C14B2ADCAE9C00B93E45;
+			remoteInfo = DNSKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9AA8C1662ADCAE9C00B93E45 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9AA8C1622ADCAE9C00B93E45 /* DNSKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9AA8C1362ADCA98000B93E45 /* DNS Inspector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DNS Inspector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA8C1392ADCA98000B93E45 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		9AA8C13B2ADCA98000B93E45 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		9AA8C13D2ADCA98200B93E45 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9AA8C1402ADCA98200B93E45 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9AA8C14C2ADCAE9C00B93E45 /* DNSKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNSKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA8C14E2ADCAE9C00B93E45 /* DNSKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSKit.h; sourceTree = "<group>"; };
+		9AA8C1552ADCAE9C00B93E45 /* DNSKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNSKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AA8C15C2ADCAE9C00B93E45 /* DNSKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSKitTests.m; sourceTree = "<group>"; };
+		9AA8C1762ADCB40800B93E45 /* DNSQuestion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSQuestion.h; sourceTree = "<group>"; };
+		9AA8C1772ADCB40800B93E45 /* DNSQuestion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSQuestion.m; sourceTree = "<group>"; };
+		9AA8C17A2ADCB40F00B93E45 /* DNSAnswer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSAnswer.h; sourceTree = "<group>"; };
+		9AA8C17B2ADCB40F00B93E45 /* DNSAnswer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSAnswer.m; sourceTree = "<group>"; };
+		9AA8C17E2ADCB41600B93E45 /* DNSMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSMessage.h; sourceTree = "<group>"; };
+		9AA8C17F2ADCB41600B93E45 /* DNSMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSMessage.m; sourceTree = "<group>"; };
+		9AA8C1822ADCB6BD00B93E45 /* RecordType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordType.swift; sourceTree = "<group>"; };
+		9AA8C1842ADCB74A00B93E45 /* Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
+		9AA8C1882ADCBD7800B93E45 /* ServerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerType.swift; sourceTree = "<group>"; };
+		9AA8C18B2ADCC2CD00B93E45 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		9AA8C18D2ADD9B4600B93E45 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9AA8C1332ADCA98000B93E45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AA8C1612ADCAE9C00B93E45 /* DNSKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AA8C1492ADCAE9C00B93E45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AA8C1522ADCAE9C00B93E45 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AA8C1562ADCAE9C00B93E45 /* DNSKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9AA8C12D2ADCA98000B93E45 = {
+			isa = PBXGroup;
+			children = (
+				9AA8C1382ADCA98000B93E45 /* dns-inspector */,
+				9AA8C14D2ADCAE9C00B93E45 /* DNSKit */,
+				9AA8C15B2ADCAE9C00B93E45 /* DNSKitTests */,
+				9AA8C1372ADCA98000B93E45 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9AA8C1372ADCA98000B93E45 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AA8C1362ADCA98000B93E45 /* DNS Inspector.app */,
+				9AA8C14C2ADCAE9C00B93E45 /* DNSKit.framework */,
+				9AA8C1552ADCAE9C00B93E45 /* DNSKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9AA8C1382ADCA98000B93E45 /* dns-inspector */ = {
+			isa = PBXGroup;
+			children = (
+				9AA8C18B2ADCC2CD00B93E45 /* AboutView.swift */,
+				9AA8C1392ADCA98000B93E45 /* App.swift */,
+				9AA8C13D2ADCA98200B93E45 /* Assets.xcassets */,
+				9AA8C13B2ADCA98000B93E45 /* MainView.swift */,
+				9AA8C18D2ADD9B4600B93E45 /* OptionsView.swift */,
+				9AA8C13F2ADCA98200B93E45 /* Preview Content */,
+				9AA8C1872ADCBD6A00B93E45 /* Types */,
+			);
+			path = "dns-inspector";
+			sourceTree = "<group>";
+		};
+		9AA8C13F2ADCA98200B93E45 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				9AA8C1402ADCA98200B93E45 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9AA8C14D2ADCAE9C00B93E45 /* DNSKit */ = {
+			isa = PBXGroup;
+			children = (
+				9AA8C14E2ADCAE9C00B93E45 /* DNSKit.h */,
+				9AA8C1762ADCB40800B93E45 /* DNSQuestion.h */,
+				9AA8C1772ADCB40800B93E45 /* DNSQuestion.m */,
+				9AA8C17A2ADCB40F00B93E45 /* DNSAnswer.h */,
+				9AA8C17B2ADCB40F00B93E45 /* DNSAnswer.m */,
+				9AA8C17E2ADCB41600B93E45 /* DNSMessage.h */,
+				9AA8C17F2ADCB41600B93E45 /* DNSMessage.m */,
+				9AA8C1842ADCB74A00B93E45 /* Types.h */,
+			);
+			path = DNSKit;
+			sourceTree = "<group>";
+		};
+		9AA8C15B2ADCAE9C00B93E45 /* DNSKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				9AA8C15C2ADCAE9C00B93E45 /* DNSKitTests.m */,
+			);
+			path = DNSKitTests;
+			sourceTree = "<group>";
+		};
+		9AA8C1872ADCBD6A00B93E45 /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				9AA8C1822ADCB6BD00B93E45 /* RecordType.swift */,
+				9AA8C1882ADCBD7800B93E45 /* ServerType.swift */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		9AA8C1472ADCAE9C00B93E45 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AA8C1802ADCB41600B93E45 /* DNSMessage.h in Headers */,
+				9AA8C1852ADCB74D00B93E45 /* Types.h in Headers */,
+				9AA8C1782ADCB40800B93E45 /* DNSQuestion.h in Headers */,
+				9AA8C17C2ADCB40F00B93E45 /* DNSAnswer.h in Headers */,
+				9AA8C15E2ADCAE9C00B93E45 /* DNSKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9AA8C1352ADCA98000B93E45 /* DNS Inspector */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AA8C1442ADCA98200B93E45 /* Build configuration list for PBXNativeTarget "DNS Inspector" */;
+			buildPhases = (
+				9AA8C1322ADCA98000B93E45 /* Sources */,
+				9AA8C1332ADCA98000B93E45 /* Frameworks */,
+				9AA8C1342ADCA98000B93E45 /* Resources */,
+				9AA8C1662ADCAE9C00B93E45 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9AA8C1602ADCAE9C00B93E45 /* PBXTargetDependency */,
+			);
+			name = "DNS Inspector";
+			productName = "dns-inspector";
+			productReference = 9AA8C1362ADCA98000B93E45 /* DNS Inspector.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9AA8C14B2ADCAE9C00B93E45 /* DNSKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AA8C1632ADCAE9C00B93E45 /* Build configuration list for PBXNativeTarget "DNSKit" */;
+			buildPhases = (
+				9AA8C1472ADCAE9C00B93E45 /* Headers */,
+				9AA8C1482ADCAE9C00B93E45 /* Sources */,
+				9AA8C1492ADCAE9C00B93E45 /* Frameworks */,
+				9AA8C14A2ADCAE9C00B93E45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DNSKit;
+			productName = DNSKit;
+			productReference = 9AA8C14C2ADCAE9C00B93E45 /* DNSKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9AA8C1542ADCAE9C00B93E45 /* DNSKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9AA8C1672ADCAE9C00B93E45 /* Build configuration list for PBXNativeTarget "DNSKitTests" */;
+			buildPhases = (
+				9AA8C1512ADCAE9C00B93E45 /* Sources */,
+				9AA8C1522ADCAE9C00B93E45 /* Frameworks */,
+				9AA8C1532ADCAE9C00B93E45 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9AA8C1582ADCAE9C00B93E45 /* PBXTargetDependency */,
+				9AA8C15A2ADCAE9C00B93E45 /* PBXTargetDependency */,
+			);
+			name = DNSKitTests;
+			productName = DNSKitTests;
+			productReference = 9AA8C1552ADCAE9C00B93E45 /* DNSKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9AA8C12E2ADCA98000B93E45 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					9AA8C1352ADCA98000B93E45 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					9AA8C14B2ADCAE9C00B93E45 = {
+						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
+					};
+					9AA8C1542ADCAE9C00B93E45 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 9AA8C1352ADCA98000B93E45;
+					};
+				};
+			};
+			buildConfigurationList = 9AA8C1312ADCA98000B93E45 /* Build configuration list for PBXProject "dns-inspector" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9AA8C12D2ADCA98000B93E45;
+			productRefGroup = 9AA8C1372ADCA98000B93E45 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9AA8C1352ADCA98000B93E45 /* DNS Inspector */,
+				9AA8C14B2ADCAE9C00B93E45 /* DNSKit */,
+				9AA8C1542ADCAE9C00B93E45 /* DNSKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9AA8C1342ADCA98000B93E45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AA8C1412ADCA98200B93E45 /* Preview Assets.xcassets in Resources */,
+				9AA8C13E2ADCA98200B93E45 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AA8C14A2ADCAE9C00B93E45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AA8C1532ADCAE9C00B93E45 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9AA8C1322ADCA98000B93E45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AA8C18A2ADCBD7A00B93E45 /* ServerType.swift in Sources */,
+				9AA8C1862ADCB85300B93E45 /* RecordType.swift in Sources */,
+				9AA8C13C2ADCA98000B93E45 /* MainView.swift in Sources */,
+				9AA8C18E2ADD9B4600B93E45 /* OptionsView.swift in Sources */,
+				9AA8C13A2ADCA98000B93E45 /* App.swift in Sources */,
+				9AA8C18C2ADCC2CD00B93E45 /* AboutView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AA8C1482ADCAE9C00B93E45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AA8C1792ADCB40800B93E45 /* DNSQuestion.m in Sources */,
+				9AA8C1812ADCB41600B93E45 /* DNSMessage.m in Sources */,
+				9AA8C17D2ADCB40F00B93E45 /* DNSAnswer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9AA8C1512ADCAE9C00B93E45 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9AA8C15D2ADCAE9C00B93E45 /* DNSKitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9AA8C1582ADCAE9C00B93E45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9AA8C14B2ADCAE9C00B93E45 /* DNSKit */;
+			targetProxy = 9AA8C1572ADCAE9C00B93E45 /* PBXContainerItemProxy */;
+		};
+		9AA8C15A2ADCAE9C00B93E45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9AA8C1352ADCA98000B93E45 /* DNS Inspector */;
+			targetProxy = 9AA8C1592ADCAE9C00B93E45 /* PBXContainerItemProxy */;
+		};
+		9AA8C1602ADCAE9C00B93E45 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9AA8C14B2ADCAE9C00B93E45 /* DNSKit */;
+			targetProxy = 9AA8C15F2ADCAE9C00B93E45 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		9AA8C1422ADCA98200B93E45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9AA8C1432ADCA98200B93E45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9AA8C1452ADCA98200B93E45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"dns-inspector/Preview Content\"";
+				DEVELOPMENT_TEAM = WCW84NC7Y8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "DNS Inspector";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.ecn.dns-inspector";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9AA8C1462ADCA98200B93E45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"dns-inspector/Preview Content\"";
+				DEVELOPMENT_TEAM = WCW84NC7Y8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "DNS Inspector";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.ecn.dns-inspector";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9AA8C1642ADCAE9C00B93E45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WCW84NC7Y8;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.ecn.DNSKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9AA8C1652ADCAE9C00B93E45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WCW84NC7Y8;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.ecn.DNSKit;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9AA8C1682ADCAE9C00B93E45 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QFMMV6YPV2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.ecn.DNSKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DNS Inspector.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DNS Inspector";
+			};
+			name = Debug;
+		};
+		9AA8C1692ADCAE9C00B93E45 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QFMMV6YPV2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.ecn.DNSKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DNS Inspector.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DNS Inspector";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9AA8C1312ADCA98000B93E45 /* Build configuration list for PBXProject "dns-inspector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AA8C1422ADCA98200B93E45 /* Debug */,
+				9AA8C1432ADCA98200B93E45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AA8C1442ADCA98200B93E45 /* Build configuration list for PBXNativeTarget "DNS Inspector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AA8C1452ADCA98200B93E45 /* Debug */,
+				9AA8C1462ADCA98200B93E45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AA8C1632ADCAE9C00B93E45 /* Build configuration list for PBXNativeTarget "DNSKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AA8C1642ADCAE9C00B93E45 /* Debug */,
+				9AA8C1652ADCAE9C00B93E45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9AA8C1672ADCAE9C00B93E45 /* Build configuration list for PBXNativeTarget "DNSKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9AA8C1682ADCAE9C00B93E45 /* Debug */,
+				9AA8C1692ADCAE9C00B93E45 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9AA8C12E2ADCA98000B93E45 /* Project object */;
+}
