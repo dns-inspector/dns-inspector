@@ -7,7 +7,7 @@ struct AboutView: View {
         NavigationStack {
             VStack {
                 VStack {
-                    Image(systemName: "personalhotspot.circle")
+                    Image(systemName: "link.circle.fill")
                         .resizable(resizingMode: .stretch)
                         .foregroundColor(Color.white)
                         .frame(width: 75.0, height: 75.0)
@@ -54,7 +54,7 @@ struct AboutView: View {
                         Button {
 
                         } label: {
-                            Label("Follow @dnsinspector on Mastodon", systemImage: "person.badge.plus")
+                            Label("Follow us on Mastodon", systemImage: "person.badge.plus")
                         }
                     } header: {
                         Text("Get Involved")

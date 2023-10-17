@@ -1,0 +1,14 @@
+#ifndef DNSKitPrefixHeader_pch
+#define DNSKitPrefixHeader_pch
+
+#include "LogWriter.h"
+
+#define PDebug(format, ...) [LogWriter.sharedInstance writeDebug:[NSString stringWithFormat:(format), ##__VA_ARGS__]]
+#define PWarn(format, ...) [LogWriter.sharedInstance writeWarn:[NSString stringWithFormat:(format), ##__VA_ARGS__]]
+#define PError(format, ...) [LogWriter.sharedInstance writeError:[NSString stringWithFormat:(format), ##__VA_ARGS__]]
+
+#define IS_XCODE_TEST ([[NSProcessInfo processInfo] environment][@"XCTestConfigurationFilePath"] != nil)
+
+#define MAKE_ERROR(ECODE, EDESCRIPTION) [NSError errorWithDomain:@"io.ecn.DNSKit" code:ECODE userInfo:@{NSLocalizedDescriptionKey: EDESCRIPTION}]
+
+#endif

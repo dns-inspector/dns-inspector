@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C343D3C2ADE110100C282D0 /* LogWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C343D3A2ADE110100C282D0 /* LogWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3C343D3D2ADE110100C282D0 /* LogWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D3B2ADE110100C282D0 /* LogWriter.m */; };
+		3C343D402ADE12AC00C282D0 /* DNSQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C343D3E2ADE12AC00C282D0 /* DNSQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3C343D412ADE12AC00C282D0 /* DNSQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D3F2ADE12AC00C282D0 /* DNSQuery.m */; };
+		3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */; };
 		9AA8C13A2ADCA98000B93E45 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C1392ADCA98000B93E45 /* App.swift */; };
 		9AA8C13C2ADCA98000B93E45 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C13B2ADCA98000B93E45 /* MainView.swift */; };
 		9AA8C13E2ADCA98200B93E45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA8C13D2ADCA98200B93E45 /* Assets.xcassets */; };
@@ -68,6 +73,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C343D392ADE108300C282D0 /* DNSKitPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSKitPrefixHeader.pch; sourceTree = "<group>"; };
+		3C343D3A2ADE110100C282D0 /* LogWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogWriter.h; sourceTree = "<group>"; };
+		3C343D3B2ADE110100C282D0 /* LogWriter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogWriter.m; sourceTree = "<group>"; };
+		3C343D3E2ADE12AC00C282D0 /* DNSQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSQuery.h; sourceTree = "<group>"; };
+		3C343D3F2ADE12AC00C282D0 /* DNSQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSQuery.m; sourceTree = "<group>"; };
+		3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSMessageView.swift; sourceTree = "<group>"; };
 		9AA8C1362ADCA98000B93E45 /* DNS Inspector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DNS Inspector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA8C1392ADCA98000B93E45 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		9AA8C13B2ADCA98000B93E45 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -143,6 +154,7 @@
 				9AA8C18B2ADCC2CD00B93E45 /* AboutView.swift */,
 				9AA8C1392ADCA98000B93E45 /* App.swift */,
 				9AA8C13D2ADCA98200B93E45 /* Assets.xcassets */,
+				3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */,
 				9AA8C13B2ADCA98000B93E45 /* MainView.swift */,
 				9AA8C18D2ADD9B4600B93E45 /* OptionsView.swift */,
 				9AA8C13F2ADCA98200B93E45 /* Preview Content */,
@@ -162,13 +174,18 @@
 		9AA8C14D2ADCAE9C00B93E45 /* DNSKit */ = {
 			isa = PBXGroup;
 			children = (
-				9AA8C14E2ADCAE9C00B93E45 /* DNSKit.h */,
-				9AA8C1762ADCB40800B93E45 /* DNSQuestion.h */,
-				9AA8C1772ADCB40800B93E45 /* DNSQuestion.m */,
 				9AA8C17A2ADCB40F00B93E45 /* DNSAnswer.h */,
 				9AA8C17B2ADCB40F00B93E45 /* DNSAnswer.m */,
+				9AA8C14E2ADCAE9C00B93E45 /* DNSKit.h */,
+				3C343D392ADE108300C282D0 /* DNSKitPrefixHeader.pch */,
 				9AA8C17E2ADCB41600B93E45 /* DNSMessage.h */,
 				9AA8C17F2ADCB41600B93E45 /* DNSMessage.m */,
+				3C343D3E2ADE12AC00C282D0 /* DNSQuery.h */,
+				3C343D3F2ADE12AC00C282D0 /* DNSQuery.m */,
+				9AA8C1762ADCB40800B93E45 /* DNSQuestion.h */,
+				9AA8C1772ADCB40800B93E45 /* DNSQuestion.m */,
+				3C343D3A2ADE110100C282D0 /* LogWriter.h */,
+				3C343D3B2ADE110100C282D0 /* LogWriter.m */,
 				9AA8C1842ADCB74A00B93E45 /* Types.h */,
 			);
 			path = DNSKit;
@@ -200,6 +217,8 @@
 			files = (
 				9AA8C1802ADCB41600B93E45 /* DNSMessage.h in Headers */,
 				9AA8C1852ADCB74D00B93E45 /* Types.h in Headers */,
+				3C343D402ADE12AC00C282D0 /* DNSQuery.h in Headers */,
+				3C343D3C2ADE110100C282D0 /* LogWriter.h in Headers */,
 				9AA8C1782ADCB40800B93E45 /* DNSQuestion.h in Headers */,
 				9AA8C17C2ADCB40F00B93E45 /* DNSAnswer.h in Headers */,
 				9AA8C15E2ADCAE9C00B93E45 /* DNSKit.h in Headers */,
@@ -340,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AA8C18A2ADCBD7A00B93E45 /* ServerType.swift in Sources */,
+				3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */,
 				9AA8C1862ADCB85300B93E45 /* RecordType.swift in Sources */,
 				9AA8C13C2ADCA98000B93E45 /* MainView.swift in Sources */,
 				9AA8C18E2ADD9B4600B93E45 /* OptionsView.swift in Sources */,
@@ -353,8 +373,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AA8C1792ADCB40800B93E45 /* DNSQuestion.m in Sources */,
+				3C343D3D2ADE110100C282D0 /* LogWriter.m in Sources */,
 				9AA8C1812ADCB41600B93E45 /* DNSMessage.m in Sources */,
 				9AA8C17D2ADCB40F00B93E45 /* DNSAnswer.m in Sources */,
+				3C343D412ADE12AC00C282D0 /* DNSQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +608,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -594,6 +617,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = DNSKit/DNSKitPrefixHeader.pch;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -623,6 +648,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -631,6 +657,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = DNSKit/DNSKitPrefixHeader.pch;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

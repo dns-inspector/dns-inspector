@@ -7,6 +7,11 @@ fileprivate class MainViewState: ObservableObject {
     @Published var error: Error?
 }
 
+fileprivate struct QueryResult {
+    let query: DNSQuery
+    let message: DNSMessage
+}
+
 struct MainView: View {
     @State private var queryType: RecordType = RecordTypes[0]
     @State private var queryName = ""
@@ -15,6 +20,7 @@ struct MainView: View {
     @State private var showAboutView = false
     @State private var showOptionsView = false
     @StateObject private var lookupState = MainViewState()
+    @State private var queryResult: QueryResult?
 
     var body: some View {
         NavigationStack {
@@ -40,11 +46,7 @@ struct MainView: View {
                         }
                         .keyboardType(.URL)
                         .textInputAutocapitalization(.never)
-                        .submitLabel(.search)
                         .autocorrectionDisabled()
-                        .onSubmit {
-                            self.lookupState.loading = true
-                        }
                         .disabled(self.lookupState.loading)
                     }
                     HStack {
@@ -70,14 +72,16 @@ struct MainView: View {
                         .textInputAutocapitalization(.never)
                         .submitLabel(.done)
                         .onSubmit {
-                            self.lookupState.loading = true
+                            doInspect()
                         }
                         .disabled(self.lookupState.loading)
                     }
                     if self.lookupState.loading {
-                        HStack {
-                            ProgressView()
-                            Text("Loading...").padding(.leading, 8).opacity(0.5)
+                        withAnimation {
+                            HStack {
+                                ProgressView()
+                                Text("Loading...").padding(.leading, 8).opacity(0.5)
+                            }
                         }
                     }
                 }
@@ -115,7 +119,7 @@ struct MainView: View {
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
-                        self.lookupState.loading = true
+                        doInspect()
                     }, label: {
                         Image(systemName: "arrow.right.circle")
                     })
@@ -129,10 +133,48 @@ struct MainView: View {
         .sheet(isPresented: $showOptionsView, content: {
             OptionsView()
         })
+        .fullScreenCover(isPresented: .init(get: {
+            return self.queryResult != nil
+        }, set: { v in
+            if !v {
+                self.queryResult = nil
+            }
+        }), content: {
+            DNSMessageView(query: self.queryResult!.query, message: self.queryResult!.message)
+        })
     }
 
     func isInvalid() -> Bool {
         return self.queryName.isEmpty || self.queryServerURL.isEmpty
+    }
+
+    func doInspect() {
+        self.lookupState.loading = true
+
+        let query: DNSQuery
+        do {
+            query = try DNSQuery(serverType: self.queryServerType.dnsKitValue, serverAddress: self.queryServerURL, recordType: self.queryType.dnsKitValue, name: self.queryName)
+        } catch {
+            self.lookupState.error = error
+            self.lookupState.loading = false
+            return
+        }
+
+        query.execute { oMessage, oError in
+            DispatchQueue.main.async {
+                if let error = oError {
+                    self.lookupState.error = error
+                    self.lookupState.loading = false
+                    return
+                }
+                guard let message = oMessage else {
+                    self.lookupState.loading = false
+                    return
+                }
+                self.lookupState.loading = false
+                self.queryResult = QueryResult(query: query, message: message)
+            }
+        }
     }
 }
 

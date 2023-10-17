@@ -11,3 +11,5 @@ FOUNDATION_EXPORT const unsigned char DNSKitVersionString[];
 #import <DNSKit/DNSQuestion.h>
 #import <DNSKit/DNSAnswer.h>
 #import <DNSKit/DNSMessage.h>
+#import <DNSKit/DNSQuery.h>
+#import <DNSKit/LogWriter.h>
