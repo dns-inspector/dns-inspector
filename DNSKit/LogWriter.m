@@ -86,36 +86,52 @@ static id _instance;
     }
 }
 
-- (void) write:(NSString *)string forLevel:(LogWriterLevel)level {
+- (void) write:(NSString *)string file:(char *)file line:(int)line forLevel:(LogWriterLevel)level {
     NSString * thread = [NSString stringWithFormat:@"%p", NSThread.currentThread];
     @synchronized (self.lock) {
-        NSString * writeString = [NSString stringWithFormat:@"[%@][%ld][%@] %@",
-                                  [self stringForLevel:level], time(0), thread, string];
+        NSString * writeString = [NSString stringWithFormat:@"[%@][%ld][%@][%s:%i] %@",
+                                  [self stringForLevel:level], time(0), thread, file, line, string];
         [self.handle writeData:[writeString dataUsingEncoding:NSUTF8StringEncoding]];
         printf("%s", [writeString UTF8String]);
     }
 }
 
-- (void) writeLine:(NSString *)string forLevel:(LogWriterLevel)level {
+- (void) writeLine:(NSString *)string file:(char *)file line:(int)line forLevel:(LogWriterLevel)level {
     if (self.level <= level) {
-        [self write:[NSString stringWithFormat:@"%@\n", string] forLevel:level];
+        [self write:[NSString stringWithFormat:@"%@\n", string] file:file line:line forLevel:level];
     }
 }
 
 - (void) writeDebug:(NSString *)message {
-    [self writeLine:message forLevel:LogWriterLevelDebug];
+    [self writeLine:message file:"" line:0 forLevel:LogWriterLevelDebug];
+}
+
+- (void) writeDebug:(NSString *)message file:(char *)file line:(int)line {
+    [self writeLine:message file:file line:line forLevel:LogWriterLevelDebug];
 }
 
 - (void) writeInfo:(NSString *)message {
-    [self writeLine:message forLevel:LogWriterLevelInfo];
+    [self writeLine:message file:"" line:0 forLevel:LogWriterLevelInfo];
+}
+
+- (void) writeInfo:(NSString *)message file:(char *)file line:(int)line {
+    [self writeLine:message file:file line:line forLevel:LogWriterLevelInfo];
 }
 
 - (void) writeWarn:(NSString *)message {
-    [self writeLine:message forLevel:LogWriterLevelWarning];
+    [self writeLine:message file:"" line:0 forLevel:LogWriterLevelWarning];
+}
+
+- (void) writeWarn:(NSString *)message file:(char *)file line:(int)line {
+    [self writeLine:message file:file line:line forLevel:LogWriterLevelWarning];
 }
 
 - (void) writeError:(NSString *)message {
-    [self writeLine:message forLevel:LogWriterLevelError];
+    [self writeLine:message file:"" line:0 forLevel:LogWriterLevelError];
+}
+
+- (void) writeError:(NSString *)message file:(char *)file line:(int)line {
+    [self writeLine:message file:file line:line forLevel:LogWriterLevelError];
 }
 
 - (void) setLevel:(LogWriterLevel)level {

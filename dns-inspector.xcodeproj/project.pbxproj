@@ -14,12 +14,20 @@
 		3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */; };
 		3CCA08012ADF600800CD76E8 /* curl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCA08002ADF600800CD76E8 /* curl.xcframework */; };
 		3CCA08032ADF600F00CD76E8 /* openssl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCA08022ADF600F00CD76E8 /* openssl.xcframework */; };
+		3CCA08062ADF642600CD76E8 /* DNSName.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CCA08042ADF642600CD76E8 /* DNSName.h */; };
+		3CCA08072ADF642600CD76E8 /* DNSName.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA08052ADF642600CD76E8 /* DNSName.m */; };
+		3CCA080D2ADF650000CD76E8 /* NSData+ByteAtIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CCA08092ADF650000CD76E8 /* NSData+ByteAtIndex.h */; };
+		3CCA080E2ADF650000CD76E8 /* NSData+ByteAtIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA080A2ADF650000CD76E8 /* NSData+ByteAtIndex.m */; };
+		3CCA080F2ADF650000CD76E8 /* NSData+Base64URL.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CCA080B2ADF650000CD76E8 /* NSData+Base64URL.h */; };
+		3CCA08102ADF650000CD76E8 /* NSData+Base64URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA080C2ADF650000CD76E8 /* NSData+Base64URL.m */; };
+		3CCA08132ADF674D00CD76E8 /* NSData+HexString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CCA08112ADF674D00CD76E8 /* NSData+HexString.h */; };
+		3CCA08142ADF674D00CD76E8 /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA08122ADF674D00CD76E8 /* NSData+HexString.m */; };
+		3CCA08162ADF75BD00CD76E8 /* DNSMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA08152ADF75BD00CD76E8 /* DNSMessageTests.m */; };
 		9AA8C13A2ADCA98000B93E45 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C1392ADCA98000B93E45 /* App.swift */; };
 		9AA8C13C2ADCA98000B93E45 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C13B2ADCA98000B93E45 /* MainView.swift */; };
 		9AA8C13E2ADCA98200B93E45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA8C13D2ADCA98200B93E45 /* Assets.xcassets */; };
 		9AA8C1412ADCA98200B93E45 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA8C1402ADCA98200B93E45 /* Preview Assets.xcassets */; };
 		9AA8C1562ADCAE9C00B93E45 /* DNSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA8C14C2ADCAE9C00B93E45 /* DNSKit.framework */; };
-		9AA8C15D2ADCAE9C00B93E45 /* DNSKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C15C2ADCAE9C00B93E45 /* DNSKitTests.m */; };
 		9AA8C15E2ADCAE9C00B93E45 /* DNSKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA8C14E2ADCAE9C00B93E45 /* DNSKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9AA8C1612ADCAE9C00B93E45 /* DNSKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA8C14C2ADCAE9C00B93E45 /* DNSKit.framework */; };
 		9AA8C1622ADCAE9C00B93E45 /* DNSKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9AA8C14C2ADCAE9C00B93E45 /* DNSKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -83,6 +91,16 @@
 		3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSMessageView.swift; sourceTree = "<group>"; };
 		3CCA08002ADF600800CD76E8 /* curl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = curl.xcframework; sourceTree = "<group>"; };
 		3CCA08022ADF600F00CD76E8 /* openssl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = openssl.xcframework; sourceTree = "<group>"; };
+		3CCA08042ADF642600CD76E8 /* DNSName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSName.h; sourceTree = "<group>"; };
+		3CCA08052ADF642600CD76E8 /* DNSName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSName.m; sourceTree = "<group>"; };
+		3CCA08092ADF650000CD76E8 /* NSData+ByteAtIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ByteAtIndex.h"; sourceTree = "<group>"; };
+		3CCA080A2ADF650000CD76E8 /* NSData+ByteAtIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ByteAtIndex.m"; sourceTree = "<group>"; };
+		3CCA080B2ADF650000CD76E8 /* NSData+Base64URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64URL.h"; sourceTree = "<group>"; };
+		3CCA080C2ADF650000CD76E8 /* NSData+Base64URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64URL.m"; sourceTree = "<group>"; };
+		3CCA08112ADF674D00CD76E8 /* NSData+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+HexString.h"; sourceTree = "<group>"; };
+		3CCA08122ADF674D00CD76E8 /* NSData+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HexString.m"; sourceTree = "<group>"; };
+		3CCA08152ADF75BD00CD76E8 /* DNSMessageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSMessageTests.m; sourceTree = "<group>"; };
+		3CCA08172ADF75E900CD76E8 /* DNSKitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSKitTests.h; sourceTree = "<group>"; };
 		9AA8C1362ADCA98000B93E45 /* DNS Inspector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DNS Inspector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA8C1392ADCA98000B93E45 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		9AA8C13B2ADCA98000B93E45 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -91,7 +109,6 @@
 		9AA8C14C2ADCAE9C00B93E45 /* DNSKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DNSKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA8C14E2ADCAE9C00B93E45 /* DNSKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSKit.h; sourceTree = "<group>"; };
 		9AA8C1552ADCAE9C00B93E45 /* DNSKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DNSKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AA8C15C2ADCAE9C00B93E45 /* DNSKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSKitTests.m; sourceTree = "<group>"; };
 		9AA8C1762ADCB40800B93E45 /* DNSQuestion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSQuestion.h; sourceTree = "<group>"; };
 		9AA8C1772ADCB40800B93E45 /* DNSQuestion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSQuestion.m; sourceTree = "<group>"; };
 		9AA8C17A2ADCB40F00B93E45 /* DNSAnswer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSAnswer.h; sourceTree = "<group>"; };
@@ -134,6 +151,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3CCA08082ADF64A400CD76E8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3CCA080B2ADF650000CD76E8 /* NSData+Base64URL.h */,
+				3CCA080C2ADF650000CD76E8 /* NSData+Base64URL.m */,
+				3CCA08092ADF650000CD76E8 /* NSData+ByteAtIndex.h */,
+				3CCA080A2ADF650000CD76E8 /* NSData+ByteAtIndex.m */,
+				3CCA08112ADF674D00CD76E8 /* NSData+HexString.h */,
+				3CCA08122ADF674D00CD76E8 /* NSData+HexString.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		9AA8C12D2ADCA98000B93E45 = {
 			isa = PBXGroup;
 			children = (
@@ -187,10 +217,13 @@
 				3C343D392ADE108300C282D0 /* DNSKitPrefixHeader.pch */,
 				9AA8C17E2ADCB41600B93E45 /* DNSMessage.h */,
 				9AA8C17F2ADCB41600B93E45 /* DNSMessage.m */,
+				3CCA08042ADF642600CD76E8 /* DNSName.h */,
+				3CCA08052ADF642600CD76E8 /* DNSName.m */,
 				3C343D3E2ADE12AC00C282D0 /* DNSQuery.h */,
 				3C343D3F2ADE12AC00C282D0 /* DNSQuery.m */,
 				9AA8C1762ADCB40800B93E45 /* DNSQuestion.h */,
 				9AA8C1772ADCB40800B93E45 /* DNSQuestion.m */,
+				3CCA08082ADF64A400CD76E8 /* Extensions */,
 				3C343D3A2ADE110100C282D0 /* LogWriter.h */,
 				3C343D3B2ADE110100C282D0 /* LogWriter.m */,
 				3CCA08022ADF600F00CD76E8 /* openssl.xcframework */,
@@ -202,7 +235,8 @@
 		9AA8C15B2ADCAE9C00B93E45 /* DNSKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				9AA8C15C2ADCAE9C00B93E45 /* DNSKitTests.m */,
+				3CCA08172ADF75E900CD76E8 /* DNSKitTests.h */,
+				3CCA08152ADF75BD00CD76E8 /* DNSMessageTests.m */,
 			);
 			path = DNSKitTests;
 			sourceTree = "<group>";
@@ -228,7 +262,11 @@
 				3C343D402ADE12AC00C282D0 /* DNSQuery.h in Headers */,
 				3C343D3C2ADE110100C282D0 /* LogWriter.h in Headers */,
 				9AA8C1782ADCB40800B93E45 /* DNSQuestion.h in Headers */,
+				3CCA08062ADF642600CD76E8 /* DNSName.h in Headers */,
+				3CCA080F2ADF650000CD76E8 /* NSData+Base64URL.h in Headers */,
+				3CCA080D2ADF650000CD76E8 /* NSData+ByteAtIndex.h in Headers */,
 				9AA8C17C2ADCB40F00B93E45 /* DNSAnswer.h in Headers */,
+				3CCA08132ADF674D00CD76E8 /* NSData+HexString.h in Headers */,
 				9AA8C15E2ADCAE9C00B93E45 /* DNSKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,11 +418,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CCA08072ADF642600CD76E8 /* DNSName.m in Sources */,
 				9AA8C1792ADCB40800B93E45 /* DNSQuestion.m in Sources */,
 				3C343D3D2ADE110100C282D0 /* LogWriter.m in Sources */,
+				3CCA08102ADF650000CD76E8 /* NSData+Base64URL.m in Sources */,
+				3CCA08142ADF674D00CD76E8 /* NSData+HexString.m in Sources */,
 				9AA8C1812ADCB41600B93E45 /* DNSMessage.m in Sources */,
 				9AA8C17D2ADCB40F00B93E45 /* DNSAnswer.m in Sources */,
 				3C343D412ADE12AC00C282D0 /* DNSQuery.m in Sources */,
+				3CCA080E2ADF650000CD76E8 /* NSData+ByteAtIndex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +434,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AA8C15D2ADCAE9C00B93E45 /* DNSKitTests.m in Sources */,
+				3CCA08162ADF75BD00CD76E8 /* DNSMessageTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -696,7 +738,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QFMMV6YPV2;
+				DEVELOPMENT_TEAM = WCW84NC7Y8;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.ecn.DNSKitTests;
@@ -711,7 +753,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QFMMV6YPV2;
+				DEVELOPMENT_TEAM = WCW84NC7Y8;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.ecn.DNSKitTests;

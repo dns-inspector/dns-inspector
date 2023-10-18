@@ -1,20 +1,26 @@
-//
-//  DNSMessage.h
-//  DNSKit
-//
-//  Created by Ian Spence on 2023-10-15.
-//
-
 #import <Foundation/Foundation.h>
 #import <DNSKit/DNSQuestion.h>
 #import <DNSKit/DNSAnswer.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Class for a DNS message
 @interface DNSMessage : NSObject
 
-@property (strong, nonatomic, nullable, readonly) NSArray<DNSQuestion *> * questions;
-@property (strong, nonatomic, nullable, readonly) NSArray<DNSAnswer *> * answers;
+/// The ID number
+@property (nonatomic) NSUInteger idNumber;
+
+/// The response code
+@property (nonatomic) DNSResponseCode responseCode;
+
+/// DNS questions
+@property (strong, nonatomic, nullable) NSArray<DNSQuestion *> * questions;
+
+/// DNS answers
+@property (strong, nonatomic, nullable) NSArray<DNSAnswer *> * answers;
+
+/// Decode a DNS message from the data object.
++ (DNSMessage * _Nullable) messageFromData:(NSData * _Nonnull)data error:(NSError * _Nullable * _Nonnull)error;
 
 @end
 

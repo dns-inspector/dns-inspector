@@ -3,9 +3,10 @@
 
 #include "LogWriter.h"
 
-#define PDebug(format, ...) [LogWriter.sharedInstance writeDebug:[NSString stringWithFormat:(format), ##__VA_ARGS__]]
-#define PWarn(format, ...) [LogWriter.sharedInstance writeWarn:[NSString stringWithFormat:(format), ##__VA_ARGS__]]
-#define PError(format, ...) [LogWriter.sharedInstance writeError:[NSString stringWithFormat:(format), ##__VA_ARGS__]]
+#define PDebug(format, ...) [LogWriter.sharedInstance writeDebug:[NSString stringWithFormat:(format), ##__VA_ARGS__] file:__FILE__ line:__LINE__]
+#define PInfo(format, ...) [LogWriter.sharedInstance writeInfo:[NSString stringWithFormat:(format), ##__VA_ARGS__] file:__FILE__ line:__LINE__]
+#define PWarn(format, ...) [LogWriter.sharedInstance writeWarn:[NSString stringWithFormat:(format), ##__VA_ARGS__] file:__FILE__ line:__LINE__]
+#define PError(format, ...) [LogWriter.sharedInstance writeError:[NSString stringWithFormat:(format), ##__VA_ARGS__] file:__FILE__ line:__LINE__]
 
 #define IS_XCODE_TEST ([[NSProcessInfo processInfo] environment][@"XCTestConfigurationFilePath"] != nil)
 

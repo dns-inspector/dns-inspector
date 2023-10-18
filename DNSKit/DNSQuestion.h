@@ -1,18 +1,11 @@
-//
-//  DNSQuestion.h
-//  DNSKit
-//
-//  Created by Ian Spence on 2023-10-15.
-//
-
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DNSQuestion : NSObject
 
-@property (strong, nonatomic, nonnull, readonly) NSString * name;
-@property (nonatomic) NSUInteger questionType;
+@property (strong, nonatomic, nonnull) NSString * name;
+@property (nonatomic) DNSRecordType questionType;
 @property (nonatomic) NSUInteger questionClass;
 
 @end

@@ -33,14 +33,41 @@ typedef NS_ENUM(NSUInteger, LogWriterLevel) {
 /// Write a DEBUG level message
 /// @param message The message to write
 - (void) writeDebug:(NSString * _Nonnull)message;
+
+/// Write a DEBUG level message
+/// @param message The message to write
+/// @param file The source file
+/// @param line The source file line
+- (void) writeDebug:(NSString * _Nonnull)message file:(char * _Nonnull)file line:(int)line;
+
 /// Write an INFO level message
 /// @param message The message to write
 - (void) writeInfo:(NSString * _Nonnull)message;
+
+/// Write a INFO level message
+/// @param message The message to write
+/// @param file The source file
+/// @param line The source file line
+- (void) writeInfo:(NSString * _Nonnull)message file:(char * _Nonnull)file line:(int)line;
+
 /// Write a WARN level message
 /// @param message The message to write
 - (void) writeWarn:(NSString * _Nonnull)message;
+
+/// Write a WARN level message
+/// @param message The message to write
+/// @param file The source file
+/// @param line The source file line
+- (void) writeWarn:(NSString * _Nonnull)message file:(char * _Nonnull)file line:(int)line;
+
 /// Write an ERROR level message
 /// @param message The message to write
 - (void) writeError:(NSString * _Nonnull)message;
+
+/// Write a ERROR level message
+/// @param message The message to write
+/// @param file The source file
+/// @param line The source file line
+- (void) writeError:(NSString * _Nonnull)message file:(char * _Nonnull)file line:(int)line;
 
 @end
