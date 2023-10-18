@@ -12,6 +12,8 @@
 		3C343D402ADE12AC00C282D0 /* DNSQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C343D3E2ADE12AC00C282D0 /* DNSQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C343D412ADE12AC00C282D0 /* DNSQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D3F2ADE12AC00C282D0 /* DNSQuery.m */; };
 		3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */; };
+		3CCA08012ADF600800CD76E8 /* curl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCA08002ADF600800CD76E8 /* curl.xcframework */; };
+		3CCA08032ADF600F00CD76E8 /* openssl.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCA08022ADF600F00CD76E8 /* openssl.xcframework */; };
 		9AA8C13A2ADCA98000B93E45 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C1392ADCA98000B93E45 /* App.swift */; };
 		9AA8C13C2ADCA98000B93E45 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C13B2ADCA98000B93E45 /* MainView.swift */; };
 		9AA8C13E2ADCA98200B93E45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA8C13D2ADCA98200B93E45 /* Assets.xcassets */; };
@@ -79,6 +81,8 @@
 		3C343D3E2ADE12AC00C282D0 /* DNSQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSQuery.h; sourceTree = "<group>"; };
 		3C343D3F2ADE12AC00C282D0 /* DNSQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSQuery.m; sourceTree = "<group>"; };
 		3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSMessageView.swift; sourceTree = "<group>"; };
+		3CCA08002ADF600800CD76E8 /* curl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = curl.xcframework; sourceTree = "<group>"; };
+		3CCA08022ADF600F00CD76E8 /* openssl.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = openssl.xcframework; sourceTree = "<group>"; };
 		9AA8C1362ADCA98000B93E45 /* DNS Inspector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DNS Inspector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA8C1392ADCA98000B93E45 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		9AA8C13B2ADCA98000B93E45 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CCA08032ADF600F00CD76E8 /* openssl.xcframework in Frameworks */,
+				3CCA08012ADF600800CD76E8 /* curl.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +180,7 @@
 		9AA8C14D2ADCAE9C00B93E45 /* DNSKit */ = {
 			isa = PBXGroup;
 			children = (
+				3CCA08002ADF600800CD76E8 /* curl.xcframework */,
 				9AA8C17A2ADCB40F00B93E45 /* DNSAnswer.h */,
 				9AA8C17B2ADCB40F00B93E45 /* DNSAnswer.m */,
 				9AA8C14E2ADCAE9C00B93E45 /* DNSKit.h */,
@@ -186,6 +193,7 @@
 				9AA8C1772ADCB40800B93E45 /* DNSQuestion.m */,
 				3C343D3A2ADE110100C282D0 /* LogWriter.h */,
 				3C343D3B2ADE110100C282D0 /* LogWriter.m */,
+				3CCA08022ADF600F00CD76E8 /* openssl.xcframework */,
 				9AA8C1842ADCB74A00B93E45 /* Types.h */,
 			);
 			path = DNSKit;
@@ -622,7 +630,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -662,7 +670,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

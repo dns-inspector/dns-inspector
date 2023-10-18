@@ -32,3 +32,7 @@ project.xcworkspace
 
 # macOS Generic
 .DS_Store
+
+# Frameworks
+curl.xcframework
+openssl.xcframework
