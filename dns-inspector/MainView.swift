@@ -126,21 +126,24 @@ struct MainView: View {
                     .disabled(self.isInvalid())
                 }
             }
+            if let result = self.queryResult {
+                Text("")
+                    .navigationDestination(isPresented: .init(get: {
+                        return self.queryResult != nil
+                    }, set: { v in
+                        if !v {
+                            self.queryResult = nil
+                        }
+                    }), destination: {
+                        DNSMessageView(query: result.query, message: result.message)
+                    })
+            }
         }
         .sheet(isPresented: $showAboutView, content: {
             AboutView()
         })
         .sheet(isPresented: $showOptionsView, content: {
             OptionsView()
-        })
-        .fullScreenCover(isPresented: .init(get: {
-            return self.queryResult != nil
-        }, set: { v in
-            if !v {
-                self.queryResult = nil
-            }
-        }), content: {
-            DNSMessageView(query: self.queryResult!.query, message: self.queryResult!.message)
         })
     }
 

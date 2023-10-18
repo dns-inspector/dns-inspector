@@ -4,10 +4,9 @@ import DNSKit
 struct DNSMessageView: View {
     let query: DNSQuery
     let message: DNSMessage
-    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        NavigationStack {
+        HStack {
             List {
                 Section("Question") {
                     Text("Hi")
@@ -20,15 +19,6 @@ struct DNSMessageView: View {
                 }
             }
             .navigationTitle(query.name)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button(action: {
-                        dismiss()
-                    }, label: {
-                        Image(systemName: "xmark")
-                    })
-                }
-            }
         }
     }
 }
