@@ -23,6 +23,14 @@
 		3CCA08132ADF674D00CD76E8 /* NSData+HexString.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CCA08112ADF674D00CD76E8 /* NSData+HexString.h */; };
 		3CCA08142ADF674D00CD76E8 /* NSData+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA08122ADF674D00CD76E8 /* NSData+HexString.m */; };
 		3CCA08162ADF75BD00CD76E8 /* DNSMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA08152ADF75BD00CD76E8 /* DNSMessageTests.m */; };
+		3CCA081A2ADF7B4900CD76E8 /* DNSServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CCA08182ADF7B4900CD76E8 /* DNSServer.h */; };
+		3CCA081B2ADF7B4900CD76E8 /* DNSServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA08192ADF7B4900CD76E8 /* DNSServer.m */; };
+		3CCA081E2ADF7B5B00CD76E8 /* DNSServerDNS.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CCA081C2ADF7B5B00CD76E8 /* DNSServerDNS.h */; };
+		3CCA081F2ADF7B5B00CD76E8 /* DNSServerDNS.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA081D2ADF7B5B00CD76E8 /* DNSServerDNS.m */; };
+		3CCA08222ADF7C7400CD76E8 /* DNSServerHTTPS.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CCA08202ADF7C7400CD76E8 /* DNSServerHTTPS.h */; };
+		3CCA08232ADF7C7400CD76E8 /* DNSServerHTTPS.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA08212ADF7C7400CD76E8 /* DNSServerHTTPS.m */; };
+		3CCA08262ADF7CA200CD76E8 /* DNSServerTLS.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CCA08242ADF7CA200CD76E8 /* DNSServerTLS.h */; };
+		3CCA08272ADF7CA200CD76E8 /* DNSServerTLS.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA08252ADF7CA200CD76E8 /* DNSServerTLS.m */; };
 		9AA8C13A2ADCA98000B93E45 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C1392ADCA98000B93E45 /* App.swift */; };
 		9AA8C13C2ADCA98000B93E45 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C13B2ADCA98000B93E45 /* MainView.swift */; };
 		9AA8C13E2ADCA98200B93E45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA8C13D2ADCA98200B93E45 /* Assets.xcassets */; };
@@ -101,6 +109,14 @@
 		3CCA08122ADF674D00CD76E8 /* NSData+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+HexString.m"; sourceTree = "<group>"; };
 		3CCA08152ADF75BD00CD76E8 /* DNSMessageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSMessageTests.m; sourceTree = "<group>"; };
 		3CCA08172ADF75E900CD76E8 /* DNSKitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSKitTests.h; sourceTree = "<group>"; };
+		3CCA08182ADF7B4900CD76E8 /* DNSServer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSServer.h; sourceTree = "<group>"; };
+		3CCA08192ADF7B4900CD76E8 /* DNSServer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServer.m; sourceTree = "<group>"; };
+		3CCA081C2ADF7B5B00CD76E8 /* DNSServerDNS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSServerDNS.h; sourceTree = "<group>"; };
+		3CCA081D2ADF7B5B00CD76E8 /* DNSServerDNS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServerDNS.m; sourceTree = "<group>"; };
+		3CCA08202ADF7C7400CD76E8 /* DNSServerHTTPS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSServerHTTPS.h; sourceTree = "<group>"; };
+		3CCA08212ADF7C7400CD76E8 /* DNSServerHTTPS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServerHTTPS.m; sourceTree = "<group>"; };
+		3CCA08242ADF7CA200CD76E8 /* DNSServerTLS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSServerTLS.h; sourceTree = "<group>"; };
+		3CCA08252ADF7CA200CD76E8 /* DNSServerTLS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServerTLS.m; sourceTree = "<group>"; };
 		9AA8C1362ADCA98000B93E45 /* DNS Inspector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DNS Inspector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA8C1392ADCA98000B93E45 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		9AA8C13B2ADCA98000B93E45 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -223,6 +239,14 @@
 				3C343D3F2ADE12AC00C282D0 /* DNSQuery.m */,
 				9AA8C1762ADCB40800B93E45 /* DNSQuestion.h */,
 				9AA8C1772ADCB40800B93E45 /* DNSQuestion.m */,
+				3CCA08182ADF7B4900CD76E8 /* DNSServer.h */,
+				3CCA08192ADF7B4900CD76E8 /* DNSServer.m */,
+				3CCA081C2ADF7B5B00CD76E8 /* DNSServerDNS.h */,
+				3CCA081D2ADF7B5B00CD76E8 /* DNSServerDNS.m */,
+				3CCA08202ADF7C7400CD76E8 /* DNSServerHTTPS.h */,
+				3CCA08212ADF7C7400CD76E8 /* DNSServerHTTPS.m */,
+				3CCA08242ADF7CA200CD76E8 /* DNSServerTLS.h */,
+				3CCA08252ADF7CA200CD76E8 /* DNSServerTLS.m */,
 				3CCA08082ADF64A400CD76E8 /* Extensions */,
 				3C343D3A2ADE110100C282D0 /* LogWriter.h */,
 				3C343D3B2ADE110100C282D0 /* LogWriter.m */,
@@ -262,7 +286,11 @@
 				3C343D402ADE12AC00C282D0 /* DNSQuery.h in Headers */,
 				3C343D3C2ADE110100C282D0 /* LogWriter.h in Headers */,
 				9AA8C1782ADCB40800B93E45 /* DNSQuestion.h in Headers */,
+				3CCA081A2ADF7B4900CD76E8 /* DNSServer.h in Headers */,
+				3CCA081E2ADF7B5B00CD76E8 /* DNSServerDNS.h in Headers */,
+				3CCA08222ADF7C7400CD76E8 /* DNSServerHTTPS.h in Headers */,
 				3CCA08062ADF642600CD76E8 /* DNSName.h in Headers */,
+				3CCA08262ADF7CA200CD76E8 /* DNSServerTLS.h in Headers */,
 				3CCA080F2ADF650000CD76E8 /* NSData+Base64URL.h in Headers */,
 				3CCA080D2ADF650000CD76E8 /* NSData+ByteAtIndex.h in Headers */,
 				9AA8C17C2ADCB40F00B93E45 /* DNSAnswer.h in Headers */,
@@ -418,14 +446,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CCA081B2ADF7B4900CD76E8 /* DNSServer.m in Sources */,
 				3CCA08072ADF642600CD76E8 /* DNSName.m in Sources */,
 				9AA8C1792ADCB40800B93E45 /* DNSQuestion.m in Sources */,
+				3CCA081F2ADF7B5B00CD76E8 /* DNSServerDNS.m in Sources */,
 				3C343D3D2ADE110100C282D0 /* LogWriter.m in Sources */,
 				3CCA08102ADF650000CD76E8 /* NSData+Base64URL.m in Sources */,
 				3CCA08142ADF674D00CD76E8 /* NSData+HexString.m in Sources */,
 				9AA8C1812ADCB41600B93E45 /* DNSMessage.m in Sources */,
+				3CCA08272ADF7CA200CD76E8 /* DNSServerTLS.m in Sources */,
 				9AA8C17D2ADCB40F00B93E45 /* DNSAnswer.m in Sources */,
 				3C343D412ADE12AC00C282D0 /* DNSQuery.m in Sources */,
+				3CCA08232ADF7C7400CD76E8 /* DNSServerHTTPS.m in Sources */,
 				3CCA080E2ADF650000CD76E8 /* NSData+ByteAtIndex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
