@@ -3,9 +3,12 @@
 #import "DNSServerDNS.h"
 #import "DNSServerHTTPS.h"
 #import "DNSServerTLS.h"
+#import "DNSName.h"
+#import "TypesInternal.h"
 
 @interface DNSQuery ()
 
+@property (nonatomic) NSUInteger idNumber;
 @property (strong, nonatomic) DNSServer * dnsServer;
 @property (strong, nonatomic) dispatch_queue_t queryQueue;
 
@@ -39,6 +42,7 @@
     }
 
     DNSQuery * query = [DNSQuery new];
+    query.idNumber = arc4random_uniform(UINT16_MAX);
     query.dnsServer = server;
     query.recordType = recordType;
     query.name = name;
@@ -46,10 +50,24 @@
     return query;
 }
 
+- (DNSMessage * _Nonnull) dnsMessage {
+    DNSQuestion * question = [DNSQuestion new];
+    question.name = self.name;
+    question.questionType = self.recordType;
+    question.questionClass = 1;
+
+    DNSMessage * message = [DNSMessage new];
+    message.idNumber = self.idNumber;
+    message.questions = @[question];
+
+    return message;
+}
+
 - (void) execute:(void (^)(DNSMessage *, NSError *))completed {
     dispatch_async(self.queryQueue, ^{
-        sleep(2);
-        completed([DNSMessage new], nil);
+        [self.dnsServer sendMessage:[self dnsMessage] gotReply:^(DNSMessage * reply, NSError * error) {
+            completed(reply, error);
+        }];
     });
 }
 

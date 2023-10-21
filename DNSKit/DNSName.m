@@ -5,6 +5,7 @@
 
 + (NSData *) stringToDNSName:(NSString *)name error:(NSError **)error {
     NSMutableData * request = [NSMutableData new];
+    char len;
 
     NSArray<NSString *> * labels = [name componentsSeparatedByString:@"."];
     for (NSString * label in labels) {
@@ -13,13 +14,15 @@
             return nil;
         }
 
-        char len = (short)label.length;
+        len = (short)label.length;
         [request appendBytes:&len length:1];
         if (label.length > 0) {
             [request appendData:[label dataUsingEncoding:NSASCIIStringEncoding]];
         }
     }
 
+    len = 0;
+    [request appendBytes:&len length:1];
     return request;
 }
 

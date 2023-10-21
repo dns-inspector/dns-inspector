@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// Decode a DNS message from the data object.
 + (DNSMessage * _Nullable) messageFromData:(NSData * _Nonnull)data error:(NSError * _Nullable * _Nonnull)error;
 
+/// Return the DNS message data
+- (NSData * _Nullable) messageDataError:(NSError * _Nullable * _Nonnull)error;
+
 @end
 
 NS_ASSUME_NONNULL_END

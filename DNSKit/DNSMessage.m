@@ -2,28 +2,10 @@
 #import "DNSName.h"
 #import "NSData+ByteAtIndex.h"
 #import "NSData+HexString.h"
+#import "TypesInternal.h"
 #import <arpa/inet.h>
 
 @implementation DNSMessage
-
-typedef struct _DNS_HEADER
-{
-    unsigned short idn;
-    unsigned char  rd     :1;
-    unsigned char  tc     :1;
-    unsigned char  aa     :1;
-    unsigned char  opcode :4;
-    unsigned char  qr     :1;
-    unsigned char  rcode  :4;
-    unsigned char  cd     :1;
-    unsigned char  ad     :1;
-    unsigned char  z      :1;
-    unsigned char  ra     :1;
-    unsigned short qlen;
-    unsigned short alen;
-    unsigned short aulen;
-    unsigned short adlen;
-} DNS_HEADER;
 
 + (DNSMessage *) messageFromData:(NSData *)data error:(NSError **)error {
     DNSMessage * message = [DNSMessage new];
@@ -147,7 +129,8 @@ typedef struct _DNS_HEADER
                 [answers addObject:answer];
                 break;
             } default: {
-                PDebug(@"Skipping unknown or unsupported resource record type %i", rtype);
+                answer.data = value;
+                [answers addObject:answer];
                 break;
             }
         }
@@ -158,6 +141,47 @@ typedef struct _DNS_HEADER
     message.answers = answers;
 
     return message;
+}
+
+- (NSData *) messageDataError:(NSError **)error {
+    NSMutableData * request = [NSMutableData new];
+
+    DNS_HEADER header;
+
+    header.idn = htons(self.idNumber);
+    header.rd = 1;
+    header.tc = 0;
+    header.aa = 0;
+    header.opcode = 0;
+    header.qr = 0;
+    header.rcode = htons(self.responseCode);
+    header.cd = 0;
+    header.ad = 0;
+    header.z = 0;
+    header.ra = 0;
+    header.qlen = htons(self.questions.count);
+    header.alen = htons(self.answers.count);
+    header.aulen = 0;
+    header.adlen = 0;
+
+    [request appendBytes:&header length:sizeof(DNS_HEADER)];
+
+    for (DNSQuestion * question in self.questions) {
+        NSError * nameError;
+        NSData * nameBytes = [DNSName stringToDNSName:question.name error:&nameError];
+        if (nameError != nil) {
+            *error = nameError;
+            return nil;
+        }
+        [request appendData:nameBytes];
+
+        uint16_t qtype = htons(question.questionType);
+        [request appendBytes:&qtype length:2];
+        uint16_t qclass = htons(question.questionClass);
+        [request appendBytes:&qclass length:2];
+    }
+
+    return request;
 }
 
 @end

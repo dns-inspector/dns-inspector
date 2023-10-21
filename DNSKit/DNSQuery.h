@@ -10,6 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) DNSRecordType recordType;
 @property (strong, nonatomic, nonnull) NSString * name;
 
+- (DNSMessage * _Nonnull) dnsMessage;
 + (DNSQuery * _Nullable) queryWithServerType:(DNSServerType)serverType serverAddress:(NSString * _Nonnull)serverAddress recordType:(DNSRecordType)recordType name:(NSString * _Nonnull)name error:(NSError * _Nullable * _Nonnull)error;
 - (void) execute:(void (^_Nonnull)(DNSMessage * _Nullable, NSError * _Nullable))completed;
 

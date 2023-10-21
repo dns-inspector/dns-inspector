@@ -7,7 +7,7 @@
     return dns;
 }
 
-- (void) execute:(void (^)(DNSMessage *, NSError *))completed {
+- (void) sendMessage:(DNSMessage *)message gotReply:(void (^)(DNSMessage *, NSError *))completed {
 
 }
 

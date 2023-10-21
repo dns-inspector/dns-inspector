@@ -14,9 +14,9 @@ fileprivate struct QueryResult {
 
 struct MainView: View {
     @State private var queryType: RecordType = RecordTypes[0]
-    @State private var queryName = ""
-    @State private var queryServerType: ServerType = ServerTypes[0]
-    @State private var queryServerURL = ""
+    @State private var queryName = "dns.google"
+    @State private var queryServerType: ServerType = ServerTypes[1]
+    @State private var queryServerURL = "https://dns.google/dns-query"
     @State private var showAboutView = false
     @State private var showOptionsView = false
     @StateObject private var lookupState = MainViewState()

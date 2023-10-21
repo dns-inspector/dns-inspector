@@ -8,7 +8,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString * address;
 
 + (DNSServer *) serverWithAddress:(NSString *)address error:(NSError **)error;
-- (void) execute:(void (^)(DNSMessage *, NSError *))completed;
+- (void) sendMessage:(DNSMessage *)message gotReply:(void (^)(DNSMessage *, NSError *))completed;
 
 @end
 
