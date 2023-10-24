@@ -13,6 +13,13 @@ typedef NS_ENUM(NSUInteger, DNSRecordType) {
     DNSRecordTypePTR = 12,
 };
 
+typedef NS_ENUM(NSUInteger, DNSRecordClass) {
+    DNSRecordClassIN = 1,
+    DNSRecordClassCS = 2,
+    DNSRecordClassCH = 3,
+    DNSRecordClassHS = 4,
+};
+
 typedef NS_ENUM(NSUInteger, DNSServerType) {
     DNSServerTypeDNS = 1,
     DNSServerTypeHTTPS = 2,

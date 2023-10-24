@@ -13,10 +13,11 @@ struct DNSMessageView: View {
                         ForEach (questions, id: \.self) { question in
                             HStack {
                                 Text(question.name)
+                                Spacer()
                                 Divider()
-                                Text("\(question.questionType.rawValue)")
+                                Text("\(RecordType.fromDNSKit(question.recordType).name)")
                                 Divider()
-                                Text("\(question.questionClass)")
+                                Text("\(RecordClass.fromDNSKit(question.recordClass).name)")
                             }
                         }
                     }
@@ -27,11 +28,21 @@ struct DNSMessageView: View {
                             HStack {
                                 Text(answer.name)
                                 Divider()
-                                Text("\(answer.data)")
+                                switch answer.recordType {
+                                case .A, .AAAA, .CNAME:
+                                    Text("\(String(data: answer.data, encoding: .ascii) ?? "Unknown")")
+                                        .monospaced()
+                                case .TXT:
+                                    Text("\(String(data: answer.data, encoding: .utf8) ?? "Unknown")")
+                                        .monospaced()
+                                default:
+                                    Text("\(answer.data)")
+                                }
+                                Spacer()
                                 Divider()
-                                Text("\(answer.recordType.rawValue)")
+                                Text("\(RecordType.fromDNSKit(answer.recordType).name)")
                                 Divider()
-                                Text("\(answer.recordClass)")
+                                Text("\(RecordClass.fromDNSKit(answer.recordClass).name)")
                             }
                         }
                     }

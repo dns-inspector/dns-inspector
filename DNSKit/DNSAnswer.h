@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) DNSRecordType recordType;
 
 /// The record class
-@property (nonatomic) NSUInteger recordClass;
+@property (nonatomic) DNSRecordClass recordClass;
 
 /// The record time to live in seconds
 @property (nonatomic) NSUInteger ttlSeconds;

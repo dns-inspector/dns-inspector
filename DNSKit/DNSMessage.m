@@ -44,8 +44,8 @@
         uint16_t qclass = ntohs(*(uint16_t *)[data subdataWithRange:NSMakeRange(dataIndex+2, 2)].bytes);
         DNSQuestion * question = [DNSQuestion new];
         question.name = name;
-        question.questionType = (DNSRecordType)qtype;
-        question.questionClass = qclass;
+        question.recordType = (DNSRecordType)qtype;
+        question.recordClass = (DNSRecordClass)qclass;
         [questions addObject:question];
         questionStartIndex = dataIndex+4;
         questionsRead++;
@@ -175,9 +175,9 @@
         }
         [request appendData:nameBytes];
 
-        uint16_t qtype = htons(question.questionType);
+        uint16_t qtype = htons(question.recordType);
         [request appendBytes:&qtype length:2];
-        uint16_t qclass = htons(question.questionClass);
+        uint16_t qclass = htons(question.recordClass);
         [request appendBytes:&qclass length:2];
     }
 

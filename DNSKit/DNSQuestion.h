@@ -9,10 +9,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic, nonnull) NSString * name;
 
 /// The question record type
-@property (nonatomic) DNSRecordType questionType;
+@property (nonatomic) DNSRecordType recordType;
 
 /// The question class
-@property (nonatomic) NSUInteger questionClass;
+@property (nonatomic) DNSRecordClass recordClass;
 
 @end
 

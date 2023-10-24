@@ -53,8 +53,8 @@
 - (DNSMessage * _Nonnull) dnsMessage {
     DNSQuestion * question = [DNSQuestion new];
     question.name = self.name;
-    question.questionType = self.recordType;
-    question.questionClass = 1;
+    question.recordType = self.recordType;
+    question.recordClass = DNSRecordClassIN;
 
     DNSMessage * message = [DNSMessage new];
     message.idNumber = self.idNumber;

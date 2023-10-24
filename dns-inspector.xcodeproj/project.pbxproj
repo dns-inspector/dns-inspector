@@ -12,6 +12,7 @@
 		3C343D402ADE12AC00C282D0 /* DNSQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C343D3E2ADE12AC00C282D0 /* DNSQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C343D412ADE12AC00C282D0 /* DNSQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D3F2ADE12AC00C282D0 /* DNSQuery.m */; };
 		3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */; };
+		3C710D882AE773B400F252C8 /* RecordClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C710D872AE773B400F252C8 /* RecordClass.swift */; };
 		3C9B3DC62AE451EA002A927E /* TypesInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C9B3DC52AE451EA002A927E /* TypesInternal.h */; };
 		3C9B3DC92AE45F9E002A927E /* NSHTTPURLResponse+HeaderValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C9B3DC72AE45F9E002A927E /* NSHTTPURLResponse+HeaderValue.h */; };
 		3C9B3DCA2AE45F9E002A927E /* NSHTTPURLResponse+HeaderValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C9B3DC82AE45F9E002A927E /* NSHTTPURLResponse+HeaderValue.m */; };
@@ -99,6 +100,7 @@
 		3C343D3E2ADE12AC00C282D0 /* DNSQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSQuery.h; sourceTree = "<group>"; };
 		3C343D3F2ADE12AC00C282D0 /* DNSQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSQuery.m; sourceTree = "<group>"; };
 		3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSMessageView.swift; sourceTree = "<group>"; };
+		3C710D872AE773B400F252C8 /* RecordClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordClass.swift; sourceTree = "<group>"; };
 		3C9B3DC52AE451EA002A927E /* TypesInternal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypesInternal.h; sourceTree = "<group>"; };
 		3C9B3DC72AE45F9E002A927E /* NSHTTPURLResponse+HeaderValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSHTTPURLResponse+HeaderValue.h"; sourceTree = "<group>"; };
 		3C9B3DC82AE45F9E002A927E /* NSHTTPURLResponse+HeaderValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSHTTPURLResponse+HeaderValue.m"; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 		9AA8C1872ADCBD6A00B93E45 /* Types */ = {
 			isa = PBXGroup;
 			children = (
+				3C710D872AE773B400F252C8 /* RecordClass.swift */,
 				9AA8C1822ADCB6BD00B93E45 /* RecordType.swift */,
 				9AA8C1882ADCBD7800B93E45 /* ServerType.swift */,
 			);
@@ -448,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AA8C18A2ADCBD7A00B93E45 /* ServerType.swift in Sources */,
+				3C710D882AE773B400F252C8 /* RecordClass.swift in Sources */,
 				3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */,
 				9AA8C1862ADCB85300B93E45 /* RecordType.swift in Sources */,
 				9AA8C13C2ADCA98000B93E45 /* MainView.swift in Sources */,
