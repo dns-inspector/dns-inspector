@@ -36,8 +36,16 @@ struct MainView: View {
                                 })
                             }
                         } label: {
-                            Text(self.queryType.name)
-                                .padding(.trailing, 5.0)
+                            VStack {
+                                Text(self.queryType.name)
+                                    .padding(.horizontal, 10.0)
+                                    .padding(.vertical, 2.0)
+                            }
+                            .cornerRadius(5.0)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(.accent, lineWidth: 1)
+                            )
                         }
                         .disabled(self.lookupState.loading)
                         Divider()
@@ -59,8 +67,16 @@ struct MainView: View {
                                 })
                             }
                         } label: {
-                            Text(self.queryServerType.name)
-                                .padding(.trailing, 5.0)
+                            VStack {
+                                Text(self.queryServerType.name)
+                                    .padding(.horizontal, 10.0)
+                                    .padding(.vertical, 2.0)
+                            }
+                            .cornerRadius(5.0)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(.accent, lineWidth: 1)
+                            )
                         }
                         .disabled(self.lookupState.loading)
                         Divider()

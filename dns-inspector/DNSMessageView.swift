@@ -13,6 +13,7 @@ struct DNSMessageView: View {
                         ForEach (questions, id: \.self) { question in
                             HStack {
                                 Text(question.name)
+                                    .textSelection(.enabled)
                                 Spacer()
                                 Divider()
                                 Text("\(RecordType.fromDNSKit(question.recordType).name)")
@@ -27,14 +28,17 @@ struct DNSMessageView: View {
                         ForEach (answers, id: \.self) { answer in
                             HStack {
                                 Text(answer.name)
+                                    .textSelection(.enabled)
                                 Divider()
                                 switch answer.recordType {
                                 case .A, .AAAA, .CNAME:
                                     Text("\(String(data: answer.data, encoding: .ascii) ?? "Unknown")")
                                         .monospaced()
+                                        .textSelection(.enabled)
                                 case .TXT:
                                     Text("\(String(data: answer.data, encoding: .utf8) ?? "Unknown")")
                                         .monospaced()
+                                        .textSelection(.enabled)
                                 default:
                                     Text("\(answer.data)")
                                 }
