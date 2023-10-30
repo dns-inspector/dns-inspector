@@ -3,13 +3,10 @@ import DNSKit
 
 fileprivate class MainViewState: ObservableObject {
     @Published var loading = false
+    @Published var query: DNSQuery?
     @Published var result: DNSMessage?
     @Published var error: Error?
-}
-
-fileprivate struct QueryResult {
-    let query: DNSQuery
-    let message: DNSMessage
+    @Published var success = false
 }
 
 struct MainView: View {
@@ -20,10 +17,9 @@ struct MainView: View {
     @State private var showAboutView = false
     @State private var showOptionsView = false
     @StateObject private var lookupState = MainViewState()
-    @State private var queryResult: QueryResult?
 
     var body: some View {
-        NavigationStack {
+        Navigation {
             List {
                 Section("New Query") {
                     HStack {
@@ -36,16 +32,7 @@ struct MainView: View {
                                 })
                             }
                         } label: {
-                            VStack {
-                                Text(self.queryType.name)
-                                    .padding(.horizontal, 10.0)
-                                    .padding(.vertical, 2.0)
-                            }
-                            .cornerRadius(5.0)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 5)
-                                    .stroke(.accent, lineWidth: 1)
-                            )
+                            RoundedLabel(text: self.queryType.name)
                         }
                         .disabled(self.lookupState.loading)
                         Divider()
@@ -67,16 +54,7 @@ struct MainView: View {
                                 })
                             }
                         } label: {
-                            VStack {
-                                Text(self.queryServerType.name)
-                                    .padding(.horizontal, 10.0)
-                                    .padding(.vertical, 2.0)
-                            }
-                            .cornerRadius(5.0)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 5)
-                                    .stroke(.accent, lineWidth: 1)
-                            )
+                            RoundedLabel(text: self.queryServerType.name)
                         }
                         .disabled(self.lookupState.loading)
                         Divider()
@@ -90,6 +68,8 @@ struct MainView: View {
                         .onSubmit {
                             doInspect()
                         }
+                        .disabled(self.lookupState.loading)
+                        PresetServerButton(serverType: $queryServerType, serverAddress: $queryServerURL)
                         .disabled(self.lookupState.loading)
                     }
                     if self.lookupState.loading {
@@ -142,18 +122,6 @@ struct MainView: View {
                     .disabled(self.isInvalid())
                 }
             }
-            if let result = self.queryResult {
-                Text("")
-                    .navigationDestination(isPresented: .init(get: {
-                        return self.queryResult != nil
-                    }, set: { v in
-                        if !v {
-                            self.queryResult = nil
-                        }
-                    }), destination: {
-                        DNSMessageView(query: result.query, message: result.message)
-                    })
-            }
         }
         .sheet(isPresented: $showAboutView, content: {
             AboutView()
@@ -161,6 +129,9 @@ struct MainView: View {
         .sheet(isPresented: $showOptionsView, content: {
             OptionsView()
         })
+        .sheet(isPresented: $lookupState.success) {
+            DNSMessageView(query: lookupState.query!, message: lookupState.result!)
+        }
     }
 
     func isInvalid() -> Bool {
@@ -172,7 +143,7 @@ struct MainView: View {
 
         let query: DNSQuery
         do {
-            query = try DNSQuery(serverType: self.queryServerType.dnsKitValue, serverAddress: self.queryServerURL, recordType: self.queryType.dnsKitValue, name: self.queryName)
+            query = try DNSQuery(serverType: DNSServerType(rawValue: self.queryServerType.dnsKitValue)!, serverAddress: self.queryServerURL, recordType: self.queryType.dnsKitValue, name: self.queryName)
         } catch {
             self.lookupState.error = error
             self.lookupState.loading = false
@@ -191,7 +162,9 @@ struct MainView: View {
                     return
                 }
                 self.lookupState.loading = false
-                self.queryResult = QueryResult(query: query, message: message)
+                self.lookupState.result = message
+                self.lookupState.query = query
+                self.lookupState.success = true
             }
         }
     }

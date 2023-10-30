@@ -4,15 +4,23 @@ struct OptionsView: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        NavigationStack {
+        Navigation {
             List {
                 Section("General") {
-                    Toggle("Remember Recent Queries", isOn: .constant(true))
-                        .tint(Color.accentColor)
-                    Toggle("Show Tips", isOn: .constant(true))
-                        .tint(Color.accentColor)
+                    Toggle("Remember Recent Queries", isOn: .init(get: {
+                        return UserOptions.rememberQueries
+                    }, set: { on in
+                        UserOptions.rememberQueries = on
+                    })).tint(Color.accentColor)
+
+                    Toggle("Show Tips", isOn: .init(get: {
+                        return UserOptions.showTips
+                    }, set: { on in
+                        UserOptions.showTips = on
+                    })).tint(Color.accentColor)
+
                     NavigationLink("Preset Servers") {
-                        Text("hi")
+                        PresetServerListView()
                     }
                 }
             }

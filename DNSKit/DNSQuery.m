@@ -43,6 +43,8 @@
 
     DNSQuery * query = [DNSQuery new];
     query.idNumber = arc4random_uniform(UINT16_MAX);
+    query.serverType = serverType;
+    query.serverAddress = serverAddress;
     query.dnsServer = server;
     query.recordType = recordType;
     query.name = name;

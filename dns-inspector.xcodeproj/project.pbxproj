@@ -34,6 +34,18 @@
 		3CCA08232ADF7C7400CD76E8 /* DNSServerHTTPS.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA08212ADF7C7400CD76E8 /* DNSServerHTTPS.m */; };
 		3CCA08262ADF7CA200CD76E8 /* DNSServerTLS.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CCA08242ADF7CA200CD76E8 /* DNSServerTLS.h */; };
 		3CCA08272ADF7CA200CD76E8 /* DNSServerTLS.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA08252ADF7CA200CD76E8 /* DNSServerTLS.m */; };
+		9A80CE242AEF2A3800E97A63 /* OperationCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE232AEF2A3800E97A63 /* OperationCode.swift */; };
+		9A80CE262AEF2B2900E97A63 /* ResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE252AEF2B2900E97A63 /* ResponseCode.swift */; };
+		9A80CE292AEF2C7700E97A63 /* RoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE282AEF2C7700E97A63 /* RoundedLabel.swift */; };
+		9A80CE2E2AEF339700E97A63 /* UserOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE2D2AEF339700E97A63 /* UserOptions.swift */; };
+		9A80CE302AEF5A0A00E97A63 /* PresetServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE2F2AEF5A0A00E97A63 /* PresetServer.swift */; };
+		9A80CE322AEF5C6100E97A63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE312AEF5C6100E97A63 /* AppDelegate.swift */; };
+		9A80CE342AEF633700E97A63 /* PresetServerEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE332AEF633600E97A63 /* PresetServerEditView.swift */; };
+		9A80CE362AEF634700E97A63 /* PresetServerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE352AEF634700E97A63 /* PresetServerListView.swift */; };
+		9A80CE382AEF650200E97A63 /* PresetServerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE372AEF650200E97A63 /* PresetServerButton.swift */; };
+		9A80CE3B2AEF6D0200E97A63 /* IO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE3A2AEF6D0200E97A63 /* IO.swift */; };
+		9A80CE3D2AEF6E4700E97A63 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE3C2AEF6E4700E97A63 /* Navigation.swift */; };
+		9A80CE402AEF6FF400E97A63 /* Text+Fixedwidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE3F2AEF6FF400E97A63 /* Text+Fixedwidth.swift */; };
 		9AA8C13A2ADCA98000B93E45 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C1392ADCA98000B93E45 /* App.swift */; };
 		9AA8C13C2ADCA98000B93E45 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA8C13B2ADCA98000B93E45 /* MainView.swift */; };
 		9AA8C13E2ADCA98200B93E45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AA8C13D2ADCA98200B93E45 /* Assets.xcassets */; };
@@ -123,6 +135,18 @@
 		3CCA08212ADF7C7400CD76E8 /* DNSServerHTTPS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServerHTTPS.m; sourceTree = "<group>"; };
 		3CCA08242ADF7CA200CD76E8 /* DNSServerTLS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSServerTLS.h; sourceTree = "<group>"; };
 		3CCA08252ADF7CA200CD76E8 /* DNSServerTLS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServerTLS.m; sourceTree = "<group>"; };
+		9A80CE232AEF2A3800E97A63 /* OperationCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationCode.swift; sourceTree = "<group>"; };
+		9A80CE252AEF2B2900E97A63 /* ResponseCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCode.swift; sourceTree = "<group>"; };
+		9A80CE282AEF2C7700E97A63 /* RoundedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedLabel.swift; sourceTree = "<group>"; };
+		9A80CE2D2AEF339700E97A63 /* UserOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOptions.swift; sourceTree = "<group>"; };
+		9A80CE2F2AEF5A0A00E97A63 /* PresetServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetServer.swift; sourceTree = "<group>"; };
+		9A80CE312AEF5C6100E97A63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9A80CE332AEF633600E97A63 /* PresetServerEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetServerEditView.swift; sourceTree = "<group>"; };
+		9A80CE352AEF634700E97A63 /* PresetServerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetServerListView.swift; sourceTree = "<group>"; };
+		9A80CE372AEF650200E97A63 /* PresetServerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetServerButton.swift; sourceTree = "<group>"; };
+		9A80CE3A2AEF6D0200E97A63 /* IO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IO.swift; sourceTree = "<group>"; };
+		9A80CE3C2AEF6E4700E97A63 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		9A80CE3F2AEF6FF400E97A63 /* Text+Fixedwidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+Fixedwidth.swift"; sourceTree = "<group>"; };
 		9AA8C1362ADCA98000B93E45 /* DNS Inspector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "DNS Inspector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA8C1392ADCA98000B93E45 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		9AA8C13B2ADCA98000B93E45 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -195,6 +219,41 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		9A80CE272AEF2C6B00E97A63 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9A80CE282AEF2C7700E97A63 /* RoundedLabel.swift */,
+				9A80CE372AEF650200E97A63 /* PresetServerButton.swift */,
+				9A80CE3C2AEF6E4700E97A63 /* Navigation.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9A80CE2A2AEF336600E97A63 /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				9A80CE2D2AEF339700E97A63 /* UserOptions.swift */,
+				9A80CE2F2AEF5A0A00E97A63 /* PresetServer.swift */,
+			);
+			path = Options;
+			sourceTree = "<group>";
+		};
+		9A80CE392AEF6CF700E97A63 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9A80CE3A2AEF6D0200E97A63 /* IO.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9A80CE3E2AEF6FE600E97A63 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9A80CE3F2AEF6FF400E97A63 /* Text+Fixedwidth.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		9AA8C12D2ADCA98000B93E45 = {
 			isa = PBXGroup;
 			children = (
@@ -221,12 +280,19 @@
 			children = (
 				9AA8C18B2ADCC2CD00B93E45 /* AboutView.swift */,
 				9AA8C1392ADCA98000B93E45 /* App.swift */,
+				9A80CE312AEF5C6100E97A63 /* AppDelegate.swift */,
 				9AA8C13D2ADCA98200B93E45 /* Assets.xcassets */,
 				3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */,
+				9A80CE3E2AEF6FE600E97A63 /* Extensions */,
 				9AA8C13B2ADCA98000B93E45 /* MainView.swift */,
+				9A80CE2A2AEF336600E97A63 /* Options */,
 				9AA8C18D2ADD9B4600B93E45 /* OptionsView.swift */,
+				9A80CE332AEF633600E97A63 /* PresetServerEditView.swift */,
+				9A80CE352AEF634700E97A63 /* PresetServerListView.swift */,
 				9AA8C13F2ADCA98200B93E45 /* Preview Content */,
+				9A80CE392AEF6CF700E97A63 /* Services */,
 				9AA8C1872ADCBD6A00B93E45 /* Types */,
+				9A80CE272AEF2C6B00E97A63 /* Views */,
 			);
 			path = "dns-inspector";
 			sourceTree = "<group>";
@@ -286,6 +352,8 @@
 				3C710D872AE773B400F252C8 /* RecordClass.swift */,
 				9AA8C1822ADCB6BD00B93E45 /* RecordType.swift */,
 				9AA8C1882ADCBD7800B93E45 /* ServerType.swift */,
+				9A80CE232AEF2A3800E97A63 /* OperationCode.swift */,
+				9A80CE252AEF2B2900E97A63 /* ResponseCode.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -453,9 +521,21 @@
 				9AA8C18A2ADCBD7A00B93E45 /* ServerType.swift in Sources */,
 				3C710D882AE773B400F252C8 /* RecordClass.swift in Sources */,
 				3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */,
+				9A80CE322AEF5C6100E97A63 /* AppDelegate.swift in Sources */,
+				9A80CE302AEF5A0A00E97A63 /* PresetServer.swift in Sources */,
+				9A80CE402AEF6FF400E97A63 /* Text+Fixedwidth.swift in Sources */,
+				9A80CE342AEF633700E97A63 /* PresetServerEditView.swift in Sources */,
+				9A80CE362AEF634700E97A63 /* PresetServerListView.swift in Sources */,
 				9AA8C1862ADCB85300B93E45 /* RecordType.swift in Sources */,
 				9AA8C13C2ADCA98000B93E45 /* MainView.swift in Sources */,
+				9A80CE3D2AEF6E4700E97A63 /* Navigation.swift in Sources */,
 				9AA8C18E2ADD9B4600B93E45 /* OptionsView.swift in Sources */,
+				9A80CE2E2AEF339700E97A63 /* UserOptions.swift in Sources */,
+				9A80CE3B2AEF6D0200E97A63 /* IO.swift in Sources */,
+				9A80CE292AEF2C7700E97A63 /* RoundedLabel.swift in Sources */,
+				9A80CE382AEF650200E97A63 /* PresetServerButton.swift in Sources */,
+				9A80CE242AEF2A3800E97A63 /* OperationCode.swift in Sources */,
+				9A80CE262AEF2B2900E97A63 /* ResponseCode.swift in Sources */,
 				9AA8C13A2ADCA98000B93E45 /* App.swift in Sources */,
 				9AA8C18C2ADCC2CD00B93E45 /* AboutView.swift in Sources */,
 			);
@@ -649,7 +729,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -687,7 +767,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

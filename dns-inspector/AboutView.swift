@@ -4,7 +4,7 @@ struct AboutView: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        NavigationStack {
+        Navigation {
             VStack {
                 VStack {
                     Image(systemName: "link.circle.fill")

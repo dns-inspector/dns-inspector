@@ -41,4 +41,12 @@ typedef NS_ENUM(NSUInteger, DNSResponseCode) {
     DNSResponseCodeNOTZONE = 9,
 };
 
+typedef NS_ENUM(NSUInteger, DNSOperationCode) {
+    DNSOperationCodeQuery = 0,
+    DNSOperationCodeIQuery = 1,
+    DNSOperationCodeStatus = 2,
+    DNSOperationCodeNotify = 4,
+    DNSOperationCodeUpdate = 5,
+};
+
 NS_ASSUME_NONNULL_END

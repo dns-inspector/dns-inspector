@@ -14,6 +14,11 @@
     uint16_t responseId = responseHeader->idn;
     uint16_t responseIdH = ntohs(responseId);
     message.idNumber = responseIdH;
+    message.responseCode = responseHeader->rd == 1;
+    message.truncated = responseHeader->tc == 1;
+    message.authoritativeAnswer = responseHeader->aa == 1;
+    message.operationCode = (DNSOperationCode)responseHeader->opcode;
+    message.isQuery = responseHeader->qr == 1;
 
     DNSResponseCode rcode = (DNSResponseCode)responseHeader->rcode;
     PDebug(@"Response code %i", (int)rcode);
@@ -138,7 +143,9 @@
         answersRead++;
     }
 
-    message.answers = answers;
+    if (answers.count > 0) {
+        message.answers = answers;
+    }
 
     return message;
 }

@@ -10,6 +10,21 @@ NS_ASSUME_NONNULL_BEGIN
 /// The ID number
 @property (nonatomic) NSUInteger idNumber;
 
+/// Is recursion desired
+@property (nonatomic) BOOL recursionDesired;
+
+/// Is this message truncated
+@property (nonatomic) BOOL truncated;
+
+/// Is this answer authoritative
+@property (nonatomic) BOOL authoritativeAnswer;
+
+/// The operation code
+@property (nonatomic) DNSOperationCode operationCode;
+
+/// If this message is a query (true) or a reply (false)
+@property (nonatomic) BOOL isQuery;
+
 /// The response code
 @property (nonatomic) DNSResponseCode responseCode;
 
