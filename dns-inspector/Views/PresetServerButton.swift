@@ -29,7 +29,7 @@ public struct PresetServerButton: View {
                 Label("Add Preset Server", systemImage: "plus")
             }
         } label: {
-            Image(systemName: "sparkles.square.filled.on.square")
+            Image(systemName: "staroflife.circle")
         }
     }
 }

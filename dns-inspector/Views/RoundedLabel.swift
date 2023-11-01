@@ -2,7 +2,17 @@ import SwiftUI
 
 struct RoundedLabel: View {
     let text: String
-    let color: Color = .accent
+    let color: Color
+
+    init(text: String) {
+        self.text = text
+        self.color = .accent
+    }
+
+    init(text: String, color: Color) {
+        self.text = text
+        self.color = color
+    }
 
     var body: some View {
         VStack {

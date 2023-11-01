@@ -1,10 +1,16 @@
 import Foundation
 import DNSKit
 
+public enum TTLDisplayMode: Int, Codable {
+    case relative = 0
+    case absolute = 1
+}
+
 fileprivate struct OptionsType: Codable {
     public var schemaVersion: Int
     public var rememberQueries: Bool?
     public var showTips: Bool?
+    public var ttlDisplayMode: TTLDisplayMode?
     public var presetServers: [PresetServer]?
 }
 
@@ -76,6 +82,16 @@ public class UserOptions {
         }
         set {
             current.showTips = newValue
+            save()
+        }
+    }
+
+    public static var ttlDisplayMode: TTLDisplayMode {
+        get {
+            return current.ttlDisplayMode ?? .relative
+        }
+        set {
+            current.ttlDisplayMode = newValue
             save()
         }
     }

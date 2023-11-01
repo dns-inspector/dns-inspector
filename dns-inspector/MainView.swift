@@ -12,8 +12,8 @@ fileprivate class MainViewState: ObservableObject {
 struct MainView: View {
     @State private var queryType: RecordType = RecordTypes[0]
     @State private var queryName = "dns.google"
-    @State private var queryServerType: ServerType = ServerTypes[2]
-    @State private var queryServerURL = "dns.google:853"
+    @State private var queryServerType: ServerType = ServerTypes[0]
+    @State private var queryServerURL = "dns.google:53"
     @State private var showAboutView = false
     @State private var showOptionsView = false
     @StateObject private var lookupState = MainViewState()
@@ -21,7 +21,7 @@ struct MainView: View {
     var body: some View {
         Navigation {
             List {
-                Section("New Query") {
+                Section("New query") {
                     HStack {
                         Menu {
                             ForEach(RecordTypes) { t in
@@ -81,18 +81,26 @@ struct MainView: View {
                         }
                     }
                 }
-                VStack(alignment: .leading) {
-                    HStack {
-                        Image(systemName: "info.circle.fill")
-                            .foregroundStyle(.accent)
-                        Text("Did you know?")
-                            .bold()
+                if UserOptions.rememberQueries && RecentQueryManager.shared.queries.count > 0 {
+                    Section("Recent queries") {
+                        ForEach(RecentQueryManager.shared.queries) { query in
+                            Button(action: {
+                                doInspect(recordType: DNSRecordType(rawValue: query.recordType)!, name: query.name, serverType: DNSServerType(rawValue: query.serverType)!, serverAddress: query.serverAddress)
+                            }, label: {
+                                HStack {
+                                    RoundedLabel(text: query.recordTypeName(), color: .primary)
+                                    Text(query.name)
+                                    Divider()
+                                    RoundedLabel(text: query.serverTypeName(), color: .primary)
+                                    Text(query.serverAddress)
+                                }
+                            }).buttonStyle(.plain)
+                        }
+                        .onDelete { idx in
+                            RecentQueryManager.shared.delete(idx)
+                        }
                     }
-                    Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas viverra maximus elit at maximus. In mauris enim, pellentesque a gravida at, rutrum sed lectus. Aliquam erat volutpat. Sed bibendum est at pellentesque consectetur. Vestibulum non justo sit amet felis placerat molestie. Vestibulum ac maximus elit, non pellentesque ipsum. Donec malesuada et dui laoreet laoreet.")
                 }
-                .padding(.horizontal, -16.0)
-                .padding(.vertical, -10.0)
-                .listRowBackground(Color(red: 0.0, green: 0.0, blue: 0.0, opacity: 0.0))
             }
             .navigationTitle("DNS Inspector")
             .toolbar {
@@ -129,7 +137,7 @@ struct MainView: View {
         .sheet(isPresented: $showOptionsView, content: {
             OptionsView()
         })
-        .sheet(isPresented: $lookupState.success) {
+        .fullScreenCover(isPresented: $lookupState.success) {
             DNSMessageView(query: lookupState.query!, message: lookupState.result!)
         }
     }
@@ -139,11 +147,15 @@ struct MainView: View {
     }
 
     func doInspect() {
+        doInspect(recordType: self.queryType.dnsKitValue, name: self.queryName, serverType: DNSServerType(rawValue: self.queryServerType.dnsKitValue)!, serverAddress: self.queryServerURL)
+    }
+
+    func doInspect(recordType: DNSRecordType, name: String, serverType: DNSServerType, serverAddress: String) {
         self.lookupState.loading = true
 
         let query: DNSQuery
         do {
-            query = try DNSQuery(serverType: DNSServerType(rawValue: self.queryServerType.dnsKitValue)!, serverAddress: self.queryServerURL, recordType: self.queryType.dnsKitValue, name: self.queryName)
+            query = try DNSQuery(serverType: serverType, serverAddress: serverAddress, recordType: recordType, name: name)
         } catch {
             self.lookupState.error = error
             self.lookupState.loading = false
@@ -165,6 +177,7 @@ struct MainView: View {
                 self.lookupState.result = message
                 self.lookupState.query = query
                 self.lookupState.success = true
+                RecentQueryManager.shared.add(RecentQuery(recordType: query.recordType.rawValue, name: query.name, serverType: query.serverType.rawValue, serverAddress: query.serverAddress))
             }
         }
     }

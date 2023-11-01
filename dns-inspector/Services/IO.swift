@@ -19,6 +19,10 @@ public class IO {
         }
     }
 
+    public static func delete(_ path: URL) throws {
+        try FileManager.default.removeItem(at: path)
+    }
+
     public static func read(_ path: URL) throws -> Data {
         return try Data(contentsOf: path)
     }
