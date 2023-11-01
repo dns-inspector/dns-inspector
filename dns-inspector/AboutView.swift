@@ -38,7 +38,7 @@ struct AboutView: View {
                     } header: {
                         Text("Share & Feedback")
                     } footer: {
-                        Text("App: 1.0.0 (1), OpenSSL: 3.1.2, curl: 8.4.0")
+                        Text("Version \(AppInfo.version()) (\(AppInfo.build()))")
                     }
                     Section {
                         Button {
