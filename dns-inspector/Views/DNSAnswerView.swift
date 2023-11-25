@@ -13,9 +13,7 @@ struct DNSAnswerView: View {
             .padding(8.0)
             .frame(maxWidth: .infinity)
             .background(Color("LightBackground", bundle: nil))
-            Text(answer.dataDescription())
-                .fixedwidth()
-                .textSelection(.enabled)
+            DNSAnswerDataView(answer: answer)
                 .padding(.horizontal)
                 .padding(.vertical, 8.0)
             HStack {

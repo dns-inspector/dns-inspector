@@ -3,6 +3,11 @@
 #import "NSData+ByteAtIndex.h"
 #import "NSData+HexString.h"
 #import "TypesInternal.h"
+#import "DNSRecordData+Private.h"
+#import "DNSCNAMERecordData+Private.h"
+#import "DNSMXRecordData+Private.h"
+#import "DNSSRVRecordData+Private.h"
+#import "DNSPTRRecordData+Private.h"
 #import <arpa/inet.h>
 
 @implementation DNSMessage
@@ -80,7 +85,7 @@
 
         uint16_t rtype = ntohs(*(uint16_t *)[data subdataWithRange:NSMakeRange(dataIndex, 2)].bytes);
         uint16_t rclass = ntohs(*(uint16_t *)[data subdataWithRange:NSMakeRange(dataIndex+2, 2)].bytes);
-        uint16_t ttl = ntohs(*(uint16_t *)[data subdataWithRange:NSMakeRange(dataIndex+4, 2)].bytes);
+        uint32_t ttl = ntohl(*(uint32_t *)[data subdataWithRange:NSMakeRange(dataIndex+4, 4)].bytes);
         uint16_t dlen = ntohs(*(uint16_t *)[data subdataWithRange:NSMakeRange(dataIndex+8, 2)].bytes);
 
         if (rclass != 1) {
@@ -112,17 +117,10 @@
         answerStartIndex = dataIndex+10+dlen;
 
         switch ((DNSRecordType)rtype) {
-            case DNSRecordTypeA:
-            case DNSRecordTypeAAAA: {
-                int addrlen = (DNSRecordType)rtype == DNSRecordTypeA ? INET_ADDRSTRLEN : INET6_ADDRSTRLEN;
-                int af = (DNSRecordType)rtype == DNSRecordTypeA ? AF_INET : AF_INET6;
-                char * addr = malloc(addrlen);
-                inet_ntop(af, value.bytes, addr, addrlen);
-                answer.data = [[NSString stringWithFormat:@"%s", addr] dataUsingEncoding:NSASCIIStringEncoding];
-                [answers addObject:answer];
+            case DNSRecordTypeA: {
+                answer.data = [[DNSARecordData alloc] initWithRecordValue:value];
                 break;
             } case DNSRecordTypeCNAME: {
-                PDebug(@"Answer for %@ is a CNAME", name);
                 NSError * valueError;
                 NSString * nextName = [DNSName readDNSName:data startIndex:dataIndex+10 dataIndex:NULL error:&valueError];
                 if (valueError != nil) {
@@ -130,16 +128,54 @@
                     *error = MAKE_ERROR(1, @"Bad response");
                     return nil;
                 }
-                answer.data = [nextName dataUsingEncoding:NSASCIIStringEncoding];
-                [answers addObject:answer];
+                answer.data = [[DNSCNAMERecordData alloc] initWithName:nextName];
                 break;
-            } default: {
-                answer.data = value;
-                [answers addObject:answer];
+            } case DNSRecordTypeAAAA: {
+                answer.data = [[DNSAAAARecordData alloc] initWithRecordValue:value];
+                break;
+            } case DNSRecordTypeAPL: {
+                //
+                break;
+            } case DNSRecordTypeSRV: {
+                uint16_t priority = ntohs(*(uint16_t *)[value subdataWithRange:NSMakeRange(0, 2)].bytes);
+                uint16_t weight = ntohs(*(uint16_t *)[value subdataWithRange:NSMakeRange(2, 2)].bytes);
+                uint16_t port = ntohs(*(uint16_t *)[value subdataWithRange:NSMakeRange(4, 2)].bytes);
+                NSError * valueError;
+                NSString * name = [DNSName readDNSName:data startIndex:dataIndex+16 dataIndex:NULL error:&valueError];
+                if (valueError != nil) {
+                    PError(@"Bad SRV value: %@", valueError);
+                    *error = MAKE_ERROR(1, @"Bad response");
+                    return nil;
+                }
+                answer.data = [[DNSSRVRecordData alloc] initWithPriority:[NSNumber numberWithUnsignedInt:(unsigned int)priority] weight:[NSNumber numberWithUnsignedInt:(unsigned int)weight] port:[NSNumber numberWithUnsignedInt:(unsigned int)port] name:name];
+                break;
+            } case DNSRecordTypeTXT: {
+                answer.data = [[DNSTXTRecordData alloc] initWithRecordValue:value];
+                break;
+            } case DNSRecordTypeMX: {
+                uint16_t priority = ntohs(*(uint16_t *)[value subdataWithRange:NSMakeRange(0, 2)].bytes);
+                NSError * valueError;
+                NSString * name = [DNSName readDNSName:data startIndex:dataIndex+12 dataIndex:NULL error:&valueError];
+                if (valueError != nil) {
+                    PError(@"Bad MX value: %@", valueError);
+                    *error = MAKE_ERROR(1, @"Bad response");
+                    return nil;
+                }
+                answer.data = [[DNSMXRecordData alloc] initWithPriority:[NSNumber numberWithUnsignedInt:(unsigned int)priority] name:name];
+                break;
+            } case DNSRecordTypePTR: {
+                NSError * valueError;
+                NSString * nextName = [DNSName readDNSName:data startIndex:dataIndex+10 dataIndex:NULL error:&valueError];
+                if (valueError != nil) {
+                    PError(@"Bad PTR value: %@", valueError);
+                    *error = MAKE_ERROR(1, @"Bad response");
+                    return nil;
+                }
+                answer.data = [[DNSPTRRecordData alloc] initWithName:nextName];
                 break;
             }
         }
-
+        [answers addObject:answer];
         answersRead++;
     }
 

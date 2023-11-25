@@ -27,6 +27,12 @@
 }
 
 + (NSString *) readDNSName:(NSData *)data startIndex:(int)startIdx dataIndex:(int *)dataIndex error:(NSError **)error {
+    if (startIdx < 0 || startIdx >= data.length) {
+        PError(@"Invalid start index %i", startIdx);
+        *error = MAKE_ERROR(1, @"Bad response");
+        return nil;
+    }
+
     NSMutableString * name = [[NSMutableString alloc] initWithCapacity:255];
     short offset = startIdx;
 
@@ -71,12 +77,6 @@
             }
             PDebug(@"Byte is length");
             offset = nextOffset;
-        }
-
-        if (offset > data.length) {
-            PError(@"Offset %i exceeds data length %lu", offset, (unsigned long)data.length);
-            *error = MAKE_ERROR(1, @"Bad response");
-            return nil;
         }
 
         PDebug(@"Read byte %i", offset);

@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "DNSRecordData.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,11 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// The record time to live in seconds
 @property (nonatomic) NSUInteger ttlSeconds;
 
-/// The data of this record. For A and AAAA this will be an ASCII string representing the human-readable IP address.
-@property (strong, nonatomic, nonnull) NSData * data;
-
-/// Get a human readable description of the data
-- (NSString * _Nonnull) dataDescription;
+/// The data object for this answer. Cast this to the specific DNSRecordData subclass based on the record type.
+@property (strong, nonatomic, nonnull) DNSRecordData * data;
 
 @end
 

@@ -77,7 +77,7 @@
             case nw_connection_state_ready: {
                 PDebug(@"Event: nw_connection_state_ready");
 
-                NSMutableData * replyData = [NSMutableData dataWithCapacity:512];
+                NSMutableData * replyData = [NSMutableData new];
                 dispatch_data_t data = dispatch_data_create(messageData.bytes, messageData.length, dispatch_get_main_queue(), DISPATCH_DATA_DESTRUCTOR_DEFAULT);
                 nw_connection_receive(connection, 2, 2, ^(dispatch_data_t lengthContent, nw_content_context_t lengthContext, bool lengthIsComplete, nw_error_t lengthError) {
                     if (error != nil) {
@@ -95,7 +95,8 @@
 
                     uint16_t * nlen = (uint16_t *)((NSData *)lengthContent).bytes;
                     uint16_t length = ntohs(*nlen);
-                    if (length == 0 || length > 512) {
+                    if (length == 0) {
+                        PError(@"Invalid message length %i", (int)length);
                         completed(nil, MAKE_ERROR(1, @"Bad response"));
                         nw_connection_cancel(connection);
                         return;
@@ -112,6 +113,8 @@
                             nw_connection_cancel(connection);
                             return;
                         }
+
+                        PDebug(@"Reply: %@", [replyData hexString]);
                         completed(reply, nil);
                         nw_connection_cancel(connection);
                         return;

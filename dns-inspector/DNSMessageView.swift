@@ -11,14 +11,14 @@ struct DNSMessageView: View {
             List {
                 Section("Query") {
                     HStack {
-                        RoundedLabel(text: OperationCode.fromDNSKit(message.operationCode).name)
+                        RoundedLabel(text: OperationCode.fromDNSKit(message.operationCode).name, color: Color.primary)
                         Divider()
-                        RoundedLabel(text: ResponseCode.fromDNSKit(message.responseCode).name)
+                        RoundedLabel(text: ResponseCode.fromDNSKit(message.responseCode).name, color: Color.primary)
                         Divider()
                         Text(String(message.idNumber)).fixedwidth()
                     }
                     HStack {
-                        RoundedLabel(text: "\(ServerType.fromDNSKit(query.serverType).name)")
+                        RoundedLabel(text: "\(ServerType.fromDNSKit(query.serverType).name)", color: Color.primary)
                         Divider()
                         Text(query.serverAddress).fixedwidth()
                     }
