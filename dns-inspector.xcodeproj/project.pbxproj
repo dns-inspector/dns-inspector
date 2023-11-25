@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C3120542B06D0D10075C396 /* NSDataFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120532B06D0D10075C396 /* NSDataFormatTests.m */; };
+		3C3120562B06D39D0075C396 /* DNSServerTLSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120552B06D39D0075C396 /* DNSServerTLSTests.m */; };
+		3C3120582B06D5E80075C396 /* DNSServerHTTPSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120572B06D5E80075C396 /* DNSServerHTTPSTests.m */; };
+		3C31205A2B06D6010075C396 /* DNSServerDNSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120592B06D6010075C396 /* DNSServerDNSTests.m */; };
 		3C343D3C2ADE110100C282D0 /* LogWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C343D3A2ADE110100C282D0 /* LogWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C343D3D2ADE110100C282D0 /* LogWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D3B2ADE110100C282D0 /* LogWriter.m */; };
 		3C343D402ADE12AC00C282D0 /* DNSQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C343D3E2ADE12AC00C282D0 /* DNSQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -61,6 +65,7 @@
 		3CCA313C2AF84F0E00C11280 /* DNSPTRRecordData.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CCA313A2AF84F0E00C11280 /* DNSPTRRecordData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3CCA313D2AF84F0E00C11280 /* DNSPTRRecordData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA313B2AF84F0E00C11280 /* DNSPTRRecordData.m */; };
 		3CCA313F2AF84F4200C11280 /* DNSPTRRecordData+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CCA313E2AF84F4200C11280 /* DNSPTRRecordData+Private.h */; };
+		3CCA31412AF85AEE00C11280 /* DNSNameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA31402AF85AEE00C11280 /* DNSNameTests.m */; };
 		9A80CE242AEF2A3800E97A63 /* OperationCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE232AEF2A3800E97A63 /* OperationCode.swift */; };
 		9A80CE262AEF2B2900E97A63 /* ResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE252AEF2B2900E97A63 /* ResponseCode.swift */; };
 		9A80CE292AEF2C7700E97A63 /* RoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE282AEF2C7700E97A63 /* RoundedLabel.swift */; };
@@ -133,6 +138,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C3120532B06D0D10075C396 /* NSDataFormatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDataFormatTests.m; sourceTree = "<group>"; };
+		3C3120552B06D39D0075C396 /* DNSServerTLSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServerTLSTests.m; sourceTree = "<group>"; };
+		3C3120572B06D5E80075C396 /* DNSServerHTTPSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServerHTTPSTests.m; sourceTree = "<group>"; };
+		3C3120592B06D6010075C396 /* DNSServerDNSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServerDNSTests.m; sourceTree = "<group>"; };
 		3C343D392ADE108300C282D0 /* DNSKitPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSKitPrefixHeader.pch; sourceTree = "<group>"; };
 		3C343D3A2ADE110100C282D0 /* LogWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogWriter.h; sourceTree = "<group>"; };
 		3C343D3B2ADE110100C282D0 /* LogWriter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogWriter.m; sourceTree = "<group>"; };
@@ -190,6 +199,7 @@
 		3CCA313A2AF84F0E00C11280 /* DNSPTRRecordData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSPTRRecordData.h; sourceTree = "<group>"; };
 		3CCA313B2AF84F0E00C11280 /* DNSPTRRecordData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSPTRRecordData.m; sourceTree = "<group>"; };
 		3CCA313E2AF84F4200C11280 /* DNSPTRRecordData+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DNSPTRRecordData+Private.h"; sourceTree = "<group>"; };
+		3CCA31402AF85AEE00C11280 /* DNSNameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSNameTests.m; sourceTree = "<group>"; };
 		9A80CE232AEF2A3800E97A63 /* OperationCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationCode.swift; sourceTree = "<group>"; };
 		9A80CE252AEF2B2900E97A63 /* ResponseCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCode.swift; sourceTree = "<group>"; };
 		9A80CE282AEF2C7700E97A63 /* RoundedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedLabel.swift; sourceTree = "<group>"; };
@@ -433,6 +443,11 @@
 			children = (
 				3CCA08172ADF75E900CD76E8 /* DNSKitTests.h */,
 				3CCA08152ADF75BD00CD76E8 /* DNSMessageTests.m */,
+				3CCA31402AF85AEE00C11280 /* DNSNameTests.m */,
+				3C3120532B06D0D10075C396 /* NSDataFormatTests.m */,
+				3C3120552B06D39D0075C396 /* DNSServerTLSTests.m */,
+				3C3120572B06D5E80075C396 /* DNSServerHTTPSTests.m */,
+				3C3120592B06D6010075C396 /* DNSServerDNSTests.m */,
 			);
 			path = DNSKitTests;
 			sourceTree = "<group>";
@@ -684,6 +699,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C3120562B06D39D0075C396 /* DNSServerTLSTests.m in Sources */,
+				3C3120582B06D5E80075C396 /* DNSServerHTTPSTests.m in Sources */,
+				3CCA31412AF85AEE00C11280 /* DNSNameTests.m in Sources */,
+				3C3120542B06D0D10075C396 /* NSDataFormatTests.m in Sources */,
+				3C31205A2B06D6010075C396 /* DNSServerDNSTests.m in Sources */,
 				3CCA08162ADF75BD00CD76E8 /* DNSMessageTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
