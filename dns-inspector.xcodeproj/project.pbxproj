@@ -155,6 +155,7 @@
 		3C343D3F2ADE12AC00C282D0 /* DNSQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSQuery.m; sourceTree = "<group>"; };
 		3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSMessageView.swift; sourceTree = "<group>"; };
 		3C710D872AE773B400F252C8 /* RecordClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordClass.swift; sourceTree = "<group>"; };
+		3C8B59D92B36312F000B9F84 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		3C9AA7C42AF1E45B00B072FA /* DNSAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSAnswerView.swift; sourceTree = "<group>"; };
 		3C9AA7C62AF1E94100B072FA /* View+RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+RoundedCorners.swift"; sourceTree = "<group>"; };
 		3C9AA7C82AF1F43F00B072FA /* DNSQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSQuestionView.swift; sourceTree = "<group>"; };
@@ -396,6 +397,7 @@
 				9AA8C13B2ADCA98000B93E45 /* MainView.swift */,
 				9A80CE2A2AEF336600E97A63 /* Options */,
 				9AA8C13F2ADCA98200B93E45 /* Preview Content */,
+				3C8B59D92B36312F000B9F84 /* PrivacyInfo.xcprivacy */,
 				9A80CE392AEF6CF700E97A63 /* Services */,
 				9AA8C1872ADCBD6A00B93E45 /* Types */,
 				9A80CE272AEF2C6B00E97A63 /* Views */,
