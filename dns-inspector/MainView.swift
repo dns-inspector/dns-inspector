@@ -73,11 +73,21 @@ struct MainView: View {
                         .disabled(self.lookupState.loading)
                     }
                     if self.lookupState.loading {
-                        withAnimation {
+                        HStack {
+                            ProgressView()
+                            Text("Loading...")
+                                .padding(.leading, 8)
+                                .foregroundStyle(.gray)
+                        }
+                    }
+                    if let error = self.lookupState.error {
+                        VStack(alignment: .leading) {
                             HStack {
-                                ProgressView()
-                                Text("Loading...").padding(.leading, 8).opacity(0.5)
+                                Image(systemName: "exclamationmark.circle.fill")
+                                    .foregroundStyle(.red)
+                                Text("Error").bold()
                             }
+                            Text(error.localizedDescription)
                         }
                     }
                 }
