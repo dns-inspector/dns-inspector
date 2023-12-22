@@ -30,15 +30,29 @@ struct DNSAnswerView: View {
                 Spacer()
                 Divider()
                 Spacer()
-                Text("\(answer.ttlSeconds) seconds")
-                    .font(Font.body.smallCaps())
-                    .padding(.vertical, 8.0)
+                switch UserOptions.ttlDisplayMode {
+                case .absolute:
+                    Text("\(answer.ttlSeconds) seconds")
+                        .font(Font.body.smallCaps())
+                        .padding(.vertical, 8.0)
+                case .relative:
+                    Text(self.relativeTtlString())
+                        .font(Font.body.smallCaps())
+                        .padding(.vertical, 8.0)
+                }
                 Spacer()
             }
             .overlay(Divider(), alignment: .top)
         }
         .frame(maxWidth: .infinity)
         .listRowInsets(EdgeInsets())
+    }
+
+    func relativeTtlString() -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.dateTimeStyle = .named
+        let duration = TimeInterval(integerLiteral: Int64(answer.ttlSeconds))
+        return formatter.localizedString(fromTimeInterval: duration)
     }
 }
 

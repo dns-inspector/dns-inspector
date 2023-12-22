@@ -151,7 +151,9 @@ struct MainView: View {
     }
 
     func doInspect(recordType: DNSRecordType, name: String, clientType: DNSClientType, serverAddress: String) {
-        self.lookupState.loading = true
+        withAnimation {
+            self.lookupState.loading = true
+        }
 
         let query: DNSQuery
         do {
@@ -159,20 +161,26 @@ struct MainView: View {
             parameters.dnsPrefersTcp = UserOptions.dnsPrefersTcp
             query = try DNSQuery(clientType: clientType, serverAddress: serverAddress, recordType: recordType, name: name, parameters: parameters)
         } catch {
-            self.lookupState.error = error
-            self.lookupState.loading = false
+            withAnimation {
+                self.lookupState.error = error
+                self.lookupState.loading = false
+            }
             return
         }
 
         query.execute { oMessage, oError in
             DispatchQueue.main.async {
                 if let error = oError {
-                    self.lookupState.error = error
-                    self.lookupState.loading = false
+                    withAnimation {
+                        self.lookupState.error = error
+                        self.lookupState.loading = false
+                    }
                     return
                 }
                 guard let message = oMessage else {
-                    self.lookupState.loading = false
+                    withAnimation {
+                        self.lookupState.loading = false
+                    }
                     return
                 }
                 self.lookupState.loading = false
