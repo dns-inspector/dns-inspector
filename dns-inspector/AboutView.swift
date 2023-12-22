@@ -42,7 +42,7 @@ struct AboutView: View {
                     }
                     Section {
                         Button {
-
+                            UIApplication.shared.open(URL(string: "https://github.com/dns-inspector/dns-inspector")!)
                         } label: {
                             Label("Contribute to DNS Inspector", systemImage: "terminal")
                         }
@@ -52,7 +52,7 @@ struct AboutView: View {
                             Label("Test New Features", systemImage: "plus.message")
                         }
                         Button {
-
+                            UIApplication.shared.open(URL(string: "https://infosec.exchange/@dnsinspector")!)
                         } label: {
                             Label("Follow us on Mastodon", systemImage: "person.badge.plus")
                         }
