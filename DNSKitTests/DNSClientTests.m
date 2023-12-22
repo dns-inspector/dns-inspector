@@ -1,39 +1,45 @@
-#import <XCTest/XCTest.h>
-#import "DNSKitTests.h"
-@import DNSKit;
-#import "../DNSKit/DNSClient53TCP.h"
+#import "DNSClientTests.h"
 
-@interface DNSClient53TCPTests : XCTestCase
+@interface DNSClientTests ()
+
+@property (nonatomic) DNSClientType clientType;
+@property (strong, nonatomic, nonnull) DNSClient * client;
 
 @end
 
-@implementation DNSClient53TCPTests
+@implementation DNSClientTests
 
 #define TEST_TIMEOUT 10 // Seconds
 
-- (void) setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
++ (DNSClientTests *) fixtureWithClientType:(DNSClientType)clientType client:(DNSClient *)client {
+    DNSClientTests * fixture = [DNSClientTests new];
+    fixture.clientType = clientType;
+    fixture.client = client;
+    return fixture;
 }
 
-- (void) tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-}
-
-- (void) testAQuery {
-    NSError * managerError;
-    DNSClient53TCP * manager = (DNSClient53TCP *)[DNSClient53TCP serverWithAddress:@"8.8.8.8" error:&managerError];
-    if (managerError != nil) {
-        XCTFail(@"Manager error should be nil");
-        return;
+- (NSString *) mockServerAddressForQuery {
+    switch (self.clientType) {
+        case DNSClientTypeDNS:
+            return @"1";
+        case DNSClientTypeTLS:
+            return @"1";
+        case DNSClientTypeHTTPS:
+            return @"https://a";
     }
 
+    return @"";
+}
+
+- (void) testQueryA {
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeTCP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"dns.google" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithClientType:self.clientType serverAddress:[self mockServerAddressForQuery] recordType:DNSRecordTypeA name:@"dns.google" parameters:nil error:&queryError];
+    XCTAssertNil(queryError);
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
 
-    [manager sendMessage:[query dnsMessage] gotReply:^(DNSMessage * message, NSError * error) {
+    [self.client sendMessage:[query dnsMessage] gotReply:^(DNSMessage * message, NSError * error) {
         XCTAssertNil(error);
         XCTAssertNotNil(message);
         XCTAssertTrue(message.answers.count > 0);
@@ -53,21 +59,15 @@
     }
 }
 
-- (void) testAAAAQuery {
-    NSError * managerError;
-    DNSClient53TCP * manager = (DNSClient53TCP *)[DNSClient53TCP serverWithAddress:@"8.8.8.8" error:&managerError];
-    if (managerError != nil) {
-        XCTFail(@"Manager error should be nil");
-        return;
-    }
-
+- (void) testQueryAAAA {
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeTCP53 serverAddress:@"" recordType:DNSRecordTypeAAAA name:@"dns.google" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithClientType:self.clientType serverAddress:[self mockServerAddressForQuery] recordType:DNSRecordTypeAAAA name:@"dns.google" parameters:nil error:&queryError];
+    XCTAssertNil(queryError);
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
 
-    [manager sendMessage:[query dnsMessage] gotReply:^(DNSMessage * message, NSError * error) {
+    [self.client sendMessage:[query dnsMessage] gotReply:^(DNSMessage * message, NSError * error) {
         XCTAssertNil(error);
         XCTAssertNotNil(message);
         XCTAssertTrue(message.answers.count > 0);
@@ -87,21 +87,15 @@
     }
 }
 
-- (void) testNXDomain {
-    NSError * managerError;
-    DNSClient53TCP * manager = (DNSClient53TCP *)[DNSClient53TCP serverWithAddress:@"8.8.8.8" error:&managerError];
-    if (managerError != nil) {
-        XCTFail(@"Manager error should be nil");
-        return;
-    }
-
+- (void) testQueryNXDOMAIN {
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeTCP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"if-you-register-this-domain-im-going-to-be-very-angry.com" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithClientType:self.clientType serverAddress:[self mockServerAddressForQuery] recordType:DNSRecordTypeA name:@"if-you-register-this-domain-im-going-to-be-very-angry.com" parameters:nil error:&queryError];
+    XCTAssertNil(queryError);
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
 
-    [manager sendMessage:[query dnsMessage] gotReply:^(DNSMessage * message, NSError * error) {
+    [self.client sendMessage:[query dnsMessage] gotReply:^(DNSMessage * message, NSError * error) {
         XCTAssertNil(error);
         XCTAssertNotNil(message);
         XCTAssertTrue(message.answers.count == 0);
@@ -115,23 +109,18 @@
     }
 }
 
-- (void) testTimeout {
-    NSError * managerError;
-    DNSClient53TCP * manager = (DNSClient53TCP *)[DNSClient53TCP serverWithAddress:@"127.1.1.1" error:&managerError];
-    if (managerError != nil) {
-        XCTFail(@"Manager error should be nil");
-        return;
-    }
-
+- (void) testQueryTimeout {
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeTCP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"just-a-test.com" error:&queryError];
+    DNSQueryParameters * parameters = [DNSQueryParameters new];
+    parameters.dnsPrefersTcp = true;
+    DNSQuery * query = [DNSQuery queryWithClientType:self.clientType serverAddress:[self mockServerAddressForQuery] recordType:DNSRecordTypeA name:@"just-a-test.com" parameters:parameters error:&queryError];
+    XCTAssertNil(queryError);
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
 
-    [manager sendMessage:[query dnsMessage] gotReply:^(DNSMessage * message, NSError * error) {
+    [self.client sendMessage:[query dnsMessage] gotReply:^(DNSMessage * message, NSError * error) {
         XCTAssertNotNil(error);
-        XCTAssertStringEqual(error.localizedDescription, @"timed out");
         XCTAssertTrue(message.answers.count == 0);
         passed = @YES;
         dispatch_semaphore_signal(sync);

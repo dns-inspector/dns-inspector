@@ -29,6 +29,13 @@ struct OptionsView: View {
                         PresetServerListView()
                     }
                 }
+                Section("Network") {
+                    Toggle("Send DNS requests using TCP", isOn: .init(get: {
+                        return UserOptions.dnsPrefersTcp
+                    }, set: { on in
+                        UserOptions.dnsPrefersTcp = on
+                    })).tint(Color.accentColor)
+                }
             }
             .navigationTitle("Options")
             .navigationBarTitleDisplayMode(.inline)

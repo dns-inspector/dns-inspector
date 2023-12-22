@@ -155,7 +155,9 @@ struct MainView: View {
 
         let query: DNSQuery
         do {
-            query = try DNSQuery(clientType: clientType, serverAddress: serverAddress, recordType: recordType, name: name)
+            let parameters = DNSQueryParameters()
+            parameters.dnsPrefersTcp = UserOptions.dnsPrefersTcp
+            query = try DNSQuery(clientType: clientType, serverAddress: serverAddress, recordType: recordType, name: name, parameters: parameters)
         } catch {
             self.lookupState.error = error
             self.lookupState.loading = false

@@ -12,6 +12,7 @@ fileprivate struct OptionsType: Codable {
     public var showTips: Bool?
     public var ttlDisplayMode: TTLDisplayMode?
     public var presetServers: [PresetServer]?
+    public var dnsPrefersTcp: Bool?
 }
 
 public class UserOptions {
@@ -104,6 +105,16 @@ public class UserOptions {
         }
         set {
             current.presetServers = newValue
+            save()
+        }
+    }
+
+    public static var dnsPrefersTcp: Bool {
+        get {
+            return current.dnsPrefersTcp ?? true
+        }
+        set {
+            current.dnsPrefersTcp = newValue
             save()
         }
     }

@@ -21,10 +21,9 @@ typedef NS_ENUM(NSUInteger, DNSRecordClass) {
 };
 
 typedef NS_ENUM(NSUInteger, DNSClientType) {
-    DNSClientTypeUDP53 = 1,
-    DNSClientTypeTCP53 = 2,
-    DNSClientTypeHTTPS = 3,
-    DNSClientTypeTLS = 4,
+    DNSClientTypeDNS = 1,
+    DNSClientTypeHTTPS = 2,
+    DNSClientTypeTLS = 3,
 };
 
 typedef NS_ENUM(NSUInteger, DNSResponseCode) {

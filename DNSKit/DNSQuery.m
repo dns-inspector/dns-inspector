@@ -1,7 +1,6 @@
 #import "DNSQuery.h"
 #import "DNSClient.h"
-#import "DNSClient53UDP.h"
-#import "DNSClient53TCP.h"
+#import "DNSClientDNS.h"
 #import "DNSClientHTTPS.h"
 #import "DNSClientTLS.h"
 #import "DNSName.h"
@@ -17,16 +16,19 @@
 
 @implementation DNSQuery
 
-+ (DNSQuery *) queryWithClientType:(DNSClientType)clientType serverAddress:(NSString *)serverAddress recordType:(DNSRecordType)recordType name:(NSString *)name error:(NSError * _Nullable * _Nonnull)error {
++ (DNSQuery *) queryWithClientType:(DNSClientType)clientType serverAddress:(NSString *)serverAddress recordType:(DNSRecordType)recordType name:(NSString *)name parameters:(DNSQueryParameters *)parameters error:(NSError **)error {
     DNSClient * server;
     NSError * serverError;
     switch (clientType) {
-        case DNSClientTypeUDP53: {
-            server = [DNSClient53UDP serverWithAddress:serverAddress error:&serverError];
-            break;
-        }
-        case DNSClientTypeTCP53: {
-            server = [DNSClient53TCP serverWithAddress:serverAddress error:&serverError];
+        case DNSClientTypeDNS: {
+            bool useTcp = true;
+            if (parameters != nil && !parameters.dnsPrefersTcp) {
+                useTcp = false;
+            }
+
+            DNSClientDNS * dns = (DNSClientDNS *)[DNSClientDNS serverWithAddress:serverAddress error:&serverError];
+            dns.useTCP = [NSNumber numberWithBool:useTcp];
+            server = dns;
             break;
         }
         case DNSClientTypeHTTPS: {

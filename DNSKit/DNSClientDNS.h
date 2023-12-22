@@ -3,7 +3,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DNSClient53TCP : DNSClient
+@interface DNSClientDNS : DNSClient
+
+@property (strong, nonatomic) NSNumber * useTCP;
 
 @end
 

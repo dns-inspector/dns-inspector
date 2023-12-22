@@ -1,18 +1,18 @@
-#import "DNSClient53TCP.h"
+#import "DNSClientDNS.h"
 #import "NSData+HexString.h"
 @import Network;
 
-@interface DNSClient53TCP ()
+@interface DNSClientDNS ()
 
 @property (strong, nonatomic) NSString * host;
 @property (nonatomic) NSUInteger port;
 
 @end
 
-@implementation DNSClient53TCP
+@implementation DNSClientDNS
 
 + (DNSClient *) serverWithAddress:(NSString *)address error:(NSError **)error {
-    DNSClient53TCP * dns = [DNSClient53TCP new];
+    DNSClientDNS * dns = [DNSClientDNS new];
 
     NSRegularExpression * portPattern = [NSRegularExpression regularExpressionWithPattern:@":\\d{1,5}$" options:NSRegularExpressionCaseInsensitive error:nil];
     NSArray<NSTextCheckingResult *> * matches = [portPattern matchesInString:address options:0 range:NSMakeRange(0, address.length)];
@@ -29,16 +29,26 @@
 }
 
 - (void) sendMessage:(DNSMessage *)message gotReply:(void (^)(DNSMessage *, NSError *))completed {
+    PDebug(@"Sending DNS query to %@:%i using %@", self.host, (int)self.port, self.useTCP.boolValue ? @"TCP" : @"UDP");
+
     NSError * messageError;
     NSData * dnsMessage = [message messageDataError:&messageError];
     if (messageError != nil) {
         completed(nil, messageError);
         return;
     }
-    NSMutableData * messageData = [NSMutableData dataWithCapacity:dnsMessage.length+2];
-    uint16_t length = htons((uint16_t)dnsMessage.length);
-    [messageData appendBytes:&length length:2];
-    [messageData appendData:dnsMessage];
+
+    NSMutableData * messageData;
+
+    if (self.useTCP.boolValue) {
+        // TCP message is length+data
+        messageData = [NSMutableData dataWithCapacity:dnsMessage.length+2];
+        uint16_t length = htons((uint16_t)dnsMessage.length);
+        [messageData appendBytes:&length length:2];
+        [messageData appendData:dnsMessage];
+    } else {
+        messageData = [NSMutableData dataWithData:dnsMessage];
+    }
     PDebug(@"%@", messageData.hexString);
 
     // For some reason network framework expects the port to be a string...???
@@ -48,9 +58,11 @@
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block gotReply = @NO;
 
-    dispatch_queue_t nw_dispatch_queue = dispatch_queue_create("io.ecn.DNSKit.DNSClient53TCP", NULL);
+    dispatch_queue_t nw_dispatch_queue = dispatch_queue_create("io.ecn.DNSKit.DNSClientDNS", NULL);
 
-    nw_connection_t connection = nw_connection_create(endpoint, nw_parameters_create_secure_tcp(NW_PARAMETERS_DISABLE_PROTOCOL, NW_PARAMETERS_DEFAULT_CONFIGURATION));
+    nw_parameters_t parameters = self.useTCP.boolValue ? nw_parameters_create_secure_tcp(NW_PARAMETERS_DISABLE_PROTOCOL, NW_PARAMETERS_DEFAULT_CONFIGURATION) : nw_parameters_create_secure_udp(NW_PARAMETERS_DISABLE_PROTOCOL, NW_PARAMETERS_DEFAULT_CONFIGURATION);
+
+    nw_connection_t connection = nw_connection_create(endpoint, parameters);
     nw_connection_set_queue(connection, nw_dispatch_queue);
     nw_connection_set_state_changed_handler(connection, ^(nw_connection_state_t state, nw_error_t error) {
         switch (state) {
@@ -82,21 +94,43 @@
 
                 NSMutableData * replyData = [NSMutableData new];
                 dispatch_data_t data = dispatch_data_create(messageData.bytes, messageData.length, dispatch_get_main_queue(), DISPATCH_DATA_DESTRUCTOR_DEFAULT);
-                nw_connection_receive(connection, 2, 2, ^(dispatch_data_t lengthContent, nw_content_context_t lengthContext, bool lengthIsComplete, nw_error_t lengthError) {
+
+                int minLength = 2;
+                int maxLength = self.useTCP.boolValue ? 2 : 512;
+
+                nw_connection_receive(connection, minLength, maxLength, ^(dispatch_data_t firstData, nw_content_context_t firstContext, bool lengthIsComplete, nw_error_t lengthError) {
                     if (error != nil) {
                         completed(nil, MAKE_ERROR(1, error.description));
                         nw_connection_cancel(connection);
                         return;
                     }
-                    if (lengthContent == nil) {
+                    if (firstData == nil) {
                         PDebug(@"nw_connection_receive with no content");
                         nw_connection_cancel(connection);
                         return;
                     }
 
-                    PDebug(@"Read 2");
+                    PDebug(@"Read %i", (int)((NSData *)firstData).length);
 
-                    uint16_t * nlen = (uint16_t *)((NSData *)lengthContent).bytes;
+                    if (!self.useTCP.boolValue) {
+                        gotReply = @true;
+
+                        NSError * replyError;
+                        DNSMessage * reply = [DNSMessage messageFromData:(NSData*)firstData error:&replyError];
+                        if (replyError != nil) {
+                            completed(nil, replyError);
+                            nw_connection_cancel(connection);
+                            return;
+                        }
+
+                        PDebug(@"Reply: %@", [replyData hexString]);
+                        completed(reply, nil);
+                        nw_connection_cancel(connection);
+                        dispatch_semaphore_signal(sync);
+                        return;
+                    }
+
+                    uint16_t * nlen = (uint16_t *)((NSData *)firstData).bytes;
                     uint16_t length = ntohs(*nlen);
                     if (length == 0) {
                         PError(@"Invalid message length %i", (int)length);
