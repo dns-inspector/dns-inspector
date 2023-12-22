@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C1D3D0E2B353CEB003CDAE2 /* DNSServer53UDP.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C1D3D0C2B353CEB003CDAE2 /* DNSServer53UDP.h */; };
+		3C1D3D0F2B353CEB003CDAE2 /* DNSServer53UDP.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1D3D0D2B353CEB003CDAE2 /* DNSServer53UDP.m */; };
+		3C1D3D112B353EDC003CDAE2 /* DNSServer53UDPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1D3D102B353EDC003CDAE2 /* DNSServer53UDPTests.m */; };
 		3C3120542B06D0D10075C396 /* NSDataFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120532B06D0D10075C396 /* NSDataFormatTests.m */; };
 		3C3120562B06D39D0075C396 /* DNSServerTLSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120552B06D39D0075C396 /* DNSServerTLSTests.m */; };
 		3C3120582B06D5E80075C396 /* DNSServerHTTPSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120572B06D5E80075C396 /* DNSServerHTTPSTests.m */; };
-		3C31205A2B06D6010075C396 /* DNSServerDNSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120592B06D6010075C396 /* DNSServerDNSTests.m */; };
+		3C31205A2B06D6010075C396 /* DNSServer53TCPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120592B06D6010075C396 /* DNSServer53TCPTests.m */; };
 		3C343D3C2ADE110100C282D0 /* LogWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C343D3A2ADE110100C282D0 /* LogWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C343D3D2ADE110100C282D0 /* LogWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D3B2ADE110100C282D0 /* LogWriter.m */; };
 		3C343D402ADE12AC00C282D0 /* DNSQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C343D3E2ADE12AC00C282D0 /* DNSQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -138,10 +141,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C1D3D0C2B353CEB003CDAE2 /* DNSServer53UDP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSServer53UDP.h; sourceTree = "<group>"; };
+		3C1D3D0D2B353CEB003CDAE2 /* DNSServer53UDP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServer53UDP.m; sourceTree = "<group>"; };
+		3C1D3D102B353EDC003CDAE2 /* DNSServer53UDPTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServer53UDPTests.m; sourceTree = "<group>"; };
 		3C3120532B06D0D10075C396 /* NSDataFormatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDataFormatTests.m; sourceTree = "<group>"; };
 		3C3120552B06D39D0075C396 /* DNSServerTLSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServerTLSTests.m; sourceTree = "<group>"; };
 		3C3120572B06D5E80075C396 /* DNSServerHTTPSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServerHTTPSTests.m; sourceTree = "<group>"; };
-		3C3120592B06D6010075C396 /* DNSServerDNSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServerDNSTests.m; sourceTree = "<group>"; };
+		3C3120592B06D6010075C396 /* DNSServer53TCPTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSServer53TCPTests.m; sourceTree = "<group>"; };
 		3C343D392ADE108300C282D0 /* DNSKitPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSKitPrefixHeader.pch; sourceTree = "<group>"; };
 		3C343D3A2ADE110100C282D0 /* LogWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogWriter.h; sourceTree = "<group>"; };
 		3C343D3B2ADE110100C282D0 /* LogWriter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogWriter.m; sourceTree = "<group>"; };
@@ -424,6 +430,8 @@
 				3CCA08192ADF7B4900CD76E8 /* DNSServer.m */,
 				3CCA081C2ADF7B5B00CD76E8 /* DNSServer53TCP.h */,
 				3CCA081D2ADF7B5B00CD76E8 /* DNSServer53TCP.m */,
+				3C1D3D0C2B353CEB003CDAE2 /* DNSServer53UDP.h */,
+				3C1D3D0D2B353CEB003CDAE2 /* DNSServer53UDP.m */,
 				3CCA08202ADF7C7400CD76E8 /* DNSServerHTTPS.h */,
 				3CCA08212ADF7C7400CD76E8 /* DNSServerHTTPS.m */,
 				3CCA08242ADF7CA200CD76E8 /* DNSServerTLS.h */,
@@ -444,10 +452,11 @@
 				3CCA08172ADF75E900CD76E8 /* DNSKitTests.h */,
 				3CCA08152ADF75BD00CD76E8 /* DNSMessageTests.m */,
 				3CCA31402AF85AEE00C11280 /* DNSNameTests.m */,
-				3C3120532B06D0D10075C396 /* NSDataFormatTests.m */,
-				3C3120552B06D39D0075C396 /* DNSServerTLSTests.m */,
+				3C3120592B06D6010075C396 /* DNSServer53TCPTests.m */,
+				3C1D3D102B353EDC003CDAE2 /* DNSServer53UDPTests.m */,
 				3C3120572B06D5E80075C396 /* DNSServerHTTPSTests.m */,
-				3C3120592B06D6010075C396 /* DNSServerDNSTests.m */,
+				3C3120552B06D39D0075C396 /* DNSServerTLSTests.m */,
+				3C3120532B06D0D10075C396 /* NSDataFormatTests.m */,
 			);
 			path = DNSKitTests;
 			sourceTree = "<group>";
@@ -474,6 +483,7 @@
 				9AA8C1802ADCB41600B93E45 /* DNSMessage.h in Headers */,
 				3CCA312F2AF5E1A700C11280 /* DNSRecordData+Private.h in Headers */,
 				9AA8C1852ADCB74D00B93E45 /* Types.h in Headers */,
+				3C1D3D0E2B353CEB003CDAE2 /* DNSServer53UDP.h in Headers */,
 				3C343D402ADE12AC00C282D0 /* DNSQuery.h in Headers */,
 				3CCA31282AF5D98200C11280 /* DNSRecordData.h in Headers */,
 				3CCA31382AF84AE400C11280 /* DNSSRVRecordData.h in Headers */,
@@ -690,6 +700,7 @@
 				3C343D412ADE12AC00C282D0 /* DNSQuery.m in Sources */,
 				3CCA31152AF5D91700C11280 /* DNSARecordData.m in Sources */,
 				3CCA313D2AF84F0E00C11280 /* DNSPTRRecordData.m in Sources */,
+				3C1D3D0F2B353CEB003CDAE2 /* DNSServer53UDP.m in Sources */,
 				3CCA08232ADF7C7400CD76E8 /* DNSServerHTTPS.m in Sources */,
 				3CCA080E2ADF650000CD76E8 /* NSData+ByteAtIndex.m in Sources */,
 			);
@@ -703,8 +714,9 @@
 				3C3120582B06D5E80075C396 /* DNSServerHTTPSTests.m in Sources */,
 				3CCA31412AF85AEE00C11280 /* DNSNameTests.m in Sources */,
 				3C3120542B06D0D10075C396 /* NSDataFormatTests.m in Sources */,
-				3C31205A2B06D6010075C396 /* DNSServerDNSTests.m in Sources */,
+				3C31205A2B06D6010075C396 /* DNSServer53TCPTests.m in Sources */,
 				3CCA08162ADF75BD00CD76E8 /* DNSMessageTests.m in Sources */,
+				3C1D3D112B353EDC003CDAE2 /* DNSServer53UDPTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
