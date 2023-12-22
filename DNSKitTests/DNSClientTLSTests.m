@@ -1,13 +1,13 @@
 #import <XCTest/XCTest.h>
 #import "DNSKitTests.h"
 @import DNSKit;
-#import "../DNSKit/DNSServer53UDP.h"
+#import "../DNSKit/DNSClientTLS.h"
 
-@interface DNSServer53UDPTests : XCTestCase
+@interface DNSClientTLSTests : XCTestCase
 
 @end
 
-@implementation DNSServer53UDPTests
+@implementation DNSClientTLSTests
 
 #define TEST_TIMEOUT 10 // Seconds
 
@@ -21,14 +21,14 @@
 
 - (void) testAQuery {
     NSError * managerError;
-    DNSServer53UDP * manager = (DNSServer53UDP *)[DNSServer53UDP serverWithAddress:@"8.8.8.8" error:&managerError];
+    DNSClientTLS * manager = (DNSClientTLS *)[DNSClientTLS serverWithAddress:@"8.8.8.8:853" error:&managerError];
     if (managerError != nil) {
         XCTFail(@"Manager error should be nil");
         return;
     }
 
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSServerTypeUDP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"dns.google" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeTLS serverAddress:@"" recordType:DNSRecordTypeA name:@"dns.google" error:&queryError];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
@@ -55,14 +55,14 @@
 
 - (void) testAAAAQuery {
     NSError * managerError;
-    DNSServer53UDP * manager = (DNSServer53UDP *)[DNSServer53UDP serverWithAddress:@"8.8.8.8" error:&managerError];
+    DNSClientTLS * manager = (DNSClientTLS *)[DNSClientTLS serverWithAddress:@"8.8.8.8:853" error:&managerError];
     if (managerError != nil) {
         XCTFail(@"Manager error should be nil");
         return;
     }
 
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSServerTypeUDP53 serverAddress:@"" recordType:DNSRecordTypeAAAA name:@"dns.google" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeTLS serverAddress:@"" recordType:DNSRecordTypeAAAA name:@"dns.google" error:&queryError];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
@@ -89,14 +89,14 @@
 
 - (void) testNXDomain {
     NSError * managerError;
-    DNSServer53UDP * manager = (DNSServer53UDP *)[DNSServer53UDP serverWithAddress:@"8.8.8.8" error:&managerError];
+    DNSClientTLS * manager = (DNSClientTLS *)[DNSClientTLS serverWithAddress:@"8.8.8.8:853" error:&managerError];
     if (managerError != nil) {
         XCTFail(@"Manager error should be nil");
         return;
     }
 
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSServerTypeUDP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"if-you-register-this-domain-im-going-to-be-very-angry.com" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeTLS serverAddress:@"" recordType:DNSRecordTypeA name:@"if-you-register-this-domain-im-going-to-be-very-angry.com" error:&queryError];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
@@ -117,14 +117,14 @@
 
 - (void) testTimeout {
     NSError * managerError;
-    DNSServer53UDP * manager = (DNSServer53UDP *)[DNSServer53UDP serverWithAddress:@"127.1.1.1" error:&managerError];
+    DNSClientTLS * manager = (DNSClientTLS *)[DNSClientTLS serverWithAddress:@"127.1.1.1" error:&managerError];
     if (managerError != nil) {
         XCTFail(@"Manager error should be nil");
         return;
     }
 
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSServerTypeUDP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"just-a-test.com" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeTLS serverAddress:@"" recordType:DNSRecordTypeA name:@"just-a-test.com" error:&queryError];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;

@@ -2,7 +2,7 @@ import SwiftUI
 import DNSKit
 
 struct PresetServerListView: View {
-    @State private var newServerType: DNSServerType = .TCP53
+    @State private var newServerType: DNSClientType = .TCP53
     @State private var newServerAddress: String = ""
 
     var body: some View {
@@ -16,7 +16,7 @@ struct PresetServerListView: View {
         }
         .toolbar(content: {
             NavigationLink {
-                PresetServerEditView(serverType: $newServerType, serverAddress: $newServerAddress) {
+                PresetServerEditView(clientType: $newServerType, serverAddress: $newServerAddress) {
                     UserOptions.presetServers.append(PresetServer(type: newServerType.rawValue, address: newServerAddress))
                 }
             } label: {
@@ -29,21 +29,21 @@ struct PresetServerListView: View {
 }
 
 fileprivate struct PresetServerListViewItem: View {
-    @State private var dnsServerType: DNSServerType
+    @State private var dnsServerType: DNSClientType
     @State private var address: String
-    private let serverType: ServerType
+    private let clientType: ClientType
     private let serverID: UUID
 
     public init(presetServer: PresetServer) {
-        _dnsServerType = .init(initialValue: DNSServerType(rawValue: presetServer.type)!)
+        _dnsServerType = .init(initialValue: DNSClientType(rawValue: presetServer.type)!)
         _address = .init(initialValue: presetServer.address)
-        self.serverType = ServerType.fromDNSKit(_dnsServerType.wrappedValue)
+        self.clientType = ClientType.fromDNSKit(_dnsServerType.wrappedValue)
         self.serverID = presetServer.id
     }
 
     var body: some View {
         NavigationLink {
-            PresetServerEditView(serverType: $dnsServerType, serverAddress: $address) {
+            PresetServerEditView(clientType: $dnsServerType, serverAddress: $address) {
                 for (index, server) in UserOptions.presetServers.enumerated() {
                     if server.id != serverID {
                         continue
@@ -55,7 +55,7 @@ fileprivate struct PresetServerListViewItem: View {
             }
         } label: {
             HStack {
-                RoundedLabel(text: self.serverType.name)
+                RoundedLabel(text: self.clientType.name)
                 Text(address)
             }
         }

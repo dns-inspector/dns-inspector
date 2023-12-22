@@ -10,7 +10,7 @@ public struct PresetServer: Codable, Identifiable {
         case type, address
     }
 
-    public func serverType() -> ServerType! {
-        return ServerType.fromDNSKit(DNSServerType(rawValue: self.type)!)
+    public func clientType() -> ClientType! {
+        return ClientType.fromDNSKit(DNSClientType(rawValue: self.type)!)
     }
 }

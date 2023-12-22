@@ -1,13 +1,13 @@
 #import <XCTest/XCTest.h>
 #import "DNSKitTests.h"
 @import DNSKit;
-#import "../DNSKit/DNSServerHTTPS.h"
+#import "../DNSKit/DNSClient53UDP.h"
 
-@interface DNSServerHTTPSTests : XCTestCase
+@interface DNSClient53UDPTests : XCTestCase
 
 @end
 
-@implementation DNSServerHTTPSTests
+@implementation DNSClient53UDPTests
 
 #define TEST_TIMEOUT 10 // Seconds
 
@@ -21,14 +21,14 @@
 
 - (void) testAQuery {
     NSError * managerError;
-    DNSServerHTTPS * manager = (DNSServerHTTPS *)[DNSServerHTTPS serverWithAddress:@"https://dns.google/dns-query" error:&managerError];
+    DNSClient53UDP * manager = (DNSClient53UDP *)[DNSClient53UDP serverWithAddress:@"8.8.8.8" error:&managerError];
     if (managerError != nil) {
         XCTFail(@"Manager error should be nil");
         return;
     }
 
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSServerTypeHTTPS serverAddress:@"" recordType:DNSRecordTypeA name:@"dns.google" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeUDP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"dns.google" error:&queryError];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
@@ -55,14 +55,14 @@
 
 - (void) testAAAAQuery {
     NSError * managerError;
-    DNSServerHTTPS * manager = (DNSServerHTTPS *)[DNSServerHTTPS serverWithAddress:@"https://dns.google/dns-query" error:&managerError];
+    DNSClient53UDP * manager = (DNSClient53UDP *)[DNSClient53UDP serverWithAddress:@"8.8.8.8" error:&managerError];
     if (managerError != nil) {
         XCTFail(@"Manager error should be nil");
         return;
     }
 
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSServerTypeHTTPS serverAddress:@"" recordType:DNSRecordTypeAAAA name:@"dns.google" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeUDP53 serverAddress:@"" recordType:DNSRecordTypeAAAA name:@"dns.google" error:&queryError];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
@@ -89,14 +89,14 @@
 
 - (void) testNXDomain {
     NSError * managerError;
-    DNSServerHTTPS * manager = (DNSServerHTTPS *)[DNSServerHTTPS serverWithAddress:@"https://dns.google/dns-query" error:&managerError];
+    DNSClient53UDP * manager = (DNSClient53UDP *)[DNSClient53UDP serverWithAddress:@"8.8.8.8" error:&managerError];
     if (managerError != nil) {
         XCTFail(@"Manager error should be nil");
         return;
     }
 
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSServerTypeHTTPS serverAddress:@"" recordType:DNSRecordTypeA name:@"if-you-register-this-domain-im-going-to-be-very-angry.com" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeUDP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"if-you-register-this-domain-im-going-to-be-very-angry.com" error:&queryError];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
@@ -117,21 +117,21 @@
 
 - (void) testTimeout {
     NSError * managerError;
-    DNSServerHTTPS * manager = (DNSServerHTTPS *)[DNSServerHTTPS serverWithAddress:@"https://127.1.1.1/dns-query" error:&managerError];
+    DNSClient53UDP * manager = (DNSClient53UDP *)[DNSClient53UDP serverWithAddress:@"127.1.1.1" error:&managerError];
     if (managerError != nil) {
         XCTFail(@"Manager error should be nil");
         return;
     }
 
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSServerTypeHTTPS serverAddress:@"" recordType:DNSRecordTypeA name:@"just-a-test.com" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeUDP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"just-a-test.com" error:&queryError];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
 
     [manager sendMessage:[query dnsMessage] gotReply:^(DNSMessage * message, NSError * error) {
         XCTAssertNotNil(error);
-        XCTAssertStringEqual(error.localizedDescription, @"The request timed out.");
+        XCTAssertStringEqual(error.localizedDescription, @"timed out");
         XCTAssertTrue(message.answers.count == 0);
         passed = @YES;
         dispatch_semaphore_signal(sync);
@@ -140,19 +140,6 @@
     if (!passed.boolValue) {
         XCTFail("Timeout without error");
     }
-}
-
-- (void) testBadServerURL {
-    NSError * managerError;
-    DNSServerHTTPS * manager;
-
-    manager = (DNSServerHTTPS *)[DNSServerHTTPS serverWithAddress:@"ftp://127.1.1.1/dns-query" error:&managerError];
-    XCTAssertNotNil(managerError);
-    XCTAssertNil(manager);
-
-    manager = (DNSServerHTTPS *)[DNSServerHTTPS serverWithAddress:@"" error:&managerError];
-    XCTAssertNotNil(managerError);
-    XCTAssertNil(manager);
 }
 
 @end

@@ -99,7 +99,7 @@ public class UserOptions {
     public static var presetServers: [PresetServer] {
         get {
             return current.presetServers ?? [
-                PresetServer(type: DNSServerType.HTTPS.rawValue, address: "https://dns.google/dns-query")
+                PresetServer(type: DNSClientType.HTTPS.rawValue, address: "https://dns.google/dns-query")
             ]
         }
         set {

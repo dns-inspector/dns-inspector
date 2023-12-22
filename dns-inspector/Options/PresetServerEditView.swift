@@ -2,17 +2,17 @@ import SwiftUI
 import DNSKit
 
 struct PresetServerEditView: View {
-    @Binding public var serverType: DNSServerType
+    @Binding public var clientType: DNSClientType
     @Binding public var serverAddress: String
     public let didSave: () -> Void
     @Environment(\.presentationMode) var presentation
 
     var body: some View {
         List {
-            Picker("Server Type", selection: $serverType) {
-                Text("DNS (TCP)").tag(DNSServerType.TCP53)
-                Text("HTTPS").tag(DNSServerType.HTTPS)
-                Text("TLS").tag(DNSServerType.TLS)
+            Picker("Server Type", selection: $clientType) {
+                Text("DNS (TCP)").tag(DNSClientType.TCP53)
+                Text("HTTPS").tag(DNSClientType.HTTPS)
+                Text("TLS").tag(DNSClientType.TLS)
             }
             TextField(text: $serverAddress) {
                 Text("Server Address")
@@ -35,7 +35,7 @@ struct PresetServerEditView: View {
 }
 
 #Preview {
-    PresetServerEditView(serverType: .constant(.TCP53), serverAddress: .constant("8.8.8.8")) {
+    PresetServerEditView(clientType: .constant(.TCP53), serverAddress: .constant("8.8.8.8")) {
         //
     }
 }

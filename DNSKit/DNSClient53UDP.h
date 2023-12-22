@@ -1,9 +1,9 @@
 #import <Foundation/Foundation.h>
-#import "DNSServer.h"
+#import "DNSClient.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DNSServer53UDP : DNSServer
+@interface DNSClient53UDP : DNSClient
 
 @end
 

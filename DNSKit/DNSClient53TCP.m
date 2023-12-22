@@ -1,18 +1,18 @@
-#import "DNSServer53TCP.h"
+#import "DNSClient53TCP.h"
 #import "NSData+HexString.h"
 @import Network;
 
-@interface DNSServer53TCP ()
+@interface DNSClient53TCP ()
 
 @property (strong, nonatomic) NSString * host;
 @property (nonatomic) NSUInteger port;
 
 @end
 
-@implementation DNSServer53TCP
+@implementation DNSClient53TCP
 
-+ (DNSServer *) serverWithAddress:(NSString *)address error:(NSError **)error {
-    DNSServer53TCP * dns = [DNSServer53TCP new];
++ (DNSClient *) serverWithAddress:(NSString *)address error:(NSError **)error {
+    DNSClient53TCP * dns = [DNSClient53TCP new];
 
     NSRegularExpression * portPattern = [NSRegularExpression regularExpressionWithPattern:@":\\d{1,5}$" options:NSRegularExpressionCaseInsensitive error:nil];
     NSArray<NSTextCheckingResult *> * matches = [portPattern matchesInString:address options:0 range:NSMakeRange(0, address.length)];
@@ -48,7 +48,7 @@
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block gotReply = @NO;
 
-    dispatch_queue_t nw_dispatch_queue = dispatch_queue_create("io.ecn.DNSKit.DNSServer53TCP", NULL);
+    dispatch_queue_t nw_dispatch_queue = dispatch_queue_create("io.ecn.DNSKit.DNSClient53TCP", NULL);
 
     nw_connection_t connection = nw_connection_create(endpoint, nw_parameters_create_secure_tcp(NW_PARAMETERS_DISABLE_PROTOCOL, NW_PARAMETERS_DEFAULT_CONFIGURATION));
     nw_connection_set_queue(connection, nw_dispatch_queue);

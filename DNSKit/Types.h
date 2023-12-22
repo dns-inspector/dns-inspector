@@ -20,11 +20,11 @@ typedef NS_ENUM(NSUInteger, DNSRecordClass) {
     DNSRecordClassHS = 4,
 };
 
-typedef NS_ENUM(NSUInteger, DNSServerType) {
-    DNSServerTypeUDP53 = 1,
-    DNSServerTypeTCP53 = 2,
-    DNSServerTypeHTTPS = 3,
-    DNSServerTypeTLS = 4,
+typedef NS_ENUM(NSUInteger, DNSClientType) {
+    DNSClientTypeUDP53 = 1,
+    DNSClientTypeTCP53 = 2,
+    DNSClientTypeHTTPS = 3,
+    DNSClientTypeTLS = 4,
 };
 
 typedef NS_ENUM(NSUInteger, DNSResponseCode) {

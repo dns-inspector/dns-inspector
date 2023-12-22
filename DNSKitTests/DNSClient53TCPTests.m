@@ -1,13 +1,13 @@
 #import <XCTest/XCTest.h>
 #import "DNSKitTests.h"
 @import DNSKit;
-#import "../DNSKit/DNSServer53TCP.h"
+#import "../DNSKit/DNSClient53TCP.h"
 
-@interface DNSServer53TCPTests : XCTestCase
+@interface DNSClient53TCPTests : XCTestCase
 
 @end
 
-@implementation DNSServer53TCPTests
+@implementation DNSClient53TCPTests
 
 #define TEST_TIMEOUT 10 // Seconds
 
@@ -21,14 +21,14 @@
 
 - (void) testAQuery {
     NSError * managerError;
-    DNSServer53TCP * manager = (DNSServer53TCP *)[DNSServer53TCP serverWithAddress:@"8.8.8.8" error:&managerError];
+    DNSClient53TCP * manager = (DNSClient53TCP *)[DNSClient53TCP serverWithAddress:@"8.8.8.8" error:&managerError];
     if (managerError != nil) {
         XCTFail(@"Manager error should be nil");
         return;
     }
 
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSServerTypeTCP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"dns.google" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeTCP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"dns.google" error:&queryError];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
@@ -55,14 +55,14 @@
 
 - (void) testAAAAQuery {
     NSError * managerError;
-    DNSServer53TCP * manager = (DNSServer53TCP *)[DNSServer53TCP serverWithAddress:@"8.8.8.8" error:&managerError];
+    DNSClient53TCP * manager = (DNSClient53TCP *)[DNSClient53TCP serverWithAddress:@"8.8.8.8" error:&managerError];
     if (managerError != nil) {
         XCTFail(@"Manager error should be nil");
         return;
     }
 
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSServerTypeTCP53 serverAddress:@"" recordType:DNSRecordTypeAAAA name:@"dns.google" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeTCP53 serverAddress:@"" recordType:DNSRecordTypeAAAA name:@"dns.google" error:&queryError];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
@@ -89,14 +89,14 @@
 
 - (void) testNXDomain {
     NSError * managerError;
-    DNSServer53TCP * manager = (DNSServer53TCP *)[DNSServer53TCP serverWithAddress:@"8.8.8.8" error:&managerError];
+    DNSClient53TCP * manager = (DNSClient53TCP *)[DNSClient53TCP serverWithAddress:@"8.8.8.8" error:&managerError];
     if (managerError != nil) {
         XCTFail(@"Manager error should be nil");
         return;
     }
 
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSServerTypeTCP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"if-you-register-this-domain-im-going-to-be-very-angry.com" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeTCP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"if-you-register-this-domain-im-going-to-be-very-angry.com" error:&queryError];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
@@ -117,14 +117,14 @@
 
 - (void) testTimeout {
     NSError * managerError;
-    DNSServer53TCP * manager = (DNSServer53TCP *)[DNSServer53TCP serverWithAddress:@"127.1.1.1" error:&managerError];
+    DNSClient53TCP * manager = (DNSClient53TCP *)[DNSClient53TCP serverWithAddress:@"127.1.1.1" error:&managerError];
     if (managerError != nil) {
         XCTFail(@"Manager error should be nil");
         return;
     }
 
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSServerTypeTCP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"just-a-test.com" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithServerType:DNSClientTypeTCP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"just-a-test.com" error:&queryError];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;

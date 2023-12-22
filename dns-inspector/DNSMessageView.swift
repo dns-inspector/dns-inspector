@@ -18,7 +18,7 @@ struct DNSMessageView: View {
                         Text(String(message.idNumber)).fixedwidth()
                     }
                     HStack {
-                        RoundedLabel(text: "\(ServerType.fromDNSKit(query.serverType).name)", color: Color.primary)
+                        RoundedLabel(text: "\(ClientType.fromDNSKit(query.clientType).name)", color: Color.primary)
                         Divider()
                         Text(query.serverAddress).fixedwidth()
                     }

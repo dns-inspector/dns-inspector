@@ -2,9 +2,9 @@ import SwiftUI
 import DNSKit
 
 public struct PresetServerButton: View {
-    @Binding public var serverType: ServerType
+    @Binding public var clientType: ClientType
     @Binding public var serverAddress: String
-    @State private var newServerType = DNSServerType.HTTPS
+    @State private var newServerType = DNSClientType.HTTPS
     @State private var newServerAddress = ""
 
     public var body: some View {
@@ -12,17 +12,17 @@ public struct PresetServerButton: View {
             Section("Preset Servers") {
                 ForEach(UserOptions.presetServers) { server in
                     Button(action: {
-                        self.serverType = server.serverType()
+                        self.clientType = server.clientType()
                         self.serverAddress = server.address
                     }, label: {
-                        Text("\(server.serverType().name) - \(server.address)")
+                        Text("\(server.clientType().name) - \(server.address)")
                     })
                 }
             }
             NavigationLink {
-                PresetServerEditView(serverType: $newServerType, serverAddress: $newServerAddress) {
+                PresetServerEditView(clientType: $newServerType, serverAddress: $newServerAddress) {
                     UserOptions.presetServers.append(PresetServer(type: newServerType.rawValue, address: newServerAddress))
-                    serverType = ServerType.fromDNSKit(newServerType)
+                    clientType = ClientType.fromDNSKit(newServerType)
                     serverAddress = newServerAddress
                 }
             } label: {

@@ -1,40 +1,40 @@
 #import "DNSQuery.h"
-#import "DNSServer.h"
-#import "DNSServer53UDP.h"
-#import "DNSServer53TCP.h"
-#import "DNSServerHTTPS.h"
-#import "DNSServerTLS.h"
+#import "DNSClient.h"
+#import "DNSClient53UDP.h"
+#import "DNSClient53TCP.h"
+#import "DNSClientHTTPS.h"
+#import "DNSClientTLS.h"
 #import "DNSName.h"
 #import "TypesInternal.h"
 
 @interface DNSQuery ()
 
 @property (nonatomic) NSUInteger idNumber;
-@property (strong, nonatomic) DNSServer * dnsServer;
+@property (strong, nonatomic) DNSClient * dnsServer;
 @property (strong, nonatomic) dispatch_queue_t queryQueue;
 
 @end
 
 @implementation DNSQuery
 
-+ (DNSQuery *) queryWithServerType:(DNSServerType)serverType serverAddress:(NSString *)serverAddress recordType:(DNSRecordType)recordType name:(NSString *)name error:(NSError * _Nullable * _Nonnull)error {
-    DNSServer * server;
++ (DNSQuery *) queryWithClientType:(DNSClientType)clientType serverAddress:(NSString *)serverAddress recordType:(DNSRecordType)recordType name:(NSString *)name error:(NSError * _Nullable * _Nonnull)error {
+    DNSClient * server;
     NSError * serverError;
-    switch (serverType) {
-        case DNSServerTypeUDP53: {
-            server = [DNSServer53UDP serverWithAddress:serverAddress error:&serverError];
+    switch (clientType) {
+        case DNSClientTypeUDP53: {
+            server = [DNSClient53UDP serverWithAddress:serverAddress error:&serverError];
             break;
         }
-        case DNSServerTypeTCP53: {
-            server = [DNSServer53TCP serverWithAddress:serverAddress error:&serverError];
+        case DNSClientTypeTCP53: {
+            server = [DNSClient53TCP serverWithAddress:serverAddress error:&serverError];
             break;
         }
-        case DNSServerTypeHTTPS: {
-            server = [DNSServerHTTPS serverWithAddress:serverAddress error:&serverError];
+        case DNSClientTypeHTTPS: {
+            server = [DNSClientHTTPS serverWithAddress:serverAddress error:&serverError];
             break;
         }
-        case DNSServerTypeTLS: {
-            server = [DNSServerTLS serverWithAddress:serverAddress error:&serverError];
+        case DNSClientTypeTLS: {
+            server = [DNSClientTLS serverWithAddress:serverAddress error:&serverError];
             break;
         }
         default: {
@@ -48,7 +48,7 @@
 
     DNSQuery * query = [DNSQuery new];
     query.idNumber = arc4random_uniform(UINT16_MAX);
-    query.serverType = serverType;
+    query.clientType = clientType;
     query.serverAddress = serverAddress;
     query.dnsServer = server;
     query.recordType = recordType;

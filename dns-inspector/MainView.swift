@@ -12,7 +12,7 @@ fileprivate class MainViewState: ObservableObject {
 struct MainView: View {
     @State private var queryType: RecordType = RecordTypes[0]
     @State private var queryName = ""
-    @State private var queryServerType: ServerType = ServerTypes[0]
+    @State private var queryClientType: ClientType = ClientTypes[0]
     @State private var queryServerURL = ""
     @State private var showAboutView = false
     @State private var showOptionsView = false
@@ -46,15 +46,15 @@ struct MainView: View {
                     }
                     HStack {
                         Menu {
-                            ForEach(ServerTypes) { t in
+                            ForEach(ClientTypes) { t in
                                 Button(action: {
-                                    self.queryServerType = t
+                                    self.queryClientType = t
                                 }, label: {
                                     Text(t.name)
                                 })
                             }
                         } label: {
-                            RoundedLabel(text: self.queryServerType.name)
+                            RoundedLabel(text: self.queryClientType.name)
                         }
                         .disabled(self.lookupState.loading)
                         Divider()
@@ -69,7 +69,7 @@ struct MainView: View {
                             doInspect()
                         }
                         .disabled(self.lookupState.loading)
-                        PresetServerButton(serverType: $queryServerType, serverAddress: $queryServerURL)
+                        PresetServerButton(clientType: $queryClientType, serverAddress: $queryServerURL)
                         .disabled(self.lookupState.loading)
                     }
                     if self.lookupState.loading {
@@ -85,13 +85,13 @@ struct MainView: View {
                     Section("Recent queries") {
                         ForEach(RecentQueryManager.shared.queries) { query in
                             Button(action: {
-                                doInspect(recordType: DNSRecordType(rawValue: query.recordType)!, name: query.name, serverType: DNSServerType(rawValue: query.serverType)!, serverAddress: query.serverAddress)
+                                doInspect(recordType: DNSRecordType(rawValue: query.recordType)!, name: query.name, clientType: DNSClientType(rawValue: query.clientType)!, serverAddress: query.serverAddress)
                             }, label: {
                                 HStack {
                                     RoundedLabel(text: query.recordTypeName(), color: .primary)
                                     Text(query.name)
                                     Divider()
-                                    RoundedLabel(text: query.serverTypeName(), color: .primary)
+                                    RoundedLabel(text: query.clientTypeName(), color: .primary)
                                     Text(query.serverAddress)
                                 }
                             }).buttonStyle(.plain)
@@ -147,15 +147,15 @@ struct MainView: View {
     }
 
     func doInspect() {
-        doInspect(recordType: self.queryType.dnsKitValue, name: self.queryName, serverType: DNSServerType(rawValue: self.queryServerType.dnsKitValue)!, serverAddress: self.queryServerURL)
+        doInspect(recordType: self.queryType.dnsKitValue, name: self.queryName, clientType: DNSClientType(rawValue: self.queryClientType.dnsKitValue)!, serverAddress: self.queryServerURL)
     }
 
-    func doInspect(recordType: DNSRecordType, name: String, serverType: DNSServerType, serverAddress: String) {
+    func doInspect(recordType: DNSRecordType, name: String, clientType: DNSClientType, serverAddress: String) {
         self.lookupState.loading = true
 
         let query: DNSQuery
         do {
-            query = try DNSQuery(serverType: serverType, serverAddress: serverAddress, recordType: recordType, name: name)
+            query = try DNSQuery(clientType: clientType, serverAddress: serverAddress, recordType: recordType, name: name)
         } catch {
             self.lookupState.error = error
             self.lookupState.loading = false
@@ -177,7 +177,7 @@ struct MainView: View {
                 self.lookupState.result = message
                 self.lookupState.query = query
                 self.lookupState.success = true
-                RecentQueryManager.shared.add(RecentQuery(recordType: query.recordType.rawValue, name: query.name, serverType: query.serverType.rawValue, serverAddress: query.serverAddress))
+                RecentQueryManager.shared.add(RecentQuery(recordType: query.recordType.rawValue, name: query.name, clientType: query.clientType.rawValue, serverAddress: query.serverAddress))
             }
         }
     }

@@ -1,12 +1,12 @@
-#import "DNSServerHTTPS.h"
+#import "DNSClientHTTPS.h"
 #import "NSData+HexString.h"
 #import "NSData+Base64URL.h"
 #import "NSHTTPURLResponse+HeaderValue.h"
 
-@implementation DNSServerHTTPS
+@implementation DNSClientHTTPS
 
-+ (DNSServer *) serverWithAddress:(NSString *)address error:(NSError **)error {
-    DNSServerHTTPS * dns = [DNSServerHTTPS new];
++ (DNSClient *) serverWithAddress:(NSString *)address error:(NSError **)error {
+    DNSClientHTTPS * dns = [DNSClientHTTPS new];
 
     NSURL * url = [NSURL URLWithString:[address lowercaseString]];
     if (!url) {
