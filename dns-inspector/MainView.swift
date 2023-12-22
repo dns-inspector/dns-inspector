@@ -12,8 +12,8 @@ fileprivate class MainViewState: ObservableObject {
 struct MainView: View {
     @State private var queryType: RecordType = RecordTypes[0]
     @State private var queryName = ""
-    @State private var queryClientType: ClientType = ClientTypes[0]
-    @State private var queryServerURL = ""
+    @State private var queryClientType: ClientType = UserOptions.lastUsedServer?.clientType ?? ClientTypes[0]
+    @State private var queryServerURL = UserOptions.lastUsedServer?.address ?? ""
     @State private var showAboutView = false
     @State private var showOptionsView = false
     @StateObject private var lookupState = MainViewState()
@@ -188,6 +188,9 @@ struct MainView: View {
                 self.lookupState.query = query
                 self.lookupState.success = true
                 RecentQueryManager.shared.add(RecentQuery(recordType: query.recordType.rawValue, name: query.name, clientType: query.clientType.rawValue, serverAddress: query.serverAddress))
+                if UserOptions.rememberLastServer {
+                    UserOptions.lastUsedServer = LastUsedServer(clientType: queryClientType, address: queryServerURL)
+                }
             }
         }
     }

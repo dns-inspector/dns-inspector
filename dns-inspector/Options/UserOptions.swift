@@ -6,13 +6,20 @@ public enum TTLDisplayMode: Int, Codable {
     case absolute = 1
 }
 
+public struct LastUsedServer: Codable {
+    let clientType: ClientType
+    let address: String
+}
+
 fileprivate struct OptionsType: Codable {
     public var schemaVersion: Int
     public var rememberQueries: Bool?
-    public var showTips: Bool?
+    public var rememberLastServer: Bool?
     public var ttlDisplayMode: TTLDisplayMode?
-    public var presetServers: [PresetServer]?
     public var dnsPrefersTcp: Bool?
+
+    public var presetServers: [PresetServer]?
+    public var lastUsedServer: LastUsedServer?
 }
 
 public class UserOptions {
@@ -77,12 +84,15 @@ public class UserOptions {
         }
     }
 
-    public static var showTips: Bool {
+    public static var rememberLastServer: Bool {
         get {
-            return current.showTips ?? true
+            return current.rememberLastServer ?? true
         }
         set {
-            current.showTips = newValue
+            current.rememberLastServer = newValue
+            if !newValue {
+                current.lastUsedServer = nil
+            }
             save()
         }
     }
@@ -93,6 +103,16 @@ public class UserOptions {
         }
         set {
             current.ttlDisplayMode = newValue
+            save()
+        }
+    }
+
+    public static var dnsPrefersTcp: Bool {
+        get {
+            return current.dnsPrefersTcp ?? true
+        }
+        set {
+            current.dnsPrefersTcp = newValue
             save()
         }
     }
@@ -109,12 +129,12 @@ public class UserOptions {
         }
     }
 
-    public static var dnsPrefersTcp: Bool {
+    public static var lastUsedServer: LastUsedServer? {
         get {
-            return current.dnsPrefersTcp ?? true
+            return current.lastUsedServer
         }
         set {
-            current.dnsPrefersTcp = newValue
+            current.lastUsedServer = newValue
             save()
         }
     }

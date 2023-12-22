@@ -14,10 +14,10 @@ struct OptionsView: View {
                         UserOptions.rememberQueries = on
                     })).tint(Color.accentColor)
 
-                    Toggle("Show tips", isOn: .init(get: {
-                        return UserOptions.showTips
+                    Toggle("Remember last server", isOn: .init(get: {
+                        return UserOptions.rememberLastServer
                     }, set: { on in
-                        UserOptions.showTips = on
+                        UserOptions.rememberLastServer = on
                     })).tint(Color.accentColor)
 
                     Picker("Show TTL values as", selection: $ttlDisplaymode) {
