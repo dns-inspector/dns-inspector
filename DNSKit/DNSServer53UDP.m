@@ -41,6 +41,9 @@
     const char * portStr = [[NSString alloc] initWithFormat:@"%i", (int)self.port].UTF8String;
     nw_endpoint_t endpoint = nw_endpoint_create_host(self.host.UTF8String, portStr);
 
+    dispatch_semaphore_t sync = dispatch_semaphore_create(0);
+    NSNumber * __block gotReply = @NO;
+
     dispatch_queue_t nw_dispatch_queue = dispatch_queue_create("io.ecn.DNSKit.DNSServer53UDP", NULL);
 
     nw_connection_t connection = nw_connection_create(endpoint, nw_parameters_create_secure_udp(NW_PARAMETERS_DISABLE_PROTOCOL, NW_PARAMETERS_DEFAULT_CONFIGURATION));
@@ -74,6 +77,11 @@
                 PDebug(@"Event: nw_connection_state_ready");
 
                 nw_connection_receive(connection, 2, 512, ^(dispatch_data_t messageContent, nw_content_context_t messageContext, bool messageIsComplete, nw_error_t messageError) {
+                    if (messageContent == nil) {
+                        return;
+                    }
+
+                    gotReply = @true;
                     NSData * replyData = (NSData*)messageContent;
                     PDebug(@"Read %i", (int)replyData.length);
                     NSError * replyError;
@@ -87,6 +95,7 @@
                     PDebug(@"Reply: %@", [replyData hexString]);
                     completed(reply, nil);
                     nw_connection_cancel(connection);
+                    dispatch_semaphore_signal(sync);
                     return;
                 });
 
@@ -108,7 +117,11 @@
                 break;
             }
             case nw_connection_state_cancelled: {
-                PDebug(@"Event: nw_connection_state_cancelled");
+                if (!gotReply.boolValue) {
+                    PDebug(@"Event: nw_connection_state_cancelled");
+                    NSString * errorDescription = @"timed out";
+                    completed(nil, MAKE_ERROR(-1, errorDescription));
+                }
                 break;
             }
             default: {
@@ -118,6 +131,13 @@
         }
     });
     nw_connection_start(connection);
+
+    dispatch_semaphore_wait(sync, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)));
+    if (!gotReply.boolValue) {
+        // Timeout
+        PDebug(@"No response from server within 5 seconds");
+        nw_connection_cancel(connection);
+    }
 }
 
 @end

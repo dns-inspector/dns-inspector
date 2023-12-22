@@ -8,8 +8,12 @@
 + (DNSServer *) serverWithAddress:(NSString *)address error:(NSError **)error {
     DNSServerHTTPS * dns = [DNSServerHTTPS new];
 
-    NSURL * url = [NSURL URLWithString:address];
+    NSURL * url = [NSURL URLWithString:[address lowercaseString]];
     if (!url) {
+        *error = MAKE_ERROR(1, @"Bad DNS over HTTPS server URL");
+        return nil;
+    }
+    if (![url.scheme isEqualToString:@"https"]) {
         *error = MAKE_ERROR(1, @"Bad DNS over HTTPS server URL");
         return nil;
     }
@@ -35,6 +39,8 @@
         [urlString appendFormat:@"?dns=%@", [questionData base64URLEncodedValue]];
     }
 
+    PDebug(@"HTTP GET %@", urlString);
+
     NSURL * serverURL = [[NSURL alloc] initWithString:urlString];
     if (serverURL == nil) {
         completed(nil, MAKE_ERROR(1, @"Bad DNS over HTTPS URL"));
@@ -47,7 +53,12 @@
     [request setValue:@"0" forHTTPHeaderField:@"Content-Length"];
     [request setValue:@"DNSKit DNS-Inspector/%@ +https://dns-inspector.com/" forHTTPHeaderField:@"User-Agent"];
 
-    NSURLSessionDataTask * task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * urlResponse, NSError * error) {
+    NSURLSessionConfiguration * sessionConfiguration = [[NSURLSessionConfiguration defaultSessionConfiguration] copy];
+    sessionConfiguration.requestCachePolicy = NSURLRequestReloadIgnoringCacheData; // Prohibit caching
+    sessionConfiguration.timeoutIntervalForResource = (NSTimeInterval)5; // 5 second timeout
+    NSURLSession * urlSession = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+
+    NSURLSessionDataTask * task = [urlSession dataTaskWithRequest:request completionHandler:^(NSData * data, NSURLResponse * urlResponse, NSError * error) {
         if (error != nil) {
             completed(nil, error);
             return;
