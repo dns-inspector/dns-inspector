@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, DNSRecordClass) {
 };
 
 typedef NS_ENUM(NSUInteger, DNSServerType) {
-    DNSServerTypeDNS = 1,
+    DNSServerTypeTCP53 = 1,
     DNSServerTypeHTTPS = 2,
     DNSServerTypeTLS = 3,
 };

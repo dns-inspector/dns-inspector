@@ -8,8 +8,8 @@ public struct ServerType: Codable, Identifiable {
 
     public static func fromDNSKit(_ dnsKitValue: DNSServerType) -> ServerType! {
         switch dnsKitValue {
-        case .DNS:
-            return ServerType(name: "DNS", dnsKitValue: DNSServerType.DNS.rawValue)
+        case .TCP53:
+            return ServerType(name: "DNS", dnsKitValue: DNSServerType.TCP53.rawValue)
         case .HTTPS:
             return ServerType(name: "HTTPS", dnsKitValue: DNSServerType.HTTPS.rawValue)
         case .TLS:
@@ -21,7 +21,7 @@ public struct ServerType: Codable, Identifiable {
 }
 
 public let ServerTypes: [ServerType] = [
-    ServerType(name: "DNS", dnsKitValue: DNSServerType.DNS.rawValue),
+    ServerType(name: "DNS (TCP)", dnsKitValue: DNSServerType.TCP53.rawValue),
     ServerType(name: "HTTPS", dnsKitValue: DNSServerType.HTTPS.rawValue),
     ServerType(name: "TLS", dnsKitValue: DNSServerType.TLS.rawValue),
 ]

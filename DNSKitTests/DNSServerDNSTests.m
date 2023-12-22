@@ -1,13 +1,13 @@
 #import <XCTest/XCTest.h>
 #import "DNSKitTests.h"
 @import DNSKit;
-#import "../DNSKit/DNSServerDNS.h"
+#import "../DNSKit/DNSServer53TCP.h"
 
-@interface DNSServerDNSTests : XCTestCase
+@interface DNSServer53TCPTests : XCTestCase
 
 @end
 
-@implementation DNSServerDNSTests
+@implementation DNSServer53TCPTests
 
 #define TEST_TIMEOUT 10 // Seconds
 
@@ -21,14 +21,14 @@
 
 - (void) testAQuery {
     NSError * managerError;
-    DNSServerDNS * manager = (DNSServerDNS *)[DNSServerDNS serverWithAddress:@"8.8.8.8" error:&managerError];
+    DNSServer53TCP * manager = (DNSServer53TCP *)[DNSServer53TCP serverWithAddress:@"8.8.8.8" error:&managerError];
     if (managerError != nil) {
         XCTFail(@"Manager error should be nil");
         return;
     }
 
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithServerType:DNSServerTypeDNS serverAddress:@"" recordType:DNSRecordTypeA name:@"dns.google" error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithServerType:DNSServerTypeTCP53 serverAddress:@"" recordType:DNSRecordTypeA name:@"dns.google" error:&queryError];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;

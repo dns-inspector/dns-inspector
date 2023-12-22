@@ -2,7 +2,7 @@ import SwiftUI
 import DNSKit
 
 struct PresetServerListView: View {
-    @State private var newServerType: DNSServerType = .DNS
+    @State private var newServerType: DNSServerType = .TCP53
     @State private var newServerAddress: String = ""
 
     var body: some View {

@@ -1,6 +1,6 @@
 #import "DNSQuery.h"
 #import "DNSServer.h"
-#import "DNSServerDNS.h"
+#import "DNSServer53TCP.h"
 #import "DNSServerHTTPS.h"
 #import "DNSServerTLS.h"
 #import "DNSName.h"
@@ -20,8 +20,8 @@
     DNSServer * server;
     NSError * serverError;
     switch (serverType) {
-        case DNSServerTypeDNS: {
-            server = [DNSServerDNS serverWithAddress:serverAddress error:&serverError];
+        case DNSServerTypeTCP53: {
+            server = [DNSServer53TCP serverWithAddress:serverAddress error:&serverError];
             break;
         }
         case DNSServerTypeHTTPS: {

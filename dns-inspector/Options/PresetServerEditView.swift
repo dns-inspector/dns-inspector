@@ -10,7 +10,7 @@ struct PresetServerEditView: View {
     var body: some View {
         List {
             Picker("Server Type", selection: $serverType) {
-                Text("DNS").tag(DNSServerType.DNS)
+                Text("DNS (TCP)").tag(DNSServerType.TCP53)
                 Text("HTTPS").tag(DNSServerType.HTTPS)
                 Text("TLS").tag(DNSServerType.TLS)
             }
@@ -35,7 +35,7 @@ struct PresetServerEditView: View {
 }
 
 #Preview {
-    PresetServerEditView(serverType: .constant(.DNS), serverAddress: .constant("8.8.8.8")) {
+    PresetServerEditView(serverType: .constant(.TCP53), serverAddress: .constant("8.8.8.8")) {
         //
     }
 }

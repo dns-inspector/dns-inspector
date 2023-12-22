@@ -3,7 +3,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DNSServerDNS : DNSServer
+@interface DNSServer53TCP : DNSServer
 
 @end
 
