@@ -5,6 +5,7 @@
 #import "DNSClientTLS.h"
 #import "DNSName.h"
 #import "TypesInternal.h"
+#import <mach/mach_time.h>
 
 @interface DNSQuery ()
 
@@ -73,8 +74,19 @@
 }
 
 - (void) execute:(void (^)(DNSMessage *, NSError *))completed {
+    dispatch_time_t start = mach_absolute_time();
+
     dispatch_async(self.queryQueue, ^{
         [self.dnsServer sendMessage:[self dnsMessage] gotReply:^(DNSMessage * reply, NSError * error) {
+            dispatch_time_t end = mach_absolute_time();
+
+            uint64_t elapsedTime = end - start;
+            mach_timebase_info_data_t timebase;
+            mach_timebase_info(&timebase);
+            double ticksToNanoseconds = (double)timebase.numer / timebase.denom;
+            double elapsedTimeInNanoseconds = elapsedTime * ticksToNanoseconds;
+            reply.elapsedNs = [NSNumber numberWithDouble:elapsedTimeInNanoseconds];
+
             completed(reply, error);
         }];
     });

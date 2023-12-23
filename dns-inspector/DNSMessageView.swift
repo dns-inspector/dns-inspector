@@ -11,16 +11,26 @@ struct DNSMessageView: View {
             List {
                 Section("Query") {
                     HStack {
-                        RoundedLabel(text: OperationCode.fromDNSKit(message.operationCode).name, color: Color.primary)
-                        Divider()
-                        RoundedLabel(text: ResponseCode.fromDNSKit(message.responseCode).name, color: Color.primary)
-                        Divider()
                         Text(String(message.idNumber)).fixedwidth()
-                    }
-                    HStack {
+                        Divider()
                         RoundedLabel(text: "\(ClientType.fromDNSKit(query.clientType).name)", color: Color.primary)
                         Divider()
                         Text(query.serverAddress).fixedwidth()
+                    }
+                }
+                Section("Response") {
+                    HStack {
+                        RoundedLabel(text: ResponseCode.fromDNSKit(message.responseCode).name, color: responseCodeColor())
+                        Divider()
+                        if message.truncated {
+                            RoundedLabel(text: "TRUNC", color: .yellow)
+                            Divider()
+                        }
+                        if message.authoritativeAnswer {
+                            RoundedLabel(text: "AUTH", color: .green)
+                            Divider()
+                        }
+                        Text(elapsedString())
                     }
                 }
                 if let questions = message.questions {
@@ -52,5 +62,28 @@ struct DNSMessageView: View {
                 }
             }
         }
+    }
+
+    func responseCodeColor() -> Color {
+        if message.responseCode == .success {
+            return .green
+        } else if message.responseCode == .NXDOMAIN {
+            return .yellow
+        }
+        return .red
+    }
+
+    func elapsedString() -> String {
+        let elapsed = message.elapsedNs.doubleValue
+
+        if elapsed > 1000000000 {
+            return String(format: "%.2f seconds", elapsed / 1000000000)
+        } else if elapsed > 1000000 {
+            return String(format: "%.2f milliseconds", elapsed / 1000000)
+        } else if elapsed > 1000 {
+            return String(format: "%.2f microseconds", elapsed / 1000)
+        }
+
+        return String(format: "%.2f nanoseconds", elapsed)
     }
 }

@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// DNS answers
 @property (strong, nonatomic, nullable) NSArray<DNSAnswer *> * answers;
 
+/// The elapsed time it took to get this message in nanoseconds.
+@property (strong, nonatomic, nonnull) NSNumber * elapsedNs;
+
 /// Decode a DNS message from the data object.
 + (DNSMessage * _Nullable) messageFromData:(NSData * _Nonnull)data error:(NSError * _Nullable * _Nonnull)error;
 
