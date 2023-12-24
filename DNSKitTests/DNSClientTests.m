@@ -19,11 +19,12 @@
 }
 
 - (NSString *) mockServerAddressForQuery {
+    // These addresses are NOT used in the actual test
     switch (self.clientType) {
         case DNSClientTypeDNS:
-            return @"1";
+            return @"0.0.0.0";
         case DNSClientTypeTLS:
-            return @"1";
+            return @"0.0.0.0";
         case DNSClientTypeHTTPS:
             return @"https://a";
     }
@@ -34,7 +35,10 @@
 - (void) testQueryA {
     NSError * queryError;
     DNSQuery * query = [DNSQuery queryWithClientType:self.clientType serverAddress:[self mockServerAddressForQuery] recordType:DNSRecordTypeA name:@"dns.google" parameters:nil error:&queryError];
-    XCTAssertNil(queryError);
+    if (queryError != nil) {
+        XCTAssertNil(queryError);
+        return;
+    }
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
@@ -62,7 +66,10 @@
 - (void) testQueryAAAA {
     NSError * queryError;
     DNSQuery * query = [DNSQuery queryWithClientType:self.clientType serverAddress:[self mockServerAddressForQuery] recordType:DNSRecordTypeAAAA name:@"dns.google" parameters:nil error:&queryError];
-    XCTAssertNil(queryError);
+    if (queryError != nil) {
+        XCTAssertNil(queryError);
+        return;
+    }
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
@@ -90,7 +97,10 @@
 - (void) testQueryNXDOMAIN {
     NSError * queryError;
     DNSQuery * query = [DNSQuery queryWithClientType:self.clientType serverAddress:[self mockServerAddressForQuery] recordType:DNSRecordTypeA name:@"if-you-register-this-domain-im-going-to-be-very-angry.com" parameters:nil error:&queryError];
-    XCTAssertNil(queryError);
+    if (queryError != nil) {
+        XCTAssertNil(queryError);
+        return;
+    }
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;
@@ -114,7 +124,10 @@
     DNSQueryParameters * parameters = [DNSQueryParameters new];
     parameters.dnsPrefersTcp = true;
     DNSQuery * query = [DNSQuery queryWithClientType:self.clientType serverAddress:[self mockServerAddressForQuery] recordType:DNSRecordTypeA name:@"just-a-test.com" parameters:parameters error:&queryError];
-    XCTAssertNil(queryError);
+    if (queryError != nil) {
+        XCTAssertNil(queryError);
+        return;
+    }
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
     NSNumber * __block passed = @NO;

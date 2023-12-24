@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C0C6B232B38D854006D3F41 /* IPAddressParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C0C6B212B38D854006D3F41 /* IPAddressParser.h */; };
+		3C0C6B242B38D854006D3F41 /* IPAddressParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C6B222B38D854006D3F41 /* IPAddressParser.m */; };
+		3C0C6B262B38E147006D3F41 /* IPAddressParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C6B252B38E147006D3F41 /* IPAddressParserTests.m */; };
 		3C3120542B06D0D10075C396 /* NSDataFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120532B06D0D10075C396 /* NSDataFormatTests.m */; };
 		3C3120562B06D39D0075C396 /* DNSClientTLSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120552B06D39D0075C396 /* DNSClientTLSTests.m */; };
 		3C3120582B06D5E80075C396 /* DNSClientHTTPSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120572B06D5E80075C396 /* DNSClientHTTPSTests.m */; };
@@ -141,6 +144,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C0C6B212B38D854006D3F41 /* IPAddressParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPAddressParser.h; sourceTree = "<group>"; };
+		3C0C6B222B38D854006D3F41 /* IPAddressParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPAddressParser.m; sourceTree = "<group>"; };
+		3C0C6B252B38E147006D3F41 /* IPAddressParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPAddressParserTests.m; sourceTree = "<group>"; };
 		3C3120532B06D0D10075C396 /* NSDataFormatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDataFormatTests.m; sourceTree = "<group>"; };
 		3C3120552B06D39D0075C396 /* DNSClientTLSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSClientTLSTests.m; sourceTree = "<group>"; };
 		3C3120572B06D5E80075C396 /* DNSClientHTTPSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSClientHTTPSTests.m; sourceTree = "<group>"; };
@@ -440,6 +446,8 @@
 				9AA8C1762ADCB40800B93E45 /* DNSQuestion.h */,
 				9AA8C1772ADCB40800B93E45 /* DNSQuestion.m */,
 				3CCA08082ADF64A400CD76E8 /* Extensions */,
+				3C0C6B212B38D854006D3F41 /* IPAddressParser.h */,
+				3C0C6B222B38D854006D3F41 /* IPAddressParser.m */,
 				3C343D3A2ADE110100C282D0 /* LogWriter.h */,
 				3C343D3B2ADE110100C282D0 /* LogWriter.m */,
 				3CCA31112AF5D8E800C11280 /* Records */,
@@ -461,6 +469,7 @@
 				3CCA08152ADF75BD00CD76E8 /* DNSMessageTests.m */,
 				3CCA31402AF85AEE00C11280 /* DNSNameTests.m */,
 				3C3120532B06D0D10075C396 /* NSDataFormatTests.m */,
+				3C0C6B252B38E147006D3F41 /* IPAddressParserTests.m */,
 			);
 			path = DNSKitTests;
 			sourceTree = "<group>";
@@ -503,6 +512,7 @@
 				3CCA31352AF84AD300C11280 /* DNSSRVRecordData+Private.h in Headers */,
 				3C50DD672B363D670030F732 /* DNSQueryParameters.h in Headers */,
 				3CCA08262ADF7CA200CD76E8 /* DNSClientTLS.h in Headers */,
+				3C0C6B232B38D854006D3F41 /* IPAddressParser.h in Headers */,
 				3CCA31142AF5D91700C11280 /* DNSARecordData.h in Headers */,
 				3CCA080F2ADF650000CD76E8 /* NSData+Base64URL.h in Headers */,
 				3CCA31182AF5D92300C11280 /* DNSAAAARecordData.h in Headers */,
@@ -684,6 +694,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C0C6B242B38D854006D3F41 /* IPAddressParser.m in Sources */,
 				3CCA31192AF5D92300C11280 /* DNSAAAARecordData.m in Sources */,
 				3CCA31212AF5D93300C11280 /* DNSCNAMERecordData.m in Sources */,
 				3C50DD5C2B36378B0030F732 /* DNSClientDNS.m in Sources */,
@@ -714,6 +725,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C0C6B262B38E147006D3F41 /* IPAddressParserTests.m in Sources */,
 				3C3120562B06D39D0075C396 /* DNSClientTLSTests.m in Sources */,
 				3C3120582B06D5E80075C396 /* DNSClientHTTPSTests.m in Sources */,
 				3C50DD6B2B36424F0030F732 /* DNSClientTests.m in Sources */,

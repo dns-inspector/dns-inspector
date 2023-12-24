@@ -1,5 +1,6 @@
 #import "DNSClientDNS.h"
 #import "NSData+HexString.h"
+#import "IPAddressParser.h"
 @import Network;
 
 @interface DNSClientDNS ()
@@ -14,16 +15,14 @@
 + (DNSClient *) serverWithAddress:(NSString *)address error:(NSError **)error {
     DNSClientDNS * dns = [DNSClientDNS new];
 
-    NSRegularExpression * portPattern = [NSRegularExpression regularExpressionWithPattern:@":\\d{1,5}$" options:NSRegularExpressionCaseInsensitive error:nil];
-    NSArray<NSTextCheckingResult *> * matches = [portPattern matchesInString:address options:0 range:NSMakeRange(0, address.length)];
-    if (matches.count == 1) {
-        NSString * portStr = [address substringWithRange:NSMakeRange(matches[0].range.location+1, matches[0].range.length-1)];
-        dns.port = (NSUInteger)[portStr integerValue];
-        dns.host = [address substringToIndex:matches[0].range.location];
-    } else {
-        dns.port = 53;
-        dns.host = address;
+    IPAddressParser * addressParser = [IPAddressParser new];
+    NSError * addressError = [addressParser parseString:address];
+    if (addressError != nil) {
+        *error = addressError;
+        return nil;
     }
+    dns.host = addressParser.ipAddress;
+    dns.port = addressParser.port > 0 ? addressParser.port : 53;
 
     return dns;
 }

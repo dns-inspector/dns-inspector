@@ -8,7 +8,12 @@
 + (DNSClient *) serverWithAddress:(NSString *)address error:(NSError **)error {
     DNSClientHTTPS * dns = [DNSClientHTTPS new];
 
-    NSURL * url = [NSURL URLWithString:[address lowercaseString]];
+    NSString * urlString = [address lowercaseString];
+    if (![urlString containsString:@"://"]) {
+        urlString = [NSString stringWithFormat:@"https://%@", urlString];
+    }
+
+    NSURL * url = [NSURL URLWithString:urlString];
     if (!url) {
         *error = MAKE_ERROR(1, @"Bad DNS over HTTPS server URL");
         return nil;
@@ -17,7 +22,11 @@
         *error = MAKE_ERROR(1, @"Bad DNS over HTTPS server URL");
         return nil;
     }
-    dns.address = address;
+    if (url.host.length == 0) {
+        *error = MAKE_ERROR(1, @"Bad DNS over HTTPS server URL");
+        return nil;
+    }
+    dns.address = urlString;
 
     return dns;
 }
@@ -40,14 +49,7 @@
     }
 
     PDebug(@"HTTP GET %@", urlString);
-
-    NSURL * serverURL = [[NSURL alloc] initWithString:urlString];
-    if (serverURL == nil) {
-        completed(nil, MAKE_ERROR(1, @"Bad DNS over HTTPS URL"));
-        return;
-    }
-
-    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:serverURL];
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:[[NSURL alloc] initWithString:urlString]];
     request.HTTPMethod = @"GET";
     [request setValue:@"application/dns-message" forHTTPHeaderField:@"Accept"];
     [request setValue:@"0" forHTTPHeaderField:@"Content-Length"];
