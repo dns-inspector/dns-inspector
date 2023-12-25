@@ -81,14 +81,7 @@ struct MainView: View {
                         }
                     }
                     if let error = self.lookupState.error {
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Image(systemName: "exclamationmark.circle.fill")
-                                    .foregroundStyle(.red)
-                                Text("Error").bold()
-                            }
-                            Text(error.localizedDescription)
-                        }
+                        ErrorCellView(error: error)
                     }
                 }
                 if UserOptions.rememberQueries && RecentQueryManager.shared.queries.count > 0 {

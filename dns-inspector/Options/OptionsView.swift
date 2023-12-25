@@ -30,7 +30,7 @@ struct OptionsView: View {
                     }
                 }
                 Section("Network") {
-                    Toggle("Send DNS requests using TCP", isOn: .init(get: {
+                    Toggle("Send traditional DNS requests using TCP", isOn: .init(get: {
                         return UserOptions.dnsPrefersTcp
                     }, set: { on in
                         UserOptions.dnsPrefersTcp = on

@@ -2,22 +2,33 @@ import SwiftUI
 import DNSKit
 
 struct PresetServerListView: View {
+    @State private var presetServers: [PresetServer] = []
     @State private var newServerType: DNSClientType = .DNS
     @State private var newServerAddress: String = ""
 
     var body: some View {
         List {
-            ForEach(UserOptions.presetServers) { server in
-                PresetServerListViewItem(presetServer: server)
+            ForEach(presetServers) { server in
+                PresetServerListViewItem(presetServer: server) {
+                    self.loadPresetServers()
+                }
             }
             .onDelete { idx in
                 UserOptions.presetServers.remove(atOffsets: idx)
+                self.loadPresetServers()
             }
         }
+        .onAppear {
+            loadPresetServers()
+        }
+        .listStyle(.plain)
         .toolbar(content: {
             NavigationLink {
                 PresetServerEditView(clientType: $newServerType, serverAddress: $newServerAddress) {
                     UserOptions.presetServers.append(PresetServer(type: newServerType.rawValue, address: newServerAddress))
+                    self.loadPresetServers()
+                    self.newServerType = .DNS
+                    self.newServerAddress = ""
                 }
             } label: {
                 Image(systemName: "plus")
@@ -26,19 +37,29 @@ struct PresetServerListView: View {
         })
         .navigationTitle("Preset Servers")
     }
+
+    func loadPresetServers() {
+        self.presetServers = UserOptions.presetServers
+    }
+}
+
+#Preview {
+    PresetServerListView()
 }
 
 fileprivate struct PresetServerListViewItem: View {
+    let onEdit: () -> Void
     @State private var dnsServerType: DNSClientType
     @State private var address: String
     private let clientType: ClientType
     private let serverID: UUID
 
-    public init(presetServer: PresetServer) {
+    public init(presetServer: PresetServer, onEdit: @escaping () -> Void) {
         _dnsServerType = .init(initialValue: DNSClientType(rawValue: presetServer.type)!)
         _address = .init(initialValue: presetServer.address)
         self.clientType = ClientType.fromDNSKit(_dnsServerType.wrappedValue)
         self.serverID = presetServer.id
+        self.onEdit = onEdit
     }
 
     var body: some View {
@@ -51,6 +72,7 @@ fileprivate struct PresetServerListViewItem: View {
 
                     let newServer = PresetServer(type: dnsServerType.rawValue, address: address, id: serverID)
                     UserOptions.presetServers[index] = newServer
+                    self.onEdit()
                 }
             }
         } label: {

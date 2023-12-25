@@ -92,4 +92,24 @@
     });
 }
 
++ (NSError *) validateDNSClientConfigurationWithClientType:(DNSClientType)clientType serverAddress:(NSString *)serverAddress parameters:(DNSQueryParameters *)parameters {
+    NSError * serverError;
+    switch (clientType) {
+        case DNSClientTypeDNS: {
+            [DNSClientDNS serverWithAddress:serverAddress error:&serverError];
+            return serverError;
+        }
+        case DNSClientTypeHTTPS: {
+            [DNSClientHTTPS serverWithAddress:serverAddress error:&serverError];
+            return serverError;
+        }
+        case DNSClientTypeTLS: {
+            [DNSClientTLS serverWithAddress:serverAddress error:&serverError];
+            return serverError;
+        }
+    }
+
+    return MAKE_ERROR(-1, @"Unknown client type");
+}
+
 @end

@@ -15,15 +15,15 @@
 
     NSURL * url = [NSURL URLWithString:urlString];
     if (!url) {
-        *error = MAKE_ERROR(1, @"Bad DNS over HTTPS server URL");
+        *error = MAKE_ERROR(1, @"Invalid URL");
         return nil;
     }
     if (![url.scheme isEqualToString:@"https"]) {
-        *error = MAKE_ERROR(1, @"Bad DNS over HTTPS server URL");
+        *error = MAKE_ERROR(1, @"Unsupported protocol");
         return nil;
     }
     if (url.host.length == 0) {
-        *error = MAKE_ERROR(1, @"Bad DNS over HTTPS server URL");
+        *error = MAKE_ERROR(1, @"Invalid URL");
         return nil;
     }
     dns.address = urlString;
