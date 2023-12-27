@@ -15,7 +15,7 @@ public class IO {
         if #available(iOS 16, *) {
             return FileManager.default.fileExists(atPath: path.path())
         } else {
-            return FileManager.default.fileExists(atPath: path.absoluteString)
+            return FileManager.default.fileExists(atPath: path.path)
         }
     }
 

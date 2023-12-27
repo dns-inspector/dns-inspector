@@ -11,7 +11,9 @@ public struct LastUsedServer: Codable {
     let address: String
 }
 
-fileprivate struct OptionsType: Codable {
+fileprivate let currentSchemaVersion: Int = 1
+
+fileprivate struct OptionsType1: Codable {
     public var schemaVersion: Int
     public var rememberQueries: Bool?
     public var rememberLastServer: Bool?
@@ -24,7 +26,7 @@ fileprivate struct OptionsType: Codable {
 
 public class UserOptions {
     private static let optionsFilePath = IO.fileInDocumentsDirectory("options.json")
-    private static var current = OptionsType(schemaVersion: 1)
+    private static var current = OptionsType1(schemaVersion: currentSchemaVersion)
 
     public static func load() {
         defer {
@@ -43,16 +45,41 @@ public class UserOptions {
             return
         }
 
-        let options: OptionsType
+        // First read the settings file as a base JSON dictionary.
+        // We're making the following assumptions about any future changes with this file:
+        // 1. The top level of this JSON file is always an object
+        // 2. The schema version of that file will be represented by an int
+        // 3. The schema version of that file will use the key "schemaVersion"
+        let base: [String:Any]
         do {
-            options = try JSONDecoder().decode(OptionsType.self, from: data)
+            base = try JSONSerialization.jsonObject(with: data) as? [String:Any] ?? [:]
         } catch {
             print("Error decoding options file \(optionsFilePath): \(error)")
             return
         }
 
-        current = options
-        print("Loaded options")
+        if let currentVersion = base["schemaVersion"] as? Int {
+            if currentVersion > currentSchemaVersion {
+                print("Schema of settings file is newer than what is supported by the app. \(currentVersion) > \(currentSchemaVersion)")
+                return
+            }
+            if currentVersion < currentSchemaVersion {
+                // Reserved for future use
+                print("Need to migrate settings file to newer schema")
+                return
+            }
+
+            let options: OptionsType1
+            do {
+                options = try JSONDecoder().decode(OptionsType1.self, from: data)
+            } catch {
+                print("Error decoding options file \(optionsFilePath): \(error)")
+                return
+            }
+
+            current = options
+            print("Loaded options")
+        }
     }
 
     public static func save() {
@@ -120,7 +147,9 @@ public class UserOptions {
     public static var presetServers: [PresetServer] {
         get {
             return current.presetServers ?? [
-                PresetServer(type: DNSClientType.HTTPS.rawValue, address: "https://dns.google/dns-query")
+                PresetServer(type: DNSClientType.TLS.rawValue, address: "1.1.1.1"),
+                PresetServer(type: DNSClientType.DNS.rawValue, address: "9.9.9.9"),
+                PresetServer(type: DNSClientType.HTTPS.rawValue, address: "dns.google/dns-query")
             ]
         }
         set {
