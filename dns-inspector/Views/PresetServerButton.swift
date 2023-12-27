@@ -33,7 +33,7 @@ public struct PresetServerButton: View {
             self.loadServers()
         })
         .popover(isPresented: $showEditServerView, content: {
-            NavigationView {
+            Navigation {
                 PresetServerEditView(clientType: $newServerType, serverAddress: $newServerAddress, isNew: true) {
                     UserOptions.presetServers.append(PresetServer(type: newServerType.rawValue, address: newServerAddress))
                     clientType = ClientType.fromDNSKit(newServerType)
