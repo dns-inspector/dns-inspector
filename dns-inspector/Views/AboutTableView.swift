@@ -6,6 +6,11 @@ import MessageUI
 // break out the table view itself to UIKit.
 
 class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, SKStoreProductViewControllerDelegate, MFMailComposeViewControllerDelegate {
+    let dnsInspectorAppId = 6470965982
+    let dnsInspectorAppStoreCampaignId = "crash-override"
+    let tlsInspectorAppId = 1100539810
+    let tlsInspectorAppStoreCampaignId = "crash-override"
+
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: .insetGrouped)
         self.delegate = self
@@ -22,6 +27,8 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
             return "Share & Feedback"
         case 1:
             return "Get Involved"
+        case 2:
+            return "More from the developer"
         default:
             return ""
         }
@@ -39,15 +46,20 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
+        switch section {
+        case 0:
             return 3
+        case 1:
+            return 2
+        case 2:
+            return 1
+        default:
+            return 0
         }
-
-        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,12 +79,19 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
             cell.imageView?.image = UIImage(named: "Mastodon")
             cell.textLabel?.text = "Follow @dnsinspector on Mastodon"
         case (1, 1):
-            cell.imageView?.image = UIImage(systemName: "apple.terminal.fill")
+            cell.imageView?.image = UIImage(systemName: "terminal.fill")
             cell.textLabel?.text = "Contribute to DNS Inspector"
+        case (2, 0):
+            cell.imageView?.image = UIImage(named: "TLS Inspector Icon")
+            cell.textLabel?.text = "TLS Inspector"
+            cell.imageView?.clipsToBounds = true
+            cell.imageView?.layer.cornerRadius = 7
         case (_, _): break
         }
 
+        cell.textLabel?.numberOfLines = 0
         cell.imageView?.tintColor = UIColor(named: "Text")
+        cell.accessoryType = .disclosureIndicator
 
         return cell
     }
@@ -84,19 +103,9 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
         case (0, 0):
             let activityController = UIActivityViewController(activityItems: ["Perform advanced DNS queries anytime & anywhere with DNS Inspector! https://dns-inspector.com"], applicationActivities: nil)
             ActionTipTarget(view: cell).attach(to: activityController.popoverPresentationController)
-            // No idea if there's a better way of doing this
-            self.window?.rootViewController?.presentedViewController?.present(activityController, animated: true)
-            break
+            self.present(activityController, animated: true)
         case (0, 1):
-            let productViewController = SKStoreProductViewController()
-            productViewController.delegate = self
-            let parameters = [
-                SKStoreProductParameterITunesItemIdentifier: "1100539810",
-                SKStoreProductParameterCampaignToken: "acid-burn",
-            ]
-            productViewController.loadProduct(withParameters: parameters, completionBlock: nil)
-            self.window?.rootViewController?.presentedViewController?.present(productViewController, animated: true)
-            break
+            self.showProductInAppStore(dnsInspectorAppId, campaignId: dnsInspectorAppStoreCampaignId)
         case (0, 2):
             if !MFMailComposeViewController.canSendMail() {
                 UIApplication.shared.open(URL(string:"mailto:hello@dns-inspector.com?subject=DNS%20Inspector%20Feedback")!)
@@ -120,6 +129,8 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
             UIApplication.shared.open(URL(string: "https://infosec.exchange/@dnsinspector")!)
         case (1, 1):
             UIApplication.shared.open(URL(string: "https://github.com/dns-inspector/dns-inspector")!)
+        case (2, 0):
+            self.showProductInAppStore(tlsInspectorAppId, campaignId: tlsInspectorAppStoreCampaignId)
         case (_, _): break
         }
 
@@ -132,5 +143,22 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
 
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
+    }
+
+    func present(_ viewController: UIViewController, animated: Bool) {
+        // Since this isn't a view controller but rather just a table view - we have to find the view controller that's hosting this view
+        // I have no idea if there's a better way of doing this
+        self.window?.rootViewController?.presentedViewController?.present(viewController, animated: true)
+    }
+
+    func showProductInAppStore(_ productId: Int, campaignId: String) {
+        let productViewController = SKStoreProductViewController()
+        productViewController.delegate = self
+        let parameters = [
+            SKStoreProductParameterITunesItemIdentifier: "\(productId)",
+            SKStoreProductParameterCampaignToken: campaignId,
+        ]
+        productViewController.loadProduct(withParameters: parameters, completionBlock: nil)
+        self.present(productViewController, animated: true)
     }
 }
