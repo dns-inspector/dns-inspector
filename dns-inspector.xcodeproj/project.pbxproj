@@ -10,7 +10,6 @@
 		3C0C6B232B38D854006D3F41 /* IPAddressParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C0C6B212B38D854006D3F41 /* IPAddressParser.h */; };
 		3C0C6B242B38D854006D3F41 /* IPAddressParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C6B222B38D854006D3F41 /* IPAddressParser.m */; };
 		3C0C6B262B38E147006D3F41 /* IPAddressParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C6B252B38E147006D3F41 /* IPAddressParserTests.m */; };
-		3C0C6B282B38EF47006D3F41 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C0C6B272B38EF47006D3F41 /* StoreKit.framework */; };
 		3C0C6B2E2B38F309006D3F41 /* AboutTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C6B2D2B38F309006D3F41 /* AboutTableView.swift */; };
 		3C0C6B302B38F35F006D3F41 /* AboutTableViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C6B2F2B38F35F006D3F41 /* AboutTableViewRepresentable.swift */; };
 		3C0C6B322B38F944006D3F41 /* ActionTipTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C6B312B38F944006D3F41 /* ActionTipTarget.swift */; };
@@ -153,7 +152,6 @@
 		3C0C6B212B38D854006D3F41 /* IPAddressParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPAddressParser.h; sourceTree = "<group>"; };
 		3C0C6B222B38D854006D3F41 /* IPAddressParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPAddressParser.m; sourceTree = "<group>"; };
 		3C0C6B252B38E147006D3F41 /* IPAddressParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPAddressParserTests.m; sourceTree = "<group>"; };
-		3C0C6B272B38EF47006D3F41 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		3C0C6B2D2B38F309006D3F41 /* AboutTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableView.swift; sourceTree = "<group>"; };
 		3C0C6B2F2B38F35F006D3F41 /* AboutTableViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewRepresentable.swift; sourceTree = "<group>"; };
 		3C0C6B312B38F944006D3F41 /* ActionTipTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionTipTarget.swift; sourceTree = "<group>"; };
@@ -181,7 +179,7 @@
 		3C9AA7C62AF1E94100B072FA /* View+RoundedCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+RoundedCorners.swift"; sourceTree = "<group>"; };
 		3C9AA7C82AF1F43F00B072FA /* DNSQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSQuestionView.swift; sourceTree = "<group>"; };
 		3C9AA7CA2AF1FCF400B072FA /* RecentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentQuery.swift; sourceTree = "<group>"; };
-		3C9AA7CC2AF206D400B072FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = "DNS-Inspector/Info.plist"; sourceTree = "<group>"; };
+		3C9AA7CC2AF206D400B072FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C9AA7CD2AF2082100B072FA /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		3C9B3DC52AE451EA002A927E /* TypesInternal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TypesInternal.h; sourceTree = "<group>"; };
 		3C9B3DC72AE45F9E002A927E /* NSHTTPURLResponse+HeaderValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSHTTPURLResponse+HeaderValue.h"; sourceTree = "<group>"; };
@@ -265,7 +263,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AA8C1612ADCAE9C00B93E45 /* DNSKit.framework in Frameworks */,
-				3C0C6B282B38EF47006D3F41 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +288,6 @@
 		3C9B3DCB2AE4639E002A927E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3C0C6B272B38EF47006D3F41 /* StoreKit.framework */,
 				3C9B3DCC2AE4639F002A927E /* Network.framework */,
 			);
 			name = Frameworks;
@@ -391,7 +387,6 @@
 		9AA8C12D2ADCA98000B93E45 = {
 			isa = PBXGroup;
 			children = (
-				3C9AA7CC2AF206D400B072FA /* Info.plist */,
 				9AA8C1382ADCA98000B93E45 /* dns-inspector */,
 				9AA8C14D2ADCAE9C00B93E45 /* DNSKit */,
 				9AA8C15B2ADCAE9C00B93E45 /* DNSKitTests */,
@@ -420,6 +415,7 @@
 				3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */,
 				9A80CE3E2AEF6FE600E97A63 /* Extensions */,
 				3C6CCD592B3BAC4700A3B6F2 /* Globals.swift */,
+				3C9AA7CC2AF206D400B072FA /* Info.plist */,
 				9AA8C13B2ADCA98000B93E45 /* MainView.swift */,
 				9A80CE2A2AEF336600E97A63 /* Options */,
 				9AA8C13F2ADCA98200B93E45 /* Preview Content */,
