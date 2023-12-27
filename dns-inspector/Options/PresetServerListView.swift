@@ -24,7 +24,7 @@ struct PresetServerListView: View {
         .listStyle(.plain)
         .toolbar(content: {
             NavigationLink {
-                PresetServerEditView(clientType: $newServerType, serverAddress: $newServerAddress) {
+                PresetServerEditView(clientType: $newServerType, serverAddress: $newServerAddress, isNew: true) {
                     UserOptions.presetServers.append(PresetServer(type: newServerType.rawValue, address: newServerAddress))
                     self.loadPresetServers()
                     self.newServerType = .DNS
@@ -41,10 +41,6 @@ struct PresetServerListView: View {
     func loadPresetServers() {
         self.presetServers = UserOptions.presetServers
     }
-}
-
-#Preview {
-    PresetServerListView()
 }
 
 fileprivate struct PresetServerListViewItem: View {
@@ -64,7 +60,7 @@ fileprivate struct PresetServerListViewItem: View {
 
     var body: some View {
         NavigationLink {
-            PresetServerEditView(clientType: $dnsServerType, serverAddress: $address) {
+            PresetServerEditView(clientType: $dnsServerType, serverAddress: $address, isNew: false) {
                 for (index, server) in UserOptions.presetServers.enumerated() {
                     if server.id != serverID {
                         continue

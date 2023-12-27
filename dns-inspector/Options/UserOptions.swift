@@ -126,6 +126,7 @@ public class UserOptions {
         set {
             current.presetServers = newValue
             save()
+            NotificationCenter.default.post(name: presetServerChangedNotification, object: nil)
         }
     }
 

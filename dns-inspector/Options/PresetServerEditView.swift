@@ -4,6 +4,7 @@ import DNSKit
 struct PresetServerEditView: View {
     @Binding public var clientType: DNSClientType
     @Binding public var serverAddress: String
+    public let isNew: Bool
     public let didSave: () -> Void
     @State private var validationError: Error?
     @Environment(\.presentationMode) var presentation
@@ -26,7 +27,7 @@ struct PresetServerEditView: View {
                 ErrorCellView(error: error)
             }
         }
-        .navigationTitle("Edit Preset Server")
+        .navigationTitle(isNew ? "New Preset Server" : "Edit Preset Server")
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Save") {
@@ -44,11 +45,5 @@ struct PresetServerEditView: View {
                 }
             }
         }
-    }
-}
-
-#Preview {
-    PresetServerEditView(clientType: .constant(.DNS), serverAddress: .constant("8.8.8.8")) {
-        //
     }
 }
