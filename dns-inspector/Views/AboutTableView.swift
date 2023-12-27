@@ -24,11 +24,11 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Share & Feedback"
+            return Localize("Share & Feedback")
         case 1:
-            return "Get Involved"
+            return Localize("Get Involved")
         case 2:
-            return "More from the developer"
+            return Localize("More from the developer")
         default:
             return ""
         }
@@ -37,9 +37,9 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Version \(AppInfo.version()) (build \(AppInfo.build()))"
+            return Localize("Version {version} (build {build})", args: [AppInfo.version(), AppInfo.build()])
         case 1:
-            return "DNS Inspector is free & libre open source software licensed under the GNU GPLv3. DNS Inspector is copyright © 2023-2024 Ian Spence."
+            return Localize("about_footer", args: ["2024"])
         default:
             return ""
         }
@@ -68,22 +68,22 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
             cell.imageView?.image = UIImage(systemName: "square.and.arrow.up.fill")
-            cell.textLabel?.text = "Share DNS Inspector"
+            cell.textLabel?.text = Localize("Share DNS Inspector")
         case (0, 1):
             cell.imageView?.image = UIImage(systemName: "star.bubble.fill")
-            cell.textLabel?.text = "Rate in App Store"
+            cell.textLabel?.text = Localize("Rate in App Store")
         case (0, 2):
             cell.imageView?.image = UIImage(systemName: "bubble.left.and.exclamationmark.bubble.right.fill")
-            cell.textLabel?.text = "Provide Feedback"
+            cell.textLabel?.text = Localize("Provide Feedback")
         case (1, 0):
             cell.imageView?.image = UIImage(named: "Mastodon")
-            cell.textLabel?.text = "Follow @dnsinspector on Mastodon"
+            cell.textLabel?.text = Localize("Follow @dnsinspector on Mastodon")
         case (1, 1):
             cell.imageView?.image = UIImage(systemName: "terminal.fill")
-            cell.textLabel?.text = "Contribute to DNS Inspector"
+            cell.textLabel?.text = Localize("Contribute to DNS Inspector")
         case (2, 0):
             cell.imageView?.image = UIImage(named: "TLS Inspector Icon")
-            cell.textLabel?.text = "TLS Inspector"
+            cell.textLabel?.text = Localize("TLS Inspector")
             cell.imageView?.clipsToBounds = true
             cell.imageView?.layer.cornerRadius = 7
         case (_, _): break

@@ -35,7 +35,7 @@ struct PresetServerListView: View {
             }
             EditButton()
         })
-        .navigationTitle("Preset Servers")
+        .navigationTitle(localized: "Preset Servers")
     }
 
     func loadPresetServers() {

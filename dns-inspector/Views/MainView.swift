@@ -21,7 +21,7 @@ struct MainView: View {
     var body: some View {
         Navigation {
             List {
-                Section("New query") {
+                Section(Localize("New query")) {
                     HStack {
                         Menu {
                             ForEach(RecordTypes) { t in
@@ -37,7 +37,7 @@ struct MainView: View {
                         .disabled(self.lookupState.loading)
                         Divider()
                         TextField(text: $queryName) {
-                            Text("Name")
+                            Text(localized: "Name")
                         }
                         .keyboardType(.URL)
                         .textInputAutocapitalization(.never)
@@ -59,7 +59,7 @@ struct MainView: View {
                         .disabled(self.lookupState.loading)
                         Divider()
                         TextField(text: $queryServerURL) {
-                            Text("Server")
+                            Text(localized: "Server")
                         }
                         .keyboardType(.URL)
                         .autocorrectionDisabled()
@@ -75,7 +75,7 @@ struct MainView: View {
                     if self.lookupState.loading {
                         HStack {
                             ProgressView()
-                            Text("Loading...")
+                            Text(localized: "Loading...")
                                 .padding(.leading, 8)
                                 .foregroundStyle(.gray)
                         }
@@ -85,7 +85,7 @@ struct MainView: View {
                     }
                 }
                 if UserOptions.rememberQueries && RecentQueryManager.shared.queries.count > 0 {
-                    Section("Recent queries") {
+                    Section(Localize("Recent queries")) {
                         ForEach(RecentQueryManager.shared.queries) { query in
                             Button(action: {
                                 doInspect(recordType: DNSRecordType(rawValue: query.recordType)!, name: query.name, clientType: DNSClientType(rawValue: query.clientType)!, serverAddress: query.serverAddress)
@@ -105,19 +105,19 @@ struct MainView: View {
                     }
                 }
             }
-            .navigationTitle("DNS Inspector")
+            .navigationTitle(localized: "DNS Inspector")
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Menu {
                         Button(action: {
                             self.showAboutView.toggle()
                         }, label: {
-                            Label("About", systemImage: "info.circle.fill")
+                            Label(Localize("About"), systemImage: "info.circle.fill")
                         })
                         Button(action: {
                             self.showOptionsView.toggle()
                         }, label: {
-                            Label("Options", systemImage: "gearshape.circle.fill")
+                            Label(Localize("Options"), systemImage: "gearshape.circle.fill")
                         })
                     } label: {
                         Image(systemName: "ellipsis.circle")

@@ -19,6 +19,7 @@ fileprivate struct OptionsType1: Codable {
     public var rememberLastServer: Bool?
     public var ttlDisplayMode: TTLDisplayMode?
     public var dnsPrefersTcp: Bool?
+    public var appLanguage: SupportedLanguages?
 
     public var presetServers: [PresetServer]?
     public var lastUsedServer: LastUsedServer?
@@ -140,6 +141,16 @@ public class UserOptions {
         }
         set {
             current.dnsPrefersTcp = newValue
+            save()
+        }
+    }
+
+    public static var appLanguage: SupportedLanguages? {
+        get {
+            return current.appLanguage
+        }
+        set {
+            current.appLanguage = newValue
             save()
         }
     }

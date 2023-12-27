@@ -9,7 +9,7 @@ struct DNSMessageView: View {
     var body: some View {
         Navigation {
             List {
-                Section("Query") {
+                Section(Localize("Query")) {
                     HStack {
                         Text(String(message.idNumber)).fixedwidth()
                         Divider()
@@ -18,7 +18,7 @@ struct DNSMessageView: View {
                         Text(query.serverAddress).fixedwidth()
                     }
                 }
-                Section("Response") {
+                Section(Localize("Response")) {
                     HStack {
                         RoundedLabel(text: ResponseCode.fromDNSKit(message.responseCode).name, color: responseCodeColor())
                         Divider()
@@ -34,7 +34,7 @@ struct DNSMessageView: View {
                     }
                 }
                 if let questions = message.questions {
-                    Section("Question") {
+                    Section(Localize("Question")) {
                         ForEach (questions, id: \.self) { question in
                             DNSQuestionView(question: question)
                                 .listRowSeparator(.hidden)
@@ -42,7 +42,7 @@ struct DNSMessageView: View {
                     }
                 }
                 if let answers = message.answers {
-                    Section("Answers") {
+                    Section(Localize("Answers")) {
                         ForEach (answers, id: \.self) { answer in
                             DNSAnswerView(answer: answer)
                                 .listRowSeparator(.hidden)
@@ -50,7 +50,7 @@ struct DNSMessageView: View {
                     }
                 }
             }
-            .navigationTitle("Results")
+            .navigationTitle(localized: "Results")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -77,13 +77,17 @@ struct DNSMessageView: View {
         let elapsed = message.elapsedNs.doubleValue
 
         if elapsed > 1000000000 {
-            return String(format: "%.2f seconds", elapsed / 1000000000)
+            let elapsedStr = String(format: "%.2f", elapsed / 1000000000)
+            return Localize("{duration} seconds", args: [elapsedStr])
         } else if elapsed > 1000000 {
-            return String(format: "%.2f milliseconds", elapsed / 1000000)
+            let elapsedStr = String(format: "%.2f", elapsed / 1000000)
+            return Localize("{duration} milliseconds", args: [elapsedStr])
         } else if elapsed > 1000 {
-            return String(format: "%.2f microseconds", elapsed / 1000)
+            let elapsedStr = String(format: "%.2f", elapsed / 1000)
+            return Localize("{duration} microseconds", args: [elapsedStr])
         }
 
-        return String(format: "%.2f nanoseconds", elapsed)
+        let elapsedStr = String(format: "%.2f", elapsed)
+        return Localize("{duration} nanoseconds", args: [elapsedStr])
     }
 }

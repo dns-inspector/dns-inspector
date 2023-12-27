@@ -36,3 +36,6 @@ project.xcworkspace
 # Frameworks
 curl.xcframework
 openssl.xcframework
+
+# Generated Files
+dns-inspector/Localization/Strings/*.plist

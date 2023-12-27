@@ -8,7 +8,7 @@ public struct ErrorCellView: View {
             HStack {
                 Image(systemName: "exclamationmark.circle.fill")
                     .foregroundStyle(.red)
-                Text("Error").bold()
+                Text(localized: "Error").bold()
             }
             Text(error.localizedDescription)
         }

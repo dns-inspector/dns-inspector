@@ -7,37 +7,37 @@ struct OptionsView: View {
     var body: some View {
         Navigation {
             List {
-                Section("General") {
-                    Toggle("Remember recent queries", isOn: .init(get: {
+                Section(Localize("General")) {
+                    Toggle(Localize("Remember recent queries"), isOn: .init(get: {
                         return UserOptions.rememberQueries
                     }, set: { on in
                         UserOptions.rememberQueries = on
                     })).tint(Color.accentColor)
 
-                    Toggle("Remember last server", isOn: .init(get: {
+                    Toggle(Localize("Remember last server"), isOn: .init(get: {
                         return UserOptions.rememberLastServer
                     }, set: { on in
                         UserOptions.rememberLastServer = on
                     })).tint(Color.accentColor)
 
-                    Picker("Show TTL values as", selection: $ttlDisplaymode) {
-                        Text("Relative").tag(TTLDisplayMode.relative)
-                        Text("Absolute").tag(TTLDisplayMode.absolute)
+                    Picker(Localize("Show TTL values as"), selection: $ttlDisplaymode) {
+                        Text(localized: "Relative").tag(TTLDisplayMode.relative)
+                        Text(localized: "Absolute").tag(TTLDisplayMode.absolute)
                     }
 
-                    NavigationLink("Preset servers") {
+                    NavigationLink(Localize("Preset servers")) {
                         PresetServerListView()
                     }
                 }
-                Section("Network") {
-                    Toggle("Send traditional DNS requests using TCP", isOn: .init(get: {
+                Section(Localize("Network")) {
+                    Toggle(Localize("Send traditional DNS requests using TCP"), isOn: .init(get: {
                         return UserOptions.dnsPrefersTcp
                     }, set: { on in
                         UserOptions.dnsPrefersTcp = on
                     })).tint(Color.accentColor)
                 }
             }
-            .navigationTitle("Options")
+            .navigationTitle(localized: "Options")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {

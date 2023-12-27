@@ -59,7 +59,7 @@ struct DNSAnswerView: View {
 #Preview {
     Navigation {
         List {
-            Section("Answers") {
+            Section(Localize("Answers")) {
                 DNSAnswerView(answer: DNSAnswer(name: "dns.google.", recordType: .A, recordClass: .IN, ttlSeconds: 1800, data: "8.8.8.8".data(using: .ascii)!))
                 DNSAnswerView(answer: DNSAnswer(name: "dns.google.", recordType: .A, recordClass: .IN, ttlSeconds: 1800, data: "8.8.4.4".data(using: .ascii)!))
             }

@@ -35,7 +35,7 @@ struct DNSQuestionView: View {
 #Preview {
     Navigation {
         List {
-            Section("Questions") {
+            Section(Localize("Questions")) {
                 DNSQuestionView(question: DNSQuestion(name: "dns.google.", recordType: .A, recordClass: .IN))
             }
             .listRowSeparator(.hidden)
