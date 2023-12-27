@@ -341,13 +341,19 @@
 			children = (
 				3C0C6B2D2B38F309006D3F41 /* AboutTableView.swift */,
 				3C0C6B2F2B38F35F006D3F41 /* AboutTableViewRepresentable.swift */,
+				9AA8C18B2ADCC2CD00B93E45 /* AboutView.swift */,
 				3C0C6B312B38F944006D3F41 /* ActionTipTarget.swift */,
 				3CCA312A2AF5DAEE00C11280 /* DNSAnswerDataView.swift */,
 				3C9AA7C42AF1E45B00B072FA /* DNSAnswerView.swift */,
+				3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */,
 				3C9AA7C82AF1F43F00B072FA /* DNSQuestionView.swift */,
 				3C0C6B332B39108B006D3F41 /* ErrorCellView.swift */,
+				9AA8C13B2ADCA98000B93E45 /* MainView.swift */,
 				9A80CE3C2AEF6E4700E97A63 /* Navigation.swift */,
+				9AA8C18D2ADD9B4600B93E45 /* OptionsView.swift */,
 				9A80CE372AEF650200E97A63 /* PresetServerButton.swift */,
+				9A80CE332AEF633600E97A63 /* PresetServerEditView.swift */,
+				9A80CE352AEF634700E97A63 /* PresetServerListView.swift */,
 				9A80CE282AEF2C7700E97A63 /* RoundedLabel.swift */,
 			);
 			path = Views;
@@ -356,10 +362,7 @@
 		9A80CE2A2AEF336600E97A63 /* Options */ = {
 			isa = PBXGroup;
 			children = (
-				9AA8C18D2ADD9B4600B93E45 /* OptionsView.swift */,
 				9A80CE2F2AEF5A0A00E97A63 /* PresetServer.swift */,
-				9A80CE332AEF633600E97A63 /* PresetServerEditView.swift */,
-				9A80CE352AEF634700E97A63 /* PresetServerListView.swift */,
 				9A80CE2D2AEF339700E97A63 /* UserOptions.swift */,
 			);
 			path = Options;
@@ -408,15 +411,12 @@
 		9AA8C1382ADCA98000B93E45 /* dns-inspector */ = {
 			isa = PBXGroup;
 			children = (
-				9AA8C18B2ADCC2CD00B93E45 /* AboutView.swift */,
 				9AA8C1392ADCA98000B93E45 /* App.swift */,
 				9A80CE312AEF5C6100E97A63 /* AppDelegate.swift */,
 				9AA8C13D2ADCA98200B93E45 /* Assets.xcassets */,
-				3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */,
 				9A80CE3E2AEF6FE600E97A63 /* Extensions */,
 				3C6CCD592B3BAC4700A3B6F2 /* Globals.swift */,
 				3C9AA7CC2AF206D400B072FA /* Info.plist */,
-				9AA8C13B2ADCA98000B93E45 /* MainView.swift */,
 				9A80CE2A2AEF336600E97A63 /* Options */,
 				9AA8C13F2ADCA98200B93E45 /* Preview Content */,
 				3C8B59D92B36312F000B9F84 /* PrivacyInfo.xcprivacy */,
