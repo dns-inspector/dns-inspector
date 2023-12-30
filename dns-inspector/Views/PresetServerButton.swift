@@ -27,7 +27,7 @@ public struct PresetServerButton: View {
                 Label(Localize("Add Preset Server"), systemImage: "plus")
             }
         } label: {
-            Image(systemName: "staroflife.circle")
+            Image(systemName: "bolt.fill")
         }
         .onReceive(NotificationCenter.default.publisher(for: presetServerChangedNotification), perform: { _ in
             self.loadServers()

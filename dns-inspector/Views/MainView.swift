@@ -32,7 +32,13 @@ struct MainView: View {
                                 })
                             }
                         } label: {
-                            RoundedLabel(text: self.queryType.name)
+                            HStack {
+                                Text(self.queryType.name)
+                                Image(systemName: "chevron.up.chevron.down")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(maxHeight: 12)
+                            }
                         }
                         .disabled(self.lookupState.loading)
                         Divider()
@@ -54,12 +60,16 @@ struct MainView: View {
                                 })
                             }
                         } label: {
-                            RoundedLabel(text: self.queryClientType.name)
+                            Text(self.queryClientType.name)
+                            Image(systemName: "chevron.up.chevron.down")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxHeight: 12)
                         }
                         .disabled(self.lookupState.loading)
                         Divider()
                         TextField(text: $queryServerURL) {
-                            Text(localized: "Server")
+                            Text(localized: serverPlaceholder())
                         }
                         .keyboardType(.URL)
                         .autocorrectionDisabled()
@@ -91,10 +101,10 @@ struct MainView: View {
                                 doInspect(recordType: DNSRecordType(rawValue: query.recordType)!, name: query.name, clientType: DNSClientType(rawValue: query.clientType)!, serverAddress: query.serverAddress)
                             }, label: {
                                 HStack {
-                                    RoundedLabel(text: query.recordTypeName(), color: .primary)
+                                    RoundedLabel(text: query.recordTypeName(), textColor: .primary, borderColor: .gray)
                                     Text(query.name)
                                     Divider()
-                                    RoundedLabel(text: query.clientTypeName(), color: .primary)
+                                    RoundedLabel(text: query.clientTypeName(), textColor: .primary, borderColor: .gray)
                                     Text(query.serverAddress)
                                 }
                             }).buttonStyle(.plain)
@@ -142,6 +152,19 @@ struct MainView: View {
         })
         .fullScreenCover(isPresented: $lookupState.success) {
             DNSMessageView(query: lookupState.query!, message: lookupState.result!)
+        }
+    }
+
+    func serverPlaceholder() -> String {
+        switch self.queryClientType.dnsKitValue {
+        case DNSClientType.DNS.rawValue:
+            return "Server IP"
+        case DNSClientType.TLS.rawValue:
+            return "Server IP"
+        case DNSClientType.HTTPS.rawValue:
+            return "Server URL"
+        default:
+            return "Server"
         }
     }
 
