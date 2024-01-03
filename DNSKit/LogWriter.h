@@ -1,4 +1,4 @@
-#import "DNSKit.h"
+#import <DNSKit/DNSKit.h>
 
 /// The certificate kit logging class
 @interface LogWriter : NSObject

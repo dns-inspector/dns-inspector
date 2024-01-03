@@ -1,4 +1,4 @@
-#import "DNSRecordData.h"
+#import <DNSKit/DNSRecordData.h>
 #import "DNSRecordData+Private.h"
 #import "NSData+HexString.h"
 

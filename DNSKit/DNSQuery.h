@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
-#import "DNSKit.h"
-#import "DNSQueryParameters.h"
+#import <DNSKit/DNSKit.h>
+#import <DNSKit/DNSQueryParameters.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

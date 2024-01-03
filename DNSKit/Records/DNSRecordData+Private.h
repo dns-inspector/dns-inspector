@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "DNSRecordData.h"
+#import <DNSKit/DNSRecordData.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
