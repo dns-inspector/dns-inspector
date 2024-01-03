@@ -43,7 +43,7 @@ struct PresetServerListView: View {
     }
 }
 
-fileprivate struct PresetServerListViewItem: View {
+private struct PresetServerListViewItem: View {
     let onEdit: () -> Void
     @State private var dnsServerType: DNSClientType
     @State private var address: String

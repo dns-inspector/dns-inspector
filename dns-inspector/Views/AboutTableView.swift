@@ -16,11 +16,11 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
         self.delegate = self
         self.dataSource = self
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
@@ -61,7 +61,7 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "")
 

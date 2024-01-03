@@ -72,13 +72,11 @@ public class RecentQueryManager {
             return
         }
 
-        for (idx, query) in self.queries.enumerated() {
-            if query == recentQuery {
-                self.queries.remove(at: idx)
-                self.queries.insert(recentQuery, at: 0)
-                self.save()
-                return
-            }
+        for (idx, query) in self.queries.enumerated() where query == recentQuery {
+            self.queries.remove(at: idx)
+            self.queries.insert(recentQuery, at: 0)
+            self.save()
+            return
         }
 
         if self.queries.count >= 5 {

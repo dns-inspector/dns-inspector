@@ -1,0 +1,16 @@
+disabled_rules:
+    - colon
+    - file_length
+    - function_body_length
+    - identifier_name
+    - line_length
+    - opening_brace
+    - todo
+    - trailing_comma
+    - type_body_length
+    - type_name
+
+cyclomatic_complexity: 12
+
+included:
+    - "dns-inspector/"

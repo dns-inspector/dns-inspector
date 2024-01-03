@@ -11,9 +11,9 @@ public struct LastUsedServer: Codable {
     let address: String
 }
 
-fileprivate let currentSchemaVersion: Int = 1
+private let currentSchemaVersion: Int = 1
 
-fileprivate struct OptionsType1: Codable {
+private struct OptionsType1: Codable {
     public var schemaVersion: Int
     public var appLaunchCount: Int?
     public var didPromptForReview: Bool?

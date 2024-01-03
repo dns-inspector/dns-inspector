@@ -2,7 +2,7 @@ import SwiftUI
 import DNSKit
 import StoreKit
 
-fileprivate class MainViewState: ObservableObject {
+private class MainViewState: ObservableObject {
     @Published var loading = false
     @Published var query: DNSQuery?
     @Published var result: DNSMessage?
@@ -160,6 +160,7 @@ struct MainView: View {
             #if !DEBUG
             if UserOptions.appLaunchCount > 5 && !UserOptions.didPromptForReview {
                 if let windowScene = UIApplication.shared.connectedScenes.first {
+                    // swiftlint:disable:next force_cast
                     SKStoreReviewController.requestReview(in: windowScene as! UIWindowScene)
                 }
                 UserOptions.didPromptForReview = true

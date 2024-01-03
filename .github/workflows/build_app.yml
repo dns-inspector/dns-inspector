@@ -8,12 +8,14 @@ on:
       - 'DNSKitTests/**'
       - 'dns-inspector/**'
       - 'dns-inspector.xcodeproj/**'
+      - '.swiftlint.yml'
   pull_request:
     paths:
       - 'DNSKit/**'
       - 'DNSKitTests/**'
       - 'dns-inspector/**'
       - 'dns-inspector.xcodeproj/**'
+      - '.swiftlint.yml'
   schedule:
     - cron: "16 16 */2 * *"
 
@@ -56,6 +58,28 @@ jobs:
           echo "DERIVEDDATA_PATH=$(xcodebuild -project dns-inspector.xcodeproj -showBuildSettings -configuration Debug 2>/dev/null | grep " BUILD_DIR = " | cut -d '=' -f2 | awk '{$1=$1};1' | sed 's%/Build/Products%%g')" >> "$GITHUB_OUTPUT"
           sudo xcode-select -s /Applications/Xcode_15.0.1.app/Contents/Developer
           xcode-select -p
+
+      - name: Restore Cached SwiftLint
+        id: restore_swiftlint
+        uses: actions/cache@v3
+        with:
+          key: ${{ steps.prepare.outputs.SWIFTLINT_CACHE_KEY }}
+          path: |
+            /Users/runner/bin/swiftlint
+      
+      - name: Install SwiftLint
+        id: install_swiftlint
+        if: ${{ steps.restore_swiftlint.outputs.cache-hit != 'true' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p /Users/runner/bin
+          SWIFTLINT_URL=$(gh api repos/realm/swiftlint/releases/latest --jq '.assets[] | select(.name == "portable_swiftlint.zip") | .browser_download_url')
+          cd /Users/runner/bin
+          curl -L -o swiftlint.zip "${SWIFTLINT_URL}"
+          unzip swiftlint.zip
+          rm swiftlint.zip LICENSE
+          chmod a+x swiftlint
 
       - name: Build
         id: build

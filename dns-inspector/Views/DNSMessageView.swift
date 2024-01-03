@@ -35,7 +35,7 @@ struct DNSMessageView: View {
                 }
                 if let questions = message.questions {
                     Section(Localize("Question")) {
-                        ForEach (questions, id: \.self) { question in
+                        ForEach(questions, id: \.self) { question in
                             DNSQuestionView(question: question)
                                 .listRowSeparator(.hidden)
                         }
@@ -43,7 +43,7 @@ struct DNSMessageView: View {
                 }
                 if let answers = message.answers {
                     Section(Localize("Answers")) {
-                        ForEach (answers, id: \.self) { answer in
+                        ForEach(answers, id: \.self) { answer in
                             DNSAnswerView(answer: answer)
                                 .listRowSeparator(.hidden)
                         }
