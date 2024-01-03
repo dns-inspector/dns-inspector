@@ -30,7 +30,9 @@ Save	Save
 Send traditional DNS requests using TCP	Send traditional DNS requests using TCP
 Server	Server
 Server Address	Server Address
+Server IP	Server IP
 Server Type	Server Type
+Server URL	Server URL
 Share & Feedback	Share & Feedback
 Share DNS Inspector	Share DNS Inspector
 Show TTL values as	Show TTL values as

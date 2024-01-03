@@ -1,5 +1,6 @@
 import SwiftUI
 import DNSKit
+import StoreKit
 
 fileprivate class MainViewState: ObservableObject {
     @Published var loading = false
@@ -152,6 +153,17 @@ struct MainView: View {
         })
         .fullScreenCover(isPresented: $lookupState.success) {
             DNSMessageView(query: lookupState.query!, message: lookupState.result!)
+        }
+        .onAppear {
+            #if !DEBUG
+            if UserOptions.appLaunchCount > 5 && !UserOptions.didPromptForReview {
+                if let windowScene = UIApplication.shared.connectedScenes.first {
+                    SKStoreReviewController.requestReview(in: windowScene as! UIWindowScene)
+                }
+                UserOptions.didPromptForReview = true
+            }
+            #endif
+            UserOptions.appLaunchCount += 1
         }
     }
 

@@ -15,6 +15,8 @@ fileprivate let currentSchemaVersion: Int = 1
 
 fileprivate struct OptionsType1: Codable {
     public var schemaVersion: Int
+    public var appLaunchCount: Int?
+    public var didPromptForReview: Bool?
     public var rememberQueries: Bool?
     public var rememberLastServer: Bool?
     public var ttlDisplayMode: TTLDisplayMode?
@@ -100,6 +102,26 @@ public class UserOptions {
         }
 
         print("Options saved")
+    }
+
+    public static var appLaunchCount: Int {
+        get {
+            return current.appLaunchCount ?? 0
+        }
+        set {
+            current.appLaunchCount = newValue
+            save()
+        }
+    }
+
+    public static var didPromptForReview: Bool {
+        get {
+            return current.didPromptForReview ?? false
+        }
+        set {
+            current.didPromptForReview = newValue
+            save()
+        }
     }
 
     public static var rememberQueries: Bool {
