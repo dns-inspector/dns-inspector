@@ -1,0 +1,76 @@
+name: "Build App"
+
+on:
+  push:
+    paths:
+      - '.github/workflows/build_app.yml'
+      - 'DNSKit/**'
+      - 'DNSKitTests/**'
+      - 'dns-inspector/**'
+      - 'dns-inspector.xcodeproj/**'
+  pull_request:
+    paths:
+      - 'DNSKit/**'
+      - 'DNSKitTests/**'
+      - 'dns-inspector/**'
+      - 'dns-inspector.xcodeproj/**'
+  schedule:
+    - cron: "16 16 */2 * *"
+
+permissions:
+  packages: read
+
+env:
+  TEST_DEVICE: "iPhone 15 Pro"
+
+jobs:
+  build:
+    name: "Build App"
+    runs-on: macos-13
+    steps:
+      - name: Checkout Source
+        id: checkout
+        uses: actions/checkout@v3
+
+      - name: Install Profile and Certificates
+        id: install_credentials
+        run: |
+          echo '${{ secrets.DNS_INSPECTOR_DEVELOPMENT_PROVISIONING_PROFILE }}' > DNS_Inspector.mobileprovision.base64
+          base64 -i DNS_Inspector.mobileprovision.base64 -o DNS_Inspector.mobileprovision --decode && rm DNS_Inspector.mobileprovision.base64
+          mkdir -p "~/Library/MobileDevice/Provisioning Profiles/"
+          mv -v DNS_Inspector.mobileprovision   "~/Library/MobileDevice/Provisioning Profiles/39db396c-128b-4a79-8c9c-8dc36f721c92.mobileprovision"
+          echo '-----BEGIN CERTIFICATE-----' > dev.crt
+          echo '${{ secrets.APPLE_DEVELOPMENT_CERTIFICATE }}' >> dev.crt
+          echo '-----END CERTIFICATE-----' >> dev.crt
+          echo '${{ secrets.APPLE_DEVELOPMENT_PRIVATE_KEY }}' > dev.key.base64
+          base64 -i dev.key.base64 -o dev.key --decode && rm dev.key.base64
+          security import dev.crt -t cert -k ~/Library/Keychains/login.keychain-db -f pemseq -A
+          security import dev.key -t priv -k ~/Library/Keychains/login.keychain-db -f openssl -A
+          rm dev.key dev.crt
+      
+      - name: "Prepare Build Environment"
+        id: prepare
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "DERIVEDDATA_PATH=$(xcodebuild -project dns-inspector.xcodeproj -showBuildSettings -configuration Debug 2>/dev/null | grep " BUILD_DIR = " | cut -d '=' -f2 | awk '{$1=$1};1' | sed 's%/Build/Products%%g')" >> "$GITHUB_OUTPUT"
+          sudo xcode-select -s /Applications/Xcode_15.0.1.app/Contents/Developer
+          xcode-select -p
+
+      - name: Build
+        id: build
+        run: |
+          xcodebuild -resolvePackageDependencies -project "dns-inspector.xcodeproj"
+          xcodebuild -scheme "DNSKit" -project "dns-inspector.xcodeproj" -derivedDataPath ~/derived_data -sdk iphonesimulator -destination 'platform=iOS Simulator,name=${{ env.TEST_DEVICE }}' build
+          xcodebuild -scheme "DNS Inspector" -project "dns-inspector.xcodeproj" -derivedDataPath ~/derived_data -sdk iphonesimulator -destination 'platform=iOS Simulator,name=${{ env.TEST_DEVICE }}' build
+
+      - name: Run Automated Tests
+        id: certificatekit_tests
+        run: |
+          xcodebuild -scheme "DNSKitTests" -project "dns-inspector.xcodeproj" -derivedDataPath ~/derived_data -sdk iphonesimulator -destination 'platform=iOS Simulator,name=${{ env.TEST_DEVICE }}' test
+
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: test-results
+          path: /Users/runner/derived_data/Logs/Test/Test-DNSKitTests-*.xcresult
