@@ -56,6 +56,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "DERIVEDDATA_PATH=$(xcodebuild -project dns-inspector.xcodeproj -showBuildSettings -configuration Debug 2>/dev/null | grep " BUILD_DIR = " | cut -d '=' -f2 | awk '{$1=$1};1' | sed 's%/Build/Products%%g')" >> "$GITHUB_OUTPUT"
+          echo "SWIFTLINT_CACHE_KEY=swiftlint_$(gh api repos/realm/swiftlint/releases/latest --jq '.assets[] | select(.name == "portable_swiftlint.zip") | .id')" >> "$GITHUB_OUTPUT"
           sudo xcode-select -s /Applications/Xcode_15.0.1.app/Contents/Developer
           xcode-select -p
 
@@ -80,6 +81,12 @@ jobs:
           unzip swiftlint.zip
           rm swiftlint.zip LICENSE
           chmod a+x swiftlint
+
+      - name: Generate Strings
+        id: generate_strings
+        run: |
+          cd "dns-inspector/Localization"
+          python3 lang.py
 
       - name: Build
         id: build
