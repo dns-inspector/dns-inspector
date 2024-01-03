@@ -80,6 +80,7 @@
 		3CCA313D2AF84F0E00C11280 /* DNSPTRRecordData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA313B2AF84F0E00C11280 /* DNSPTRRecordData.m */; };
 		3CCA313F2AF84F4200C11280 /* DNSPTRRecordData+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CCA313E2AF84F4200C11280 /* DNSPTRRecordData+Private.h */; };
 		3CCA31412AF85AEE00C11280 /* DNSNameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA31402AF85AEE00C11280 /* DNSNameTests.m */; };
+		3CF7FF832B45256C000307CD /* TextField+ClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF7FF822B45256C000307CD /* TextField+ClearButton.swift */; };
 		9A80CE242AEF2A3800E97A63 /* OperationCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE232AEF2A3800E97A63 /* OperationCode.swift */; };
 		9A80CE262AEF2B2900E97A63 /* ResponseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE252AEF2B2900E97A63 /* ResponseCode.swift */; };
 		9A80CE292AEF2C7700E97A63 /* RoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE282AEF2C7700E97A63 /* RoundedLabel.swift */; };
@@ -230,6 +231,7 @@
 		3CCA313B2AF84F0E00C11280 /* DNSPTRRecordData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSPTRRecordData.m; sourceTree = "<group>"; };
 		3CCA313E2AF84F4200C11280 /* DNSPTRRecordData+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DNSPTRRecordData+Private.h"; sourceTree = "<group>"; };
 		3CCA31402AF85AEE00C11280 /* DNSNameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSNameTests.m; sourceTree = "<group>"; };
+		3CF7FF822B45256C000307CD /* TextField+ClearButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+ClearButton.swift"; sourceTree = "<group>"; };
 		9A80CE232AEF2A3800E97A63 /* OperationCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationCode.swift; sourceTree = "<group>"; };
 		9A80CE252AEF2B2900E97A63 /* ResponseCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCode.swift; sourceTree = "<group>"; };
 		9A80CE282AEF2C7700E97A63 /* RoundedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedLabel.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				9A80CE3F2AEF6FF400E97A63 /* Text+Fixedwidth.swift */,
+				3CF7FF822B45256C000307CD /* TextField+ClearButton.swift */,
 				3C9AA7C62AF1E94100B072FA /* View+RoundedCorners.swift */,
 			);
 			path = Extensions;
@@ -719,6 +722,7 @@
 				9A80CE362AEF634700E97A63 /* PresetServerListView.swift in Sources */,
 				9AA8C1862ADCB85300B93E45 /* RecordType.swift in Sources */,
 				3C9AA7CB2AF1FCF400B072FA /* RecentQuery.swift in Sources */,
+				3CF7FF832B45256C000307CD /* TextField+ClearButton.swift in Sources */,
 				9AA8C13C2ADCA98000B93E45 /* MainView.swift in Sources */,
 				9A80CE3D2AEF6E4700E97A63 /* Navigation.swift in Sources */,
 				9AA8C18E2ADD9B4600B93E45 /* OptionsView.swift in Sources */,

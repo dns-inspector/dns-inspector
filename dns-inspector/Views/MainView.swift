@@ -50,6 +50,7 @@ struct MainView: View {
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
                         .disabled(self.lookupState.loading)
+                        .modifier(ClearButton(text: $queryName))
                     }
                     HStack {
                         Menu {
@@ -80,6 +81,7 @@ struct MainView: View {
                             doInspect()
                         }
                         .disabled(self.lookupState.loading)
+                        .modifier(ClearButton(text: $queryServerURL))
                         PresetServerButton(clientType: $queryClientType, serverAddress: $queryServerURL)
                         .disabled(self.lookupState.loading)
                     }
