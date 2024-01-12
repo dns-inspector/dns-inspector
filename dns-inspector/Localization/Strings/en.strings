@@ -39,7 +39,16 @@ Show TTL values as	Show TTL values as
 TLS Inspector	TLS Inspector
 Version {version} (build {build})	Version {0} (build {1})
 about_footer	DNS Inspector is free & libre open source software licensed under the GNU GPLv3. DNS Inspector is copyright © 2023-{0} Ian Spence.
+record_description_a	DNS A records contain an IPv4 address.
+record_description_aaaa	DNS AAAA records contain an IPv6 address.
+record_description_apl	DNS APL records contain an IP address prefix list.
+record_description_cname	DNS CNAME records contain destination DNS name to follow.
+record_description_mx	DNS MX records contain mail exchange server addresses.
+record_description_ptr	DNS PTR records are used to resolve a domain name from an IP address.
+record_description_srv	DNS SRV records contain information for locating a specific service.
+record_description_txt	DNS TXT records contain any text data.
 {duration} microseconds	{0} microseconds
 {duration} milliseconds	{0} milliseconds
 {duration} nanoseconds	{0} nanoseconds
 {duration} seconds	{0} seconds
+{record type} Record	{0} Record

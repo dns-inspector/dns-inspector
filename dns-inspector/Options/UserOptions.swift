@@ -20,6 +20,7 @@ private struct OptionsType1: Codable {
     public var rememberQueries: Bool?
     public var rememberLastServer: Bool?
     public var ttlDisplayMode: TTLDisplayMode?
+    public var showRecordDescription: Bool?
     public var dnsPrefersTcp: Bool?
     public var appLanguage: SupportedLanguages?
 
@@ -153,6 +154,16 @@ public class UserOptions {
         }
         set {
             current.ttlDisplayMode = newValue
+            save()
+        }
+    }
+
+    public static var showRecordDescription: Bool {
+        get {
+            return current.showRecordDescription ?? true
+        }
+        set {
+            current.showRecordDescription = newValue
             save()
         }
     }

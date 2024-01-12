@@ -1,7 +1,7 @@
 import Foundation
 import DNSKit
 
-public struct RecordType: Identifiable {
+public struct RecordType: Identifiable, Equatable {
     public let name: String
     public let dnsKitValue: DNSRecordType
     public var id = UUID()
@@ -27,6 +27,10 @@ public struct RecordType: Identifiable {
         default:
             fatalError("Unsupported DNSRecordType value")
         }
+    }
+
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.dnsKitValue == rhs.dnsKitValue
     }
 }
 

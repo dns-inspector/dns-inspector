@@ -20,6 +20,12 @@ struct OptionsView: View {
                         UserOptions.rememberLastServer = on
                     })).tint(Color.accentColor)
 
+                    Toggle(Localize("Show DNS record descriptions"), isOn: .init(get: {
+                        return UserOptions.showRecordDescription
+                    }, set: { on in
+                        UserOptions.showRecordDescription = on
+                    })).tint(Color.accentColor)
+
                     Picker(Localize("Show TTL values as"), selection: $ttlDisplaymode) {
                         Text(localized: "Relative").tag(TTLDisplayMode.relative)
                         Text(localized: "Absolute").tag(TTLDisplayMode.absolute)

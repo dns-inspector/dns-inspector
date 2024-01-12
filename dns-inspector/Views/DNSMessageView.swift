@@ -42,10 +42,27 @@ struct DNSMessageView: View {
                     }
                 }
                 if let answers = message.answers {
-                    Section(Localize("Answers")) {
+                    Section {
                         ForEach(answers, id: \.self) { answer in
                             DNSAnswerView(answer: answer)
                                 .listRowSeparator(.hidden)
+                        }
+                    } header: {
+                        Text(localized: "Answers")
+                    } footer: {
+                        VStack(alignment: .leading, spacing: 8.0) {
+                            ForEach(answerRecordTypes(answers)) { recordType in
+                                VStack(alignment: .leading, spacing: 1.5) {
+                                    HStack(spacing: 2.0) {
+                                        Image(systemName: "info.circle")
+                                            .foregroundStyle(.accent)
+                                        Text(localized: "{record type} Record", args: [recordType.name])
+                                            .bold()
+                                            .foregroundStyle(.accent)
+                                    }
+                                    Text(localized: "record_description_\(recordType.name.lowercased())")
+                                }
+                            }
                         }
                     }
                 }
@@ -89,5 +106,23 @@ struct DNSMessageView: View {
 
         let elapsedStr = String(format: "%.2f", elapsed)
         return Localize("{duration} nanoseconds", args: [elapsedStr])
+    }
+
+    func answerRecordTypes(_ answers: [DNSAnswer]) -> [RecordType] {
+        if !UserOptions.showRecordDescription {
+            return []
+        }
+
+        var answerTypes: [RecordType] = []
+
+        for answer in answers {
+            if let recordType = RecordType.fromDNSKit(answer.recordType) {
+                if !answerTypes.contains(recordType) {
+                    answerTypes.append(recordType)
+                }
+            }
+        }
+
+        return answerTypes
     }
 }
