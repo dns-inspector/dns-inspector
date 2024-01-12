@@ -4,5 +4,10 @@
 <dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIImageName</key>
+		<string>DNS Inspector Icon</string>
+	</dict>
 </dict>
 </plist>
