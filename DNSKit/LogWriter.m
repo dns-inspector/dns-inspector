@@ -35,11 +35,16 @@ static id _instance;
     NSString * documentsDirectory = [paths objectAtIndex:0];
     self.file = [documentsDirectory stringByAppendingPathComponent:file];
     [self open];
+
+    // MARK: TESTFLIGHT ONLY
+    self.level = LogWriterLevelDebug;
+    /*
 #if DEBUG
     self.level = LogWriterLevelDebug;
 #else
     self.level = LogWriterLevelWarning;
 #endif
+     */
     return self;
 }
 
@@ -62,6 +67,7 @@ static id _instance;
 }
 
 - (void) close {
+    [self.handle synchronizeFile];
     [self.handle closeFile];
 }
 

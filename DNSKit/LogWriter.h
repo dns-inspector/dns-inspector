@@ -27,6 +27,9 @@ typedef NS_ENUM(NSUInteger, LogWriterLevel) {
 /// The filepath of the log file
 @property (strong, nonatomic, nonnull) NSString * file;
 
+/// Close this instance. Should only be called when the application is crashing.
+- (void) close;
+
 /// Purge all log files
 - (void) truncateLogs;
 
