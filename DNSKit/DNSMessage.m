@@ -50,6 +50,12 @@
             *error = MAKE_ERROR(1, @"Bad response");
             return nil;
         }
+        if (dataIndex + 2 >= (data.length - 1)) {
+            PError(@"Invalid DNS response: Unable to read DNS name compression");
+            PDebug(@"Response length: %i, data index: %i", (int)data.length, (int)dataIndex);
+            *error = MAKE_ERROR(1, @"Bad response");
+            return nil;
+        }
         uint16_t qtype = ntohs(*(uint16_t *)[data subdataWithRange:NSMakeRange(dataIndex, 2)].bytes);
         uint16_t qclass = ntohs(*(uint16_t *)[data subdataWithRange:NSMakeRange(dataIndex+2, 2)].bytes);
         DNSQuestion * question = [DNSQuestion new];
