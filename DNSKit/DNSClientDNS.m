@@ -122,7 +122,6 @@
                             return;
                         }
 
-                        PDebug(@"Reply: %@", [replyData hexString]);
                         completed(reply, nil);
                         nw_connection_cancel(connection);
                         dispatch_semaphore_signal(sync);
@@ -145,6 +144,20 @@
                             return;
                         }
                         gotReply = @true;
+
+                        uint16_t actualLength = (uint16_t)((NSData*)messageContent).length;
+                        if (actualLength < length) {
+                            PError(@"Unexpected EOF reading reply. Wanted %iB got %iB", (int)length, (int)actualLength);
+                            completed(nil, MAKE_ERROR(1, @"Bad response"));
+                            nw_connection_cancel(connection);
+                            return;
+                        } else if (actualLength > length) {
+                            PError(@"Actual data length exceeded stated length. Wanted %iB got %iB", (int)length, (int)actualLength);
+                            completed(nil, MAKE_ERROR(1, @"Bad response"));
+                            nw_connection_cancel(connection);
+                            return;
+                        }
+
                         PDebug(@"Read %i", (int)length);
 
                         [replyData appendData:(NSData*)messageContent];
@@ -156,7 +169,6 @@
                             return;
                         }
 
-                        PDebug(@"Reply: %@", [replyData hexString]);
                         completed(reply, nil);
                         nw_connection_cancel(connection);
                         dispatch_semaphore_signal(sync);

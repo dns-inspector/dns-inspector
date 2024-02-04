@@ -42,6 +42,8 @@
     short questionCount = ntohs(responseHeader->qlen);
     short answerCount = ntohs(responseHeader->alen);
 
+    PDebug(@"Question count: %i, Answer count: %i", (int)questionCount, (int)answerCount);
+
     if (questionCount <= 0) {
         PError(@"Unexpected number of questions returned in DNS response: %i", questionCount);
         *error = MAKE_ERROR(1, @"Unexpected number of questions in DNS response");

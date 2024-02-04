@@ -80,6 +80,42 @@
     [[DNSClientTests fixtureWithClientType:DNSClientTypeDNS client:client] testQueryTimeout];
 }
 
+- (void) testTCPRandomData {
+    NSError * clientError;
+    DNSClientDNS * client = (DNSClientDNS *)[DNSClientDNS serverWithAddress:@"127.0.0.1:8401" error:&clientError];
+    if (clientError != nil) {
+        XCTFail(@"Manager error should be nil");
+        return;
+    }
+    client.useTCP = @true;
+
+    [[DNSClientTests fixtureWithClientType:DNSClientTypeDNS client:client] testRandomData];
+}
+
+- (void) testTCPLengthOver {
+    NSError * clientError;
+    DNSClientDNS * client = (DNSClientDNS *)[DNSClientDNS serverWithAddress:@"127.0.0.1:8401" error:&clientError];
+    if (clientError != nil) {
+        XCTFail(@"Manager error should be nil");
+        return;
+    }
+    client.useTCP = @true;
+
+    [[DNSClientTests fixtureWithClientType:DNSClientTypeDNS client:client] testLengthOver];
+}
+
+- (void) testTCPLengthUnder {
+    NSError * clientError;
+    DNSClientDNS * client = (DNSClientDNS *)[DNSClientDNS serverWithAddress:@"127.0.0.1:8401" error:&clientError];
+    if (clientError != nil) {
+        XCTFail(@"Manager error should be nil");
+        return;
+    }
+    client.useTCP = @true;
+
+    [[DNSClientTests fixtureWithClientType:DNSClientTypeDNS client:client] testLengthUnder];
+}
+
 - (void) testUDPQueryA {
     NSError * clientError;
     DNSClientDNS * client = (DNSClientDNS *)[DNSClientDNS serverWithAddress:@"8.8.8.8" error:&clientError];

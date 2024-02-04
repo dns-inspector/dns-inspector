@@ -89,4 +89,15 @@
     XCTAssertNil(manager);
 }
 
+- (void) testRandomData {
+    NSError * clientError;
+    DNSClientHTTPS * client = (DNSClientHTTPS *)[DNSClientHTTPS serverWithAddress:@"https://127.0.0.1:8404/dns-query" error:&clientError];
+    if (clientError != nil) {
+        XCTFail(@"Manager error should be nil");
+        return;
+    }
+
+    [[DNSClientTests fixtureWithClientType:DNSClientTypeHTTPS client:client] testRandomData];
+}
+
 @end

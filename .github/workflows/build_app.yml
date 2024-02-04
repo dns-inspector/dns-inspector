@@ -95,6 +95,31 @@ jobs:
           xcodebuild -scheme "DNSKit" -project "dns-inspector.xcodeproj" -derivedDataPath ~/derived_data -sdk iphonesimulator -destination 'platform=iOS Simulator,name=${{ env.TEST_DEVICE }}' build
           xcodebuild -scheme "DNS Inspector" -project "dns-inspector.xcodeproj" -derivedDataPath ~/derived_data -sdk iphonesimulator -destination 'platform=iOS Simulator,name=${{ env.TEST_DEVICE }}' build
 
+      - name: Install Go
+        id: install_go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "stable"
+          cache-dependency-path: DNSKit/TestServer/go.sum
+
+      - name: Prepare Test Server
+        id: testserver_prepare
+        run: |
+          cd DNSKit/TestServer
+          echo "Compiling test server"
+          CGO_ENABLED=0 go build
+          echo "Generating certifiate & key"
+          ./TestServer -g
+          xcrun simctl boot "${{ env.TEST_DEVICE }}"
+          xcrun simctl keychain "${{ env.TEST_DEVICE }}" add-root-cert ./root.crt
+
+      - name: Start Test Server
+        id: testserver_start
+        shell: bash
+        run: |
+          cd DNSKit/TestServer
+          nohup ./TestServer -c root.crt -k root.key &
+
       - name: Run Automated Tests
         id: certificatekit_tests
         run: |
