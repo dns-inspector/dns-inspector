@@ -200,6 +200,7 @@
 		3CC689232B701441009F98DF /* DNSNSRecordData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSNSRecordData.h; sourceTree = "<group>"; };
 		3CC689242B701441009F98DF /* DNSNSRecordData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSNSRecordData.m; sourceTree = "<group>"; };
 		3CC689272B70147E009F98DF /* DNSNSRecordData+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DNSNSRecordData+Private.h"; sourceTree = "<group>"; };
+		3CC689292B701C06009F98DF /* DNSKitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DNSKitTests.xctestplan; sourceTree = "<group>"; };
 		3CCA08042ADF642600CD76E8 /* DNSName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSName.h; sourceTree = "<group>"; };
 		3CCA08052ADF642600CD76E8 /* DNSName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSName.m; sourceTree = "<group>"; };
 		3CCA08092ADF650000CD76E8 /* NSData+ByteAtIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ByteAtIndex.h"; sourceTree = "<group>"; };
@@ -431,8 +432,9 @@
 				9AA8C1382ADCA98000B93E45 /* dns-inspector */,
 				9AA8C14D2ADCAE9C00B93E45 /* DNSKit */,
 				9AA8C15B2ADCAE9C00B93E45 /* DNSKitTests */,
-				9AA8C1372ADCA98000B93E45 /* Products */,
+				3CC689292B701C06009F98DF /* DNSKitTests.xctestplan */,
 				3C9B3DCB2AE4639E002A927E /* Frameworks */,
+				9AA8C1372ADCA98000B93E45 /* Products */,
 			);
 			sourceTree = "<group>";
 		};

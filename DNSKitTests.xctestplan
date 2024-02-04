@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "020ABBD4-2E93-4451-958A-3A202BD8D4F0",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "maximumTestRepetitions" : 3,
+    "testRepetitionMode" : "retryOnFailure"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:dns-inspector.xcodeproj",
+        "identifier" : "9AA8C1542ADCAE9C00B93E45",
+        "name" : "DNSKitTests"
+      }
+    }
+  ],
+  "version" : 1
+}
