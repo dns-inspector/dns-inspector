@@ -220,10 +220,12 @@ struct MainView: View {
                 }
                 guard let message = oMessage else {
                     withAnimation {
+                        self.lookupState.error = MakeError("No error or message")
                         self.lookupState.loading = false
                     }
                     return
                 }
+                self.lookupState.error = nil
                 self.lookupState.loading = false
                 self.lookupState.result = message
                 self.lookupState.query = query

@@ -44,8 +44,7 @@ struct DNSMessageView: View {
                 if let answers = message.answers {
                     Section {
                         ForEach(answers, id: \.self) { answer in
-                            DNSAnswerView(answer: answer)
-                                .listRowSeparator(.hidden)
+                            DNSAnswerView(answer: answer).listRowSeparator(.hidden)
                         }
                     } header: {
                         Text(localized: "Answers")

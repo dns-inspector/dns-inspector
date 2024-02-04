@@ -13,7 +13,7 @@ struct DNSAnswerView: View {
             .padding(8.0)
             .frame(maxWidth: .infinity)
             .background(Color("LightBackground", bundle: nil))
-            DNSAnswerDataView(answer: answer)
+            DNSAnswerDataView(answer: answer, onCopyRecord: copyAnswer)
                 .padding(.horizontal)
                 .padding(.vertical, 8.0)
             HStack {
@@ -46,6 +46,10 @@ struct DNSAnswerView: View {
         }
         .frame(maxWidth: .infinity)
         .listRowInsets(EdgeInsets())
+    }
+
+    func copyAnswer() {
+        UIPasteboard.general.string = answer.stringValue()
     }
 
     func relativeTtlString() -> String {
