@@ -21,9 +21,9 @@
 
 - (void) testIPv4 {
     IPAddressParser * parser = [IPAddressParser new];
-    NSError * error = [parser parseString:@"127.0.0.1"];
+    NSError * error = [parser parseString:@"127.0.0.100"];
     XCTAssertNil(error);
-    XCTAssertStringEqual(parser.ipAddress, @"127.0.0.1");
+    XCTAssertStringEqual(parser.ipAddress, @"127.0.0.100");
     XCTAssertEqual(parser.version, IPAddressVersion4);
 }
 

@@ -17,7 +17,7 @@
      */
 
     NSRegularExpression * portSuffixPattern = [NSRegularExpression regularExpressionWithPattern:@"\\]?:\\d{1,5}$" options:NSRegularExpressionCaseInsensitive error:nil];
-    NSRegularExpression * ipv4Pattern = [NSRegularExpression regularExpressionWithPattern:@"^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9](\\:[0-9]{1,5})?$" options:NSRegularExpressionCaseInsensitive error:nil];
+    NSRegularExpression * ipv4Pattern = [NSRegularExpression regularExpressionWithPattern:@"^[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}(\\:[0-9]{1,5})?$" options:NSRegularExpressionCaseInsensitive error:nil];
     NSRegularExpression * ipv6Pattern = [NSRegularExpression regularExpressionWithPattern:@"^\\[?(([0-9a-f\\:]+){1,4}){1,8}\\]?(\\:[0-9]{1,5})?$" options:NSRegularExpressionCaseInsensitive error:nil];
 
     if ([ipv4Pattern matchesInString:ipAddressString options:0 range:NSMakeRange(0, ipAddressString.length)].count > 0) {
