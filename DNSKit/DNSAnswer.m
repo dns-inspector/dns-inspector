@@ -14,4 +14,63 @@
     return self;
 }
 
+- (NSString *) stringValue {
+    NSString * recordTypeStr;
+
+    switch (self.recordType) {
+        case DNSRecordTypeA:
+            recordTypeStr = @"A";
+            break;
+        case DNSRecordTypeNS:
+            recordTypeStr = @"NS";
+            break;
+        case DNSRecordTypeCNAME:
+            recordTypeStr = @"CNAME";
+            break;
+        case DNSRecordTypeAAAA:
+            recordTypeStr = @"AAAA";
+            break;
+        case DNSRecordTypeAPL:
+            recordTypeStr = @"APL";
+            break;
+        case DNSRecordTypeSRV:
+            recordTypeStr = @"SRV";
+            break;
+        case DNSRecordTypeTXT:
+            recordTypeStr = @"TXT";
+            break;
+        case DNSRecordTypeMX:
+            recordTypeStr = @"MX";
+            break;
+        case DNSRecordTypePTR:
+            recordTypeStr = @"PTR";
+            break;
+        default:
+            recordTypeStr = @"Unknown";
+            break;
+    }
+
+    NSString * recordClassStr;
+
+    switch (self.recordClass) {
+        case DNSRecordClassIN:
+            recordClassStr = @"IN";
+            break;
+        case DNSRecordClassCS:
+            recordClassStr = @"CS";
+            break;
+        case DNSRecordClassCH:
+            recordClassStr = @"CH";
+            break;
+        case DNSRecordClassHS:
+            recordClassStr = @"HS";
+            break;
+        default:
+            recordClassStr = @"UNKNOWN";
+            break;
+    }
+
+    return [NSString stringWithFormat:@"Type: %@, Class: %@, Name: %@, TTL: %i, Value: %@", recordTypeStr, recordClassStr, self.name, (int)self.ttlSeconds, self.data.stringValue];
+}
+
 @end

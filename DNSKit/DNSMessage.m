@@ -5,6 +5,7 @@
 #import "TypesInternal.h"
 #import "DNSRecordData+Private.h"
 #import "DNSCNAMERecordData+Private.h"
+#import "DNSNSRecordData+Private.h"
 #import "DNSMXRecordData+Private.h"
 #import "DNSSRVRecordData+Private.h"
 #import "DNSPTRRecordData+Private.h"
@@ -125,6 +126,16 @@
         switch ((DNSRecordType)rtype) {
             case DNSRecordTypeA: {
                 answer.data = [[DNSARecordData alloc] initWithRecordValue:value];
+                break;
+            } case DNSRecordTypeNS: {
+                NSError * valueError;
+                NSString * name = [DNSName readDNSName:data startIndex:dataIndex+10 dataIndex:NULL error:&valueError];
+                if (valueError != nil) {
+                    PError(@"Bad NS value: %@", valueError);
+                    *error = MAKE_ERROR(1, @"Bad response");
+                    return nil;
+                }
+                answer.data = [[DNSNSRecordData alloc] initWithName:name];
                 break;
             } case DNSRecordTypeCNAME: {
                 NSError * valueError;

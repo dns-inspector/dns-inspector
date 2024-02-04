@@ -10,6 +10,8 @@ public struct RecordType: Identifiable, Equatable {
         switch dnsKitValue {
         case .A:
             return RecordType(name: "A", dnsKitValue: .A)
+        case .NS:
+            return RecordType(name: "NS", dnsKitValue: .NS)
         case .CNAME:
             return RecordType(name: "CNAME", dnsKitValue: .CNAME)
         case .AAAA:
@@ -36,6 +38,7 @@ public struct RecordType: Identifiable, Equatable {
 
 public let RecordTypes: [RecordType] = [
     RecordType(name: "A", dnsKitValue: .A),
+    RecordType(name: "NS", dnsKitValue: .NS),
     RecordType(name: "CNAME", dnsKitValue: .CNAME),
     RecordType(name: "AAAA", dnsKitValue: .AAAA),
     RecordType(name: "APL", dnsKitValue: .APL),

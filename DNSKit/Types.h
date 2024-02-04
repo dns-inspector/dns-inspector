@@ -4,6 +4,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, DNSRecordType) {
     DNSRecordTypeA = 1,
+    DNSRecordTypeNS = 2,
     DNSRecordTypeCNAME = 5,
     DNSRecordTypeAAAA = 28,
     DNSRecordTypeAPL = 42,
