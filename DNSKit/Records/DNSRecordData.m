@@ -20,4 +20,8 @@
     return [self.recordValue hexString];
 }
 
+- (NSString *) stringValue {
+    return @"Unknown";
+}
+
 @end

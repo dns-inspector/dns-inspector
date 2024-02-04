@@ -48,7 +48,7 @@
     } else {
         messageData = [NSMutableData dataWithData:dnsMessage];
     }
-    PDebug(@"%@", messageData.hexString);
+    PDebug(@"Request: %@", messageData.hexString);
 
     // For some reason network framework expects the port to be a string...???
     const char * portStr = [[NSString alloc] initWithFormat:@"%i", (int)self.port].UTF8String;

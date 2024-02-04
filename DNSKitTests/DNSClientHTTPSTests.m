@@ -31,6 +31,17 @@
     [[DNSClientTests fixtureWithClientType:DNSClientTypeHTTPS client:client] testQueryA];
 }
 
+- (void) testQueryNS {
+    NSError * clientError;
+    DNSClientHTTPS * client = (DNSClientHTTPS *)[DNSClientHTTPS serverWithAddress:@"https://dns.google/dns-query" error:&clientError];
+    if (clientError != nil) {
+        XCTFail(@"Manager error should be nil");
+        return;
+    }
+
+    [[DNSClientTests fixtureWithClientType:DNSClientTypeHTTPS client:client] testQueryNS];
+}
+
 - (void) testQueryAAAA {
     NSError * clientError;
     DNSClientHTTPS * client = (DNSClientHTTPS *)[DNSClientHTTPS serverWithAddress:@"https://dns.google/dns-query" error:&clientError];

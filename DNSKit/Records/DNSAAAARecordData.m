@@ -12,4 +12,8 @@
     return [NSString stringWithFormat:@"%s", addr];
 }
 
+- (NSString *) stringValue {
+    return [self ipAddress];
+}
+
 @end

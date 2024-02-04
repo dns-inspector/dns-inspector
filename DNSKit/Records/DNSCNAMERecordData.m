@@ -14,4 +14,8 @@
     return self;
 }
 
+- (NSString *) stringValue {
+    return self.name;
+}
+
 @end

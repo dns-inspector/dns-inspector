@@ -15,6 +15,15 @@
 
 + (DNSMessage *) messageFromData:(NSData *)data error:(NSError **)error {
     DNSMessage * message = [DNSMessage new];
+
+    if (data.length < sizeof(DNS_HEADER)) {
+        PError(@"Unexpected EOF while reading DNS header");
+        *error = MAKE_ERROR(1, @"Invalid DNS response");
+        return nil;
+    }
+
+    PDebug(@"Reply: %@", [data hexString]);
+
     NSData * headerBytes = [data subdataWithRange:NSMakeRange(0, sizeof(DNS_HEADER))];
     DNS_HEADER * responseHeader = (DNS_HEADER *)headerBytes.bytes;
     uint16_t responseId = responseHeader->idn;

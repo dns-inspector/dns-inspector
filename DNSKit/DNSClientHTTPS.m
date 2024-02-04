@@ -39,7 +39,7 @@
         return;
     }
 
-    PDebug(@"Question: %@", [questionData hexString]);
+    PDebug(@"Request: %@", [questionData hexString]);
 
     NSMutableString * urlString = [self.address mutableCopy];
     if ([urlString containsString:@"?"]) {
@@ -66,10 +66,12 @@
             return;
         }
         if (urlResponse == nil) {
+            PDebug(@"nil NSURLResponse");
             completed(nil, MAKE_ERROR(1, @"Bad response"));
             return;
         }
         if (data == nil) {
+            PDebug(@"nil NSData");
             completed(nil, MAKE_ERROR(1, @"Bad response"));
             return;
         }
@@ -79,16 +81,19 @@
             completed(nil, MAKE_ERROR(1, errorString));
             return;
         }
-        if (data.length > 512) {
+        if (data.length > 2048) {
+            PDebug(@"Excessivve data size %i", (int)data.length);
             completed(nil, MAKE_ERROR(1, @"Bad response"));
             return;
         }
         NSString * contentType = [response valueForHeader:@"Content-Type"];
         if (contentType == nil) {
+            PDebug(@"No content type");
             completed(nil, MAKE_ERROR(1, @"Bad response"));
             return;
         }
         if (![contentType.lowercaseString isEqualToString:@"application/dns-message"]) {
+            PDebug(@"Bad content type: %@", contentType);
             completed(nil, MAKE_ERROR(1, @"Bad response"));
             return;
         }

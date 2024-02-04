@@ -27,4 +27,8 @@
     return text;
 }
 
+- (NSString *) stringValue {
+    return self.text;
+}
+
 @end

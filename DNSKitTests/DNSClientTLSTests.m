@@ -31,6 +31,17 @@
     [[DNSClientTests fixtureWithClientType:DNSClientTypeTLS client:client] testQueryA];
 }
 
+- (void) testQueryNS {
+    NSError * clientError;
+    DNSClientTLS * client = (DNSClientTLS *)[DNSClientTLS serverWithAddress:@"8.8.8.8" error:&clientError];
+    if (clientError != nil) {
+        XCTFail(@"Manager error should be nil");
+        return;
+    }
+
+    [[DNSClientTests fixtureWithClientType:DNSClientTypeTLS client:client] testQueryNS];
+}
+
 - (void) testQueryAAAA {
     NSError * clientError;
     DNSClientTLS * client = (DNSClientTLS *)[DNSClientTLS serverWithAddress:@"8.8.8.8" error:&clientError];
@@ -64,5 +75,37 @@
     [[DNSClientTests fixtureWithClientType:DNSClientTypeTLS client:client] testQueryTimeout];
 }
 
+- (void) testRandomData {
+    NSError * clientError;
+    DNSClientTLS * client = (DNSClientTLS *)[DNSClientTLS serverWithAddress:@"127.0.0.1:8403" error:&clientError];
+    if (clientError != nil) {
+        XCTFail(@"Manager error should be nil");
+        return;
+    }
+
+    [[DNSClientTests fixtureWithClientType:DNSClientTypeTLS client:client] testRandomData];
+}
+
+- (void) testLengthOver {
+    NSError * clientError;
+    DNSClientTLS * client = (DNSClientTLS *)[DNSClientTLS serverWithAddress:@"127.0.0.1:8403" error:&clientError];
+    if (clientError != nil) {
+        XCTFail(@"Manager error should be nil");
+        return;
+    }
+
+    [[DNSClientTests fixtureWithClientType:DNSClientTypeTLS client:client] testLengthOver];
+}
+
+- (void) testLengthUnder {
+    NSError * clientError;
+    DNSClientTLS * client = (DNSClientTLS *)[DNSClientTLS serverWithAddress:@"127.0.0.1:8403" error:&clientError];
+    if (clientError != nil) {
+        XCTFail(@"Manager error should be nil");
+        return;
+    }
+
+    [[DNSClientTests fixtureWithClientType:DNSClientTypeTLS client:client] testLengthUnder];
+}
 
 @end
