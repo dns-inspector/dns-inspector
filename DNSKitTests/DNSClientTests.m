@@ -65,7 +65,7 @@
 
 - (void) testQueryNS {
     NSError * queryError;
-    DNSQuery * query = [DNSQuery queryWithClientType:self.clientType serverAddress:[self mockServerAddressForQuery] recordType:DNSRecordTypeNS name:@"dns.google" parameters:nil error:&queryError];
+    DNSQuery * query = [DNSQuery queryWithClientType:self.clientType serverAddress:[self mockServerAddressForQuery] recordType:DNSRecordTypeNS name:@"example.com" parameters:nil error:&queryError];
     if (queryError != nil) {
         XCTAssertNil(queryError);
         return;
@@ -80,10 +80,20 @@
         XCTAssertTrue(message.answers.count > 0);
         XCTAssertEqual(message.responseCode, DNSResponseCodeSuccess);
 
+        bool foundARecord = false;
+        bool foundBRecord = false;
         for (DNSAnswer * answer in message.answers) {
             DNSNSRecordData * data = (DNSNSRecordData *)answer.data;
-            XCTAssertTrue([[data name] isEqualToString:@"a.iana-servers.net."] || [[data name] isEqualToString:@"b.iana-servers.net."]);
+
+            if ([data.name isEqualToString:@"a.iana-servers.net."]) {
+                foundARecord = true;
+            } else if ([data.name isEqualToString:@"b.iana-servers.net."]) {
+                foundBRecord = true;
+            }
         }
+
+        XCTAssertTrue(foundARecord);
+        XCTAssertTrue(foundBRecord);
 
         passed = @YES;
         dispatch_semaphore_signal(sync);
