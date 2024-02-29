@@ -1,21 +1,17 @@
 import SwiftUI
 
-struct ClearButton: ViewModifier {
+struct ClearButton: View {
     @Binding var text: String
 
-    public func body(content: Content) -> some View {
-        ZStack(alignment: .trailing) {
-            content
-
-            if !text.isEmpty {
-                Button {
-                    self.text = ""
-                } label: {
-                    Image(systemName: "delete.left")
-                        .foregroundColor(.secondaryText)
-                }
-                .padding(.trailing, 8)
+    var body: some View {
+        if !text.isEmpty {
+            Button {
+                self.text = ""
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+                    .foregroundColor(.secondaryText)
             }
+            .padding(.trailing, 8)
         }
     }
 }

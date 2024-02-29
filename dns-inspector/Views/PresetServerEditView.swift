@@ -23,7 +23,7 @@ struct PresetServerEditView: View {
             .autocorrectionDisabled()
             .textInputAutocapitalization(.never)
             .submitLabel(.done)
-            .modifier(ClearButton(text: $serverAddress))
+            ClearButton(text: $serverAddress)
             if let error = self.validationError {
                 ErrorCellView(error: error)
             }
