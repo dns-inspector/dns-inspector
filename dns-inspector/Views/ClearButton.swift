@@ -10,6 +10,7 @@ struct ClearButton: View {
             } label: {
                 Image(systemName: "xmark.circle.fill")
                     .foregroundColor(.secondaryText)
+                    .opacity(0.5)
             }
             .padding(.trailing, 8)
         }

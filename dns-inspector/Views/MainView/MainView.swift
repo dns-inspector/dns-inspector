@@ -10,81 +10,29 @@ private class MainViewState: ObservableObject {
     @Published var success = false
 }
 
+private class MainViewQueryState: ObservableObject {
+    @Published var recordType = RecordTypes[0]
+    @Published var name = ""
+    @Published var clientType = UserOptions.lastUsedServer?.clientType ?? ClientTypes[0]
+    @Published var serverAddress = UserOptions.lastUsedServer?.address ?? ""
+}
+
 struct MainView: View {
-    @State private var queryType: RecordType = RecordTypes[0]
-    @State private var queryName = ""
-    @State private var queryClientType: ClientType = UserOptions.lastUsedServer?.clientType ?? ClientTypes[0]
-    @State private var queryServerURL = UserOptions.lastUsedServer?.address ?? ""
+    @StateObject private var query = MainViewQueryState()
+    @StateObject private var lookupState = MainViewState()
     @State private var showAboutView = false
     @State private var showOptionsView = false
-    @StateObject private var lookupState = MainViewState()
 
     var body: some View {
         Navigation {
             List {
                 Section(Localize("New query")) {
-                    HStack {
-                        Menu {
-                            ForEach(RecordTypes) { t in
-                                Button(action: {
-                                    self.queryType = t
-                                }, label: {
-                                    Text(t.name)
-                                })
-                            }
-                        } label: {
-                            HStack {
-                                Text(self.queryType.name)
-                                Image(systemName: "chevron.up.chevron.down")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(maxHeight: 12)
-                            }
-                        }
-                        .disabled(self.lookupState.loading)
-                        Divider()
-                        TextField(text: $queryName) {
-                            Text(localized: "Name")
-                        }
-                        .keyboardType(.URL)
-                        .textInputAutocapitalization(.never)
-                        .autocorrectionDisabled()
-                        .disabled(self.lookupState.loading)
-                        ClearButton(text: $queryName)
+                    MainViewNameInput(recordType: $query.recordType, name: $query.name)
+                    .disabled(self.lookupState.loading)
+                    MainViewServerInput(clientType: $query.clientType, serverAddress: $query.serverAddress) {
+                        doInspect()
                     }
-                    HStack {
-                        Menu {
-                            ForEach(ClientTypes) { t in
-                                Button(action: {
-                                    self.queryClientType = t
-                                }, label: {
-                                    Text(t.name)
-                                })
-                            }
-                        } label: {
-                            Text(self.queryClientType.name)
-                            Image(systemName: "chevron.up.chevron.down")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxHeight: 12)
-                        }
-                        .disabled(self.lookupState.loading)
-                        Divider()
-                        TextField(text: $queryServerURL) {
-                            Text(localized: serverPlaceholder())
-                        }
-                        .keyboardType(.URL)
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                        .submitLabel(.done)
-                        .onSubmit {
-                            doInspect()
-                        }
-                        .disabled(self.lookupState.loading)
-                        ClearButton(text: $queryServerURL)
-                        PresetServerButton(clientType: $queryClientType, serverAddress: $queryServerURL)
-                        .disabled(self.lookupState.loading)
-                    }
+                    .disabled(self.lookupState.loading)
                     if self.lookupState.loading {
                         HStack {
                             ProgressView()
@@ -98,23 +46,8 @@ struct MainView: View {
                     }
                 }
                 if UserOptions.rememberQueries && RecentQueryManager.shared.queries.count > 0 {
-                    Section(Localize("Recent queries")) {
-                        ForEach(RecentQueryManager.shared.queries) { query in
-                            Button(action: {
-                                doInspect(recordType: DNSRecordType(rawValue: query.recordType)!, name: query.name, clientType: DNSClientType(rawValue: query.clientType)!, serverAddress: query.serverAddress)
-                            }, label: {
-                                HStack {
-                                    RoundedLabel(text: query.recordTypeName(), textColor: .primary, borderColor: .gray)
-                                    Text(query.name)
-                                    Divider()
-                                    RoundedLabel(text: query.clientTypeName(), textColor: .primary, borderColor: .gray)
-                                    Text(query.serverAddress)
-                                }
-                            }).buttonStyle(.plain)
-                        }
-                        .onDelete { idx in
-                            RecentQueryManager.shared.delete(idx)
-                        }
+                    MainViewRecentLookups { query in
+                        doInspect(recordType: DNSRecordType(rawValue: query.recordType)!, name: query.name, clientType: DNSClientType(rawValue: query.clientType)!, serverAddress: query.serverAddress)
                     }
                 }
             }
@@ -170,25 +103,12 @@ struct MainView: View {
         }
     }
 
-    func serverPlaceholder() -> String {
-        switch self.queryClientType.dnsKitValue {
-        case DNSClientType.DNS.rawValue:
-            return "Server IP"
-        case DNSClientType.TLS.rawValue:
-            return "Server IP"
-        case DNSClientType.HTTPS.rawValue:
-            return "Server URL"
-        default:
-            return "Server"
-        }
-    }
-
     func isInvalid() -> Bool {
-        return self.queryName.isEmpty || self.queryServerURL.isEmpty
+        return self.query.name.isEmpty || self.query.serverAddress.isEmpty
     }
 
     func doInspect() {
-        doInspect(recordType: self.queryType.dnsKitValue, name: self.queryName, clientType: DNSClientType(rawValue: self.queryClientType.dnsKitValue)!, serverAddress: self.queryServerURL)
+        doInspect(recordType: self.query.recordType.dnsKitValue, name: self.query.name, clientType: DNSClientType(rawValue: self.query.clientType.dnsKitValue)!, serverAddress: self.query.serverAddress)
     }
 
     func doInspect(recordType: DNSRecordType, name: String, clientType: DNSClientType, serverAddress: String) {
@@ -232,7 +152,7 @@ struct MainView: View {
                 self.lookupState.success = true
                 RecentQueryManager.shared.add(RecentQuery(recordType: query.recordType.rawValue, name: query.name, clientType: query.clientType.rawValue, serverAddress: query.serverAddress))
                 if UserOptions.rememberLastServer {
-                    UserOptions.lastUsedServer = LastUsedServer(clientType: queryClientType, address: queryServerURL)
+                    UserOptions.lastUsedServer = LastUsedServer(clientType: self.query.clientType, address: self.query.serverAddress)
                 }
             }
         }
