@@ -1,0 +1,54 @@
+About                                   	Acerca de
+Absolute                                	Absoluto
+Add Preset Server                       	Añadir servidor predefinido
+Answers                                 	Respuestas
+Contribute to DNS Inspector             	Contribuir to DNS Inspector
+DNS Inspector                           	DNS Inspector
+Follow @dnsinspector on Mastodon        	Sigue a @dnsinspector en Mastodon
+General                                 	General
+Get Involved                            	Involucrarse
+Loading...                              	Cargando...
+More from the developer                 	Más apps del desarrollador
+Name                                    	Nombre
+Network                                 	Red
+New Preset Server                       	Nuevo servidor predefinido
+New query                               	Nueva petición
+Options                                 	Opciones
+Preset Servers                          	Servidores predefinidos
+Preset servers                          	Servidores predefinidos
+Provide Feedback                        	Enviar comentarios
+Query                                   	Petición
+Question                                	Pregunta
+Rate in App Store                       	Calificar en la App Store
+Recent queries                          	Peticiones recientes
+Relative                                	Relativo
+Remember last server                    	Recordar último servidor
+Remember recent queries                 	Recordar peticiones recientes
+Response                                	Respuesta
+Results                                 	Resultados
+Save                                    	Guardar
+Send traditional DNS requests using TCP 	Enviar peticiones DNS tradicionales con TCP
+Server                                  	Servidor
+Server Address                          	Dirección del servidor
+Server IP                               	IP del servidor
+Server Type                             	Tipo de servidor
+Server URL                              	URL del servidor
+Share & Feedback                        	Compartir y comentarios
+Share DNS Inspector                     	Compartir DNS Inspector
+Show TTL values as                      	Mostrar valores TTL (tiempo de vidxa) como
+TLS Inspector                           	TLS Inspector
+Version {version} (build {build})       	Versión {0} (compilación {1})
+about_footer                            	DNS Inspector es software libre y gratuito bajo licencia GNU GPLv3. Derechos de autor de DNS Inspector © 2023-{0} Ian Spence.
+record_description_a                    	Los registros DNS A contienen una dirección IPv4.
+record_description_aaaa                 	Los registros DNS AAAA contienen una dirección IPv6.
+record_description_apl                  	Los registros DNS APL contienen una lista de prefijos IP.
+record_description_cname                	Los registros DNS CNAME contienen un nombre DNS al que seguir.
+record_description_mx                   	Los registros DNS MX contienen direcciones de servidores de intercambio de correos electrónicos.
+record_description_ptr                  	Los registros DNS PTR se usan para resolver un dominio DNS a partir de una dirección IP.
+record_description_srv                  	Los registros DNS SRV contienen información para localizar un servicio específico.
+record_description_txt                  	Los registros DNS TXT pueden contener texto arbitrario.
+{duration} microseconds                 	{0} microsegundos
+{duration} milliseconds                 	{0} milisegundos
+{duration} nanoseconds                  	{0} nanosegundos
+{duration} seconds                      	{0} segundos
+{record type} Record                    	Registro {0}
