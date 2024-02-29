@@ -36,15 +36,12 @@ static id _instance;
     self.file = [documentsDirectory stringByAppendingPathComponent:file];
     [self open];
 
-    // MARK: TESTFLIGHT ONLY
-    self.level = LogWriterLevelDebug;
-    /*
 #if DEBUG
     self.level = LogWriterLevelDebug;
 #else
     self.level = LogWriterLevelWarning;
 #endif
-     */
+
     return self;
 }
 

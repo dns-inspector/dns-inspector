@@ -345,6 +345,16 @@
 			path = MainView;
 			sourceTree = "<group>";
 		};
+		3CAD46A62B90410100E97A04 /* AboutView */ = {
+			isa = PBXGroup;
+			children = (
+				3C0C6B2D2B38F309006D3F41 /* AboutTableView.swift */,
+				3C0C6B2F2B38F35F006D3F41 /* AboutTableViewRepresentable.swift */,
+				9AA8C18B2ADCC2CD00B93E45 /* AboutView.swift */,
+			);
+			path = AboutView;
+			sourceTree = "<group>";
+		};
 		3CCA08082ADF64A400CD76E8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,9 +404,7 @@
 		9A80CE272AEF2C6B00E97A63 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3C0C6B2D2B38F309006D3F41 /* AboutTableView.swift */,
-				3C0C6B2F2B38F35F006D3F41 /* AboutTableViewRepresentable.swift */,
-				9AA8C18B2ADCC2CD00B93E45 /* AboutView.swift */,
+				3CAD46A62B90410100E97A04 /* AboutView */,
 				3C0C6B312B38F944006D3F41 /* ActionTipTarget.swift */,
 				3CF7FF822B45256C000307CD /* ClearButton.swift */,
 				3CCA312A2AF5DAEE00C11280 /* DNSAnswerDataView.swift */,

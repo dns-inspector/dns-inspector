@@ -1,4 +1,5 @@
 import SwiftUI
+import DNSKit
 
 struct AboutView: View {
     @Environment(\.dismiss) private var dismiss

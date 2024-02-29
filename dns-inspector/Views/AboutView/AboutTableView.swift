@@ -1,4 +1,5 @@
 import UIKit
+import DNSKit
 import StoreKit
 import MessageUI
 
@@ -52,7 +53,7 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 3
+            return 4
         case 1:
             return 2
         case 2:
@@ -74,7 +75,15 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
             cell.textLabel?.text = Localize("Rate in App Store")
         case (0, 2):
             cell.imageView?.image = UIImage(systemName: "bubble.left.and.exclamationmark.bubble.right.fill")
-            cell.textLabel?.text = Localize("Provide Feedback")
+            cell.textLabel?.text = Localize("Provide feedback")
+        case (0, 3):
+            cell.imageView?.image = UIImage(systemName: "ladybug.fill")
+            cell.textLabel?.text = Localize("Verbose logging")
+            let toggle = UISwitch()
+            toggle.isOn = LogWriter.sharedInstance().level == .debug
+            toggle.addTarget(self, action: #selector(toggleVerboseLogging), for: .valueChanged)
+            toggle.onTintColor = UIColor(named: "AccentColor")
+            cell.accessoryView = toggle
         case (1, 0):
             cell.imageView?.image = UIImage(named: "Mastodon")
             cell.textLabel?.text = Localize("Follow @dnsinspector on Mastodon")
@@ -160,5 +169,9 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
         ]
         productViewController.loadProduct(withParameters: parameters, completionBlock: nil)
         self.present(productViewController, animated: true)
+    }
+
+    @objc func toggleVerboseLogging(toggle: UISwitch) {
+        print("\(toggle.isOn)")
     }
 }
