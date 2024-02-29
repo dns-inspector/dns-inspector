@@ -18,7 +18,7 @@ their index. The order of the variables does not matter in the translated string
 index matches that of the array. For example, this is perfectly valid:
 `"My name is {1}, are you {0}?"`. Variables can be repeated multiple times.
 
-# Strings Files
+## Strings Files
 
 DNS Inspector's localized strings are stored in so-called `.strings` files. These files contain
 one entry per line in the format of `key TAB value` (without spaces). Lines that begin with a `#`
@@ -33,3 +33,11 @@ remove this comment when the translation has been completed.
 
 As build time, these strings files are used to generate a Apple property list file, which is
 embedded in DNS Inspector.
+
+The header at the top of the strings file must be present, but you may wish to update the
+copyright year should that be incorrect.
+
+## Licensing
+
+While DNS Inspector is primarily a GPL3.0 product, localization strings are
+licensed using CC BY-SA 4.0 Attribution-ShareAlike 4.0 International.
