@@ -32,7 +32,7 @@ jobs:
     steps:
       - name: Checkout Source
         id: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #pin v4.1.1
 
       - name: Install Profile and Certificates
         id: install_credentials
@@ -62,7 +62,7 @@ jobs:
 
       - name: Restore Cached SwiftLint
         id: restore_swiftlint
-        uses: actions/cache@v4
+        uses: actions/cache@ab5e6d0c87105b4c9c2047343972218f562e4319 #pin v4.0.1
         with:
           key: ${{ steps.prepare.outputs.SWIFTLINT_CACHE_KEY }}
           path: |
@@ -97,7 +97,7 @@ jobs:
 
       - name: Install Go
         id: install_go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491 #pin v5.0.0
         with:
           go-version: "stable"
           cache-dependency-path: DNSKit/TestServer/go.sum
@@ -125,7 +125,7 @@ jobs:
         run: |
           xcodebuild -scheme "DNSKitTests" -project "dns-inspector.xcodeproj" -derivedDataPath ~/derived_data -sdk iphonesimulator -destination 'platform=iOS Simulator,name=${{ env.TEST_DEVICE }}' test
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 #pin v4.3.1
         if: failure()
         with:
           name: test-results

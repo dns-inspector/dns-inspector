@@ -1,0 +1,35 @@
+name: "Validate Localization"
+
+on:
+  push:
+    paths:
+      - '.github/workflows/validate_lang.yml'
+      - 'dns-inspector/Localization/**'
+  pull_request:
+    paths:
+      - 'dns-inspector/Localization/**'
+
+permissions:
+  packages: read
+
+jobs:
+  build:
+    name: "Validate Localization"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        id: checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 #pin v4.1.1
+      
+      - name: Validate localization
+        id: validate_localization
+        run: |
+          cd "dns-inspector/Localization"
+          python3 lang.py
+          if [[ $(git diff --stat) != '' ]]; then
+            echo "::error ::Untracked changes to localization detected!"
+            git status
+            exit 1
+          else
+            echo "No untracked changes to localization detected"
+          fi
