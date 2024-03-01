@@ -1,10 +1,12 @@
-# DNS Inspector 
+# DNS Inspector
+
+[![Download](https://img.shields.io/itunes/v/6470965982.svg?label=iTunes%20App%20Store&logo=apple&style=flat)](https://dns-inspector.com/app-store)
+[![LICENSE](https://img.shields.io/github/license/dns-inspector/dns-inspector.svg?logo=gnu&style=flat)](https://github.com/dns-inspector/dns-inspector/blob/app-store/LICENSE)
+[![Follow](https://img.shields.io/mastodon/follow/111626564034221195?domain=https%3A%2F%2Finfosec.exchange&logo=mastodon&logoColor=white&style=flat)](https://infosec.exchange/@dns-inspector)
+[![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/8262/badge)](https://bestpractices.coreinfrastructure.org/projects/8262)
 
 DNS Inspector is a free & open source iOS and iPadOS application that empowers you to perform
 advanced DNS queries anytime and anywhere.
-
-> [!NOTE]  
-> DNS Inspector is not yet available on the App Store.
 
 <img src="https://raw.githubusercontent.com/dns-inspector/dns-inspector/app-store/.github/iPhone67_1.png" alt="Screenshot of DNS Inspector showing the main view" height="300" />
 <img src="https://raw.githubusercontent.com/dns-inspector/dns-inspector/app-store/.github/iPhone67_2.png" alt="Screenshot of DNS Inspector showing the results of a lookup for apple.com" height="300" />

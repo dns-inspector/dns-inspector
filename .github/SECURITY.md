@@ -23,7 +23,7 @@ Depending on the severity of the issue, which may be larger than you think, we a
 reports private until we can determine the scope of the issue.
 
 Instructions on how to report vulnerabilities to us are provided on our website:
-https://tlsinspector.com/vulnerability.html
+https://dns-inspector.com/vulnerability.html
 
 We prefer that you use the Google Form or Signal to report issues instead of regular email.
 We do not provide a PGP public key and do not support responding to PGP encrypted emails.
@@ -32,6 +32,6 @@ We do not provide a PGP public key and do not support responding to PGP encrypte
 
 **Do you offer any form of reward for identifying security issues?**
 We do not run a bug bounty program and do not offer monetary rewards. DNS Inspector is an open
-source project with absolutely no budget. All expenses for the project are donated. We will provide
-credit to you (of a name of your choice and single link to a social media profile) in release notes
-for discovered issues.
+source project with absolutely no budget. All expenses for the project are donated. At our
+discretion we will provide credit to you (of a name of your choice and single link to a social
+media profile) in release notes for discovered issues.
