@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C0410062B93D4BD00389A16 /* AppLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0410052B93D4BD00389A16 /* AppLanguageView.swift */; };
 		3C0C6B232B38D854006D3F41 /* IPAddressParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C0C6B212B38D854006D3F41 /* IPAddressParser.h */; };
 		3C0C6B242B38D854006D3F41 /* IPAddressParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C6B222B38D854006D3F41 /* IPAddressParser.m */; };
 		3C0C6B262B38E147006D3F41 /* IPAddressParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C6B252B38E147006D3F41 /* IPAddressParserTests.m */; };
@@ -160,6 +161,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C0410052B93D4BD00389A16 /* AppLanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguageView.swift; sourceTree = "<group>"; };
 		3C0C6B212B38D854006D3F41 /* IPAddressParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IPAddressParser.h; sourceTree = "<group>"; };
 		3C0C6B222B38D854006D3F41 /* IPAddressParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPAddressParser.m; sourceTree = "<group>"; };
 		3C0C6B252B38E147006D3F41 /* IPAddressParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IPAddressParserTests.m; sourceTree = "<group>"; };
@@ -308,6 +310,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C0410042B93D48200389A16 /* OptionsView */ = {
+			isa = PBXGroup;
+			children = (
+				3C0410052B93D4BD00389A16 /* AppLanguageView.swift */,
+				9AA8C18D2ADD9B4600B93E45 /* OptionsView.swift */,
+			);
+			path = OptionsView;
+			sourceTree = "<group>";
+		};
 		3C6CCD5B2B3BB5B900A3B6F2 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,7 +425,7 @@
 				3C0C6B332B39108B006D3F41 /* ErrorCellView.swift */,
 				3CAD469F2B903BC800E97A04 /* MainView */,
 				9A80CE3C2AEF6E4700E97A63 /* Navigation.swift */,
-				9AA8C18D2ADD9B4600B93E45 /* OptionsView.swift */,
+				3C0410042B93D48200389A16 /* OptionsView */,
 				9A80CE372AEF650200E97A63 /* PresetServerButton.swift */,
 				9A80CE332AEF633600E97A63 /* PresetServerEditView.swift */,
 				9A80CE352AEF634700E97A63 /* PresetServerListView.swift */,
@@ -775,6 +786,7 @@
 				3C710D882AE773B400F252C8 /* RecordClass.swift in Sources */,
 				3C6CCD5F2B3BB66000A3B6F2 /* Localization+SwiftUI.swift in Sources */,
 				3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */,
+				3C0410062B93D4BD00389A16 /* AppLanguageView.swift in Sources */,
 				3C0C6B302B38F35F006D3F41 /* AboutTableViewRepresentable.swift in Sources */,
 				9A80CE322AEF5C6100E97A63 /* AppDelegate.swift in Sources */,
 				3C0C6B342B39108B006D3F41 /* ErrorCellView.swift in Sources */,

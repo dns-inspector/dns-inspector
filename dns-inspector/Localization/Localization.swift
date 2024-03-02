@@ -45,6 +45,11 @@ private var LOCALIZATION_DICTIONARY: [String: String]?
 
 public enum SupportedLanguages: String, CaseIterable, Codable {
     case English = "en"
+    case Spanish = "es"
+
+    var name: String {
+        get { return String(describing: self) }
+    }
 }
 
 public class Localization {

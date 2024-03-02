@@ -5,8 +5,10 @@ About	About
 Absolute	Absolute
 Add Preset Server	Add Preset Server
 Answers	Answers
+App language	App language
 Contribute to DNS Inspector	Contribute to DNS Inspector
 DNS Inspector	DNS Inspector
+Dismiss	Dismiss
 Error	Error
 Follow @dnsinspector on Mastodon	Follow @dnsinspector on Mastodon
 General	General
@@ -44,7 +46,9 @@ Show TTL values as	Show TTL values as
 TLS Inspector	TLS Inspector
 Verbose logging	Verbose logging
 Version {version} (build {build})	Version {0} (build {1})
+Your changes will take affect only quitting and restarting DNS Inspector	Your changes will take affect only quitting and restarting DNS Inspector
 about_footer	DNS Inspector is free & libre open source software licensed under the GNU GPLv3. DNS Inspector is copyright © 2023-{0} Ian Spence.
+localization_credits	Spanish translation by Kevin López Brante. Interested in translating DNS Inspector to another language? Send us a message through the feedback link!
 record_description_a	DNS A records contain an IPv4 address.
 record_description_aaaa	DNS AAAA records contain an IPv6 address.
 record_description_apl	DNS APL records contain an IP address prefix list.

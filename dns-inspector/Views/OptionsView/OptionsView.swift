@@ -8,6 +8,11 @@ struct OptionsView: View {
         Navigation {
             List {
                 Section(Localize("General")) {
+                    NavigationLink {
+                        AppLanguageView()
+                    } label: {
+                        Text(localized: "App language")
+                    }
                     Toggle(Localize("Remember recent queries"), isOn: .init(get: {
                         return UserOptions.rememberQueries
                     }, set: { on in

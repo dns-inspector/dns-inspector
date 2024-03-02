@@ -5,8 +5,12 @@ About	Acerca de
 Absolute	Absoluto
 Add Preset Server	Añadir servidor predefinido
 Answers	Respuestas
+# TODO
+App language	App language
 Contribute to DNS Inspector	Contribuir to DNS Inspector
 DNS Inspector	DNS Inspector
+# TODO
+Dismiss	Dismiss
 # TODO
 Error	Error
 Follow @dnsinspector on Mastodon	Sigue a @dnsinspector en Mastodon
@@ -48,7 +52,11 @@ TLS Inspector	TLS Inspector
 # TODO
 Verbose logging	Verbose logging
 Version {version} (build {build})	Versión {0} (compilación {1})
+# TODO
+Your changes will take affect only quitting and restarting DNS Inspector	Your changes will take affect only quitting and restarting DNS Inspector
 about_footer	DNS Inspector es software libre y gratuito bajo licencia GNU GPLv3. Derechos de autor de DNS Inspector © 2023-{0} Ian Spence.
+# TODO
+localization_credits	Spanish translation by Kevin López Brante. Interested in translating DNS Inspector to another language? Send us a message through the feedback link!
 record_description_a	Los registros DNS A contienen una dirección IPv4.
 record_description_aaaa	Los registros DNS AAAA contienen una dirección IPv6.
 record_description_apl	Los registros DNS APL contienen una lista de prefijos IP.
