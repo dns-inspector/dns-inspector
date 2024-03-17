@@ -4,6 +4,7 @@ import DNSKit
 public struct DNSMessageView: View {
     public let query: DNSQuery
     public let message: DNSMessage
+    @State private var showWhois = false
     @Environment(\.dismiss) private var dismiss
 
     public var body: some View {
@@ -78,8 +79,9 @@ public struct DNSMessageView: View {
                 }
                 ToolbarItem {
                     Menu {
-                        NavigationLink {
-                            WHOISView(domain: query.name)
+                        // Can't use a NavigationLink in a menu on older iOS
+                        Button {
+                            showWhois.toggle()
                         } label: {
                             Label(Localize("Domain Information"), systemImage: "person.text.rectangle")
                         }
@@ -87,6 +89,9 @@ public struct DNSMessageView: View {
                         Image(systemName: "ellipsis.circle")
                     }
                 }
+            }
+            .destination(isPresented: $showWhois) {
+                WHOISView(domain: query.name)
             }
         }
     }

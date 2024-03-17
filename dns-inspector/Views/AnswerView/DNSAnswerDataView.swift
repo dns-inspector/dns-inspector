@@ -110,12 +110,12 @@ struct DNSAnswerDataView: View {
             Button {
                 UIPasteboard.general.string = answer.data.stringValue()
             } label: {
-                Label("Copy Record Data", systemImage: "clipboard")
+                Label("Copy Record Data", systemImage: "doc.on.clipboard")
             }
             Button {
                 self.onCopyRecord()
             } label: {
-                Label("Copy Entire Record", systemImage: "clipboard")
+                Label("Copy Entire Record", systemImage: "doc.on.clipboard")
             }
         })
     }

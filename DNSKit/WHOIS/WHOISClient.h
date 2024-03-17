@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - domain: The domain name to query for
 ///   - bareDomain: A pointer to an unallocated NSString object. This will be populated with the bare domain,
 ///                 that is the inputted domain with no subdomains.
-+ (NSString * _Nullable) getLookupHostForDomain:(NSString * _Nonnull)domain bareDomain:(NSString **)bareDomain;
++ (NSString * _Nullable) getLookupHostForDomain:(NSString * _Nonnull)domain bareDomain:(NSString * _Nullable * _Nonnull)bareDomain;
 
 @end
 
