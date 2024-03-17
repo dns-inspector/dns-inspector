@@ -39,3 +39,4 @@ openssl.xcframework
 
 # Generated Files
 dns-inspector/Localization/Strings/*.plist
+DNSKit/WHOIS/WHOISClient+Private.h

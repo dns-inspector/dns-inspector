@@ -12,4 +12,6 @@
 
 #define MAKE_ERROR(ECODE, EDESCRIPTION) [NSError errorWithDomain:@"io.ecn.DNSKit" code:ECODE userInfo:@{NSLocalizedDescriptionKey: EDESCRIPTION}]
 
+#define CastOrDefault(O, C, D) ([O isKindOfClass:C]) ? O : D
+
 #endif
