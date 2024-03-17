@@ -683,6 +683,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AA8C1632ADCAE9C00B93E45 /* Build configuration list for PBXNativeTarget "DNSKit" */;
 			buildPhases = (
+				3C26AD812BA683C00022BABD /* Compile WHOIS Info */,
 				9AA8C1472ADCAE9C00B93E45 /* Headers */,
 				9AA8C1482ADCAE9C00B93E45 /* Sources */,
 				9AA8C1492ADCAE9C00B93E45 /* Frameworks */,
@@ -787,6 +788,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3C26AD812BA683C00022BABD /* Compile WHOIS Info */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Compile WHOIS Info";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ ! -f \"DNSKit/WHOIS/WHOISClient+Private.h\" ]; then\n  pushd DNSKit/WHOIS\n  python3 update_whois.py\n  popd\nfi\n";
+		};
 		3C7D26D22B45346B009954D7 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
