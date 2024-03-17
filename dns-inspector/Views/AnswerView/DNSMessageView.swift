@@ -79,7 +79,7 @@ public struct DNSMessageView: View {
                 ToolbarItem {
                     Menu {
                         NavigationLink {
-                            RDAPView(domain: query.name)
+                            WHOISView(domain: query.name)
                         } label: {
                             Label(Localize("Domain Information"), systemImage: "person.text.rectangle")
                         }

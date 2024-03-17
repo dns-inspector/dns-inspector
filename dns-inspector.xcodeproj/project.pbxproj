@@ -19,6 +19,7 @@
 		3C26AD7A2BA64CD50022BABD /* WHOISClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C26AD782BA64CD50022BABD /* WHOISClient.m */; };
 		3C26AD7C2BA64D7A0022BABD /* WHOISClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C26AD7B2BA64D7A0022BABD /* WHOISClientTests.m */; };
 		3C26AD7E2BA64E290022BABD /* WHOISClient+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C26AD7D2BA64E290022BABD /* WHOISClient+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3C26AD802BA6775E0022BABD /* WHOISView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C26AD7F2BA6775E0022BABD /* WHOISView.swift */; };
 		3C3120542B06D0D10075C396 /* NSDataFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120532B06D0D10075C396 /* NSDataFormatTests.m */; };
 		3C3120562B06D39D0075C396 /* DNSClientTLSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120552B06D39D0075C396 /* DNSClientTLSTests.m */; };
 		3C3120582B06D5E80075C396 /* DNSClientHTTPSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3120572B06D5E80075C396 /* DNSClientHTTPSTests.m */; };
@@ -177,6 +178,7 @@
 		3C26AD782BA64CD50022BABD /* WHOISClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WHOISClient.m; sourceTree = "<group>"; };
 		3C26AD7B2BA64D7A0022BABD /* WHOISClientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WHOISClientTests.m; sourceTree = "<group>"; };
 		3C26AD7D2BA64E290022BABD /* WHOISClient+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WHOISClient+Private.h"; sourceTree = "<group>"; };
+		3C26AD7F2BA6775E0022BABD /* WHOISView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WHOISView.swift; sourceTree = "<group>"; };
 		3C3120532B06D0D10075C396 /* NSDataFormatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDataFormatTests.m; sourceTree = "<group>"; };
 		3C3120552B06D39D0075C396 /* DNSClientTLSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSClientTLSTests.m; sourceTree = "<group>"; };
 		3C3120572B06D5E80075C396 /* DNSClientHTTPSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSClientHTTPSTests.m; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				3C9AA7C42AF1E45B00B072FA /* DNSAnswerView.swift */,
 				3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */,
 				3C9AA7C82AF1F43F00B072FA /* DNSQuestionView.swift */,
+				3C26AD7F2BA6775E0022BABD /* WHOISView.swift */,
 			);
 			path = AnswerView;
 			sourceTree = "<group>";
@@ -812,6 +815,7 @@
 			files = (
 				3C0C6B322B38F944006D3F41 /* ActionTipTarget.swift in Sources */,
 				3CCA312B2AF5DAEE00C11280 /* DNSAnswerDataView.swift in Sources */,
+				3C26AD802BA6775E0022BABD /* WHOISView.swift in Sources */,
 				9AA8C18A2ADCBD7A00B93E45 /* ClientType.swift in Sources */,
 				3C710D882AE773B400F252C8 /* RecordClass.swift in Sources */,
 				3C6CCD5F2B3BB66000A3B6F2 /* Localization+SwiftUI.swift in Sources */,
