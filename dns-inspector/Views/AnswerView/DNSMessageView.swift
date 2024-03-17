@@ -1,12 +1,12 @@
 import SwiftUI
 import DNSKit
 
-struct DNSMessageView: View {
-    let query: DNSQuery
-    let message: DNSMessage
+public struct DNSMessageView: View {
+    public let query: DNSQuery
+    public let message: DNSMessage
     @Environment(\.dismiss) private var dismiss
 
-    var body: some View {
+    public var body: some View {
         Navigation {
             List {
                 Section(Localize("Query")) {
@@ -75,6 +75,17 @@ struct DNSMessageView: View {
                     }, label: {
                         Image(systemName: "xmark")
                     })
+                }
+                ToolbarItem {
+                    Menu {
+                        NavigationLink {
+                            RDAPView(domain: query.name)
+                        } label: {
+                            Label(Localize("Domain Information"), systemImage: "person.text.rectangle")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                    }
                 }
             }
         }
