@@ -26,21 +26,21 @@
 
     NSData * headerBytes = [data subdataWithRange:NSMakeRange(0, sizeof(DNS_HEADER))];
     DNS_HEADER * responseHeader = (DNS_HEADER *)headerBytes.bytes;
-    uint16_t responseId = responseHeader->idn;
+    uint16_t responseId = responseHeader->transactionId;
     uint16_t responseIdH = ntohs(responseId);
     message.idNumber = responseIdH;
-    message.responseCode = responseHeader->rd == 1;
-    message.truncated = responseHeader->tc == 1;
-    message.authoritativeAnswer = responseHeader->aa == 1;
+    message.responseCode = responseHeader->responseCode == 1;
+    message.truncated = responseHeader->truncation == 1;
+    message.authoritativeAnswer = responseHeader->authoritativeAnswer == 1;
     message.operationCode = (DNSOperationCode)responseHeader->opcode;
-    message.isQuery = responseHeader->qr == 1;
+    message.isResponse = responseHeader->isResponse == 1;
 
-    DNSResponseCode rcode = (DNSResponseCode)responseHeader->rcode;
+    DNSResponseCode rcode = (DNSResponseCode)responseHeader->responseCode;
     PDebug(@"Response code %i", (int)rcode);
     message.responseCode = rcode;
 
-    short questionCount = ntohs(responseHeader->qlen);
-    short answerCount = ntohs(responseHeader->alen);
+    short questionCount = ntohs(responseHeader->questionCount);
+    short answerCount = ntohs(responseHeader->answerCount);
 
     PDebug(@"Question count: %i, Answer count: %i", (int)questionCount, (int)answerCount);
 
@@ -219,21 +219,21 @@
 
     DNS_HEADER header;
 
-    header.idn = htons(self.idNumber);
-    header.rd = 1;
-    header.tc = 0;
-    header.aa = 0;
+    header.transactionId = htons(self.idNumber);
+    header.recursionDesired = 1;
+    header.truncation = 0;
+    header.authoritativeAnswer = 0;
     header.opcode = 0;
-    header.qr = 0;
-    header.rcode = htons(self.responseCode);
-    header.cd = 0;
-    header.ad = 0;
-    header.z = 0;
-    header.ra = 0;
-    header.qlen = htons(self.questions.count);
-    header.alen = htons(self.answers.count);
-    header.aulen = 0;
-    header.adlen = 0;
+    header.isResponse = 0;
+    header.responseCode = htons(self.responseCode);
+    header.checkingDisabled = 0;
+    header.authenticatedData = 0;
+    header.reserved = 0;
+    header.recursionAvailable = 0;
+    header.questionCount = htons(self.questions.count);
+    header.answerCount = htons(self.answers.count);
+    header.nameserverCount = 0;
+    header.additionalCount = 0;
 
     [request appendBytes:&header length:sizeof(DNS_HEADER)];
 

@@ -22,8 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// The operation code
 @property (nonatomic) DNSOperationCode operationCode;
 
-/// If this message is a query (true) or a reply (false)
-@property (nonatomic) BOOL isQuery;
+/// If this message is a response (true) or a query (false)
+@property (nonatomic) BOOL isResponse;
 
 /// The response code
 @property (nonatomic) DNSResponseCode responseCode;
