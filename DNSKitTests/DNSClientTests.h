@@ -10,6 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (DNSClientTests *) fixtureWithClientType:(DNSClientType)clientType client:(DNSClient *)client;
 - (void) testQueryA;
+- (void) testQueryAwithDNSSEC;
 - (void) testQueryNS;
 - (void) testQueryAAAA;
 - (void) testQueryNXDOMAIN;

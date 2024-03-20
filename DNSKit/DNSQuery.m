@@ -12,6 +12,7 @@
 @property (nonatomic) NSUInteger idNumber;
 @property (strong, nonatomic) DNSClient * dnsServer;
 @property (strong, nonatomic) dispatch_queue_t queryQueue;
+@property (strong, nonatomic, nullable) DNSQueryParameters * parameters;
 
 @end
 
@@ -57,6 +58,7 @@
     query.recordType = recordType;
     query.name = name;
     query.queryQueue = dispatch_queue_create("io.ecn.DNSKit.DNSQuery", 0);
+    query.parameters = parameters;
     return query;
 }
 
@@ -69,6 +71,10 @@
     DNSMessage * message = [DNSMessage new];
     message.idNumber = self.idNumber;
     message.questions = @[question];
+
+    if (self.parameters != nil) {
+        message.dnssecOK = self.parameters.requestDNSSEC;
+    }
 
     return message;
 }

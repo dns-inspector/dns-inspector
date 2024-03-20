@@ -201,6 +201,9 @@
                 }
                 answer.data = [[DNSPTRRecordData alloc] initWithName:nextName];
                 break;
+            } case DNSRecordTypeRRSIG: {
+                answer.data = [[DNSRRSIGRecordData alloc] initWithRecordValue:value];
+                break;
             }
         }
         [answers addObject:answer];
@@ -233,7 +236,7 @@
     header.questionCount = htons(self.questions.count);
     header.answerCount = htons(self.answers.count);
     header.nameserverCount = 0;
-    header.additionalCount = 0;
+    header.additionalCount = self.dnssecOK ? htons(1) : 0;
 
     [request appendBytes:&header length:sizeof(DNS_HEADER)];
 
@@ -250,6 +253,19 @@
         [request appendBytes:&qtype length:2];
         uint16_t qclass = htons(question.recordClass);
         [request appendBytes:&qclass length:2];
+    }
+
+    if (self.dnssecOK) {
+        // If DNSSEC was requested, append the following addtional OPT RR
+        // 00 .... .... .. .. .... .... = name <root>
+        // .. 0029 .... .. .. .... .... = type OPT (41)
+        // .. .... 1000 .. .. .... .... = UDP payload size 4096
+        // .. .... .... 00 .. .... .... = higher bits in extended RCODE
+        // .. .... .... .. 00 .... .... = EDNS version 0
+        // .. .... .... .. .. 8000 .... = DNSSEC OK
+        // .. .... .... .. .. .... 0000 = Data length 0
+        // This value is the same for all requests, so we don't have to dynamically generate it
+        [request appendBytes:"\x00\x00)\x10\x00\x00\x00\x80\x00\x00\x00" length:11];
     }
 
     return request;

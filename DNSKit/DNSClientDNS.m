@@ -95,7 +95,7 @@
                 dispatch_data_t data = dispatch_data_create(messageData.bytes, messageData.length, dispatch_get_main_queue(), DISPATCH_DATA_DESTRUCTOR_DEFAULT);
 
                 int minLength = 2;
-                int maxLength = self.useTCP.boolValue ? 2 : 512;
+                int maxLength = self.useTCP.boolValue ? 2 : 4096;
 
                 nw_connection_receive(connection, minLength, maxLength, ^(dispatch_data_t firstData, nw_content_context_t firstContext, bool lengthIsComplete, nw_error_t lengthError) {
                     if (error != nil) {

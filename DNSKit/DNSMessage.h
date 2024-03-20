@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// DNS answers
 @property (strong, nonatomic, nullable) NSArray<DNSAnswer *> * answers;
 
+/// DNSSEC enabled
+@property (nonatomic) BOOL dnssecOK;
+
 /// The elapsed time it took to get this message in nanoseconds.
 @property (strong, nonatomic, nonnull) NSNumber * elapsedNs;
 

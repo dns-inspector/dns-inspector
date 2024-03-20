@@ -32,6 +32,18 @@
     [[DNSClientTests fixtureWithClientType:DNSClientTypeDNS client:client] testQueryA];
 }
 
+- (void) testTCPQueryAwithDNSSEC {
+    NSError * clientError;
+    DNSClientDNS * client = (DNSClientDNS *)[DNSClientDNS serverWithAddress:@"8.8.8.8" error:&clientError];
+    if (clientError != nil) {
+        XCTFail(@"Manager error should be nil");
+        return;
+    }
+    client.useTCP = @true;
+
+    [[DNSClientTests fixtureWithClientType:DNSClientTypeDNS client:client] testQueryAwithDNSSEC];
+}
+
 - (void) testTCPQueryNS {
     NSError * clientError;
     DNSClientDNS * client = (DNSClientDNS *)[DNSClientDNS serverWithAddress:@"8.8.8.8" error:&clientError];
@@ -126,6 +138,18 @@
     client.useTCP = @false;
 
     [[DNSClientTests fixtureWithClientType:DNSClientTypeDNS client:client] testQueryA];
+}
+
+- (void) testUDPQueryAwithDNSSEC {
+    NSError * clientError;
+    DNSClientDNS * client = (DNSClientDNS *)[DNSClientDNS serverWithAddress:@"8.8.8.8" error:&clientError];
+    if (clientError != nil) {
+        XCTFail(@"Manager error should be nil");
+        return;
+    }
+    client.useTCP = @false;
+
+    [[DNSClientTests fixtureWithClientType:DNSClientTypeDNS client:client] testQueryAwithDNSSEC];
 }
 
 - (void) testUDPQueryAAAA {

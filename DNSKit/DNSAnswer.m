@@ -45,6 +45,9 @@
         case DNSRecordTypePTR:
             recordTypeStr = @"PTR";
             break;
+        case DNSRecordTypeRRSIG:
+            recordTypeStr = @"RRSIG";
+            break;
         default:
             recordTypeStr = @"Unknown";
             break;
