@@ -205,6 +205,9 @@
             } case DNSRecordTypeRRSIG: {
                 answer.data = [[DNSRRSIGRecordData alloc] initWithRecordValue:value];
                 break;
+            } case DNSRecordTypeDNSKEY: {
+                answer.data = [[DNSDNSKEYRecordData alloc] initWithRecordValue:value];
+                break;
             }
         }
         [answers addObject:answer];
@@ -231,7 +234,7 @@
     header.isResponse = 0;
     header.responseCode = htons(self.responseCode);
     header.checkingDisabled = 0;
-    header.authenticatedData = 0;
+    header.authenticatedData = self.dnssecOK ? 1 : 0;
     header.reserved = 0;
     header.recursionAvailable = 0;
     header.questionCount = htons(self.questions.count);

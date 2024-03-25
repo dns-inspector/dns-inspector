@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) testQueryAwithDNSSEC;
 - (void) testQueryNS;
 - (void) testQueryAAAA;
+- (void) testQueryDNSKEY;
 - (void) testQueryNXDOMAIN;
 - (void) testQueryTimeout;
 - (void) testRandomData;

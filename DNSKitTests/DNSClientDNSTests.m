@@ -68,6 +68,18 @@
     [[DNSClientTests fixtureWithClientType:DNSClientTypeDNS client:client] testQueryAAAA];
 }
 
+- (void) testTCPQueryDNSKEY {
+    NSError * clientError;
+    DNSClientDNS * client = (DNSClientDNS *)[DNSClientDNS serverWithAddress:@"8.8.8.8" error:&clientError];
+    if (clientError != nil) {
+        XCTFail(@"Manager error should be nil");
+        return;
+    }
+    client.useTCP = @true;
+
+    [[DNSClientTests fixtureWithClientType:DNSClientTypeDNS client:client] testQueryDNSKEY];
+}
+
 - (void) testTCPQueryNXDOMAIN {
     NSError * clientError;
     DNSClientDNS * client = (DNSClientDNS *)[DNSClientDNS serverWithAddress:@"8.8.8.8" error:&clientError];

@@ -1,6 +1,7 @@
 #import <XCTest/XCTest.h>
 #import "DNSKitTests.h"
 #import "../DNSKit/DNSName.h"
+#import "../DNSKit/Extensions/NSData+HexString.h"
 @import DNSKit;
 
 @interface DNSNameTests : XCTestCase

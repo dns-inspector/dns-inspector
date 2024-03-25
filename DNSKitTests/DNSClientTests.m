@@ -182,6 +182,39 @@
     }
 }
 
+- (void) testQueryDNSKEY {
+    NSError * queryError;
+    DNSQueryParameters * parameters = [DNSQueryParameters new];
+    parameters.requestDNSSEC = true;
+    DNSQuery * query = [DNSQuery queryWithClientType:self.clientType serverAddress:[self mockServerAddressForQuery] recordType:DNSRecordTypeDNSKEY name:@"." parameters:parameters error:&queryError];
+    if (queryError != nil) {
+        XCTAssertNil(queryError);
+        return;
+    }
+
+    dispatch_semaphore_t sync = dispatch_semaphore_create(0);
+    NSNumber * __block passed = @NO;
+
+    [self.client sendMessage:[query dnsMessage] gotReply:^(DNSMessage * message, NSError * error) {
+        XCTAssertNil(error);
+        XCTAssertNotNil(message);
+        XCTAssertTrue(message.answers.count > 0);
+        XCTAssertEqual(message.responseCode, DNSResponseCodeSuccess);
+
+        for (DNSAnswer * answer in message.answers) {
+            DNSDNSKEYRecordData * data = (DNSDNSKEYRecordData *)answer.data;
+            XCTAssertNotNil(data);
+        }
+
+        passed = @YES;
+        dispatch_semaphore_signal(sync);
+    }];
+    dispatch_semaphore_wait(sync, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(TEST_TIMEOUT * NSEC_PER_SEC)));
+    if (!passed.boolValue) {
+        XCTFail("Timeout without error");
+    }
+}
+
 - (void) testQueryNXDOMAIN {
     NSError * queryError;
     DNSQuery * query = [DNSQuery queryWithClientType:self.clientType serverAddress:[self mockServerAddressForQuery] recordType:DNSRecordTypeA name:@"if-you-register-this-domain-im-going-to-be-very-angry.com" parameters:nil error:&queryError];

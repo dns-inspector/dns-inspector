@@ -13,6 +13,7 @@ typedef NS_ENUM(NSUInteger, DNSRecordType) {
     DNSRecordTypeMX = 15,
     DNSRecordTypePTR = 12,
     DNSRecordTypeRRSIG = 46,
+    DNSRecordTypeDNSKEY = 48,
 };
 
 typedef NS_ENUM(NSUInteger, DNSRecordClass) {

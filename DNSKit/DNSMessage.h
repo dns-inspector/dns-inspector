@@ -46,6 +46,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// Return the DNS message data
 - (NSData * _Nullable) messageDataError:(NSError * _Nullable * _Nonnull)error;
 
+/// Authenticate this message against any provided signature.
+/// Will return true if the message was authenticated successfully, otherwise will return false and populate error with
+/// the specific authentication error.
+- (bool) authenticate:(NSError * _Nullable * _Nullable)error;
+
 @end
 
 NS_ASSUME_NONNULL_END

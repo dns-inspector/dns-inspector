@@ -1,4 +1,5 @@
 #import "DNSRRSIGRecordData.h"
+#import "DNSRecordData+Private.h"
 #import "DNSName.h"
 #import "NSData+ByteAtIndex.h"
 
@@ -19,7 +20,7 @@
 @implementation DNSRRSIGRecordData
 
 - (id) initWithRecordValue:(NSData *)value {
-    self = [super init];
+    self = [super initWithRecordValue:value];
 
     uint16_t typeCovered = ntohs(*(uint16_t *)[self.recordValue subdataWithRange:NSMakeRange(0, 2)].bytes);
     uint8_t algorithm = [self.recordValue byteAtIndex:2];
