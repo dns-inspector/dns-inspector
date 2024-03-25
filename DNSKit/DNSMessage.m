@@ -202,6 +202,9 @@
                 }
                 answer.data = [[DNSPTRRecordData alloc] initWithName:nextName];
                 break;
+            } case DNSRecordTypeDS: {
+                answer.data = [[DNSDSRecordData alloc] initWithRecordValue:value];
+                break;
             } case DNSRecordTypeRRSIG: {
                 answer.data = [[DNSRRSIGRecordData alloc] initWithRecordValue:value];
                 break;

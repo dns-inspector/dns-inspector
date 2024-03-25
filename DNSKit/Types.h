@@ -12,6 +12,7 @@ typedef NS_ENUM(NSUInteger, DNSRecordType) {
     DNSRecordTypeTXT = 16,
     DNSRecordTypeMX = 15,
     DNSRecordTypePTR = 12,
+    DNSRecordTypeDS = 43,
     DNSRecordTypeRRSIG = 46,
     DNSRecordTypeDNSKEY = 48,
 };
@@ -53,19 +54,26 @@ typedef NS_ENUM(NSUInteger, DNSOperationCode) {
 };
 
 typedef NS_ENUM(NSUInteger, DNSSECAlgorithm) {
-    DNSSECAlgorithmECCGOST12 = 23,
-    DNSSECAlgorithmSM2SM3 = 17,
+    DNSSECAlgorithmECC_GOST12 = 23,
+    DNSSECAlgorithmSM2_SM3 = 17,
     DNSSECAlgorithmED448 = 16,
     DNSSECAlgorithmED25519 = 15,
-    DNSSECAlgorithmECDSAP384SHA384 = 14,
-    DNSSECAlgorithmECDSAP256SHA256 = 13,
+    DNSSECAlgorithmECDSAP384_SHA384 = 14,
+    DNSSECAlgorithmECDSAP256_SHA256 = 13,
     DNSSECAlgorithmECC_GOST = 12,
-    DNSSECAlgorithmRSASHA512 = 10,
-    DNSSECAlgorithmRSASHA256 = 8,
+    DNSSECAlgorithmRSA_SHA512 = 10,
+    DNSSECAlgorithmRSA_SHA256 = 8,
     DNSSECAlgorithmRSASHA1_NSEC3_SHA1 = 7,
     DNSSECAlgorithmDSA_NSEC3_SHA1 = 6,
-    DNSSECAlgorithmRSASHA1 = 5,
+    DNSSECAlgorithmRSA_SHA1 = 5,
     DNSSECAlgorithmDSA = 3,
+};
+
+typedef NS_ENUM(NSUInteger, DNSSECDigest) {
+    DNSSECDigestSHA1 = 1,
+    DNSSECDigestSHA256 = 2,
+    DNSSECDigestGOST = 3,
+    DNSSECDigestSHA384 = 4,
 };
 
 NS_ASSUME_NONNULL_END

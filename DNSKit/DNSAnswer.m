@@ -42,6 +42,8 @@
             return @"MX";
         case DNSRecordTypePTR:
             return @"PTR";
+        case DNSRecordTypeDS:
+            return @"DS";
         case DNSRecordTypeRRSIG:
             return @"RRSIG";
         case DNSRecordTypeDNSKEY:

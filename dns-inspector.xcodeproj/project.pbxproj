@@ -28,6 +28,8 @@
 		3C343D402ADE12AC00C282D0 /* DNSQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C343D3E2ADE12AC00C282D0 /* DNSQuery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C343D412ADE12AC00C282D0 /* DNSQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D3F2ADE12AC00C282D0 /* DNSQuery.m */; };
 		3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */; };
+		3C4321132BB0FFBC00C00FB7 /* DNSDSRecordData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C4321122BB0FFBC00C00FB7 /* DNSDSRecordData.m */; };
+		3C4321142BB0FFBC00C00FB7 /* DNSDSRecordData.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C4321112BB0FFBC00C00FB7 /* DNSDSRecordData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3C50DD5B2B36378B0030F732 /* DNSClientDNS.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C50DD592B36378B0030F732 /* DNSClientDNS.h */; };
 		3C50DD5C2B36378B0030F732 /* DNSClientDNS.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C50DD5A2B36378B0030F732 /* DNSClientDNS.m */; };
 		3C50DD672B363D670030F732 /* DNSQueryParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C50DD652B363D670030F732 /* DNSQueryParameters.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -193,6 +195,8 @@
 		3C343D3E2ADE12AC00C282D0 /* DNSQuery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSQuery.h; sourceTree = "<group>"; };
 		3C343D3F2ADE12AC00C282D0 /* DNSQuery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSQuery.m; sourceTree = "<group>"; };
 		3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSMessageView.swift; sourceTree = "<group>"; };
+		3C4321112BB0FFBC00C00FB7 /* DNSDSRecordData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSDSRecordData.h; sourceTree = "<group>"; };
+		3C4321122BB0FFBC00C00FB7 /* DNSDSRecordData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSDSRecordData.m; sourceTree = "<group>"; };
 		3C50DD592B36378B0030F732 /* DNSClientDNS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSClientDNS.h; sourceTree = "<group>"; };
 		3C50DD5A2B36378B0030F732 /* DNSClientDNS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSClientDNS.m; sourceTree = "<group>"; };
 		3C50DD652B363D670030F732 /* DNSQueryParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSQueryParameters.h; sourceTree = "<group>"; };
@@ -435,6 +439,8 @@
 				3CCA31302AF6BCEB00C11280 /* DNSCNAMERecordData+Private.h */,
 				3CB532D82BAB940200D64171 /* DNSDNSKEYRecordData.h */,
 				3CB532D92BAB940200D64171 /* DNSDNSKEYRecordData.m */,
+				3C4321112BB0FFBC00C00FB7 /* DNSDSRecordData.h */,
+				3C4321122BB0FFBC00C00FB7 /* DNSDSRecordData.m */,
 				3CCA31222AF5D94000C11280 /* DNSMXRecordData.h */,
 				3CCA31232AF5D94000C11280 /* DNSMXRecordData.m */,
 				3CCA31322AF6BD6A00C11280 /* DNSMXRecordData+Private.h */,
@@ -633,6 +639,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AA8C1802ADCB41600B93E45 /* DNSMessage.h in Headers */,
+				3C4321142BB0FFBC00C00FB7 /* DNSDSRecordData.h in Headers */,
 				3CCA312F2AF5E1A700C11280 /* DNSRecordData+Private.h in Headers */,
 				9AA8C1852ADCB74D00B93E45 /* Types.h in Headers */,
 				3C343D402ADE12AC00C282D0 /* DNSQuery.h in Headers */,
@@ -898,6 +905,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C0C6B242B38D854006D3F41 /* IPAddressParser.m in Sources */,
+				3C4321132BB0FFBC00C00FB7 /* DNSDSRecordData.m in Sources */,
 				3CCA31192AF5D92300C11280 /* DNSAAAARecordData.m in Sources */,
 				3CCA31212AF5D93300C11280 /* DNSCNAMERecordData.m in Sources */,
 				3C50DD5C2B36378B0030F732 /* DNSClientDNS.m in Sources */,
