@@ -23,6 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// The data object for this answer. Cast this to the specific DNSRecordData subclass based on the record type.
 @property (strong, nonatomic, nonnull) DNSRecordData * data;
 
+/// Return a human readable string representing this DNS record type
+/// - Parameter rtype: record type
++ (NSString * _Nullable) stringForRecordType:(DNSRecordType)rtype;
+
+/// Return a human readable string representing this DNS record class
+/// - Parameter rclass: record class
++ (NSString * _Nullable) stringForRecordClass:(DNSRecordClass)rclass;
+
 /// A string value representing this answer. Safe for human consumption.
 - (NSString * _Nullable) stringValue;
 

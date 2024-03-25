@@ -4,6 +4,11 @@
 @implementation DNSName
 
 + (NSData *) stringToDNSName:(NSString *)name error:(NSError **)error {
+    if (name.length == 1 && [name characterAtIndex:0] == '.') {
+        uint8_t z = 0;
+        return [[NSData alloc] initWithBytes:&z length:1];
+    }
+
     NSMutableData * request = [NSMutableData new];
     char len;
 
@@ -35,6 +40,15 @@
 
     NSMutableString * name = [[NSMutableString alloc] initWithCapacity:255];
     short offset = startIdx;
+
+    // Check for root name
+    short firstByte = [data byteAtIndex:offset];
+    if (firstByte == 0) {
+        if (dataIndex != NULL) {
+            *dataIndex = startIdx+1;
+        }
+        return @".";
+    }
 
     // DNS compression can apply to the entire name or individual lables, so check for pointers at each label
     while (true) {

@@ -42,8 +42,8 @@
     XCTAssertStringEqual(data2.ipAddress, @"8.8.4.4");
     XCTAssertStringEqual(data1.stringValue, @"8.8.8.8");
     XCTAssertStringEqual(data2.stringValue, @"8.8.4.4");
-    XCTAssertStringEqual(message.answers[0].stringValue, @"Type: A, Class: IN, Name: dns.google., TTL: 42, Value: 8.8.8.8");
-    XCTAssertStringEqual(message.answers[1].stringValue, @"Type: A, Class: IN, Name: dns.google., TTL: 42, Value: 8.8.4.4");
+    XCTAssertStringEqual(message.answers[0].stringValue, @"dns.google. 42 IN A 8.8.8.8");
+    XCTAssertStringEqual(message.answers[1].stringValue, @"dns.google. 42 IN A 8.8.4.4");
 }
 
 - (void) testParseDNSNSMessage {
@@ -72,8 +72,8 @@
     XCTAssertStringEqual(data2.name, @"b.iana-servers.net.");
     XCTAssertStringEqual(data1.stringValue, @"a.iana-servers.net.");
     XCTAssertStringEqual(data2.stringValue, @"b.iana-servers.net.");
-    XCTAssertStringEqual(message.answers[0].stringValue, @"Type: NS, Class: IN, Name: example.com., TTL: 72035, Value: a.iana-servers.net.");
-    XCTAssertStringEqual(message.answers[1].stringValue, @"Type: NS, Class: IN, Name: example.com., TTL: 72035, Value: b.iana-servers.net.");
+    XCTAssertStringEqual(message.answers[0].stringValue, @"example.com. 72035 IN NS a.iana-servers.net.");
+    XCTAssertStringEqual(message.answers[1].stringValue, @"example.com. 72035 IN NS b.iana-servers.net.");
 }
 
 - (void) testParseDNSAAAAMessage {
@@ -102,6 +102,8 @@
     XCTAssertStringEqual(data2.ipAddress, @"2001:4860:4860::8844");
     XCTAssertStringEqual(data1.stringValue, @"2001:4860:4860::8888");
     XCTAssertStringEqual(data2.stringValue, @"2001:4860:4860::8844");
+    XCTAssertStringEqual(message.answers[0].stringValue, @"dns.google. 603 IN AAAA 2001:4860:4860::8888");
+    XCTAssertStringEqual(message.answers[1].stringValue, @"dns.google. 603 IN AAAA 2001:4860:4860::8844");
 }
 
 - (void) testParseDNSCNAMEMessage {
@@ -129,6 +131,8 @@
     XCTAssertStringEqual(data1.name, @"host.example.com.");
     XCTAssertStringEqual(data2.ipAddress, @"127.0.0.1");
     XCTAssertStringEqual(data1.stringValue, @"host.example.com.");
+    XCTAssertStringEqual(message.answers[0].stringValue, @"cname.example.com. 300 IN CNAME host.example.com.");
+    XCTAssertStringEqual(message.answers[1].stringValue, @"host.example.com. 300 IN A 127.0.0.1");
 }
 
 - (void) testParseDNSMXMessage {
@@ -150,7 +154,8 @@
     XCTAssertNotNil(data);
     XCTAssertStringEqual(data.name, @"mail.example.com.");
     XCTAssertEqual(data.priority.unsignedIntValue, 10);
-    XCTAssertStringEqual(data.stringValue, @"Priority: 10, Name: mail.example.com.");
+    XCTAssertStringEqual(data.stringValue, @"10 mail.example.com.");
+    XCTAssertStringEqual(message.answers[0].stringValue, @"example.com. 300 IN MX 10 mail.example.com.");
 }
 
 - (void) testParseDNSSRVMessage {
@@ -174,7 +179,7 @@
     XCTAssertEqual(data.priority.unsignedIntValue, 10);
     XCTAssertEqual(data.weight.unsignedIntValue, 0);
     XCTAssertEqual(data.port.unsignedIntValue, 123);
-    XCTAssertStringEqual(data.stringValue, @"Priority: 10, Weight: 0, Port: 123, Name: host.example.com.");
+    XCTAssertStringEqual(message.answers[0].stringValue, @"_service._tcp.example.com. 300 IN SRV 10 0 123 host.example.com.");
 }
 
 - (void) testParseDNSPTRMessage {
@@ -196,6 +201,7 @@
     XCTAssertNotNil(data);
     XCTAssertStringEqual(data.name, @"localhost.");
     XCTAssertStringEqual(data.stringValue, @"localhost.");
+    XCTAssertStringEqual(message.answers[0].stringValue, @"1.0.0.127.in-addr.arpa. 86400 IN PTR localhost.");
 }
 
 - (void) testParseDNSTXTMessage {
@@ -217,6 +223,7 @@
     XCTAssertNotNil(data);
     XCTAssertStringEqual(data.text, @"This is our world now... the world of the electron and the switch, the beauty of the baud.  We make use of a service already existing without paying for what could be dirt-cheap if it wasnt run by profiteering gluttons, and you call us criminals.  We expl" "ore... and you call us criminals.  We seek after knowledge... and you call us criminals.  We exist without skin color, without nationality, without religious bias... and you call us criminals. You build atomic bombs, you wage wars, you murder, cheat, and " "lie to us and try to make us believe its for our own good, yet were the criminals.");
     XCTAssertStringEqual(data.stringValue, data.text);
+    XCTAssertStringEqual(message.answers[0].stringValue, @"example.com. 157 IN TXT This is our world now... the world of the electron and the switch, the beauty of the baud.  We make use of a service already existing without paying for what could be dirt-cheap if it wasnt run by profiteering gluttons, and you call us criminals.  We expl" "ore... and you call us criminals.  We seek after knowledge... and you call us criminals.  We exist without skin color, without nationality, without religious bias... and you call us criminals. You build atomic bombs, you wage wars, you murder, cheat, and " "lie to us and try to make us believe its for our own good, yet were the criminals.");
 }
 
 - (void) testParseDNSNXDOMAINMessage {

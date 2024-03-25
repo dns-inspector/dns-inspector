@@ -20,7 +20,7 @@
 }
 
 - (NSString *) stringValue {
-    return [NSString stringWithFormat:@"Priority: %i, Weight: %i, Port: %i, Name: %@", self.priority.intValue, self.weight.intValue, self.port.intValue, self.name];
+    return [NSString stringWithFormat:@"%i %i %i %@", self.priority.intValue, self.weight.intValue, self.port.intValue, self.name];
 }
 
 @end

@@ -14,66 +14,56 @@
     return self;
 }
 
+- (NSString *) description {
+    return [self stringValue];
+}
+
 - (NSString *) stringValue {
-    NSString * recordTypeStr;
+    return [NSString stringWithFormat:@"%@ %i %@ %@ %@", self.name, (int)self.ttlSeconds, [DNSAnswer stringForRecordClass:self.recordClass], [DNSAnswer stringForRecordType:self.recordType], self.data.stringValue];
+}
 
-    switch (self.recordType) {
++ (NSString * _Nullable) stringForRecordType:(DNSRecordType)rtype {
+    switch (rtype) {
         case DNSRecordTypeA:
-            recordTypeStr = @"A";
-            break;
+            return @"A";
         case DNSRecordTypeNS:
-            recordTypeStr = @"NS";
-            break;
+            return @"NS";
         case DNSRecordTypeCNAME:
-            recordTypeStr = @"CNAME";
-            break;
+            return @"CNAME";
         case DNSRecordTypeAAAA:
-            recordTypeStr = @"AAAA";
-            break;
+            return @"AAAA";
         case DNSRecordTypeAPL:
-            recordTypeStr = @"APL";
-            break;
+            return @"APL";
         case DNSRecordTypeSRV:
-            recordTypeStr = @"SRV";
-            break;
+            return @"SRV";
         case DNSRecordTypeTXT:
-            recordTypeStr = @"TXT";
-            break;
+            return @"TXT";
         case DNSRecordTypeMX:
-            recordTypeStr = @"MX";
-            break;
+            return @"MX";
         case DNSRecordTypePTR:
-            recordTypeStr = @"PTR";
-            break;
+            return @"PTR";
         case DNSRecordTypeRRSIG:
-            recordTypeStr = @"RRSIG";
-            break;
-        default:
-            recordTypeStr = @"Unknown";
-            break;
+            return @"RRSIG";
+        case DNSRecordTypeDNSKEY:
+            return @"DNSKEY";
     }
 
-    NSString * recordClassStr;
+    return nil;
+}
 
-    switch (self.recordClass) {
++ (NSString * _Nullable) stringForRecordClass:(DNSRecordClass)rclass {
+    switch (rclass) {
         case DNSRecordClassIN:
-            recordClassStr = @"IN";
-            break;
+            return @"IN";
         case DNSRecordClassCS:
-            recordClassStr = @"CS";
-            break;
+            return @"CS";
         case DNSRecordClassCH:
-            recordClassStr = @"CH";
-            break;
+            return @"CH";
         case DNSRecordClassHS:
-            recordClassStr = @"HS";
-            break;
-        default:
-            recordClassStr = @"UNKNOWN";
-            break;
+            return @"HS";
     }
 
-    return [NSString stringWithFormat:@"Type: %@, Class: %@, Name: %@, TTL: %i, Value: %@", recordTypeStr, recordClassStr, self.name, (int)self.ttlSeconds, self.data.stringValue];
+    return nil;
 }
 
 @end

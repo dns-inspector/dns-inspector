@@ -22,6 +22,15 @@
     NSData * encodedName = [DNSName stringToDNSName:@"www.example.com" error:&nameError];
     XCTAssertNil(nameError);
     XCTAssertNotNil(encodedName);
+    XCTAssertStringEqual(encodedName.hexString, @"03777777076578616d706c6503636f6d00");
+}
+
+- (void) testEncodeRoot {
+    NSError * nameError;
+    NSData * encodedName = [DNSName stringToDNSName:@"." error:&nameError];
+    XCTAssertNil(nameError);
+    XCTAssertNotNil(encodedName);
+    XCTAssertStringEqual(encodedName.hexString, @"00");
 }
 
 - (void) testCatchEncodeInvalidName {
@@ -51,6 +60,17 @@
     XCTAssertNotNil(name);
     XCTAssertStringEqual(name, @"dns.google.");
     XCTAssertEqual(dataIdx, 14);
+}
+
+- (void) testReadRoot {
+    uint8_t nameLiteral[] = { 0x00 };
+    NSError * nameError;
+    int dataIdx = 0;
+    NSString * name = [DNSName readDNSName:[NSData dataWithBytes:nameLiteral length:1] startIndex:0 dataIndex:&dataIdx error:&nameError];
+    XCTAssertNil(nameError);
+    XCTAssertNotNil(name);
+    XCTAssertStringEqual(name, @".");
+    XCTAssertEqual(dataIdx, 1);
 }
 
 - (void) testCatchRecursiveCompressionPointer {

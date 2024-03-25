@@ -16,7 +16,7 @@
 }
 
 - (NSString *) stringValue {
-    return [NSString stringWithFormat:@"Priority: %i, Name: %@", self.priority.intValue, self.name];
+    return [NSString stringWithFormat:@"%i %@", self.priority.intValue, self.name];
 }
 
 @end

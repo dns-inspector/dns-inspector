@@ -129,9 +129,10 @@
         answer.recordClass = rclass;
         answer.ttlSeconds = ttl;
 
+        PDebug(@"Got answer %@ %i %@ %@", name, ttl, [DNSAnswer stringForRecordClass:answer.recordClass], [DNSAnswer stringForRecordType:answer.recordType]);
+
         NSData * value = [data subdataWithRange:NSMakeRange(dataIndex+10, dlen)];
-        PDebug(@"Answer data %@", [value hexString]);
-        PDebug(@"Data length %i", dlen);
+        PDebug(@"Answer data (%i) %@", dlen, [value hexString]);
         answerStartIndex = dataIndex+10+dlen;
 
         switch ((DNSRecordType)rtype) {
