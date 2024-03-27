@@ -52,4 +52,8 @@
     return self;
 }
 
+- (NSData *) signatureData {
+    return [self.recordValue subdataWithRange:NSMakeRange(0, 18)];
+}
+
 @end

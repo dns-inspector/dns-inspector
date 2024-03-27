@@ -76,4 +76,18 @@ typedef NS_ENUM(NSUInteger, DNSSECDigest) {
     DNSSECDigestSHA384 = 4,
 };
 
+/// Error codes from DNSSEC message authentication
+typedef NS_ENUM(NSUInteger, DNSSECError) {
+    /// No signatures were found on the DNS message
+    DNSSECErrorNoSignatures = 1,
+    /// The algorithm used is not supported by DNSKit
+    DNSSECErrorUnsupportedAlgorithm = 2,
+    /// One or more domain did not produce signing keys
+    DNSSECErrorMissingKeys = 3,
+    /// The key signing key for the root domain was not recognized and is untrusted
+    DNSSECErrorUntrustedRootSigningKey = 4,
+    /// One or more signatures for resource records failed validation
+    DNSSECSignatureFailed = 5,
+};
+
 NS_ASSUME_NONNULL_END

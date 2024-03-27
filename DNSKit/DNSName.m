@@ -13,7 +13,14 @@
     char len;
 
     NSArray<NSString *> * labels = [name componentsSeparatedByString:@"."];
-    for (NSString * label in labels) {
+    NSString * label;
+    for (int i = 0; i < labels.count; i++) {
+        label = labels[i];
+
+        // Skip trailing '.'
+        if (label.length == 0 && i == labels.count - 1) {
+            break;
+        }
         if (label.length > 63) {
             *error = MAKE_ERROR(500, @"Host name is too long");
             return nil;

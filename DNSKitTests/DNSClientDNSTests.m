@@ -140,6 +140,18 @@
     [[DNSClientTests fixtureWithClientType:DNSClientTypeDNS client:client] testLengthUnder];
 }
 
+- (void) testTCPAuthenticateMessage {
+    NSError * clientError;
+    DNSClientDNS * client = (DNSClientDNS *)[DNSClientDNS serverWithAddress:@"8.8.8.8" error:&clientError];
+    if (clientError != nil) {
+        XCTFail(@"Manager error should be nil");
+        return;
+    }
+    client.useTCP = @true;
+
+    [[DNSClientTests fixtureWithClientType:DNSClientTypeDNS client:client] testAuthenticateMessage];
+}
+
 - (void) testUDPQueryA {
     NSError * clientError;
     DNSClientDNS * client = (DNSClientDNS *)[DNSClientDNS serverWithAddress:@"8.8.8.8" error:&clientError];

@@ -6,10 +6,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) bool zoneKey;
 @property (nonatomic, readonly) bool revoked;
-@property (nonatomic, readonly) bool zoneSigningKey;
+@property (nonatomic, readonly) bool keySigningKey;
 @property (nonatomic, readonly) NSUInteger protocol;
 @property (nonatomic, readonly) DNSSECAlgorithm algoritm;
 @property (strong, nonatomic, nonnull, readonly) NSData * publicKey;
+
+- (NSUInteger) keyTag;
 
 @end
 

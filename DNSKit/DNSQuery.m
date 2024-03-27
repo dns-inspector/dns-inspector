@@ -50,15 +50,15 @@
         return nil;
     }
 
-    DNSQuery * query = [DNSQuery new];
+    DNSQuery * query = [[DNSQuery alloc] init];
     query.idNumber = arc4random_uniform(UINT16_MAX);
-    query.clientType = clientType;
-    query.serverAddress = serverAddress;
-    query.dnsServer = server;
     query.recordType = recordType;
     query.name = name;
     query.queryQueue = dispatch_queue_create("io.ecn.DNSKit.DNSQuery", 0);
     query.parameters = parameters;
+    query.clientType = clientType;
+    query.serverAddress = serverAddress;
+    query.dnsServer = server;
     return query;
 }
 

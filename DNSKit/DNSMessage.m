@@ -128,6 +128,7 @@
         answer.recordType = (DNSRecordType)rtype;
         answer.recordClass = rclass;
         answer.ttlSeconds = ttl;
+        answer.dataLength = dlen;
 
         PDebug(@"Got answer %@ %i %@ %@", name, ttl, [DNSAnswer stringForRecordClass:answer.recordClass], [DNSAnswer stringForRecordType:answer.recordType]);
 

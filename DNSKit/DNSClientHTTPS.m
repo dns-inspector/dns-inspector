@@ -2,6 +2,7 @@
 #import "NSData+HexString.h"
 #import "NSData+Base64URL.h"
 #import "NSHTTPURLResponse+HeaderValue.h"
+#import "DNSSECClient.h"
 
 @implementation DNSClientHTTPS
 
@@ -111,6 +112,10 @@
         return;
     }];
     [task resume];
+}
+
+- (void) authenticateMessage:(DNSMessage *)message withResult:(void (^)(NSError *))completed {
+    [DNSSECClient authenticateMessage:message usingClient:self withResult:completed];
 }
 
 @end

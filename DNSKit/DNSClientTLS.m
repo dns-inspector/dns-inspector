@@ -1,6 +1,7 @@
 #import "DNSClientTLS.h"
 #import "NSData+HexString.h"
 #import "IPAddressParser.h"
+#import "DNSSECClient.h"
 @import Network;
 
 @interface DNSClientTLS ()
@@ -173,6 +174,10 @@
         PDebug(@"No response from server within 5 seconds");
         nw_connection_cancel(connection);
     }
+}
+
+- (void) authenticateMessage:(DNSMessage *)message withResult:(void (^)(NSError *))completed {
+    [DNSSECClient authenticateMessage:message usingClient:self withResult:completed];
 }
 
 @end

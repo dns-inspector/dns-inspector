@@ -334,4 +334,37 @@
     }
 }
 
+- (void) testAuthenticateMessage {
+    NSError * queryError;
+    DNSQueryParameters * parameters = [DNSQueryParameters new];
+    parameters.requestDNSSEC = true;
+    DNSQuery * query = [DNSQuery queryWithClientType:self.clientType serverAddress:[self mockServerAddressForQuery] recordType:DNSRecordTypeA name:@"dns.google" parameters:parameters error:&queryError];
+    if (queryError != nil) {
+        XCTAssertNil(queryError);
+        return;
+    }
+
+    dispatch_semaphore_t sync = dispatch_semaphore_create(0);
+    NSNumber * __block passed = @NO;
+    DNSMessage * __block message;
+
+    [self.client sendMessage:[query dnsMessage] gotReply:^(DNSMessage * m, NSError * error) {
+        XCTAssertNil(error);
+        XCTAssertNotNil(m);
+        XCTAssertTrue(m.answers.count > 0);
+        XCTAssertEqual(m.responseCode, DNSResponseCodeSuccess);
+        message = m;
+        dispatch_semaphore_signal(sync);
+    }];
+    dispatch_semaphore_wait(sync, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(TEST_TIMEOUT * NSEC_PER_SEC)));
+
+    sync = dispatch_semaphore_create(0);
+    [self.client authenticateMessage:message withResult:^(NSError * error) {
+        passed = @YES;
+        dispatch_semaphore_signal(sync);
+    }];
+
+    dispatch_semaphore_wait(sync, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(TEST_TIMEOUT * NSEC_PER_SEC)));
+}
+
 @end

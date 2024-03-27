@@ -26,6 +26,14 @@
     XCTAssertStringEqual(encodedName.hexString, @"03777777076578616d706c6503636f6d00");
 }
 
+- (void) testEncodeFqdn {
+    NSError * nameError;
+    NSData * encodedName = [DNSName stringToDNSName:@"www.example.com." error:&nameError];
+    XCTAssertNil(nameError);
+    XCTAssertNotNil(encodedName);
+    XCTAssertStringEqual(encodedName.hexString, @"03777777076578616d706c6503636f6d00");
+}
+
 - (void) testEncodeRoot {
     NSError * nameError;
     NSData * encodedName = [DNSName stringToDNSName:@"." error:&nameError];

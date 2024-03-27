@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// The record time to live in seconds
 @property (nonatomic) NSUInteger ttlSeconds;
 
+/// The record data length
+@property (nonatomic) NSUInteger dataLength;
+
 /// The data object for this answer. Cast this to the specific DNSRecordData subclass based on the record type.
 @property (strong, nonatomic, nonnull) DNSRecordData * data;
 

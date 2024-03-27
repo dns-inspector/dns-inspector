@@ -108,4 +108,15 @@
     [[DNSClientTests fixtureWithClientType:DNSClientTypeTLS client:client] testLengthUnder];
 }
 
+- (void) testAuthenticateMessage {
+    NSError * clientError;
+    DNSClientTLS * client = (DNSClientTLS *)[DNSClientTLS serverWithAddress:@"8.8.8.8" error:&clientError];
+    if (clientError != nil) {
+        XCTFail(@"Manager error should be nil");
+        return;
+    }
+
+    [[DNSClientTests fixtureWithClientType:DNSClientTypeTLS client:client] testAuthenticateMessage];
+}
+
 @end

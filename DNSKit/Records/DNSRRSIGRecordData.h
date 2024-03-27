@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic, readonly, nonnull) NSString * signerName;
 @property (strong, nonatomic, readonly, nonnull) NSData * signature;
 
+- (NSData * __nonnull) signatureData;
+
 @end
 
 NS_ASSUME_NONNULL_END
