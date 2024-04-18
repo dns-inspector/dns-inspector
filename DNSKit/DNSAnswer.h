@@ -37,6 +37,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// A string value representing this answer. Safe for human consumption.
 - (NSString * _Nullable) stringValue;
 
+/// Compare the two DNS answers
+/// - Returns: -1 if left is less than right, 0 if left and right are the same, and 1 if left was greater than right
++ (int) compareLeft:(DNSAnswer * _Nonnull)left withRight:(DNSAnswer * _Nonnull)right;
+
 @end
 
 NS_ASSUME_NONNULL_END

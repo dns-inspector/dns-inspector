@@ -86,8 +86,12 @@ typedef NS_ENUM(NSUInteger, DNSSECError) {
     DNSSECErrorMissingKeys = 3,
     /// The key signing key for the root domain was not recognized and is untrusted
     DNSSECErrorUntrustedRootSigningKey = 4,
-    /// One or more signatures for resource records failed validation
+    /// One or more signatures for resource records failed cryptographic validation
     DNSSECSignatureFailed = 5,
+    /// One or more aspects of the response is invalid
+    DNSSECInvalidResponse = 6,
+    /// The signing key provided was invalid
+    DNSSECBadSigningKey = 7,
 };
 
 NS_ASSUME_NONNULL_END

@@ -2,6 +2,7 @@
 #import "DNSRecordData+Private.h"
 #import "DNSName.h"
 #import "NSData+ByteAtIndex.h"
+#import "ASN1Utils.h"
 
 @interface DNSRRSIGRecordData()
 
@@ -30,7 +31,7 @@
     uint32_t notBefore = ntohl(*(uint32_t *)[self.recordValue subdataWithRange:NSMakeRange(12, 4)].bytes);
     uint16_t keyTag = ntohs(*(uint16_t *)[self.recordValue subdataWithRange:NSMakeRange(16, 2)].bytes);
 
-    int dataIndex;
+    int dataIndex = 0;
     NSError * nameError;
     NSString * signerName = [DNSName readDNSName:self.recordValue startIndex:18 dataIndex:&dataIndex error:&nameError];
     if (nameError != nil) {
@@ -52,8 +53,15 @@
     return self;
 }
 
-- (NSData *) signatureData {
-    return [self.recordValue subdataWithRange:NSMakeRange(0, 18)];
+- (NSData *) signedData {
+    // Signature data is everything but the signature itself
+    int dataIndex = 0;
+    [DNSName readDNSName:self.recordValue startIndex:18 dataIndex:&dataIndex error:nil];
+    return [self.recordValue subdataWithRange:NSMakeRange(0, dataIndex)];
+}
+
+- (NSData *) signatureForCrypto {
+    return [ASN1Utils pkcs1Signature:self.signature algorithm:self.algorithm];
 }
 
 @end

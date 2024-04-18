@@ -22,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - error: Populated with an error if the given name is not valid
 + (NSString * _Nullable) readDNSName:(NSData * _Nonnull)data startIndex:(int)startIdx dataIndex:(int * _Nullable)dataIndex error:(NSError **)error;
 
+/// Split a given name into components.
+/// - Parameter name: The name. Can be fully qualified (with the trailing '.').
++ (NSArray<NSString *> * _Nonnull) splitName:(NSString * _Nonnull)name;
+
 @end
 
 NS_ASSUME_NONNULL_END

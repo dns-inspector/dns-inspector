@@ -131,4 +131,22 @@
     return name;
 }
 
++ (NSArray<NSString *> *) splitName:(NSString *)name {
+    if (name == nil || name.length == 0) {
+        return @[];
+    }
+    if (name.length == 1 && [name characterAtIndex:0] == '.') {
+        return @[];
+    }
+
+    NSString * n;
+    if ([name characterAtIndex:(name.length-1)] == '.') {
+        n = [name substringToIndex:name.length-1];
+    } else {
+        n = [name copy];
+    }
+
+    return [n componentsSeparatedByString:@"."];
+}
+
 @end

@@ -1,6 +1,9 @@
 #import "DNSSECClient.h"
 #import "DNSSECClient+Private.h"
 #import "DNSRecordData+Private.h"
+#import "DNSDNSKEYRecordData+Private.h"
+#import "DNSRRSIGRecordData+Private.h"
+#import "DNSAnswer+Private.h"
 #import "DNSSECResource.h"
 #import "DNSName.h"
 @import Security;
@@ -77,7 +80,7 @@
     // RR(i) = owner | type | class | TTL | RDATA length | RDATA
 
     NSMutableData * signatureData = [NSMutableData new];
-    [signatureData appendData:rrsigData.signatureData];
+    [signatureData appendData:rrsigData.signedData];
     for (DNSAnswer * answer in message.answers) {
         if (![answer.name isEqualToString:rrsig.name]) {
             continue;
@@ -221,6 +224,110 @@
 
     PInfo(@"Fetched %i keys", (int)keysFetched);
     return resources;
+}
+
++ (NSError *) validateAnswers:(NSArray<DNSAnswer *> *)answers withSignature:(DNSAnswer *)rrsigAnswer againstKey:(DNSAnswer *)dnskeyAnswer {
+    if (answers.count == 0) {
+        return MAKE_ERROR(DNSSECInvalidResponse, @"Empty RRSet");
+    }
+
+    // All answers must have the same name, type, and class
+    for (int i = 1; i < answers.count; i++) {
+        if (![answers[i].name isEqualToString:answers[0].name]) {
+            return MAKE_ERROR(DNSSECInvalidResponse, @"Mismatched names in RRSet");
+        }
+        if (answers[i].recordType != answers[0].recordType) {
+            return MAKE_ERROR(DNSSECInvalidResponse, @"Mismatched types in RRSet");
+        }
+        if (answers[i].recordClass != answers[0].recordClass) {
+            return MAKE_ERROR(DNSSECInvalidResponse, @"Mismatched classes in RRSet");
+        }
+    }
+
+    DNSRRSIGRecordData * rrsig = (DNSRRSIGRecordData *)rrsigAnswer.data;
+    DNSDNSKEYRecordData * dnskey = (DNSDNSKEYRecordData *)dnskeyAnswer.data;
+
+    if (rrsig.keyTag != [dnskey keyTag]) {
+        return MAKE_ERROR(DNSSECBadSigningKey, @"Mismatched keytag from signature");
+    }
+    if (rrsigAnswer.recordClass != dnskeyAnswer.recordClass) {
+        return MAKE_ERROR(DNSSECBadSigningKey, @"Mismatched record class from signature");
+    }
+    if (rrsig.algorithm != dnskey.algoritm) {
+        return MAKE_ERROR(DNSSECBadSigningKey, @"Mismatched algorithm from signature");
+    }
+    if (![rrsig.signerName.lowercaseString isEqualToString:dnskeyAnswer.name.lowercaseString]) {
+        return MAKE_ERROR(DNSSECBadSigningKey, @"Mismatched signer name from signature");
+    }
+    if (dnskey.protocol != 3) {
+        return MAKE_ERROR(DNSSECBadSigningKey, @"Bad key protocol");
+    }
+    if (!dnskey.zoneKey) {
+        return MAKE_ERROR(DNSSECBadSigningKey, @"Improper zone key usage");
+    }
+    if (answers[0].recordClass != rrsigAnswer.recordClass) {
+        return MAKE_ERROR(DNSSECBadSigningKey, @"Mismatched record class from signature");
+    }
+    if (answers[0].recordType != rrsig.typeCovered) {
+        return MAKE_ERROR(DNSSECBadSigningKey, @"Mismatched record type from signature");
+    }
+
+    NSMutableData * signeddata = [NSMutableData dataWithData:[rrsig signedData]];
+
+    NSComparisonResult (^sortAnswers)(DNSAnswer *, DNSAnswer *) = ^(DNSAnswer * left, DNSAnswer * right)
+    {
+        int r = [DNSAnswer compareLeft:left withRight:right];
+
+        if (r == 0) {
+            return NSOrderedSame;
+        } else if (r < 0) {
+            return NSOrderedAscending;
+        } else {
+            return NSOrderedDescending;
+        }
+    };
+
+    NSArray<DNSAnswer *> * sortedAnswers = [answers sortedArrayUsingComparator:sortAnswers];
+    for (DNSAnswer * answer in sortedAnswers) {
+        [signeddata appendData:[answer rawSignatureData:rrsig]];
+    }
+
+    NSError * keyError;
+    SecKeyRef publicKey = [dnskey parsePublicKey:&keyError];
+    if (keyError != nil) {
+        NSString * message = [NSString stringWithFormat:@"Invalid public key: %@", keyError.localizedDescription];
+        return MAKE_ERROR(DNSSECBadSigningKey, message);
+    }
+
+    SecKeyAlgorithm algo;
+    switch (rrsig.algorithm) {
+        case DNSSECAlgorithmRSA_SHA256:
+            algo = kSecKeyAlgorithmRSASignatureMessagePKCS1v15SHA256;
+            break;
+        case DNSSECAlgorithmRSA_SHA512:
+            algo = kSecKeyAlgorithmRSASignatureMessagePKCS1v15SHA512;
+            break;
+        case DNSSECAlgorithmECDSAP256_SHA256:
+            algo = kSecKeyAlgorithmECDSASignatureMessageX962SHA256;
+            break;
+        case DNSSECAlgorithmECDSAP384_SHA384:
+            algo = kSecKeyAlgorithmECDSASignatureMessageX962SHA384;
+            break;
+        default:
+            return MAKE_ERROR(DNSSECErrorUnsupportedAlgorithm, @"Unsupported algorithm");
+    }
+
+    NSData * signature = [rrsig signatureForCrypto];
+
+    CFErrorRef verifyError;
+    bool verfieid = SecKeyVerifySignature(publicKey, algo, (__bridge CFDataRef)signeddata, (__bridge CFDataRef)signature, &verifyError);
+    CFRelease(publicKey);
+
+    if (!verfieid) {
+        return MAKE_ERROR(DNSSECSignatureFailed, @"Signature validation failed");
+    }
+
+    return nil;
 }
 
 @end

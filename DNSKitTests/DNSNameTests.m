@@ -145,4 +145,25 @@
     XCTAssertNil(name);
 }
 
+- (void) testSplitName {
+    NSArray<NSString *> * parts;
+
+    parts = [DNSName splitName:@"www.example.com"];
+
+    XCTAssertEqual(parts.count, 3);
+    XCTAssertStringEqual(parts[0], @"www");
+    XCTAssertStringEqual(parts[1], @"example");
+    XCTAssertStringEqual(parts[2], @"com");
+
+    parts = [DNSName splitName:@"www.example.com."];
+
+    XCTAssertEqual(parts.count, 3);
+    XCTAssertStringEqual(parts[0], @"www");
+    XCTAssertStringEqual(parts[1], @"example");
+    XCTAssertStringEqual(parts[2], @"com");
+
+    parts = [DNSName splitName:@"."];
+    XCTAssertEqual(parts.count, 0);
+}
+
 @end
