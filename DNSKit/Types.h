@@ -54,25 +54,16 @@ typedef NS_ENUM(NSUInteger, DNSOperationCode) {
 };
 
 typedef NS_ENUM(NSUInteger, DNSSECAlgorithm) {
-    DNSSECAlgorithmECC_GOST12 = 23,
-    DNSSECAlgorithmSM2_SM3 = 17,
-    DNSSECAlgorithmED448 = 16,
-    DNSSECAlgorithmED25519 = 15,
     DNSSECAlgorithmECDSAP384_SHA384 = 14,
     DNSSECAlgorithmECDSAP256_SHA256 = 13,
-    DNSSECAlgorithmECC_GOST = 12,
     DNSSECAlgorithmRSA_SHA512 = 10,
     DNSSECAlgorithmRSA_SHA256 = 8,
-    DNSSECAlgorithmRSASHA1_NSEC3_SHA1 = 7,
-    DNSSECAlgorithmDSA_NSEC3_SHA1 = 6,
     DNSSECAlgorithmRSA_SHA1 = 5,
-    DNSSECAlgorithmDSA = 3,
 };
 
 typedef NS_ENUM(NSUInteger, DNSSECDigest) {
     DNSSECDigestSHA1 = 1,
     DNSSECDigestSHA256 = 2,
-    DNSSECDigestGOST = 3,
     DNSSECDigestSHA384 = 4,
 };
 

@@ -72,9 +72,11 @@
     return nil;
 }
 
-- (NSData *) rawSignatureData:(DNSRRSIGRecordData *)rrsig {
+- (NSData *) rawSignatureData:(DNSAnswer *)rrsigAnswer {
     NSArray<NSString *> * labels = [DNSName splitName:self.name];
     NSString * name;
+
+    DNSRRSIGRecordData * rrsig = (DNSRRSIGRecordData *)rrsigAnswer.data;
 
     // wildcards
     if (labels.count != rrsig.labelCount) {
@@ -95,7 +97,7 @@
     [data appendData:nameData];
     uint16_t rtype = htons(self.recordType);
     uint16_t rclass = htons(self.recordClass);
-    uint32_t ttl = htonl(self.ttlSeconds);
+    uint32_t ttl = htonl(rrsig.ttlSeconds); // signatures use the ttl of the rrsig instead of the original record
     uint16_t dlen = htons(self.dataLength);
     [data appendBytes:&rtype length:2];
     [data appendBytes:&rclass length:2];

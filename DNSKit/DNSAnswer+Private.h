@@ -6,7 +6,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DNSAnswer (Private)
 
-- (NSData *) rawSignatureData:(DNSRRSIGRecordData *)rrsig;
+/// Return the raw data for a signature associated with a given rrsig answer
+/// - Parameter rrsigAnswer: A RRSIG type DNS answer
+- (NSData *) rawSignatureData:(DNSAnswer *)rrsigAnswer;
 
 @end
 

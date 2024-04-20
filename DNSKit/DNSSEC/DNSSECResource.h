@@ -4,9 +4,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface DNSSECResource : NSObject
 
-@property (strong, nonatomic) NSString * name;
-@property (strong, nonatomic) NSArray<DNSDNSKEYRecordData *> * keys;
-@property (strong, nonatomic) DNSRRSIGRecordData * rrsig;
+@property (strong, nonatomic, nonnull) NSString * name;
+@property (strong, nonatomic, nonnull) NSArray<DNSAnswer *> * dnsKeys;
+@property (strong, nonatomic, nonnull) DNSAnswer * keySigs;
+@property (strong, nonatomic, nullable) DNSAnswer * ds;
+@property (strong, nonatomic, nullable) DNSAnswer * dsSigs;
 
 @end
 

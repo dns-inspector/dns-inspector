@@ -6,6 +6,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DNSDNSKEYRecordData (Private)
 
 - (SecKeyRef) parsePublicKey:(NSError **)error;
+- (NSData *) hashWithOwnerName:(NSString *)ownerName algorithm:(DNSSECDigest)algorithm;
 
 @end
 

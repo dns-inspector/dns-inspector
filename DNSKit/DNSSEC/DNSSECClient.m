@@ -55,7 +55,8 @@
     NSData * trustedRootKsk = [NSData dataWithBytes:rootKSK length:260];
     DNSSECResource * root = resources[resources.count-1];
     bool foundRootKsk = false;
-    for (DNSDNSKEYRecordData * rootKey in root.keys) {
+    for (DNSAnswer * rootKeyAnswer in root.dnsKeys) {
+        DNSDNSKEYRecordData * rootKey = (DNSDNSKEYRecordData *)rootKeyAnswer.data;
         if (!rootKey.keySigningKey) {
             continue;
         }
@@ -117,12 +118,11 @@
 + (NSArray<DNSSECResource *> *) getKeyChainStartingAt:(NSString *)name withClient:(DNSClient *)client error:(NSError **)error {
     NSMutableArray<NSString *> * names = [NSMutableArray new];
     NSString * nextName = name;
-    int keysNeeded = 0; // How many keys we need
-    int __block keysFetched = 0; // How many keys were successfully fetched
-    int __block questionsFinished = 0; // How many questions we got a reply to (even if we got an error)
+    int __block questionsToSend = 0;
+    int __block questionsAnswered = 0;
     while (true) {
         [names addObject:nextName];
-        keysNeeded++;
+        questionsToSend += 2; // DNSKEY + DS question per zone
 
         NSArray<NSString *> * nameParts = [nextName componentsSeparatedByString:@"."];
         if (nameParts[0].length == 0) {
@@ -135,23 +135,26 @@
         }
     }
 
+
+
     NSObject * lock = [NSObject new];
-    NSMutableArray<NSError *> * dnskeyErrors = [NSMutableArray arrayWithCapacity:keysNeeded];
-    NSMutableArray<NSArray<DNSDNSKEYRecordData *> *> * dnskeys = [NSMutableArray arrayWithCapacity:keysNeeded];
-    NSMutableArray<DNSRRSIGRecordData *> * rrsigs = [NSMutableArray arrayWithCapacity:keysNeeded];
+    NSMutableArray<NSError *> * dnskeyErrors = [NSMutableArray arrayWithCapacity:names.count];
+    NSMutableArray<NSError *> * dsErrors = [NSMutableArray arrayWithCapacity:names.count];
+    NSMutableArray<NSArray<DNSAnswer *> *> * dnskeys = [NSMutableArray arrayWithCapacity:names.count];
+    NSMutableArray<NSArray<DNSAnswer *> *> * dss = [NSMutableArray arrayWithCapacity:names.count];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
 
     // Get all the resource we need in parallel
-    for (int i = 0; i < keysNeeded; i++) {
-        DNSQuestion * question = [[DNSQuestion alloc] initWithName:names[i] recordType:DNSRecordTypeDNSKEY recordClass:DNSRecordClassIN];
-        PDebug(@"Getting DNSKEY keys for %@", question.name);
-        DNSMessage * message = [DNSMessage new];
-        message.idNumber = arc4random_uniform(UINT16_MAX);
-        message.dnssecOK = true;
-        message.questions = @[question];
+    for (int i = 0; i < names.count; i++) {
+        DNSQuestion * dnskeyQuestion = [[DNSQuestion alloc] initWithName:names[i] recordType:DNSRecordTypeDNSKEY recordClass:DNSRecordClassIN];
+        PDebug(@"Getting DNSKEY keys for %@", dnskeyQuestion.name);
+        DNSMessage * dnskeyMessage = [DNSMessage new];
+        dnskeyMessage.idNumber = arc4random_uniform(UINT16_MAX);
+        dnskeyMessage.dnssecOK = true;
+        dnskeyMessage.questions = @[dnskeyQuestion];
         int __block index = i;
-        [client sendMessage:message gotReply:^(DNSMessage * reply, NSError * error) {
+        [client sendMessage:dnskeyMessage gotReply:^(DNSMessage * reply, NSError * error) {
             if (error != nil) {
                 @synchronized (lock) {
                     [dnskeyErrors insertObject:error atIndex:index];
@@ -162,21 +165,15 @@
                     [dnskeyErrors insertObject:MAKE_ERROR(-1, errorDescription) atIndex:index];
                 }
             } else {
-                bool gotDNSKEY = false;
-                bool gotRRSIG = false;
-                NSMutableArray<DNSDNSKEYRecordData *> * zoneKeys = [NSMutableArray new];
-                DNSRRSIGRecordData * zoneSig;
+                BOOL hasDNSKEY = false;
+                BOOL hasRRSIG = false;
                 for (DNSAnswer * answer in reply.answers) {
                     switch (answer.recordType) {
                         case DNSRecordTypeRRSIG: {
-                            DNSRRSIGRecordData * data = (DNSRRSIGRecordData *)answer.data;
-                            zoneSig = data;
-                            gotRRSIG = true;
+                            hasRRSIG = true;
                             break;
                         } case DNSRecordTypeDNSKEY: {
-                            DNSDNSKEYRecordData * data = (DNSDNSKEYRecordData *)answer.data;
-                            [zoneKeys addObject:data];
-                            gotDNSKEY = true;
+                            hasDNSKEY = true;
                             break;
                         } default:
                             break;
@@ -184,20 +181,78 @@
                 }
 
                 @synchronized (lock) {
-                    if (!gotDNSKEY || !gotRRSIG) {
+                    if (!hasDNSKEY || !hasRRSIG) {
                         NSString * errorDescription = [NSString stringWithFormat:@"No DNSKEY or RRSIG record for %@", reply.questions[0].name];
                         [dnskeyErrors insertObject:MAKE_ERROR(-1, errorDescription) atIndex:index];
                     } else {
-                        [dnskeys insertObject:zoneKeys atIndex:index];
-                        [rrsigs insertObject:zoneSig atIndex:index];
-                        keysFetched++;
+                        [dnskeys insertObject:reply.answers atIndex:index];
                     }
                 }
             }
 
             @synchronized (lock) {
-                questionsFinished++;
-                if (questionsFinished == keysNeeded) {
+                questionsAnswered++;
+                if (questionsAnswered >= questionsToSend) {
+                    dispatch_semaphore_signal(sync);
+                }
+            }
+        }];
+
+        if (names[i].length == 1 && [names[i] characterAtIndex:0] == '.') {
+            @synchronized (lock) {
+                questionsAnswered++;
+                if (questionsAnswered >= questionsToSend) {
+                    dispatch_semaphore_signal(sync);
+                }
+            }
+            continue;
+        }
+
+        DNSQuestion * dsQuestion = [[DNSQuestion alloc] initWithName:names[i] recordType:DNSRecordTypeDS recordClass:DNSRecordClassIN];
+        PDebug(@"Getting DS records for %@", dsQuestion.name);
+        DNSMessage * dsMessage = [DNSMessage new];
+        dsMessage.idNumber = arc4random_uniform(UINT16_MAX);
+        dsMessage.dnssecOK = true;
+        dsMessage.questions = @[dsQuestion];
+        [client sendMessage:dsMessage gotReply:^(DNSMessage * reply, NSError * error) {
+            if (error != nil) {
+                @synchronized (lock) {
+                    [dsErrors insertObject:error atIndex:index];
+                }
+            } else if (reply.responseCode != DNSResponseCodeSuccess) {
+                @synchronized (lock) {
+                    NSString * errorDescription = [NSString stringWithFormat:@"No DS record for %@", reply.questions[0].name];
+                    [dsErrors insertObject:MAKE_ERROR(-1, errorDescription) atIndex:index];
+                }
+            } else {
+                BOOL hasDS = false;
+                BOOL hasRRSIG = false;
+                for (DNSAnswer * answer in reply.answers) {
+                    switch (answer.recordType) {
+                        case DNSRecordTypeRRSIG: {
+                            hasRRSIG = true;
+                            break;
+                        } case DNSRecordTypeDS: {
+                            hasDS = true;
+                            break;
+                        } default:
+                            break;
+                    }
+                }
+
+                @synchronized (lock) {
+                    if (!hasDS || !hasRRSIG) {
+                        NSString * errorDescription = [NSString stringWithFormat:@"No DS or RRSIG record for %@", reply.questions[0].name];
+                        [dsErrors insertObject:MAKE_ERROR(-1, errorDescription) atIndex:index];
+                    } else {
+                        [dss insertObject:reply.answers atIndex:index];
+                    }
+                }
+            }
+
+            @synchronized (lock) {
+                questionsAnswered++;
+                if (questionsAnswered >= questionsToSend) {
                     dispatch_semaphore_signal(sync);
                 }
             }
@@ -206,23 +261,42 @@
 
     dispatch_semaphore_wait(sync, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)));
 
-    if (keysFetched != keysNeeded) {
-        PError(@"Unable to query for all keys in domain");
-        *error = MAKE_ERROR(DNSSECErrorMissingKeys, @"One or more DNSKEY not found");
+    if (questionsAnswered != questionsToSend) {
+        PError(@"Unable to query for all records in domain");
+        *error = MAKE_ERROR(DNSSECErrorMissingKeys, @"One or more DNSKEY or DS records not found");
         return nil;
     }
 
-    NSMutableArray<DNSSECResource *> * resources = [NSMutableArray arrayWithCapacity:keysNeeded];
-    
-    for (int i = 0; i < keysNeeded; i++) {
+    NSMutableArray<DNSSECResource *> * resources = [NSMutableArray arrayWithCapacity:names.count];
+
+    for (int i = 0; i < names.count; i++) {
         DNSSECResource * resource = [DNSSECResource new];
         resource.name = names[i];
-        resource.keys = dnskeys[i];
-        resource.rrsig = rrsigs[i];
+
+        NSMutableArray * keys = [NSMutableArray new];
+        for (DNSAnswer * answer in dnskeys[i]) {
+            if (answer.recordType == DNSRecordTypeDNSKEY) {
+                [keys addObject:answer];
+            } else if (answer.recordType == DNSRecordTypeRRSIG) {
+                resource.keySigs = answer;
+            }
+        }
+        resource.dnsKeys = keys;
+
+        if (names[i].length > 1) {
+            for (DNSAnswer * answer in dss[i]) {
+                if (answer.recordType == DNSRecordTypeDS) {
+                    resource.ds = answer;
+                } else if (answer.recordType == DNSRecordTypeRRSIG) {
+                    resource.dsSigs = answer;
+                }
+            }
+        }
+
         [resources insertObject:resource atIndex:i];
     }
 
-    PInfo(@"Fetched %i keys", (int)keysFetched);
+    PInfo(@"Fetched keys and ds for %i zones", (int)names.count);
     return resources;
 }
 
@@ -289,7 +363,7 @@
 
     NSArray<DNSAnswer *> * sortedAnswers = [answers sortedArrayUsingComparator:sortAnswers];
     for (DNSAnswer * answer in sortedAnswers) {
-        [signeddata appendData:[answer rawSignatureData:rrsig]];
+        [signeddata appendData:[answer rawSignatureData:rrsigAnswer]];
     }
 
     NSError * keyError;

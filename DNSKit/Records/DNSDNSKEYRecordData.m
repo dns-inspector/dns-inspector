@@ -3,6 +3,7 @@
 #import "DNSDNSKEYRecordData+Private.h"
 #import "NSData+ByteAtIndex.h"
 #import "ASN1Utils.h"
+#import <CommonCrypto/CommonCrypto.h>
 
 @interface DNSDNSKEYRecordData ()
 
@@ -131,6 +132,38 @@
         return nil;
     }
     return key;
+}
+
+- (NSData *) hashWithOwnerName:(NSString *)ownerName algorithm:(DNSSECDigest)algorithm {
+    NSMutableData * hashedData = [NSMutableData dataWithCapacity:ownerName.length+self.recordValue.length];
+    [hashedData appendData:[ownerName dataUsingEncoding:NSASCIIStringEncoding]];
+    [hashedData appendData:self.recordValue];
+
+    switch (algorithm) {
+        case DNSSECDigestSHA1: {
+            unsigned char hash[CC_SHA1_DIGEST_LENGTH];
+            if (CC_SHA1(hashedData.bytes, (CC_LONG)hashedData.length, hash)) {
+                return [NSData dataWithBytes:hash length:CC_SHA1_DIGEST_LENGTH];
+            }
+            break;
+        }
+        case DNSSECDigestSHA256: {
+            unsigned char hash[CC_SHA256_DIGEST_LENGTH];
+            if (CC_SHA256(hashedData.bytes, (CC_LONG)hashedData.length, hash)) {
+                return [NSData dataWithBytes:hash length:CC_SHA256_DIGEST_LENGTH];
+            }
+            break;
+        }
+        case DNSSECDigestSHA384: {
+            unsigned char hash[CC_SHA384_DIGEST_LENGTH];
+            if (CC_SHA384(hashedData.bytes, (CC_LONG)hashedData.length, hash)) {
+                return [NSData dataWithBytes:hash length:CC_SHA384_DIGEST_LENGTH];
+            }
+            break;
+        }
+    }
+
+    return nil;
 }
 
 - (NSString *) stringValue {

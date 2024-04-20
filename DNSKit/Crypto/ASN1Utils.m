@@ -4,6 +4,12 @@
 @implementation ASN1Utils
 
 + (NSData *) pkcs1RSAPubkey:(uint32_t)exponent exponentLength:(uint8_t)exponentLength modulus:(NSData *)modulus {
+    // DNSSEC returns RSA keys as 1 or 3 bytes for the length of the exponent, then the remainder of the bytes for the
+    // modulus. Apple expects RSA keys to be a ASN.1 sequence of the modulus then the exponent.
+    //
+    // For the exponent length, if the first byte is 0 then the next two bytes are the length of the exponnet. Howevever,
+    // DNS Inspector does not support exponents greater than 4 bytes - which will always fit within 1 byte for length.
+
     NSMutableData * paddedModulus;
     if (modulus.length == 256) {
         paddedModulus = [NSMutableData new];
@@ -42,8 +48,17 @@
 
 + (NSData *) pkcs1Signature:(NSData *)signature algorithm:(DNSSECAlgorithm)algorithm {
     switch (algorithm) {
+        case DNSSECAlgorithmRSA_SHA1:
+        case DNSSECAlgorithmRSA_SHA256:
+        case DNSSECAlgorithmRSA_SHA512: {
+            // No need to do any transformation
+            return signature;
+        }
         case DNSSECAlgorithmECDSAP256_SHA256:
         case DNSSECAlgorithmECDSAP384_SHA384: {
+            // DNSSEC returns the bare R and S coords concationated together
+            // but Apple expects it to be in a ASN.1 sequence.
+
             NSMutableData * r = [NSMutableData dataWithData:[signature subdataWithRange:NSMakeRange(0, signature.length/2)]];
             NSMutableData * s = [NSMutableData dataWithData:[signature subdataWithRange:NSMakeRange(r.length, signature.length-r.length)]];
 
