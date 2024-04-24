@@ -11,7 +11,7 @@ private class MainViewState: ObservableObject {
 }
 
 private class MainViewQueryState: ObservableObject {
-    @Published var recordType = RecordTypes[0]
+    @Published var recordType = QueryableRecordTypes[0]
     @Published var name = ""
     @Published var clientType = UserOptions.lastUsedServer?.clientType ?? ClientTypes[0]
     @Published var serverAddress = UserOptions.lastUsedServer?.address ?? ""
@@ -120,6 +120,7 @@ struct MainView: View {
         do {
             let parameters = DNSQueryParameters()
             parameters.dnsPrefersTcp = UserOptions.dnsPrefersTcp
+            parameters.requestDNSSEC = UserOptions.enableDnssec
             query = try DNSQuery(clientType: clientType, serverAddress: serverAddress, recordType: recordType, name: name, parameters: parameters)
         } catch {
             withAnimation {

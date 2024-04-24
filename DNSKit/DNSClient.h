@@ -9,7 +9,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (DNSClient *) serverWithAddress:(NSString *)address error:(NSError **)error;
 - (void) sendMessage:(DNSMessage *)message gotReply:(void (^)(DNSMessage *, NSError *))completed;
-- (void) authenticateMessage:(DNSMessage *)message withResult:(void (^)(NSError *))completed;
+- (void) authenticateMessage:(DNSMessage *)message withResult:(void (^)(DNSSECResult *))completed;
 
 @end
 

@@ -34,6 +34,9 @@ public struct DNSMessageView: View {
                         Text(elapsedString())
                     }
                 }
+                if UserOptions.enableDnssec {
+                    DNSMessageDNSSECView(query: query, message: message)
+                }
                 if let questions = message.questions {
                     Section(Localize("Question")) {
                         ForEach(questions, id: \.self) { question in
@@ -45,7 +48,9 @@ public struct DNSMessageView: View {
                 if let answers = message.answers {
                     Section {
                         ForEach(answers, id: \.self) { answer in
-                            DNSAnswerView(answer: answer).listRowSeparator(.hidden)
+                            if isRecordTypeDisplayable(answer.recordType) {
+                                DNSAnswerView(answer: answer).listRowSeparator(.hidden)
+                            }
                         }
                     } header: {
                         Text(localized: "Answers")
@@ -132,12 +137,24 @@ public struct DNSMessageView: View {
 
         for answer in answers {
             if let recordType = RecordType.fromDNSKit(answer.recordType) {
-                if !answerTypes.contains(recordType) {
-                    answerTypes.append(recordType)
+                if answerTypes.contains(recordType) {
+                    continue
                 }
+                if !isRecordTypeDisplayable(answer.recordType) {
+                    continue
+                }
+                answerTypes.append(recordType)
             }
         }
 
         return answerTypes
+    }
+
+    func isRecordTypeDisplayable(_ recordType: DNSRecordType) -> Bool {
+        let hiddenTypes: [DNSRecordType] = [
+            .RRSIG
+        ]
+
+        return !hiddenTypes.contains(recordType)
     }
 }

@@ -7,7 +7,7 @@ struct MainViewNameInput: View {
     var body: some View {
         HStack {
             Menu {
-                ForEach(RecordTypes) { t in
+                ForEach(QueryableRecordTypes) { t in
                     Button(action: {
                         recordType = t
                     }, label: {

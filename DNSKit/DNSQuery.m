@@ -98,6 +98,12 @@
     });
 }
 
+- (void) authenticateMessage:(DNSMessage *)message withResult:(void (^)(DNSSECResult *))completed {
+    dispatch_async(self.queryQueue, ^{
+        [self.dnsServer authenticateMessage:message withResult:completed];
+    });
+}
+
 + (NSError *) validateDNSClientConfigurationWithClientType:(DNSClientType)clientType serverAddress:(NSString *)serverAddress parameters:(DNSQueryParameters *)parameters {
     NSError * serverError;
     switch (clientType) {

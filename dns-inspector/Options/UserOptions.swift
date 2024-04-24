@@ -23,6 +23,8 @@ private struct OptionsType1: Codable {
     public var showRecordDescription: Bool?
     public var dnsPrefersTcp: Bool?
     public var appLanguage: SupportedLanguages?
+    public var enableDnssec: Bool?
+    public var automaticDnssecValidation: Bool?
 
     public var presetServers: [PresetServer]?
     public var lastUsedServer: LastUsedServer?
@@ -184,6 +186,26 @@ public class UserOptions {
         }
         set {
             current.appLanguage = newValue
+            save()
+        }
+    }
+
+    public static var enableDnssec: Bool {
+        get {
+            return current.enableDnssec ?? true
+        }
+        set {
+            current.enableDnssec = newValue
+            save()
+        }
+    }
+
+    public static var automaticDnssecValidation: Bool {
+        get {
+            return current.automaticDnssecValidation ?? false
+        }
+        set {
+            current.automaticDnssecValidation = newValue
             save()
         }
     }

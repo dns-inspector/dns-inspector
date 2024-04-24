@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <DNSKit/DNSKit.h>
 #import <DNSKit/DNSQueryParameters.h>
+#import <DNSKit/DNSSECResult.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -40,6 +41,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// Perform this DNS query
 /// - Parameter completed: called with either the DNS response or an error.
 - (void) execute:(void (^_Nonnull)(DNSMessage * _Nullable, NSError * _Nullable))completed;
+
+/// Perform full DNSSEC authentication on the given message. Validate that the message signatures are good and that the
+/// chain of trust can be established to the DNS root zone.
+/// - Parameters:
+///   - message: The message to authenticate
+///   - completed: Called when authentication has compelted.
+- (void) authenticateMessage:(DNSMessage * _Nonnull)message withResult:(void (^ _Nonnull)(DNSSECResult *))completed;
 
 /// Validate the given DNS client configuration
 /// - Parameters:

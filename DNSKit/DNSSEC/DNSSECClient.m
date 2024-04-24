@@ -10,7 +10,9 @@
 
 @implementation DNSSECClient
 
-+ (void) authenticateMessage:(DNSMessage *)message usingClient:(DNSClient *)client withResult:(void (^)(NSError *))completed {
++ (void) authenticateMessage:(DNSMessage *)message usingClient:(DNSClient *)client withResult:(void (^)(DNSSECResult *))completed {
+    DNSSECResult * result = [DNSSECResult new];
+
     DNSRRSIGRecordData * rrsigData;
     DNSAnswer * rrsig;
 
@@ -24,7 +26,8 @@
     }
 
     if (rrsig == nil) {
-        completed(MAKE_ERROR(DNSSECErrorNoSignatures, @"No record signatures included in message"));
+        result.signatureError = MAKE_ERROR(DNSSECErrorNoSignatures, @"No record signatures included in message");
+        completed(result);
         return;
     }
 
@@ -36,18 +39,21 @@
             // DNSKit only supports these algorithms
             break;
         default:
-            completed(MAKE_ERROR(DNSSECErrorUnsupportedAlgorithm, @"Unsupported DNSSEC algorithm"));
+            result.signatureError = MAKE_ERROR(DNSSECErrorUnsupportedAlgorithm, @"Unsupported DNSSEC algorithm");
+            completed(result);
             return;
     }
 
     NSError * zoneKeyError;
     NSArray<DNSSECResource *> * resources = [DNSSECClient getKeyChainStartingAt:rrsigData.signerName withClient:client error:&zoneKeyError];
     if (zoneKeyError != nil) {
-        completed(zoneKeyError);
+        result.signatureError = zoneKeyError;
+        completed(result);
         return;
     }
     if (resources == nil || resources.count == 0) {
-        completed(MAKE_ERROR(DNSSECErrorMissingKeys, @"No signing keys found"));
+        result.signatureError = MAKE_ERROR(DNSSECErrorMissingKeys, @"No signing keys found");
+        completed(result);
         return;
     }
 
@@ -64,7 +70,8 @@
 
         if (![trustedRootKsk isEqualToData:rootKey.publicKey]) {
             PError(@"Root KSK did not match expected value. Expected '%@' got '%@'", [trustedRootKsk description], [rootKey.publicKey description]);
-            completed(MAKE_ERROR(DNSSECErrorUntrustedRootSigningKey, @"Untrusted root key signing key"));
+            result.chainError = MAKE_ERROR(DNSSECErrorUntrustedRootSigningKey, @"Untrusted root key signing key");
+            completed(result);
             return;
         }
 
@@ -73,7 +80,8 @@
 
     if (!foundRootKsk) {
         PError(@"No root KSK found");
-        completed(MAKE_ERROR(DNSSECErrorUntrustedRootSigningKey, @"Untrusted root key signing key"));
+        result.chainError = MAKE_ERROR(DNSSECErrorUntrustedRootSigningKey, @"Untrusted root key signing key");
+        completed(result);
         return;
     }
 
@@ -111,15 +119,19 @@
 
         if (zsk == nil) {
             PError(@"No key with tag %lu found on zone", (unsigned long)rrsig.keyTag);
-            completed(MAKE_ERROR(DNSSECErrorMissingKeys, @"No matching key found"));
+            result.signatureError = MAKE_ERROR(DNSSECErrorMissingKeys, @"No matching key found");
+            completed(result);
             return;
         }
 
         NSError * validationError = [DNSSECClient validateAnswers:rrset withSignature:rrsigAnswer againstKey:zsk];
         if (validationError != nil) {
-            completed(validationError);
+            result.signatureError = validationError;
+            completed(result);
             return;
         }
+
+        result.signatureVerified = true;
     }
 
     // Verify the signature of the DNSKEY message
@@ -140,13 +152,15 @@
 
         if (ksk == nil) {
             PError(@"No key with tag %lu found on zone", (unsigned long)rrsig.keyTag);
-            completed(MAKE_ERROR(DNSSECErrorMissingKeys, @"No matching key found"));
+            result.chainError = MAKE_ERROR(DNSSECErrorMissingKeys, @"No matching key found");
+            completed(result);
             return;
         }
 
         NSError * validationError = [DNSSECClient validateAnswers:keyAnswers withSignature:rrsigAnswer againstKey:ksk];
         if (validationError != nil) {
-            completed(validationError);
+            result.chainError = validationError;
+            completed(result);
             return;
         }
     }
@@ -156,7 +170,8 @@
         DNSAnswer * dsAnswer = resources[i].ds;
         if (dsAnswer == nil) {
             PError(@"No DS record found on zone");
-            completed(MAKE_ERROR(DNSSECErrorNoSignatures, @"Missing DS record"));
+            result.chainError = MAKE_ERROR(DNSSECErrorNoSignatures, @"Missing DS record");
+            completed(result);
             return;
         }
         DNSDSRecordData * ds = (DNSDSRecordData *)dsAnswer.data;
@@ -180,7 +195,8 @@
 
             if (!digestMatched) {
                 PError(@"No matching DNSKEY found from DS digest");
-                completed(MAKE_ERROR(DNSSECErrorMissingKeys, @"Unknown DNSKEY referenced in DS record"));
+                result.chainError = MAKE_ERROR(DNSSECErrorMissingKeys, @"Unknown DNSKEY referenced in DS record");
+                completed(result);
                 return;
             }
         }
@@ -188,7 +204,8 @@
         DNSAnswer * rrsigAnswer = resources[i].dsSigs;
         if (rrsigAnswer == nil) {
             PError(@"No matching RRSIG record found for DS record on zone");
-            completed(MAKE_ERROR(DNSSECErrorNoSignatures, @"Missing DS record signature"));
+            result.chainError = MAKE_ERROR(DNSSECErrorNoSignatures, @"Missing DS record signature");
+            completed(result);
             return;
         }
         DNSRRSIGRecordData * rrsig = (DNSRRSIGRecordData *)rrsigAnswer.data;
@@ -204,19 +221,22 @@
         }
         if (dnskeyAnswer == nil) {
             PError(@"No key with key tag %lu found on zone", (unsigned long)rrsig.keyTag);
-            completed(MAKE_ERROR(DNSSECErrorMissingKeys, @"Missing DNSKEY for RRSIG"));
+            result.chainError = MAKE_ERROR(DNSSECErrorMissingKeys, @"Missing DNSKEY for RRSIG");
+            completed(result);
             return;
         }
 
         NSError * validationError = [DNSSECClient validateAnswers:@[dsAnswer] withSignature:rrsigAnswer againstKey:dnskeyAnswer];
         if (validationError != nil) {
             PError(@"RRSIG validation failure for DS record");
-            completed(validationError);
+            result.chainError = validationError;
+            completed(result);
             return;
         }
     }
+    result.chainTrusted = true;
 
-    completed(nil);
+    completed(result);
     return;
 }
 
@@ -410,22 +430,6 @@
 
     PInfo(@"Fetched keys and ds for %i zones", (int)names.count);
     return resources;
-}
-
-+ (NSError *) validateMessage:(DNSMessage *)message againstKey:(DNSAnswer *)dnskeyAnswer {
-    NSMutableArray<DNSAnswer *> * rrset = [NSMutableArray new];
-    DNSAnswer * rrsig;
-
-    for (DNSAnswer * answer in message.answers) {
-        if (answer.recordType == DNSRecordTypeRRSIG) {
-            rrsig = answer;
-            continue;
-        } else {
-            [rrset addObject:answer];
-        }
-    }
-
-    return [DNSSECClient validateAnswers:rrset withSignature:rrsig againstKey:dnskeyAnswer];
 }
 
 + (NSError *) validateAnswers:(NSArray<DNSAnswer *> *)answers withSignature:(DNSAnswer *)rrsigAnswer againstKey:(DNSAnswer *)dnskeyAnswer {

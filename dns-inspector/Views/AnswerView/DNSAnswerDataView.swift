@@ -101,6 +101,12 @@ struct DNSAnswerDataView: View {
                         .fixedwidth()
                         .textSelection(.enabled)
                 }
+            case .DS:
+                Text("Farts")
+            case .DNSKEY:
+                Text("Farts")
+            case .RRSIG:
+                EmptyView()
             @unknown default:
                 Text(answer.data.hexValue())
                     .fixedwidth()

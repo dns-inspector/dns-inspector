@@ -6,6 +6,7 @@ public struct RecordType: Identifiable, Equatable {
     public let dnsKitValue: DNSRecordType
     public var id = UUID()
 
+    // swiftlint:disable cyclomatic_complexity
     public static func fromDNSKit(_ dnsKitValue: DNSRecordType) -> RecordType! {
         switch dnsKitValue {
         case .A:
@@ -26,17 +27,24 @@ public struct RecordType: Identifiable, Equatable {
             return RecordType(name: "MX", dnsKitValue: .MX)
         case .PTR:
             return RecordType(name: "PTR", dnsKitValue: .PTR)
+        case .DS:
+            return RecordType(name: "DS", dnsKitValue: .DS)
+        case .RRSIG:
+            return RecordType(name: "RRSIG", dnsKitValue: .RRSIG)
+        case .DNSKEY:
+            return RecordType(name: "DNSKEY", dnsKitValue: .DNSKEY)
         default:
             fatalError("Unsupported DNSRecordType value")
         }
     }
+    // swiftlint:enable cyclomatic_complexity
 
     public static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.dnsKitValue == rhs.dnsKitValue
     }
 }
 
-public let RecordTypes: [RecordType] = [
+public let QueryableRecordTypes: [RecordType] = [
     RecordType(name: "A", dnsKitValue: .A),
     RecordType(name: "NS", dnsKitValue: .NS),
     RecordType(name: "CNAME", dnsKitValue: .CNAME),
@@ -46,4 +54,21 @@ public let RecordTypes: [RecordType] = [
     RecordType(name: "TXT", dnsKitValue: .TXT),
     RecordType(name: "MX", dnsKitValue: .MX),
     RecordType(name: "PTR", dnsKitValue: .PTR),
+    RecordType(name: "DS", dnsKitValue: .DS),
+    RecordType(name: "DNSKEY", dnsKitValue: .DNSKEY),
+]
+
+public let AllRecordTypes: [RecordType] = [
+    RecordType(name: "A", dnsKitValue: .A),
+    RecordType(name: "NS", dnsKitValue: .NS),
+    RecordType(name: "CNAME", dnsKitValue: .CNAME),
+    RecordType(name: "AAAA", dnsKitValue: .AAAA),
+    RecordType(name: "APL", dnsKitValue: .APL),
+    RecordType(name: "SRV", dnsKitValue: .SRV),
+    RecordType(name: "TXT", dnsKitValue: .TXT),
+    RecordType(name: "MX", dnsKitValue: .MX),
+    RecordType(name: "PTR", dnsKitValue: .PTR),
+    RecordType(name: "DS", dnsKitValue: .DS),
+    RecordType(name: "RRSIG", dnsKitValue: .RRSIG),
+    RecordType(name: "DNSKEY", dnsKitValue: .DNSKEY),
 ]

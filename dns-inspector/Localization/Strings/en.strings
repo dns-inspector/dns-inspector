@@ -6,8 +6,11 @@ Absolute	Absolute
 Add Preset Server	Add Preset Server
 Answers	Answers
 App language	App language
+Appearance & Behaviour	Appearance & Behaviour
+Automatically	Automatically
 Contribute to DNS Inspector	Contribute to DNS Inspector
 DNS Inspector	DNS Inspector
+DNSSEC Enabled	DNSSEC Enabled
 Dismiss	Dismiss
 Domain Information	Domain Information
 Error	Error
@@ -15,12 +18,14 @@ Follow @dnsinspector on Mastodon	Follow @dnsinspector on Mastodon
 General	General
 Get Involved	Get Involved
 Loading...	Loading...
+Manually	Manually
 More from the developer	More from the developer
 Name	Name
 Network	Network
 New Preset Server	New Preset Server
 New query	New query
 Options	Options
+Perform Validation	Perform Validation
 Preset Servers	Preset Servers
 Preset servers	Preset servers
 Provide feedback	Provide feedback
@@ -49,6 +54,7 @@ Verbose logging	Verbose logging
 Version {version} (build {build})	Version {0} (build {1})
 Your changes will take affect only quitting and restarting DNS Inspector	Your changes will take affect only quitting and restarting DNS Inspector
 about_footer	DNS Inspector is free & libre open source software licensed under the GNU GPLv3. DNS Inspector is copyright © 2023-{0} Ian Spence.
+dnssec_footer	When DNSSEC is enabled all DNS queries include a request for record signatures. DNSSEC verification will perform additional queries to establish trust and may take multiple seconds to complete.
 localization_credits	Spanish translation by Kevin López Brante. Interested in translating DNS Inspector to another language? Send us a message through the feedback link!
 record_description_a	DNS A records contain an IPv4 address.
 record_description_aaaa	DNS AAAA records contain an IPv6 address.

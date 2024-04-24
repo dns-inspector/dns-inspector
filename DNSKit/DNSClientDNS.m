@@ -217,7 +217,7 @@
     }
 }
 
-- (void) authenticateMessage:(DNSMessage *)message withResult:(void (^)(NSError *))completed {
+- (void) authenticateMessage:(DNSMessage *)message withResult:(void (^)(DNSSECResult *))completed {
     [DNSSECClient authenticateMessage:message usingClient:self withResult:completed];
 }
 
