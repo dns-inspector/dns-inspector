@@ -2,6 +2,7 @@
 #import "DNSRecordData+Private.h"
 #import "DNSDNSKEYRecordData+Private.h"
 #import "NSData+ByteAtIndex.h"
+#import "DNSName.h"
 #import "ASN1Utils.h"
 #import <CommonCrypto/CommonCrypto.h>
 
@@ -136,7 +137,7 @@
 
 - (NSData *) hashWithOwnerName:(NSString *)ownerName algorithm:(DNSSECDigest)algorithm {
     NSMutableData * hashedData = [NSMutableData dataWithCapacity:ownerName.length+self.recordValue.length];
-    [hashedData appendData:[ownerName dataUsingEncoding:NSASCIIStringEncoding]];
+    [hashedData appendData:[DNSName stringToDNSName:ownerName error:nil]];
     [hashedData appendData:self.recordValue];
 
     switch (algorithm) {

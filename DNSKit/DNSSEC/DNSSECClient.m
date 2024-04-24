@@ -77,35 +77,145 @@
         return;
     }
 
-    // signature = sign(RRSIG_RDATA | RR(1) | RR(2)... )
-    // RR(i) = owner | type | class | TTL | RDATA length | RDATA
+    // Starting at the furthest descdent zone:
+    // - Verify the signature of the original message against its RR and the DNSKEY we fetched
+    // - Verify the signature of the DNSKEY message
+    // - Verify the DS record of each parent zoon, until the root
+    // If all of the above tests pass, then we can attest full trust of the chain
 
-    NSMutableData * signatureData = [NSMutableData new];
-    [signatureData appendData:rrsigData.signedData];
-    for (DNSAnswer * answer in message.answers) {
-        if (![answer.name isEqualToString:rrsig.name]) {
-            continue;
-        }
-        if (answer.recordType != rrsigData.typeCovered) {
-            continue;
-        }
-        if (answer.recordClass != rrsig.recordClass) {
-            continue;
-        }
-        [signatureData appendData:[DNSName stringToDNSName:answer.name error:nil]];
+    // Verify the signature of the original message against its RR and the DNSKEY we fetched
+    {
+        NSMutableArray<DNSAnswer *> * rrset = [NSMutableArray new];
+        DNSAnswer * rrsigAnswer;
 
-        uint16_t atype = htons(answer.recordType);
-        uint16_t aclass = htons(answer.recordClass);
-        uint32_t ttl = htonl(answer.ttlSeconds);
-        uint16_t rdlen = htonl(answer.dataLength);
-        [signatureData appendBytes:&atype length:2];
-        [signatureData appendBytes:&aclass length:2];
-        [signatureData appendBytes:&ttl length:4];
-        [signatureData appendBytes:&rdlen length:2];
-        [signatureData appendData:answer.data.recordValue];
+        for (DNSAnswer * answer in message.answers) {
+            if (answer.recordType == DNSRecordTypeRRSIG) {
+                rrsigAnswer = answer;
+                continue;
+            } else {
+                [rrset addObject:answer];
+            }
+        }
+
+        DNSRRSIGRecordData * rrsig = (DNSRRSIGRecordData *)rrsigAnswer.data;
+
+        // Find the matching key
+        DNSAnswer * zsk = nil;
+        for (DNSAnswer * dnskey in resources[0].dnsKeys) {
+            DNSDNSKEYRecordData * key = (DNSDNSKEYRecordData *)dnskey.data;
+            if ([key keyTag] == rrsig.keyTag) {
+                zsk = dnskey;
+                break;
+            }
+        }
+
+        if (zsk == nil) {
+            PError(@"No key with tag %lu found on zone", (unsigned long)rrsig.keyTag);
+            completed(MAKE_ERROR(DNSSECErrorMissingKeys, @"No matching key found"));
+            return;
+        }
+
+        NSError * validationError = [DNSSECClient validateAnswers:rrset withSignature:rrsigAnswer againstKey:zsk];
+        if (validationError != nil) {
+            completed(validationError);
+            return;
+        }
     }
 
-    // Starting at the TLD, verify that the zone's key was signed by the parent KSK
+    // Verify the signature of the DNSKEY message
+    {
+        NSArray<DNSAnswer *> * keyAnswers = resources[0].dnsKeys;
+        DNSAnswer * rrsigAnswer = resources[0].keySigs;
+        DNSRRSIGRecordData * rrsig = (DNSRRSIGRecordData *)rrsigAnswer.data;
+
+        // Find the matching key
+        DNSAnswer * ksk = nil;
+        for (DNSAnswer * dnskey in resources[0].dnsKeys) {
+            DNSDNSKEYRecordData * key = (DNSDNSKEYRecordData *)dnskey.data;
+            if ([key keyTag] == rrsig.keyTag) {
+                ksk = dnskey;
+                break;
+            }
+        }
+
+        if (ksk == nil) {
+            PError(@"No key with tag %lu found on zone", (unsigned long)rrsig.keyTag);
+            completed(MAKE_ERROR(DNSSECErrorMissingKeys, @"No matching key found"));
+            return;
+        }
+
+        NSError * validationError = [DNSSECClient validateAnswers:keyAnswers withSignature:rrsigAnswer againstKey:ksk];
+        if (validationError != nil) {
+            completed(validationError);
+            return;
+        }
+    }
+
+    // Verify the DS record of each parent zoon, until the root
+    for (int i = 0; i < resources.count-1; i++) {
+        DNSAnswer * dsAnswer = resources[i].ds;
+        if (dsAnswer == nil) {
+            PError(@"No DS record found on zone");
+            completed(MAKE_ERROR(DNSSECErrorNoSignatures, @"Missing DS record"));
+            return;
+        }
+        DNSDSRecordData * ds = (DNSDSRecordData *)dsAnswer.data;
+
+        // Check the ds digest
+        {
+            BOOL digestMatched = false;
+            for (DNSAnswer * answer in resources[i].dnsKeys) {
+                DNSDNSKEYRecordData * dnskey = (DNSDNSKEYRecordData *)answer.data;
+                NSUInteger keyTag = [dnskey keyTag];
+                if (ds.keyTag != keyTag) {
+                    continue;
+                }
+
+                NSData * digest = [dnskey hashWithOwnerName:dsAnswer.name algorithm:ds.digestType];
+                if ([digest isEqualToData:ds.digest]) {
+                    digestMatched = true;
+                    break;
+                }
+            }
+
+            if (!digestMatched) {
+                PError(@"No matching DNSKEY found from DS digest");
+                completed(MAKE_ERROR(DNSSECErrorMissingKeys, @"Unknown DNSKEY referenced in DS record"));
+                return;
+            }
+        }
+
+        DNSAnswer * rrsigAnswer = resources[i].dsSigs;
+        if (rrsigAnswer == nil) {
+            PError(@"No matching RRSIG record found for DS record on zone");
+            completed(MAKE_ERROR(DNSSECErrorNoSignatures, @"Missing DS record signature"));
+            return;
+        }
+        DNSRRSIGRecordData * rrsig = (DNSRRSIGRecordData *)rrsigAnswer.data;
+
+        // DS Records are signed by their parent zone's key
+        DNSAnswer * dnskeyAnswer = nil;
+        for (DNSAnswer * answer in resources[i+1].dnsKeys) {
+            DNSDNSKEYRecordData * dnskey = (DNSDNSKEYRecordData *)answer.data;
+            if ([dnskey keyTag] == rrsig.keyTag) {
+                dnskeyAnswer = answer;
+                break;
+            }
+        }
+        if (dnskeyAnswer == nil) {
+            PError(@"No key with key tag %lu found on zone", (unsigned long)rrsig.keyTag);
+            completed(MAKE_ERROR(DNSSECErrorMissingKeys, @"Missing DNSKEY for RRSIG"));
+            return;
+        }
+
+        NSError * validationError = [DNSSECClient validateAnswers:@[dsAnswer] withSignature:rrsigAnswer againstKey:dnskeyAnswer];
+        if (validationError != nil) {
+            PError(@"RRSIG validation failure for DS record");
+            completed(validationError);
+            return;
+        }
+    }
+
     completed(nil);
     return;
 }
@@ -135,8 +245,6 @@
         }
     }
 
-
-
     NSObject * lock = [NSObject new];
     NSMutableArray<NSError *> * dnskeyErrors = [NSMutableArray arrayWithCapacity:names.count];
     NSMutableArray<NSError *> * dsErrors = [NSMutableArray arrayWithCapacity:names.count];
@@ -147,6 +255,7 @@
 
     // Get all the resource we need in parallel
     for (int i = 0; i < names.count; i++) {
+        // Get the DNSKEy for thiz zone
         DNSQuestion * dnskeyQuestion = [[DNSQuestion alloc] initWithName:names[i] recordType:DNSRecordTypeDNSKEY recordClass:DNSRecordClassIN];
         PDebug(@"Getting DNSKEY keys for %@", dnskeyQuestion.name);
         DNSMessage * dnskeyMessage = [DNSMessage new];
@@ -198,6 +307,7 @@
             }
         }];
 
+        // Root zone does not have a DS (obviously)
         if (names[i].length == 1 && [names[i] characterAtIndex:0] == '.') {
             @synchronized (lock) {
                 questionsAnswered++;
@@ -208,6 +318,7 @@
             continue;
         }
 
+        // Get the DS record for this zone
         DNSQuestion * dsQuestion = [[DNSQuestion alloc] initWithName:names[i] recordType:DNSRecordTypeDS recordClass:DNSRecordClassIN];
         PDebug(@"Getting DS records for %@", dsQuestion.name);
         DNSMessage * dsMessage = [DNSMessage new];
@@ -269,6 +380,7 @@
 
     NSMutableArray<DNSSECResource *> * resources = [NSMutableArray arrayWithCapacity:names.count];
 
+    // Sort through the answers and split up the DNSKEY, the RRSIG for the DNSKEY, and the same for the DS
     for (int i = 0; i < names.count; i++) {
         DNSSECResource * resource = [DNSSECResource new];
         resource.name = names[i];
@@ -298,6 +410,22 @@
 
     PInfo(@"Fetched keys and ds for %i zones", (int)names.count);
     return resources;
+}
+
++ (NSError *) validateMessage:(DNSMessage *)message againstKey:(DNSAnswer *)dnskeyAnswer {
+    NSMutableArray<DNSAnswer *> * rrset = [NSMutableArray new];
+    DNSAnswer * rrsig;
+
+    for (DNSAnswer * answer in message.answers) {
+        if (answer.recordType == DNSRecordTypeRRSIG) {
+            rrsig = answer;
+            continue;
+        } else {
+            [rrset addObject:answer];
+        }
+    }
+
+    return [DNSSECClient validateAnswers:rrset withSignature:rrsig againstKey:dnskeyAnswer];
 }
 
 + (NSError *) validateAnswers:(NSArray<DNSAnswer *> *)answers withSignature:(DNSAnswer *)rrsigAnswer againstKey:(DNSAnswer *)dnskeyAnswer {
@@ -348,6 +476,7 @@
 
     NSMutableData * signeddata = [NSMutableData dataWithData:[rrsig signedData]];
 
+    // Sort the answers based on their record data
     NSComparisonResult (^sortAnswers)(DNSAnswer *, DNSAnswer *) = ^(DNSAnswer * left, DNSAnswer * right)
     {
         int r = [DNSAnswer compareLeft:left withRight:right];

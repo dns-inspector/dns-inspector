@@ -2,6 +2,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// Describes DNSSEC related resources for a specific zone
 @interface DNSSECResource : NSObject
 
 @property (strong, nonatomic, nonnull) NSString * name;

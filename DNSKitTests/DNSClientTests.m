@@ -360,6 +360,7 @@
 
     sync = dispatch_semaphore_create(0);
     [self.client authenticateMessage:message withResult:^(NSError * error) {
+        XCTAssertNil(error);
         passed = @YES;
         dispatch_semaphore_signal(sync);
     }];

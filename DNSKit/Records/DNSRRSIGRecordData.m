@@ -64,4 +64,10 @@
     return [ASN1Utils pkcs1Signature:self.signature algorithm:self.algorithm];
 }
 
+- (NSString *) stringValue {
+    NSDateFormatter * formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"yyyyMMddHHmmss"];
+    return [NSString stringWithFormat:@"%i %i %i %@ %@ %i %@ %@", (int)self.algorithm, (int)self.labelCount, (int)self.ttlSeconds, [formatter stringFromDate:self.signatureNotAfter], [formatter stringFromDate:self.signatureNotBefore], (int)self.keyTag, self.signerName, [self.signature base64EncodedStringWithOptions:0]];
+}
+
 @end

@@ -10,8 +10,10 @@
     // For the exponent length, if the first byte is 0 then the next two bytes are the length of the exponnet. Howevever,
     // DNS Inspector does not support exponents greater than 4 bytes - which will always fit within 1 byte for length.
 
+    // If the first bit of the modulous is 1, its a negative number. ASN.1 pads negative numbers with an extra 0 byte
     NSMutableData * paddedModulus;
-    if (modulus.length == 256) {
+    uint8_t firstByte = (uint8_t)[modulus byteAtIndex:0];
+    if ((firstByte & (1 << 7)) != 0) {
         paddedModulus = [NSMutableData new];
         int p = 0;
         [paddedModulus appendBytes:&p length:1];
