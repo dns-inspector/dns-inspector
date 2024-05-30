@@ -6,6 +6,7 @@ struct DNSAnswerDataView: View {
     let onCopyRecord: () -> Void
 
     var body: some View {
+        // TODO: break this out into separate files
         HStack {
             switch answer.recordType {
             case .A:
@@ -33,6 +34,14 @@ struct DNSAnswerDataView: View {
                     Text(data.name ?? "Unknown")
                         .fixedwidth()
                         .textSelection(.enabled)
+                } else {
+                    Text(answer.data.hexValue())
+                        .fixedwidth()
+                        .textSelection(.enabled)
+                }
+            case .SOA:
+                if let data = answer.data as? DNSSOARecordData {
+                    DNSSOARecordView(data: data)
                 } else {
                     Text(answer.data.hexValue())
                         .fixedwidth()

@@ -6,6 +6,7 @@ typedef NS_ENUM(NSUInteger, DNSRecordType) {
     DNSRecordTypeA = 1,
     DNSRecordTypeNS = 2,
     DNSRecordTypeCNAME = 5,
+    DNSRecordTypeSOA = 6,
     DNSRecordTypeAAAA = 28,
     DNSRecordTypeAPL = 42,
     DNSRecordTypeSRV = 33,

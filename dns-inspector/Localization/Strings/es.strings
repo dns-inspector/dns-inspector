@@ -4,6 +4,8 @@
 About	Acerca de
 Absolute	Absoluto
 Add Preset Server	Añadir servidor predefinido
+# TODO
+Administrative address	Administrative address
 Answers	Respuestas
 # TODO
 App language	App language
@@ -21,12 +23,18 @@ Dismiss	Dismiss
 Domain Information	Domain Information
 # TODO
 Error	Error
+# TODO
+Expire	Expire
 Follow @dnsinspector on Mastodon	Sigue a @dnsinspector en Mastodon
 General	General
 Get Involved	Involucrarse
 Loading...	Cargando...
 # TODO
+Main name server	Main name server
+# TODO
 Manually	Manually
+# TODO
+Minimum	Minimum
 More from the developer	Más apps del desarrollador
 Name	Nombre
 Network	Red
@@ -43,13 +51,19 @@ Query	Petición
 Question	Pregunta
 Rate in App Store	Calificar en la App Store
 Recent queries	Peticiones recientes
+# TODO
+Refresh	Refresh
 Relative	Relativo
 Remember last server	Recordar último servidor
 Remember recent queries	Recordar peticiones recientes
 Response	Respuesta
 Results	Resultados
+# TODO
+Retry	Retry
 Save	Guardar
 Send traditional DNS requests using TCP	Enviar peticiones DNS tradicionales con TCP
+# TODO
+Serial	Serial
 Server	Servidor
 Server Address	Dirección del servidor
 Server IP	IP del servidor
@@ -79,6 +93,8 @@ record_description_mx	Los registros DNS MX contienen direcciones de servidores d
 # TODO
 record_description_ns	DNS NS records contain the authoritative DNS server for this zone.
 record_description_ptr	Los registros DNS PTR se usan para resolver un dominio DNS a partir de una dirección IP.
+# TODO
+record_description_soa	DNS SOA records contain administrative or ownership information about the domain.
 record_description_srv	Los registros DNS SRV contienen información para localizar un servicio específico.
 record_description_txt	Los registros DNS TXT pueden contener texto arbitrario.
 {duration} microseconds	{0} microsegundos

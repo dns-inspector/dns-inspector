@@ -359,8 +359,10 @@
     dispatch_semaphore_wait(sync, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(TEST_TIMEOUT * NSEC_PER_SEC)));
 
     sync = dispatch_semaphore_create(0);
-    [self.client authenticateMessage:message withResult:^(NSError * error) {
-        XCTAssertNil(error);
+    [self.client authenticateMessage:message withResult:^(DNSSECResult * result) {
+        XCTAssertNotNil(result);
+        XCTAssertNil(result.chainError);
+        XCTAssertNil(result.signatureError);
         passed = @YES;
         dispatch_semaphore_signal(sync);
     }];

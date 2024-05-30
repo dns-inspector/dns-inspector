@@ -15,6 +15,8 @@ public struct RecordType: Identifiable, Equatable {
             return RecordType(name: "NS", dnsKitValue: .NS)
         case .CNAME:
             return RecordType(name: "CNAME", dnsKitValue: .CNAME)
+        case .SOA:
+            return RecordType(name: "SOA", dnsKitValue: .SOA)
         case .AAAA:
             return RecordType(name: "AAAA", dnsKitValue: .AAAA)
         case .APL:
@@ -48,6 +50,7 @@ public let QueryableRecordTypes: [RecordType] = [
     RecordType(name: "A", dnsKitValue: .A),
     RecordType(name: "NS", dnsKitValue: .NS),
     RecordType(name: "CNAME", dnsKitValue: .CNAME),
+    RecordType(name: "SOA", dnsKitValue: .SOA),
     RecordType(name: "AAAA", dnsKitValue: .AAAA),
     RecordType(name: "APL", dnsKitValue: .APL),
     RecordType(name: "SRV", dnsKitValue: .SRV),
@@ -62,6 +65,7 @@ public let AllRecordTypes: [RecordType] = [
     RecordType(name: "A", dnsKitValue: .A),
     RecordType(name: "NS", dnsKitValue: .NS),
     RecordType(name: "CNAME", dnsKitValue: .CNAME),
+    RecordType(name: "SOA", dnsKitValue: .SOA),
     RecordType(name: "AAAA", dnsKitValue: .AAAA),
     RecordType(name: "APL", dnsKitValue: .APL),
     RecordType(name: "SRV", dnsKitValue: .SRV),

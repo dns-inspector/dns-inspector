@@ -4,6 +4,7 @@
 About	About
 Absolute	Absolute
 Add Preset Server	Add Preset Server
+Administrative address	Administrative address
 Answers	Answers
 App language	App language
 Appearance & Behaviour	Appearance & Behaviour
@@ -14,11 +15,14 @@ DNSSEC Enabled	DNSSEC Enabled
 Dismiss	Dismiss
 Domain Information	Domain Information
 Error	Error
+Expire	Expire
 Follow @dnsinspector on Mastodon	Follow @dnsinspector on Mastodon
 General	General
 Get Involved	Get Involved
 Loading...	Loading...
+Main name server	Main name server
 Manually	Manually
+Minimum	Minimum
 More from the developer	More from the developer
 Name	Name
 Network	Network
@@ -33,13 +37,16 @@ Query	Query
 Question	Question
 Rate in App Store	Rate in App Store
 Recent queries	Recent queries
+Refresh	Refresh
 Relative	Relative
 Remember last server	Remember last server
 Remember recent queries	Remember recent queries
 Response	Response
 Results	Results
+Retry	Retry
 Save	Save
 Send traditional DNS requests using TCP	Send traditional DNS requests using TCP
+Serial	Serial
 Server	Server
 Server Address	Server Address
 Server IP	Server IP
@@ -63,6 +70,7 @@ record_description_cname	DNS CNAME records contain destination DNS name to follo
 record_description_mx	DNS MX records contain mail exchange server addresses.
 record_description_ns	DNS NS records contain the authoritative DNS server for this zone.
 record_description_ptr	DNS PTR records are used to resolve a domain name from an IP address.
+record_description_soa	DNS SOA records contain administrative or ownership information about the domain.
 record_description_srv	DNS SRV records contain information for locating a specific service.
 record_description_txt	DNS TXT records contain any text data.
 {duration} microseconds	{0} microseconds

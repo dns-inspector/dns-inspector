@@ -9,6 +9,7 @@
 #import "DNSMXRecordData+Private.h"
 #import "DNSSRVRecordData+Private.h"
 #import "DNSPTRRecordData+Private.h"
+#import "DNSSOARecordData+Private.h"
 #import <arpa/inet.h>
 
 @implementation DNSMessage
@@ -159,6 +160,16 @@
                     return nil;
                 }
                 answer.data = [[DNSCNAMERecordData alloc] initWithName:nextName];
+                break;
+            } case DNSRecordTypeSOA: {
+                NSError * valueError;
+                DNSSOARecordData * value = [DNSSOARecordData readFromDNSMessage:data startingAt:dataIndex+10 error:&valueError];
+                if (valueError != nil) {
+                    PError(@"Bad SOA value: %@", valueError);
+                    *error = MAKE_ERROR(1, @"Bad response");
+                    return nil;
+                }
+                answer.data = value;
                 break;
             } case DNSRecordTypeAAAA: {
                 answer.data = [[DNSAAAARecordData alloc] initWithRecordValue:value];
