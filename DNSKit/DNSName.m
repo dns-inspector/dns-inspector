@@ -67,8 +67,8 @@
 
         if (ptrFlag & (1 << 7)) {
             PDebug(@"Byte is pointer");
-            if (dataIndex != NULL) {
-                *dataIndex = startIdx+2;
+            if (dataIndex != NULL && *dataIndex == 0) {
+                *dataIndex = offset+2;
             }
 
             short nextOffset = offset;
