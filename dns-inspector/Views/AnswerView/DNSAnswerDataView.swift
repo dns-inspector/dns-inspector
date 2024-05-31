@@ -41,7 +41,7 @@ struct DNSAnswerDataView: View {
                 }
             case .SOA:
                 if let data = answer.data as? DNSSOARecordData {
-                    DNSSOARecordView(data: data)
+                    RecordViewSOA(data: data)
                 } else {
                     Text(answer.data.hexValue())
                         .fixedwidth()
@@ -63,17 +63,7 @@ struct DNSAnswerDataView: View {
                     .textSelection(.enabled)
             case .SRV:
                 if let data = answer.data as? DNSSRVRecordData {
-                    HStack {
-                        RoundedLabel(text: "\(data.priority ?? -1)", color: .primary)
-                        Divider()
-                        RoundedLabel(text: "\(data.weight ?? -1)", color: .primary)
-                        Divider()
-                        RoundedLabel(text: "\(data.port ?? -1)", color: .primary)
-                        Divider()
-                        Text(data.name ?? "Unknown")
-                            .fixedwidth()
-                            .textSelection(.enabled)
-                    }
+                    RecordViewSRV(data: data)
                 } else {
                     Text(answer.data.hexValue())
                         .fixedwidth()
@@ -111,9 +101,21 @@ struct DNSAnswerDataView: View {
                         .textSelection(.enabled)
                 }
             case .DS:
-                Text("Farts")
+                if let data = answer.data as? DNSDSRecordData {
+                    RecordViewDS(data: data)
+                } else {
+                    Text(answer.data.hexValue())
+                        .fixedwidth()
+                        .textSelection(.enabled)
+                }
             case .DNSKEY:
-                Text("Farts")
+                if let data = answer.data as? DNSDNSKEYRecordData {
+                    RecordViewDNSKEY(data: data)
+                } else {
+                    Text(answer.data.hexValue())
+                        .fixedwidth()
+                        .textSelection(.enabled)
+                }
             case .RRSIG:
                 EmptyView()
             @unknown default:

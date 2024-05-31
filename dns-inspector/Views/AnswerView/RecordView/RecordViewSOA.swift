@@ -1,19 +1,17 @@
 import SwiftUI
 import DNSKit
 
-struct DNSSOARecordView: View {
+struct RecordViewSOA: View {
     let data: DNSSOARecordData
 
     var body: some View {
         VStack(alignment: .leading) {
-            VStack(alignment: .leading) {
-                Text(localized: "Main name server").font(.footnote)
+            TitleValue(localizedTitle: "Main name server") {
                 Text(data.mname)
                     .fixedwidth()
                     .textSelection(.enabled)
             }.padding(.bottom, 2)
-            VStack(alignment: .leading) {
-                Text(localized: "Administrative address").font(.footnote)
+            TitleValue(localizedTitle: "Administrative address") {
                 Text(data.rname)
                     .fixedwidth()
                     .textSelection(.enabled)
@@ -21,32 +19,27 @@ struct DNSSOARecordView: View {
             Divider()
                 .padding(.bottom, 2)
                 .padding(.top, 2)
-            VStack(alignment: .leading) {
-                Text(localized: "Serial").font(.footnote)
+            TitleValue(localizedTitle: "Serial") {
                 Text("\(data.serial)")
                     .fixedwidth()
                     .textSelection(.enabled)
             }.padding(.bottom, 2)
-            VStack(alignment: .leading) {
-                Text(localized: "Refresh").font(.footnote)
+            TitleValue(localizedTitle: "Refresh") {
                 Text("\(data.refresh)")
                     .fixedwidth()
                     .textSelection(.enabled)
             }.padding(.bottom, 2)
-            VStack(alignment: .leading) {
-                Text(localized: "Retry").font(.footnote)
+            TitleValue(localizedTitle: "Retry") {
                 Text("\(data.retry)")
                     .fixedwidth()
                     .textSelection(.enabled)
             }.padding(.bottom, 2)
-            VStack(alignment: .leading) {
-                Text(localized: "Expire").font(.footnote)
+            TitleValue(localizedTitle: "Expire") {
                 Text("\(data.expire)")
                     .fixedwidth()
                     .textSelection(.enabled)
             }.padding(.bottom, 2)
-            VStack(alignment: .leading) {
-                Text(localized: "Minimum").font(.footnote)
+            TitleValue(localizedTitle: "Minimum") {
                 Text("\(data.minimum)")
                     .fixedwidth()
                     .textSelection(.enabled)

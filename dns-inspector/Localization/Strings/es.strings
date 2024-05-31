@@ -6,6 +6,8 @@ Absolute	Absoluto
 Add Preset Server	Añadir servidor predefinido
 # TODO
 Administrative address	Administrative address
+# TODO
+Algorithm	Algorithm
 Answers	Respuestas
 # TODO
 App language	App language
@@ -18,6 +20,8 @@ DNS Inspector	DNS Inspector
 # TODO
 DNSSEC Enabled	DNSSEC Enabled
 # TODO
+Digest	Digest
+# TODO
 Dismiss	Dismiss
 # TODO
 Domain Information	Domain Information
@@ -28,6 +32,8 @@ Expire	Expire
 Follow @dnsinspector on Mastodon	Sigue a @dnsinspector en Mastodon
 General	General
 Get Involved	Involucrarse
+# TODO
+Key tag	Key tag
 Loading...	Cargando...
 # TODO
 Main name server	Main name server
@@ -47,6 +53,8 @@ Preset Servers	Servidores predefinidos
 Preset servers	Servidores predefinidos
 # TODO
 Provide feedback	Provide feedback
+# TODO
+Public key	Public key
 Query	Petición
 Question	Pregunta
 Rate in App Store	Calificar en la App Store
@@ -89,6 +97,10 @@ record_description_a	Los registros DNS A contienen una dirección IPv4.
 record_description_aaaa	Los registros DNS AAAA contienen una dirección IPv6.
 record_description_apl	Los registros DNS APL contienen una lista de prefijos IP.
 record_description_cname	Los registros DNS CNAME contienen un nombre DNS al que seguir.
+# TODO
+record_description_dnskey	DNS DNSKEY records contain cryptographic public keys used for authentication.
+# TODO
+record_description_ds	DNS DS records contain records of trusted delegation from the parent zone.
 record_description_mx	Los registros DNS MX contienen direcciones de servidores de intercambio de correos electrónicos.
 # TODO
 record_description_ns	DNS NS records contain the authoritative DNS server for this zone.

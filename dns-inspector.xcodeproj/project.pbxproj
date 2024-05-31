@@ -71,7 +71,11 @@
 		3CB532DB2BAB940200D64171 /* DNSDNSKEYRecordData.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CB532D82BAB940200D64171 /* DNSDNSKEYRecordData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3CBE57CE2BC0B90800281B82 /* DNSSECTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBE57CD2BC0B90800281B82 /* DNSSECTests.m */; };
 		3CBE57D02BC0BE6D00281B82 /* DNSDNSKEYRecordData+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CBE57CF2BC0BE6D00281B82 /* DNSDNSKEYRecordData+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3CC646C42C0A8AA80049CEC7 /* DNSSOARecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC646C32C0A8AA80049CEC7 /* DNSSOARecordView.swift */; };
+		3CC646C42C0A8AA80049CEC7 /* RecordViewSOA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC646C32C0A8AA80049CEC7 /* RecordViewSOA.swift */; };
+		3CC646C62C0A8F550049CEC7 /* RecordViewSRV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC646C52C0A8F550049CEC7 /* RecordViewSRV.swift */; };
+		3CC646C82C0A8FFC0049CEC7 /* RecordViewDNSKEY.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC646C72C0A8FFC0049CEC7 /* RecordViewDNSKEY.swift */; };
+		3CC646CA2C0A90F80049CEC7 /* TitleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC646C92C0A90F80049CEC7 /* TitleValue.swift */; };
+		3CC646CC2C0A967D0049CEC7 /* RecordViewDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC646CB2C0A967D0049CEC7 /* RecordViewDS.swift */; };
 		3CC689252B701441009F98DF /* DNSNSRecordData.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CC689232B701441009F98DF /* DNSNSRecordData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3CC689262B701441009F98DF /* DNSNSRecordData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC689242B701441009F98DF /* DNSNSRecordData.m */; };
 		3CC689282B701481009F98DF /* DNSNSRecordData+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CC689272B70147E009F98DF /* DNSNSRecordData+Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -266,7 +270,11 @@
 		3CB532D92BAB940200D64171 /* DNSDNSKEYRecordData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSDNSKEYRecordData.m; sourceTree = "<group>"; };
 		3CBE57CD2BC0B90800281B82 /* DNSSECTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSSECTests.m; sourceTree = "<group>"; };
 		3CBE57CF2BC0BE6D00281B82 /* DNSDNSKEYRecordData+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DNSDNSKEYRecordData+Private.h"; sourceTree = "<group>"; };
-		3CC646C32C0A8AA80049CEC7 /* DNSSOARecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSSOARecordView.swift; sourceTree = "<group>"; };
+		3CC646C32C0A8AA80049CEC7 /* RecordViewSOA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewSOA.swift; sourceTree = "<group>"; };
+		3CC646C52C0A8F550049CEC7 /* RecordViewSRV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewSRV.swift; sourceTree = "<group>"; };
+		3CC646C72C0A8FFC0049CEC7 /* RecordViewDNSKEY.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewDNSKEY.swift; sourceTree = "<group>"; };
+		3CC646C92C0A90F80049CEC7 /* TitleValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleValue.swift; sourceTree = "<group>"; };
+		3CC646CB2C0A967D0049CEC7 /* RecordViewDS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewDS.swift; sourceTree = "<group>"; };
 		3CC689232B701441009F98DF /* DNSNSRecordData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DNSNSRecordData.h; sourceTree = "<group>"; };
 		3CC689242B701441009F98DF /* DNSNSRecordData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DNSNSRecordData.m; sourceTree = "<group>"; };
 		3CC689272B70147E009F98DF /* DNSNSRecordData+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DNSNSRecordData+Private.h"; sourceTree = "<group>"; };
@@ -479,7 +487,10 @@
 		3CC646C22C0A8A930049CEC7 /* RecordView */ = {
 			isa = PBXGroup;
 			children = (
-				3CC646C32C0A8AA80049CEC7 /* DNSSOARecordView.swift */,
+				3CC646C72C0A8FFC0049CEC7 /* RecordViewDNSKEY.swift */,
+				3CC646CB2C0A967D0049CEC7 /* RecordViewDS.swift */,
+				3CC646C32C0A8AA80049CEC7 /* RecordViewSOA.swift */,
+				3CC646C52C0A8F550049CEC7 /* RecordViewSRV.swift */,
 			);
 			path = RecordView;
 			sourceTree = "<group>";
@@ -572,6 +583,7 @@
 				9A80CE332AEF633600E97A63 /* PresetServerEditView.swift */,
 				9A80CE352AEF634700E97A63 /* PresetServerListView.swift */,
 				9A80CE282AEF2C7700E97A63 /* RoundedLabel.swift */,
+				3CC646C92C0A90F80049CEC7 /* TitleValue.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -975,6 +987,7 @@
 				9AA8C18A2ADCBD7A00B93E45 /* ClientType.swift in Sources */,
 				3C710D882AE773B400F252C8 /* RecordClass.swift in Sources */,
 				3C6CCD5F2B3BB66000A3B6F2 /* Localization+SwiftUI.swift in Sources */,
+				3CC646CC2C0A967D0049CEC7 /* RecordViewDS.swift in Sources */,
 				3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */,
 				3C0410062B93D4BD00389A16 /* AppLanguageView.swift in Sources */,
 				3C0C6B302B38F35F006D3F41 /* AboutTableViewRepresentable.swift in Sources */,
@@ -982,8 +995,10 @@
 				3C0C6B342B39108B006D3F41 /* ErrorCellView.swift in Sources */,
 				9A80CE302AEF5A0A00E97A63 /* PresetServer.swift in Sources */,
 				3CE4E35F2BD8DB1B00715E6C /* DNSAnswerDNSSECView.swift in Sources */,
+				3CC646C82C0A8FFC0049CEC7 /* RecordViewDNSKEY.swift in Sources */,
 				9A80CE402AEF6FF400E97A63 /* Text+Fixedwidth.swift in Sources */,
 				9A80CE342AEF633700E97A63 /* PresetServerEditView.swift in Sources */,
+				3CC646C62C0A8F550049CEC7 /* RecordViewSRV.swift in Sources */,
 				3C9AA7C72AF1E94100B072FA /* View+RoundedCorners.swift in Sources */,
 				3CAD46A52B903E1000E97A04 /* MainViewRecentLookups.swift in Sources */,
 				3C9AA7C52AF1E45B00B072FA /* DNSAnswerView.swift in Sources */,
@@ -992,7 +1007,7 @@
 				9AA8C1862ADCB85300B93E45 /* RecordType.swift in Sources */,
 				3C9AA7CB2AF1FCF400B072FA /* RecentQuery.swift in Sources */,
 				3CF7FF832B45256C000307CD /* ClearButton.swift in Sources */,
-				3CC646C42C0A8AA80049CEC7 /* DNSSOARecordView.swift in Sources */,
+				3CC646C42C0A8AA80049CEC7 /* RecordViewSOA.swift in Sources */,
 				9AA8C13C2ADCA98000B93E45 /* MainView.swift in Sources */,
 				9A80CE3D2AEF6E4700E97A63 /* Navigation.swift in Sources */,
 				9AA8C18E2ADD9B4600B93E45 /* OptionsView.swift in Sources */,
@@ -1006,6 +1021,7 @@
 				3C6CCD5A2B3BAC4700A3B6F2 /* Globals.swift in Sources */,
 				3C9AA7C92AF1F43F00B072FA /* DNSQuestionView.swift in Sources */,
 				3C9AA7CE2AF2082100B072FA /* AppInfo.swift in Sources */,
+				3CC646CA2C0A90F80049CEC7 /* TitleValue.swift in Sources */,
 				3CAD46A32B903C8300E97A04 /* MainViewServerInput.swift in Sources */,
 				9A80CE262AEF2B2900E97A63 /* ResponseCode.swift in Sources */,
 				3CAD46A12B903BEC00E97A04 /* MainViewNameInput.swift in Sources */,

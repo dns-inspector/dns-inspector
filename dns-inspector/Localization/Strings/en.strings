@@ -5,6 +5,7 @@ About	About
 Absolute	Absolute
 Add Preset Server	Add Preset Server
 Administrative address	Administrative address
+Algorithm	Algorithm
 Answers	Answers
 App language	App language
 Appearance & Behaviour	Appearance & Behaviour
@@ -12,6 +13,7 @@ Automatically	Automatically
 Contribute to DNS Inspector	Contribute to DNS Inspector
 DNS Inspector	DNS Inspector
 DNSSEC Enabled	DNSSEC Enabled
+Digest	Digest
 Dismiss	Dismiss
 Domain Information	Domain Information
 Error	Error
@@ -19,6 +21,7 @@ Expire	Expire
 Follow @dnsinspector on Mastodon	Follow @dnsinspector on Mastodon
 General	General
 Get Involved	Get Involved
+Key tag	Key tag
 Loading...	Loading...
 Main name server	Main name server
 Manually	Manually
@@ -33,6 +36,7 @@ Perform Validation	Perform Validation
 Preset Servers	Preset Servers
 Preset servers	Preset servers
 Provide feedback	Provide feedback
+Public key	Public key
 Query	Query
 Question	Question
 Rate in App Store	Rate in App Store
@@ -67,6 +71,8 @@ record_description_a	DNS A records contain an IPv4 address.
 record_description_aaaa	DNS AAAA records contain an IPv6 address.
 record_description_apl	DNS APL records contain an IP address prefix list.
 record_description_cname	DNS CNAME records contain destination DNS name to follow.
+record_description_dnskey	DNS DNSKEY records contain cryptographic public keys used for authentication.
+record_description_ds	DNS DS records contain records of trusted delegation from the parent zone.
 record_description_mx	DNS MX records contain mail exchange server addresses.
 record_description_ns	DNS NS records contain the authoritative DNS server for this zone.
 record_description_ptr	DNS PTR records are used to resolve a domain name from an IP address.
