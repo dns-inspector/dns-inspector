@@ -9,6 +9,15 @@ struct RecordViewDNSKEY: View {
             TitleValue(localizedTitle: "Key tag") {
                 Text(String(data.keyTag()))
             }.padding(.bottom, 2)
+            if data.keySigningKey {
+                TitleValue(localizedTitle: "Key Usage") {
+                    Text(localized: "Key signing key")
+                }.padding(.bottom, 2)
+            } else if data.zoneKey {
+                TitleValue(localizedTitle: "Key Usage") {
+                    Text(localized: "Zone signing key")
+                }.padding(.bottom, 2)
+            }
             TitleValue(localizedTitle: "Algorithm") {
                 switch data.algoritm {
                 case .ECDSAP384_SHA384:

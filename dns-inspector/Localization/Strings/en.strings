@@ -21,6 +21,8 @@ Expire	Expire
 Follow @dnsinspector on Mastodon	Follow @dnsinspector on Mastodon
 General	General
 Get Involved	Get Involved
+Key Usage	Key Usage
+Key signing key	Key signing key
 Key tag	Key tag
 Loading...	Loading...
 Main name server	Main name server
@@ -64,6 +66,7 @@ TLS Inspector	TLS Inspector
 Verbose logging	Verbose logging
 Version {version} (build {build})	Version {0} (build {1})
 Your changes will take affect only quitting and restarting DNS Inspector	Your changes will take affect only quitting and restarting DNS Inspector
+Zone signing key	Zone signing key
 about_footer	DNS Inspector is free & libre open source software licensed under the GNU GPLv3. DNS Inspector is copyright © 2023-{0} Ian Spence.
 dnssec_footer	When DNSSEC is enabled all DNS queries include a request for record signatures. DNSSEC verification will perform additional queries to establish trust and may take multiple seconds to complete.
 localization_credits	Spanish translation by Kevin López Brante. Interested in translating DNS Inspector to another language? Send us a message through the feedback link!

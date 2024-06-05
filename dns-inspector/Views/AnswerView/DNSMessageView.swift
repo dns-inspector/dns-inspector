@@ -34,9 +34,6 @@ public struct DNSMessageView: View {
                         Text(elapsedString())
                     }
                 }
-                if UserOptions.enableDnssec {
-                    DNSMessageDNSSECView(query: query, message: message)
-                }
                 if let questions = message.questions {
                     Section(Localize("Question")) {
                         ForEach(questions, id: \.self) { question in

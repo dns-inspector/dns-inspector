@@ -7,8 +7,6 @@ struct OptionsView: View {
     @State private var ttlDisplayMode = UserOptions.ttlDisplayMode
     @State private var showRecordDescription = UserOptions.showRecordDescription
     @State private var dnsPrefersTcp = UserOptions.dnsPrefersTcp
-    @State private var enableDnssec = UserOptions.enableDnssec
-    @State private var automaticDnssecValidation = UserOptions.automaticDnssecValidation
 
     var body: some View {
         Navigation {
@@ -35,21 +33,6 @@ struct OptionsView: View {
                 Section(Localize("Network")) {
                     Toggle(Localize("Send traditional DNS requests using TCP"), isOn: $dnsPrefersTcp)
                     .tint(Color.accentColor)
-                    .disabled(enableDnssec)
-                }
-                Section {
-                    Toggle(Localize("DNSSEC Enabled"), isOn: $enableDnssec).tint(Color.accentColor)
-
-                    if enableDnssec {
-                        Picker(Localize("Perform Validation"), selection: $automaticDnssecValidation) {
-                            Text(localized: "Automatically").tag(true)
-                            Text(localized: "Manually").tag(false)
-                        }
-                    }
-                } header: {
-                    Text("DNSSEC")
-                } footer: {
-                    Text(localized: "dnssec_footer")
                 }
             }
             .navigationTitle(localized: "Options")
@@ -77,15 +60,6 @@ struct OptionsView: View {
             }
             .onChange(of: dnsPrefersTcp) { newValue in
                 UserOptions.dnsPrefersTcp = newValue
-            }
-            .onChange(of: enableDnssec) { newValue in
-                UserOptions.enableDnssec = newValue
-                if newValue {
-                    dnsPrefersTcp = true
-                }
-            }
-            .onChange(of: automaticDnssecValidation) { newValue in
-                UserOptions.automaticDnssecValidation = newValue
             }
         }
     }
