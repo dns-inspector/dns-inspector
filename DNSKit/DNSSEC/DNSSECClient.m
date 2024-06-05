@@ -266,32 +266,37 @@
     }
 
     NSObject * lock = [NSObject new];
-    NSMutableArray<NSError *> * dnskeyErrors = [NSMutableArray arrayWithCapacity:names.count];
-    NSMutableArray<NSError *> * dsErrors = [NSMutableArray arrayWithCapacity:names.count];
-    NSMutableArray<NSArray<DNSAnswer *> *> * dnskeys = [NSMutableArray arrayWithCapacity:names.count];
-    NSMutableArray<NSArray<DNSAnswer *> *> * dss = [NSMutableArray arrayWithCapacity:names.count];
+
+    // Because we make all DS & DNSKEY queries in parallel across all names the response may come back out of order
+    // so we use dictionaries of index -> data so we can insert things as they come in. I had thought if you allocated
+    // a mutable array with a specific capacity you could insert objects out of order at specific indexes, but that
+    // didn't work.
+    NSMutableDictionary<NSNumber *, NSError *> * dnskeyErrors = [[NSMutableDictionary alloc] initWithCapacity:names.count];
+    NSMutableDictionary<NSNumber *, NSError *> * dsErrors = [[NSMutableDictionary alloc] initWithCapacity:names.count];
+    NSMutableDictionary<NSNumber *, NSArray<DNSAnswer *> *> * dnskeyAnswers = [[NSMutableDictionary alloc] initWithCapacity:names.count];
+    NSMutableDictionary<NSNumber *, NSArray<DNSAnswer *> *> * dsAnswers = [[NSMutableDictionary alloc] initWithCapacity:names.count];
 
     dispatch_semaphore_t sync = dispatch_semaphore_create(0);
 
     // Get all the resource we need in parallel
     for (int i = 0; i < names.count; i++) {
-        // Get the DNSKEy for thiz zone
+        // Get the DNSKEY for this zone
         DNSQuestion * dnskeyQuestion = [[DNSQuestion alloc] initWithName:names[i] recordType:DNSRecordTypeDNSKEY recordClass:DNSRecordClassIN];
         PDebug(@"Getting DNSKEY keys for %@", dnskeyQuestion.name);
         DNSMessage * dnskeyMessage = [DNSMessage new];
         dnskeyMessage.idNumber = arc4random_uniform(UINT16_MAX);
         dnskeyMessage.dnssecOK = true;
         dnskeyMessage.questions = @[dnskeyQuestion];
-        int __block index = i;
+        NSNumber * __block index = [NSNumber numberWithInt:i];
         [client sendMessage:dnskeyMessage gotReply:^(DNSMessage * reply, NSError * error) {
             if (error != nil) {
                 @synchronized (lock) {
-                    [dnskeyErrors insertObject:error atIndex:index];
+                    dnskeyErrors[index] = error;
                 }
             } else if (reply.responseCode != DNSResponseCodeSuccess) {
                 @synchronized (lock) {
                     NSString * errorDescription = [NSString stringWithFormat:@"No DNSKEY record for %@", reply.questions[0].name];
-                    [dnskeyErrors insertObject:MAKE_ERROR(-1, errorDescription) atIndex:index];
+                    dnskeyErrors[index] = MAKE_ERROR(-1, errorDescription);
                 }
             } else {
                 BOOL hasDNSKEY = false;
@@ -312,9 +317,9 @@
                 @synchronized (lock) {
                     if (!hasDNSKEY || !hasRRSIG) {
                         NSString * errorDescription = [NSString stringWithFormat:@"No DNSKEY or RRSIG record for %@", reply.questions[0].name];
-                        [dnskeyErrors insertObject:MAKE_ERROR(-1, errorDescription) atIndex:index];
+                        dnskeyErrors[index] = MAKE_ERROR(-1, errorDescription);
                     } else {
-                        [dnskeys insertObject:reply.answers atIndex:index];
+                        dnskeyAnswers[index] = reply.answers;
                     }
                 }
             }
@@ -348,12 +353,12 @@
         [client sendMessage:dsMessage gotReply:^(DNSMessage * reply, NSError * error) {
             if (error != nil) {
                 @synchronized (lock) {
-                    [dsErrors insertObject:error atIndex:index];
+                    dsErrors[index] = error;
                 }
             } else if (reply.responseCode != DNSResponseCodeSuccess) {
                 @synchronized (lock) {
                     NSString * errorDescription = [NSString stringWithFormat:@"No DS record for %@", reply.questions[0].name];
-                    [dsErrors insertObject:MAKE_ERROR(-1, errorDescription) atIndex:index];
+                    dsErrors[index] = MAKE_ERROR(-1, errorDescription);
                 }
             } else {
                 BOOL hasDS = false;
@@ -374,9 +379,9 @@
                 @synchronized (lock) {
                     if (!hasDS || !hasRRSIG) {
                         NSString * errorDescription = [NSString stringWithFormat:@"No DS or RRSIG record for %@", reply.questions[0].name];
-                        [dsErrors insertObject:MAKE_ERROR(-1, errorDescription) atIndex:index];
+                        dsErrors[index] = MAKE_ERROR(-1, errorDescription);
                     } else {
-                        [dss insertObject:reply.answers atIndex:index];
+                        dsAnswers[index] = reply.answers;
                     }
                 }
             }
@@ -405,8 +410,10 @@
         DNSSECResource * resource = [DNSSECResource new];
         resource.name = names[i];
 
+        NSNumber * index = [NSNumber numberWithInt:i];
+
         NSMutableArray * keys = [NSMutableArray new];
-        for (DNSAnswer * answer in dnskeys[i]) {
+        for (DNSAnswer * answer in dnskeyAnswers[index]) {
             if (answer.recordType == DNSRecordTypeDNSKEY) {
                 [keys addObject:answer];
             } else if (answer.recordType == DNSRecordTypeRRSIG) {
@@ -416,7 +423,7 @@
         resource.dnsKeys = keys;
 
         if (names[i].length > 1) {
-            for (DNSAnswer * answer in dss[i]) {
+            for (DNSAnswer * answer in dsAnswers[index]) {
                 if (answer.recordType == DNSRecordTypeDS) {
                     resource.ds = answer;
                 } else if (answer.recordType == DNSRecordTypeRRSIG) {
