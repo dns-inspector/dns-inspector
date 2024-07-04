@@ -2,29 +2,29 @@ import SwiftUI
 import DNSKit
 
 struct MainViewServerInput: View {
-    @Binding var clientType: ClientType
-    @Binding var serverAddress: String
+    var transportType: Binding<TransportType>
+    var serverAddress: Binding<String>
     let onSubmit: () -> Void
 
     var body: some View {
         HStack {
             Menu {
-                ForEach(ClientTypes) { t in
+                ForEach(TransportType.allCases, id: \.self) { t in
                     Button(action: {
-                        clientType = t
+                        transportType.wrappedValue = t
                     }, label: {
-                        Text(t.name)
+                        Text(t.string())
                     })
                 }
             } label: {
-                Text(clientType.name)
+                Text(transportType.wrappedValue.string())
                 Image(systemName: "chevron.up.chevron.down")
                     .resizable()
                     .scaledToFit()
                     .frame(maxHeight: 12)
             }
             Divider()
-            TextField(text: $serverAddress) {
+            TextField(text: serverAddress) {
                 Text(localized: serverPlaceholder())
             }
             .keyboardType(.URL)
@@ -34,21 +34,19 @@ struct MainViewServerInput: View {
             .onSubmit {
                 onSubmit()
             }
-            ClearButton(text: $serverAddress)
-            PresetServerButton(clientType: $clientType, serverAddress: $serverAddress)
+            ClearButton(text: serverAddress)
+            PresetServerButton(transportType: transportType, serverAddress: serverAddress)
         }
     }
 
     func serverPlaceholder() -> String {
-        switch clientType.dnsKitValue {
-        case DNSClientType.DNS.rawValue:
+        switch transportType.wrappedValue {
+        case .DNS:
             return "Server IP"
-        case DNSClientType.TLS.rawValue:
+        case .TLS:
             return "Server IP"
-        case DNSClientType.HTTPS.rawValue:
+        case .HTTPS:
             return "Server URL"
-        default:
-            return "Server"
         }
     }
 }

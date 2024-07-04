@@ -2,26 +2,18 @@ import Foundation
 import DNSKit
 
 public struct RecentQuery: Codable, Identifiable, Equatable {
-    public let recordType: UInt
+    public let recordType: RecordType
     public let name: String
-    public let clientType: UInt
+    public let transportType: TransportType
     public let serverAddress: String
     public var id = UUID()
 
     enum CodingKeys: CodingKey {
-        case recordType, name, clientType, serverAddress
+        case recordType, name, transportType, serverAddress
     }
 
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.recordType == rhs.recordType && lhs.name == rhs.name && lhs.clientType == rhs.clientType && lhs.serverAddress == rhs.serverAddress
-    }
-
-    public func recordTypeName() -> String {
-        return RecordType.fromDNSKit(DNSRecordType(rawValue: self.recordType)!).name
-    }
-
-    public func clientTypeName() -> String {
-        return ClientType.fromDNSKit(DNSClientType(rawValue: self.clientType)!).name
+        return lhs.recordType == rhs.recordType && lhs.name == rhs.name && lhs.transportType == rhs.transportType && lhs.serverAddress == rhs.serverAddress
     }
 }
 

@@ -7,7 +7,7 @@ public enum TTLDisplayMode: Int, Codable {
 }
 
 public struct LastUsedServer: Codable {
-    let clientType: ClientType
+    let transportType: TransportType
     let address: String
 }
 
@@ -213,9 +213,9 @@ public class UserOptions {
     public static var presetServers: [PresetServer] {
         get {
             return current.presetServers ?? [
-                PresetServer(type: DNSClientType.TLS.rawValue, address: "1.1.1.1"),
-                PresetServer(type: DNSClientType.DNS.rawValue, address: "9.9.9.9"),
-                PresetServer(type: DNSClientType.HTTPS.rawValue, address: "dns.google/dns-query")
+                PresetServer(type: .TLS, address: "1.1.1.1"),
+                PresetServer(type: .DNS, address: "9.9.9.9"),
+                PresetServer(type: .HTTPS, address: "dns.google/dns-query")
             ]
         }
         set {

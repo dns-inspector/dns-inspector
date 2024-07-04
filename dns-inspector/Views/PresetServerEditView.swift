@@ -2,7 +2,7 @@ import SwiftUI
 import DNSKit
 
 struct PresetServerEditView: View {
-    @Binding public var clientType: DNSClientType
+    @Binding public var transportType: TransportType
     @Binding public var serverAddress: String
     public let isNew: Bool
     public let didSave: () -> Void
@@ -11,10 +11,10 @@ struct PresetServerEditView: View {
 
     var body: some View {
         List {
-            Picker(Localize("Server Type"), selection: $clientType) {
-                Text("DNS").tag(DNSClientType.DNS)
-                Text("HTTPS").tag(DNSClientType.HTTPS)
-                Text("TLS").tag(DNSClientType.TLS)
+            Picker(Localize("Server Type"), selection: $transportType) {
+                Text("DNS").tag(TransportType.DNS)
+                Text("HTTPS").tag(TransportType.HTTPS)
+                Text("TLS").tag(TransportType.TLS)
             }
             TextField(text: $serverAddress) {
                 Text(localized: "Server Address")
@@ -32,7 +32,7 @@ struct PresetServerEditView: View {
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button(Localize("Save")) {
-                    if let err = DNSQuery.validateDNSClientConfiguration(with: self.clientType, serverAddress: self.serverAddress, parameters: nil) {
+                    if let err = Query.validateConfiguration(transportType: self.transportType, serverAddress: self.serverAddress) {
                         withAnimation {
                             self.validationError = err
                         }

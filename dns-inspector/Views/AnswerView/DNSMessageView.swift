@@ -2,8 +2,8 @@ import SwiftUI
 import DNSKit
 
 public struct DNSMessageView: View {
-    public let query: DNSQuery
-    public let message: DNSMessage
+    public let query: Query
+    public let message: DNSKit.Message
     @State private var showWhois = false
     @Environment(\.dismiss) private var dismiss
 
@@ -14,14 +14,14 @@ public struct DNSMessageView: View {
                     HStack {
                         Text(String(message.idNumber)).fixedwidth()
                         Divider()
-                        RoundedLabel(text: "\(ClientType.fromDNSKit(query.clientType).name)", textColor: .primary, borderColor: .gray)
+                        RoundedLabel(text: query.transportType.string(), textColor: .primary, borderColor: .gray)
                         Divider()
                         Text(query.serverAddress).fixedwidth()
                     }
                 }
                 Section(Localize("Response")) {
                     HStack {
-                        RoundedLabel(text: ResponseCode.fromDNSKit(message.responseCode).name, color: responseCodeColor())
+                        RoundedLabel(text: message.responseCode.string(), color: responseCodeColor())
                         Divider()
                         if message.truncated {
                             RoundedLabel(text: "TRUNC", color: .yellow)
@@ -34,17 +34,17 @@ public struct DNSMessageView: View {
                         Text(elapsedString())
                     }
                 }
-                if let questions = message.questions {
+                if message.questions.count > 0 {
                     Section(Localize("Question")) {
-                        ForEach(questions, id: \.self) { question in
+                        ForEach(message.questions, id: \.name) { question in
                             DNSQuestionView(question: question)
                                 .listRowSeparator(.hidden)
                         }
                     }
                 }
-                if let answers = message.answers {
+                if message.answers.count > 0 {
                     Section {
-                        ForEach(answers, id: \.self) { answer in
+                        ForEach(message.answers) { answer in
                             if isRecordTypeDisplayable(answer.recordType) {
                                 DNSAnswerView(answer: answer).listRowSeparator(.hidden)
                             }
@@ -53,16 +53,16 @@ public struct DNSMessageView: View {
                         Text(localized: "Answers")
                     } footer: {
                         VStack(alignment: .leading, spacing: 8.0) {
-                            ForEach(answerRecordTypes(answers)) { recordType in
+                            ForEach(answerRecordTypes(message.answers), id: \.self) { recordType in
                                 VStack(alignment: .leading, spacing: 1.5) {
                                     HStack(spacing: 2.0) {
                                         Image(systemName: "info.circle")
                                             .foregroundStyle(.accent)
-                                        Text(localized: "{record type} Record", args: [recordType.name])
+                                        Text(localized: "{record type} Record", args: [recordType.string()])
                                             .bold()
                                             .foregroundStyle(.accent)
                                     }
-                                    Text(localized: "record_description_\(recordType.name.lowercased())")
+                                    Text(localized: "record_description_\(recordType.string().lowercased())")
                                 }
                             }
                         }
@@ -99,7 +99,7 @@ public struct DNSMessageView: View {
     }
 
     func responseCodeColor() -> Color {
-        if message.responseCode == .success {
+        if message.responseCode == .NOERROR {
             return .green
         } else if message.responseCode == .NXDOMAIN {
             return .yellow
@@ -108,7 +108,7 @@ public struct DNSMessageView: View {
     }
 
     func elapsedString() -> String {
-        let elapsed = message.elapsedNs.doubleValue
+        let elapsed = message.duration
 
         if elapsed > 1000000000 {
             let elapsedStr = String(format: "%.2f", elapsed / 1000000000)
@@ -125,7 +125,7 @@ public struct DNSMessageView: View {
         return Localize("{duration} nanoseconds", args: [elapsedStr])
     }
 
-    func answerRecordTypes(_ answers: [DNSAnswer]) -> [RecordType] {
+    func answerRecordTypes(_ answers: [Answer]) -> [RecordType] {
         if !UserOptions.showRecordDescription {
             return []
         }
@@ -133,22 +133,20 @@ public struct DNSMessageView: View {
         var answerTypes: [RecordType] = []
 
         for answer in answers {
-            if let recordType = RecordType.fromDNSKit(answer.recordType) {
-                if answerTypes.contains(recordType) {
-                    continue
-                }
-                if !isRecordTypeDisplayable(answer.recordType) {
-                    continue
-                }
-                answerTypes.append(recordType)
+            if answerTypes.contains(answer.recordType) {
+                continue
             }
+            if !isRecordTypeDisplayable(answer.recordType) {
+                continue
+            }
+            answerTypes.append(answer.recordType)
         }
 
         return answerTypes
     }
 
-    func isRecordTypeDisplayable(_ recordType: DNSRecordType) -> Bool {
-        let hiddenTypes: [DNSRecordType] = [
+    func isRecordTypeDisplayable(_ recordType: RecordType) -> Bool {
+        let hiddenTypes: [RecordType] = [
             .RRSIG
         ]
 

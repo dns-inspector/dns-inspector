@@ -2,7 +2,7 @@ import SwiftUI
 import DNSKit
 
 struct DNSQuestionView: View {
-    let question: DNSQuestion
+    let question: Question
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -15,13 +15,13 @@ struct DNSQuestionView: View {
             .background(Color("LightBackground", bundle: nil))
             HStack {
                 Spacer()
-                Text(RecordType.fromDNSKit(question.recordType).name)
+                Text(question.recordType.string())
                     .font(Font.body.smallCaps())
                     .padding(.vertical, 8.0)
                 Spacer()
                 Divider()
                 Spacer()
-                Text(RecordClass.fromDNSKit(question.recordClass).name)
+                Text(question.recordClass.string())
                     .font(Font.body.smallCaps())
                     .padding(.vertical, 8.0)
                 Spacer()
@@ -29,16 +29,5 @@ struct DNSQuestionView: View {
         }
         .frame(maxWidth: .infinity)
         .listRowInsets(EdgeInsets())
-    }
-}
-
-#Preview {
-    Navigation {
-        List {
-            Section(Localize("Questions")) {
-                DNSQuestionView(question: DNSQuestion(name: "dns.google.", recordType: .A, recordClass: .IN))
-            }
-            .listRowSeparator(.hidden)
-        }
     }
 }

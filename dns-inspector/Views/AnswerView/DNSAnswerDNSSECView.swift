@@ -2,15 +2,16 @@ import SwiftUI
 import DNSKit
 
 public struct DNSMessageDNSSECView: View {
-    public let query: DNSQuery
-    public let message: DNSMessage
-    @State private var oResult: DNSSECResult?
+    public let query: Query
+    public let message: DNSKit.Message
+    @State private var result: Result<DNSSECResult, Error>?
 
     public var body: some View {
         Section("DNSSEC") {
-            if let result = oResult {
+            switch result {
+            case .success(let dnssecResult):
                 HStack {
-                    if result.signatureVerified {
+                    if dnssecResult.signatureVerified {
                         RoundedLabel(text: "Verified", color: .green)
                     } else {
                         RoundedLabel(text: "Unverified", color: .red)
@@ -19,7 +20,7 @@ public struct DNSMessageDNSSECView: View {
                     Text("Message Signature")
                 }
                 HStack {
-                    if result.chainTrusted {
+                    if dnssecResult.chainTrusted {
                         RoundedLabel(text: "Established", color: .green)
                     } else {
                         RoundedLabel(text: "Broken", color: .red)
@@ -27,14 +28,20 @@ public struct DNSMessageDNSSECView: View {
                     Divider()
                     Text("Chain of Trust")
                 }
-            } else {
+            case .failure(let error):
+                ErrorCellView(error: error)
+            case nil:
                 if UserOptions.automaticDnssecValidation {
                     ProgressView().onAppear {
-                        doValidation()
+                        Task {
+                            await doValidation()
+                        }
                     }
                 } else {
                     Button {
-                        doValidation()
+                        Task {
+                            await doValidation()
+                        }
                     } label: {
                         Text(localized: "Validate")
                     }
@@ -43,9 +50,12 @@ public struct DNSMessageDNSSECView: View {
         }
     }
 
-    private func doValidation() {
-        query.authenticateMessage(message) { result in
-            self.oResult = result
+    private func doValidation() async {
+        do {
+            let result = try await query.authenticate(message: message)
+            self.result = .success(result)
+        } catch {
+            self.result = .failure(error)
         }
     }
 }

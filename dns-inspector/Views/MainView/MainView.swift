@@ -4,16 +4,16 @@ import StoreKit
 
 private class MainViewState: ObservableObject {
     @Published var loading = false
-    @Published var query: DNSQuery?
-    @Published var result: DNSMessage?
+    @Published var query: Query?
+    @Published var result: DNSKit.Message?
     @Published var error: Error?
     @Published var success = false
 }
 
 private class MainViewQueryState: ObservableObject {
-    @Published var recordType = QueryableRecordTypes[0]
+    @Published var recordType = RecordType.A
     @Published var name = ""
-    @Published var clientType = UserOptions.lastUsedServer?.clientType ?? ClientTypes[0]
+    @Published var transportType = UserOptions.lastUsedServer?.transportType ?? TransportType.DNS
     @Published var serverAddress = UserOptions.lastUsedServer?.address ?? ""
 }
 
@@ -29,8 +29,10 @@ struct MainView: View {
                 Section(Localize("New query")) {
                     MainViewNameInput(recordType: $query.recordType, name: $query.name)
                     .disabled(self.lookupState.loading)
-                    MainViewServerInput(clientType: $query.clientType, serverAddress: $query.serverAddress) {
-                        doInspect()
+                    MainViewServerInput(transportType: $query.transportType, serverAddress: $query.serverAddress) {
+                        Task {
+                            await doInspect()
+                        }
                     }
                     .disabled(self.lookupState.loading)
                     if self.lookupState.loading {
@@ -47,7 +49,9 @@ struct MainView: View {
                 }
                 if UserOptions.rememberQueries && RecentQueryManager.shared.queries.count > 0 {
                     MainViewRecentLookups { query in
-                        doInspect(recordType: DNSRecordType(rawValue: query.recordType)!, name: query.name, clientType: DNSClientType(rawValue: query.clientType)!, serverAddress: query.serverAddress)
+                        Task {
+                            await doInspect(recordType: query.recordType, name: query.name, transportType: query.transportType, serverAddress: query.serverAddress)
+                        }
                     }
                 }
             }
@@ -72,7 +76,9 @@ struct MainView: View {
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Button(action: {
-                        doInspect()
+                        Task {
+                            await doInspect()
+                        }
                     }, label: {
                         Image(systemName: "arrow.right.circle")
                     })
@@ -107,21 +113,20 @@ struct MainView: View {
         return self.query.name.isEmpty || self.query.serverAddress.isEmpty
     }
 
-    func doInspect() {
-        doInspect(recordType: self.query.recordType.dnsKitValue, name: self.query.name, clientType: DNSClientType(rawValue: self.query.clientType.dnsKitValue)!, serverAddress: self.query.serverAddress)
+    func doInspect() async {
+        await doInspect(recordType: self.query.recordType, name: self.query.name, transportType: self.query.transportType, serverAddress: self.query.serverAddress)
     }
 
-    func doInspect(recordType: DNSRecordType, name: String, clientType: DNSClientType, serverAddress: String) {
+    func doInspect(recordType: RecordType, name: String, transportType: TransportType, serverAddress: String) async {
         withAnimation {
             self.lookupState.loading = true
         }
 
-        let query: DNSQuery
+        let transportOptions = TransportOptions(dnsPrefersTcp: UserOptions.dnsPrefersTcp)
+        let queryOptions = QueryOptions(dnssecRequested: UserOptions.enableDnssec)
+        let query: Query
         do {
-            let parameters = DNSQueryParameters()
-            parameters.dnsPrefersTcp = UserOptions.dnsPrefersTcp
-            parameters.requestDNSSEC = UserOptions.enableDnssec
-            query = try DNSQuery(clientType: clientType, serverAddress: serverAddress, recordType: recordType, name: name, parameters: parameters)
+            query = try Query(transportType: transportType, transportOptions: transportOptions, serverAddress: serverAddress, recordType: recordType, name: name, queryOptions: queryOptions)
         } catch {
             withAnimation {
                 self.lookupState.error = error
@@ -130,32 +135,25 @@ struct MainView: View {
             return
         }
 
-        query.execute { oMessage, oError in
-            DispatchQueue.main.async {
-                if let error = oError {
-                    withAnimation {
-                        self.lookupState.error = error
-                        self.lookupState.loading = false
-                    }
-                    return
-                }
-                guard let message = oMessage else {
-                    withAnimation {
-                        self.lookupState.error = MakeError("No error or message")
-                        self.lookupState.loading = false
-                    }
-                    return
-                }
-                self.lookupState.error = nil
+        let message: DNSKit.Message
+        do {
+            message = try await query.execute()
+        } catch {
+            withAnimation {
+                self.lookupState.error = error
                 self.lookupState.loading = false
-                self.lookupState.result = message
-                self.lookupState.query = query
-                self.lookupState.success = true
-                RecentQueryManager.shared.add(RecentQuery(recordType: query.recordType.rawValue, name: query.name, clientType: query.clientType.rawValue, serverAddress: query.serverAddress))
-                if UserOptions.rememberLastServer {
-                    UserOptions.lastUsedServer = LastUsedServer(clientType: self.query.clientType, address: self.query.serverAddress)
-                }
             }
+            return
+        }
+
+        self.lookupState.error = nil
+        self.lookupState.loading = false
+        self.lookupState.result = message
+        self.lookupState.query = query
+        self.lookupState.success = true
+        RecentQueryManager.shared.add(RecentQuery(recordType: query.recordType, name: query.name, transportType: query.transportType, serverAddress: query.serverAddress))
+        if UserOptions.rememberLastServer {
+            UserOptions.lastUsedServer = LastUsedServer(transportType: self.query.transportType, address: self.query.serverAddress)
         }
     }
 }

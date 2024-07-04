@@ -48,7 +48,7 @@ public enum SupportedLanguages: String, CaseIterable, Codable {
     case Spanish = "es"
 
     var name: String {
-        get { return String(describing: self) }
+        return String(describing: self)
     }
 }
 

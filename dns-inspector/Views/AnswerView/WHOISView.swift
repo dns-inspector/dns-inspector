@@ -25,18 +25,19 @@ public struct WHOISView: View {
             })
             .padding()
             .onAppear {
-                loadData()
+                Task {
+                    await loadData()
+                }
             }
         }
     }
 
-    private func loadData() {
-        WHOISClient.lookupDomain(domain) { oResponse, oError in
-            if let response = oResponse {
-                whoisResult = .success(response)
-            } else if let error = oError {
-                whoisResult = .failure(error)
-            }
+    private func loadData() async {
+        do {
+            let response = try await WHOIS.lookup(domain)
+            self.whoisResult = .success(response)
+        } catch {
+            self.whoisResult = .failure(error)
         }
     }
 }

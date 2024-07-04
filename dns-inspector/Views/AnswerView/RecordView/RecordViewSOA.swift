@@ -2,7 +2,7 @@ import SwiftUI
 import DNSKit
 
 struct RecordViewSOA: View {
-    let data: DNSSOARecordData
+    let data: SOARecordData
 
     var body: some View {
         VStack(alignment: .leading) {

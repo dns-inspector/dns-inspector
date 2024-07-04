@@ -11,10 +11,10 @@ struct MainViewRecentLookups: View {
                     onTap(query)
                 } label: {
                     HStack {
-                        RoundedLabel(text: query.recordTypeName(), textColor: .primary, borderColor: .gray)
+                        RoundedLabel(text: query.recordType.string(), textColor: .primary, borderColor: .gray)
                         Text(query.name)
                         Divider()
-                        RoundedLabel(text: query.clientTypeName(), textColor: .primary, borderColor: .gray)
+                        RoundedLabel(text: query.transportType.string(), textColor: .primary, borderColor: .gray)
                         Text(query.serverAddress)
                     }
                 }

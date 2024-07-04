@@ -1,4 +1,5 @@
 import SwiftUI
+import DNSKit
 
 struct MainViewNameInput: View {
     @Binding var recordType: RecordType
@@ -7,16 +8,16 @@ struct MainViewNameInput: View {
     var body: some View {
         HStack {
             Menu {
-                ForEach(QueryableRecordTypes) { t in
+                ForEach(RecordType.allCases, id: \.self) { t in
                     Button(action: {
                         recordType = t
                     }, label: {
-                        Text(t.name)
+                        Text(t.string())
                     })
                 }
             } label: {
                 HStack {
-                    Text(recordType.name)
+                    Text(recordType.string())
                     Image(systemName: "chevron.up.chevron.down")
                         .resizable()
                         .scaledToFit()

@@ -80,7 +80,7 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
             cell.imageView?.image = UIImage(systemName: "ladybug.fill")
             cell.textLabel?.text = Localize("Verbose logging")
             let toggle = UISwitch()
-            toggle.isOn = LogWriter.sharedInstance().level == .debug
+            toggle.isOn = LogWriter.shared.level == .Debug
             toggle.addTarget(self, action: #selector(toggleVerboseLogging), for: .valueChanged)
             toggle.onTintColor = UIColor(named: "AccentColor")
             cell.accessoryView = toggle
@@ -172,6 +172,6 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
     }
 
     @objc func toggleVerboseLogging(toggle: UISwitch) {
-        print("\(toggle.isOn)")
+        LogWriter.shared.level = toggle.isOn ? .Debug : LogWriter.defaultLogLevel()
     }
 }

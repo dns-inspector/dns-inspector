@@ -2,7 +2,7 @@ import SwiftUI
 import DNSKit
 
 struct DNSAnswerDataView: View {
-    let answer: DNSAnswer
+    let answer: Answer
     let onCopyRecord: () -> Void
 
     var body: some View {
@@ -10,122 +10,114 @@ struct DNSAnswerDataView: View {
         HStack {
             switch answer.recordType {
             case .A:
-                if let data = answer.data as? DNSARecordData {
-                    Text(data.ipAddress ?? "Unknown")
+                if let data = answer.data as? ARecordData {
+                    Text(data.ipAddress)
                         .fixedwidth()
                         .textSelection(.enabled)
                 } else {
-                    Text(answer.data.hexValue())
+                    Text(answer.hexValue)
                         .fixedwidth()
                         .textSelection(.enabled)
                 }
             case .NS:
-                if let data = answer.data as? DNSNSRecordData {
-                    Text(data.name ?? "Unknown")
+                if let data = answer.data as? NSRecordData {
+                    Text(data.name)
                         .fixedwidth()
                         .textSelection(.enabled)
                 } else {
-                    Text(answer.data.hexValue())
+                    Text(answer.hexValue)
                         .fixedwidth()
                         .textSelection(.enabled)
                 }
             case .CNAME:
-                if let data = answer.data as? DNSCNAMERecordData {
-                    Text(data.name ?? "Unknown")
+                if let data = answer.data as? CNAMERecordData {
+                    Text(data.name)
                         .fixedwidth()
                         .textSelection(.enabled)
                 } else {
-                    Text(answer.data.hexValue())
+                    Text(answer.hexValue)
                         .fixedwidth()
                         .textSelection(.enabled)
                 }
             case .SOA:
-                if let data = answer.data as? DNSSOARecordData {
+                if let data = answer.data as? SOARecordData {
                     RecordViewSOA(data: data)
                 } else {
-                    Text(answer.data.hexValue())
+                    Text(answer.hexValue)
                         .fixedwidth()
                         .textSelection(.enabled)
                 }
             case .AAAA:
-                if let data = answer.data as? DNSAAAARecordData {
-                    Text(data.ipAddress ?? "Unknown")
+                if let data = answer.data as? AAAARecordData {
+                    Text(data.ipAddress)
                         .fixedwidth()
                         .textSelection(.enabled)
                 } else {
-                    Text(answer.data.hexValue())
+                    Text(answer.hexValue)
                         .fixedwidth()
                         .textSelection(.enabled)
                 }
-            case .APL:
-                Text(answer.data.hexValue())
-                    .fixedwidth()
-                    .textSelection(.enabled)
             case .SRV:
-                if let data = answer.data as? DNSSRVRecordData {
+                if let data = answer.data as? SRVRecordData {
                     RecordViewSRV(data: data)
                 } else {
-                    Text(answer.data.hexValue())
+                    Text(answer.hexValue)
                         .fixedwidth()
                         .textSelection(.enabled)
                 }
             case .TXT:
-                if let data = answer.data as? DNSTXTRecordData {
-                    Text(data.text ?? "Unknown")
+                if let data = answer.data as? TXTRecordData {
+                    Text(data.text)
                         .fixedwidth()
                         .textSelection(.enabled)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             case .MX:
-                if let data = answer.data as? DNSMXRecordData {
+                if let data = answer.data as? MXRecordData {
                     HStack {
-                        RoundedLabel(text: "\(data.priority ?? -1)", color: .primary)
+                        RoundedLabel(text: "\(data.priority)", color: .primary)
                         Divider()
-                        Text(data.name ?? "Unknown")
+                        Text(data.name)
                             .fixedwidth()
                             .textSelection(.enabled)
                     }
                 } else {
-                    Text(answer.data.hexValue())
+                    Text(answer.hexValue)
                         .fixedwidth()
                         .textSelection(.enabled)
                 }
             case .PTR:
-                if let data = answer.data as? DNSPTRRecordData {
-                    Text(data.name ?? "Unknown")
+                if let data = answer.data as? PTRRecordData {
+                    Text(data.name)
                         .fixedwidth()
                         .textSelection(.enabled)
                 } else {
-                    Text(answer.data.hexValue())
+                    Text(answer.hexValue)
                         .fixedwidth()
                         .textSelection(.enabled)
                 }
             case .DS:
-                if let data = answer.data as? DNSDSRecordData {
+                if let data = answer.data as? DSRecordData {
                     RecordViewDS(data: data)
                 } else {
-                    Text(answer.data.hexValue())
+                    Text(answer.hexValue)
                         .fixedwidth()
                         .textSelection(.enabled)
                 }
             case .DNSKEY:
-                if let data = answer.data as? DNSDNSKEYRecordData {
+                if let data = answer.data as? DNSKEYRecordData {
                     RecordViewDNSKEY(data: data)
                 } else {
-                    Text(answer.data.hexValue())
+                    Text(answer.hexValue)
                         .fixedwidth()
                         .textSelection(.enabled)
                 }
             case .RRSIG:
                 EmptyView()
-            @unknown default:
-                Text(answer.data.hexValue())
-                    .fixedwidth()
-                    .textSelection(.enabled)
             }
         }.contextMenu(menuItems: {
             Button {
-                UIPasteboard.general.string = answer.data.stringValue()
+                UIPasteboard.general.string = answer.data.description
             } label: {
                 Label("Copy Record Data", systemImage: "doc.on.clipboard")
             }
@@ -135,11 +127,5 @@ struct DNSAnswerDataView: View {
                 Label("Copy Entire Record", systemImage: "doc.on.clipboard")
             }
         })
-    }
-}
-
-#Preview {
-    DNSAnswerDataView(answer: DNSAnswer(name: "dns.google.", recordType: .A, recordClass: .IN, ttlSeconds: 1800, data: "8.8.8.8".data(using: .ascii)!)) {
-        //
     }
 }

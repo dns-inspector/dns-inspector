@@ -2,7 +2,7 @@ import SwiftUI
 import DNSKit
 
 struct RecordViewDS: View {
-    let data: DNSDSRecordData
+    let data: DSRecordData
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -10,7 +10,7 @@ struct RecordViewDS: View {
                 Text(String(data.keyTag))
             }.padding(.bottom, 2)
             TitleValue(localizedTitle: "Algorithm") {
-                switch data.algorithmType {
+                switch data.algorithm {
                 case .ECDSAP384_SHA384:
                     Text("ECDSA-P384 with SHA-384")
                 case .ECDSAP256_SHA256:
@@ -21,8 +21,6 @@ struct RecordViewDS: View {
                     Text("RSA with SHA-256")
                 case .RSA_SHA1:
                     Text("RSA with SHA1")
-                default:
-                    Text("Unknown")
                 }
             }.padding(.bottom, 2)
             TitleValue(localizedTitle: "Digest") {
@@ -33,8 +31,6 @@ struct RecordViewDS: View {
                     Text("SHA-256")
                 case .SHA384:
                     Text("SHA-384")
-                default:
-                    Text("Unknown")
                 }
             }.padding(.bottom, 2)
             TitleValue(localizedTitle: "Digest") {

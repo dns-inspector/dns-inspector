@@ -2,7 +2,7 @@ import SwiftUI
 import DNSKit
 
 struct DNSAnswerView: View {
-    let answer: DNSAnswer
+    let answer: Answer
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,13 +18,13 @@ struct DNSAnswerView: View {
                 .padding(.vertical, 8.0)
             HStack {
                 Spacer()
-                Text(RecordType.fromDNSKit(answer.recordType).name)
+                Text(answer.recordType.string())
                     .font(Font.body.smallCaps())
                     .padding(.vertical, 8.0)
                 Spacer()
                 Divider()
                 Spacer()
-                Text(RecordClass.fromDNSKit(answer.recordClass).name)
+                Text(answer.recordClass.string())
                     .font(Font.body.smallCaps())
                     .padding(.vertical, 8.0)
                 Spacer()
@@ -49,7 +49,7 @@ struct DNSAnswerView: View {
     }
 
     func copyAnswer() {
-        UIPasteboard.general.string = answer.stringValue()
+        UIPasteboard.general.string = answer.description
     }
 
     func relativeTtlString() -> String {
@@ -57,17 +57,5 @@ struct DNSAnswerView: View {
         formatter.dateTimeStyle = .named
         let duration = TimeInterval(integerLiteral: Int64(answer.ttlSeconds))
         return formatter.localizedString(fromTimeInterval: duration)
-    }
-}
-
-#Preview {
-    Navigation {
-        List {
-            Section(Localize("Answers")) {
-                DNSAnswerView(answer: DNSAnswer(name: "dns.google.", recordType: .A, recordClass: .IN, ttlSeconds: 1800, data: "8.8.8.8".data(using: .ascii)!))
-                DNSAnswerView(answer: DNSAnswer(name: "dns.google.", recordType: .A, recordClass: .IN, ttlSeconds: 1800, data: "8.8.4.4".data(using: .ascii)!))
-            }
-            .listRowSeparator(.hidden)
-        }
     }
 }

@@ -1,0 +1,10 @@
+.DS_Store
+/.build
+/Packages
+xcuserdata/
+DerivedData/
+.netrc
+/.swiftpm
+Tests/DNSKitTests/Test Server/*
+!Tests/DNSKitTests/Test Server/*.go
+!Tests/DNSKitTests/Test Server/go.*
