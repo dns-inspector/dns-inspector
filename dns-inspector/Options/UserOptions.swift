@@ -11,9 +11,9 @@ public struct LastUsedServer: Codable {
     let address: String
 }
 
-private let currentSchemaVersion: Int = 1
+private let currentSchemaVersion: Int = 2
 
-private struct OptionsType1: Codable {
+private struct OptionsType: Codable {
     public var schemaVersion: Int
     public var appLaunchCount: Int?
     public var didPromptForReview: Bool?
@@ -30,9 +30,9 @@ private struct OptionsType1: Codable {
     public var lastUsedServer: LastUsedServer?
 }
 
-public class UserOptions {
+public final class UserOptions {
     private static let optionsFilePath = IO.fileInDocumentsDirectory("options.json")
-    private static var current = OptionsType1(schemaVersion: currentSchemaVersion)
+    private static var current = OptionsType(schemaVersion: currentSchemaVersion)
 
     public static func load() {
         defer {
@@ -47,7 +47,7 @@ public class UserOptions {
         do {
             data = try IO.read(optionsFilePath)
         } catch {
-            print("Error reading options file \(optionsFilePath): \(error)")
+            LogWriter.shared.write(.Error, message: "[\(#fileID):\(#line)] Error reading options file \(optionsFilePath): \(error)")
             return
         }
 
@@ -56,25 +56,34 @@ public class UserOptions {
         // 1. The top level of this JSON file is always an object
         // 2. The schema version of that file will be represented by an int
         // 3. The schema version of that file will use the key "schemaVersion"
-        let base: [String:Any]
+        var base: [String:Any]
         do {
             base = try JSONSerialization.jsonObject(with: data) as? [String:Any] ?? [:]
         } catch {
-            print("Error decoding options file \(optionsFilePath): \(error)")
+            LogWriter.shared.write(.Error, message: "[\(#fileID):\(#line)] Error decoding options file: \(error)")
             return
         }
 
-        if let currentVersion = base["schemaVersion"] as? Int {
-            if currentVersion > currentSchemaVersion {
-                print("Schema of settings file is newer than what is supported by the app. \(currentVersion) > \(currentSchemaVersion)")
-                return
-            }
-            if currentVersion < currentSchemaVersion {
-                // Reserved for future use
-                print("Need to migrate settings file to newer schema")
+        guard let currentVersion = base["schemaVersion"] as? Int else {
+            LogWriter.shared.write(.Error, message: "[\(#fileID):\(#line)] Options file does not contain a schema")
+            return
+        }
+
+        if currentVersion > currentSchemaVersion {
+            LogWriter.shared.write(.Error, message: "[\(#fileID):\(#line)] Schema of settings file is newer than what is supported by the app. \(currentVersion) > \(currentSchemaVersion)")
+            return
+        } else if currentVersion == currentSchemaVersion {
+            let options: OptionsType
+            do {
+                options = try JSONDecoder().decode(OptionsType.self, from: data)
+            } catch {
+                print("Error decoding options file \(optionsFilePath): \(error)")
                 return
             }
 
+            current = options
+        } else if currentVersion == 1 {
+            // Migration from Obj-C to Swift in DNSKit
             let options: OptionsType1
             do {
                 options = try JSONDecoder().decode(OptionsType1.self, from: data)
@@ -82,10 +91,10 @@ public class UserOptions {
                 print("Error decoding options file \(optionsFilePath): \(error)")
                 return
             }
-
-            current = options
-            print("Loaded options")
+            current = options.convertToOptions2()
         }
+
+        LogWriter.shared.write(.Debug, message: "[\(#fileID):\(#line)] Loaded options")
     }
 
     public static func save() {
@@ -93,18 +102,18 @@ public class UserOptions {
         do {
             data = try JSONEncoder().encode(current)
         } catch {
-            print("Error encoding options: \(error)")
+            LogWriter.shared.write(.Error, message: "[\(#fileID):\(#line)] Error encoding options: \(error)")
             return
         }
 
         do {
             try IO.write(optionsFilePath, data: data)
         } catch {
-            print("Error writing options file \(optionsFilePath): \(error)")
+            LogWriter.shared.write(.Error, message: "[\(#fileID):\(#line)] Error writing options file \(optionsFilePath): \(error)")
             return
         }
 
-        print("Options saved")
+        LogWriter.shared.write(.Debug, message: "[\(#fileID):\(#line)] Options saved")
     }
 
     public static var appLaunchCount: Int {
@@ -232,6 +241,103 @@ public class UserOptions {
         set {
             current.lastUsedServer = newValue
             save()
+        }
+    }
+}
+
+private struct OptionsType1: Codable {
+    public var schemaVersion: Int
+    public var appLaunchCount: Int?
+    public var didPromptForReview: Bool?
+    public var rememberQueries: Bool?
+    public var rememberLastServer: Bool?
+    public var ttlDisplayMode: TTLDisplayMode?
+    public var showRecordDescription: Bool?
+    public var dnsPrefersTcp: Bool?
+    public var appLanguage: SupportedLanguages?
+    public var enableDnssec: Bool?
+    public var automaticDnssecValidation: Bool?
+
+    public var presetServers: [PresetServer1]?
+    public var lastUsedServer: LastUsedServer1?
+
+    public func convertToOptions2() -> OptionsType {
+        var newOptions = OptionsType(schemaVersion: currentSchemaVersion)
+        newOptions.schemaVersion = self.schemaVersion
+        newOptions.appLaunchCount = self.appLaunchCount
+        newOptions.didPromptForReview = self.didPromptForReview
+        newOptions.rememberQueries = self.rememberQueries
+        newOptions.rememberLastServer = self.rememberLastServer
+        newOptions.ttlDisplayMode = self.ttlDisplayMode
+        newOptions.showRecordDescription = self.showRecordDescription
+        newOptions.dnsPrefersTcp = self.dnsPrefersTcp
+        newOptions.appLanguage = self.appLanguage
+        newOptions.enableDnssec = self.enableDnssec
+        newOptions.automaticDnssecValidation = self.automaticDnssecValidation
+
+        if let oldPresetServers = self.presetServers {
+            var newPresetServers: [PresetServer] = []
+            for presetServer in oldPresetServers {
+                guard let transportType = presetServer.transportType() else {
+                    continue
+                }
+
+                newPresetServers.append(PresetServer(type: transportType, address: presetServer.address))
+            }
+            newOptions.presetServers = newPresetServers
+        }
+
+        if let lastUsedServer = self.lastUsedServer {
+            if let transportType = lastUsedServer.clientType.transportType() {
+                newOptions.lastUsedServer = LastUsedServer(transportType: transportType, address: lastUsedServer.address)
+            }
+        }
+        return newOptions
+    }
+}
+
+private struct PresetServer1: Codable {
+    public let type: UInt
+    public let address: String
+
+    enum CodingKeys: CodingKey {
+        case type, address
+    }
+
+    public func transportType() -> TransportType? {
+        switch self.type {
+        case 1:
+            return .DNS
+        case 2:
+            return .HTTPS
+        case 3:
+            return .TLS
+        default:
+            return nil
+        }
+    }
+}
+
+private struct LastUsedServer1: Codable {
+    let clientType: ClientType1
+    let address: String
+}
+
+private struct ClientType1: Codable {
+    public let name: String
+    public let dnsKitValue: UInt
+    public let id: UUID
+
+    public func transportType() -> TransportType? {
+        switch self.dnsKitValue {
+        case 1:
+            return .DNS
+        case 2:
+            return .HTTPS
+        case 3:
+            return .TLS
+        default:
+            return nil
         }
     }
 }

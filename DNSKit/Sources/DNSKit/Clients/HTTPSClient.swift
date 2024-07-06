@@ -60,7 +60,7 @@ internal class HTTPClient: IClient {
         let request = URLRequest(url: url)
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
-        sessionConfig.timeoutIntervalForResource = 5
+        sessionConfig.timeoutIntervalForResource = TimeInterval(self.transportOptions.timeout)
         let session = URLSession(configuration: sessionConfig)
         printDebug("[\(#fileID):\(#line)] HTTP GET \(url)")
         session.dataTask(with: request) { oData, oResponse, oError in

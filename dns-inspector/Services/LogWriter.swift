@@ -5,7 +5,7 @@ import DNSKit
 ///
 /// > Warning: Do not create more than once instance of this class. Only use the `LogWriter.shared` singleton.
 internal final class LogWriter: ILogger {
-    /// The shared instance of the logging facility
+    /// The shared instance of the logging facility.
     static let shared = LogWriter()
     /// The minimum log level. Messages below this level are discarded. Can be modified at any time.
     var level: LogLevel
@@ -17,6 +17,18 @@ internal final class LogWriter: ILogger {
 
     private init() {
         self.filePath = IO.fileInDocumentsDirectory("DNSKit.log")
+
+        // Truncate the log if over 1M
+        let size = IO.fileSize(self.filePath)
+        if size > 1028*1028 {
+            try? IO.delete(self.filePath)
+        }
+
+        if !IO.fileExists(self.filePath) {
+            // Create a blank file for writing
+            try? IO.write(self.filePath, data: Data([]))
+        }
+
         if let writer = try? FileHandle(forUpdating: self.filePath) {
             _ = try? writer.seekToEnd()
             self.fileWriter = writer

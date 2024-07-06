@@ -8,9 +8,19 @@ public struct TransportOptions {
     /// and UDP is barely notable by the user, and that TCP has fewer limits on data size than UDP does.
     public var dnsPrefersTcp = true
 
+    /// The maximum number of seconds to wait before failing a query if the server has not responded.
+    ///
+    /// The default value is 5 seconds.
+    public var timeout: UInt8 = 5
+
     /// Create a new set of transport options. All variables are optional and will use their default values.
-    public init(dnsPrefersTcp: Bool = false) {
+    public init(dnsPrefersTcp: Bool = false, timeout: UInt8 = 5) {
         self.dnsPrefersTcp = dnsPrefersTcp
+        self.timeout = timeout
+    }
+
+    internal var timeoutDispatchTime: DispatchTime {
+        return DispatchTime.now().advanced(by: DispatchTimeInterval.seconds(Int(self.timeout)))
     }
 }
 
@@ -101,9 +111,15 @@ public struct Query {
     /// Execute this DNS query and return the response message
     /// - Returns: The response message
     public func execute() async throws -> Message {
+        var didComplete = false
         return try await withCheckedThrowingContinuation { continuation in
             self.execute { result in
+                if didComplete {
+                    return
+                }
+
                 continuation.resume(with: result)
+                didComplete = true
             }
         }
     }

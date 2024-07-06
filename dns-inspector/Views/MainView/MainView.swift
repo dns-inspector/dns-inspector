@@ -120,6 +120,7 @@ struct MainView: View {
     func doInspect(recordType: RecordType, name: String, transportType: TransportType, serverAddress: String) async {
         withAnimation {
             self.lookupState.loading = true
+            self.lookupState.error = nil
         }
 
         let transportOptions = TransportOptions(dnsPrefersTcp: UserOptions.dnsPrefersTcp)

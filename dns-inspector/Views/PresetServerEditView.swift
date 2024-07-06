@@ -16,14 +16,16 @@ struct PresetServerEditView: View {
                 Text("HTTPS").tag(TransportType.HTTPS)
                 Text("TLS").tag(TransportType.TLS)
             }
-            TextField(text: $serverAddress) {
-                Text(localized: "Server Address")
+            HStack {
+                TextField(text: $serverAddress) {
+                    Text(localized: "Server Address")
+                }
+                .keyboardType(.URL)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
+                .submitLabel(.done)
+                ClearButton(text: $serverAddress)
             }
-            .keyboardType(.URL)
-            .autocorrectionDisabled()
-            .textInputAutocapitalization(.never)
-            .submitLabel(.done)
-            ClearButton(text: $serverAddress)
             if let error = self.validationError {
                 ErrorCellView(error: error)
             }

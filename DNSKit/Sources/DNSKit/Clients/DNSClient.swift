@@ -34,12 +34,24 @@ internal class DNSClient: IClient {
         messageData.append(questionData)
 
         let queue = DispatchQueue(label: "io.ecn.dnskit.tlsclient")
+        let semaphore = DispatchSemaphore(value: 0)
+        var didComplete = false
+
         let connection = NWConnection(to: NWEndpoint.socketAddress(self.address, defaultPort: 53), using: self.transportOptions.dnsPrefersTcp ? .tcp : .udp)
         connection.stateUpdateHandler = { state in
+            printDebug("[\(#fileID):\(#line)] NWConnection state \(String(describing: state))")
+
+            let completeRequest: (Result<Message, any Error>) -> Void = { result in
+                complete(result)
+                connection.cancel()
+                didComplete = true
+                semaphore.signal()
+            }
+
             switch state {
             case .waiting(let error):
-                complete(.failure(error))
-                connection.cancel()
+                printError("[\(#fileID):\(#line)] Connection error: \(error)")
+                completeRequest(.failure(error))
             case .ready:
                 printDebug("[\(#fileID):\(#line)] NWConnection ready")
                 let minLength = 2
@@ -51,15 +63,13 @@ internal class DNSClient: IClient {
 
                     if let error = firstError {
                         printError("[\(#fileID):\(#line)] Error recieving data: \(error)")
-                        complete(.failure(error))
-                        connection.cancel()
+                        completeRequest(.failure(error))
                         return
                     }
 
                     guard let firstData = oFirstData else {
                         printError("[\(#fileID):\(#line)] No data returned")
-                        complete(.failure(Utils.MakeError("No content")))
-                        connection.cancel()
+                        completeRequest(.failure(Utils.MakeError("No content")))
                         return
                     }
 
@@ -69,15 +79,13 @@ internal class DNSClient: IClient {
                             message = try Message(messageData: firstData, elapsed: timer.stop())
                         } catch {
                             printError("[\(#fileID):\(#line)] Invalid DNS message returned: \(error)")
-                            complete(.failure(error))
-                            connection.cancel()
+                            completeRequest(.failure(error))
                             return
                         }
 
                         printDebug("[\(#fileID):\(#line)] Answer: \(firstData.hexEncodedString())")
 
-                        complete(.success(message))
-                        connection.cancel()
+                        completeRequest(.success(message))
                         return
                     }
 
@@ -86,8 +94,7 @@ internal class DNSClient: IClient {
                     }
                     if length == 0 {
                         printError("[\(#fileID):\(#line)] Length of 0 returned, aborting")
-                        complete(.failure(Utils.MakeError("No content")))
-                        connection.cancel()
+                        completeRequest(.failure(Utils.MakeError("No content")))
                         return
                     }
 
@@ -97,22 +104,19 @@ internal class DNSClient: IClient {
 
                         if let error = messageError {
                             printError("[\(#fileID):\(#line)] Error recieving data: \(error)")
-                            complete(.failure(error))
-                            connection.cancel()
+                            completeRequest(.failure(error))
                             return
                         }
 
                         guard let messageContent = oMessageContent else {
                             printError("[\(#fileID):\(#line)] No data returned")
-                            complete(.failure(Utils.MakeError("No content")))
-                            connection.cancel()
+                            completeRequest(.failure(Utils.MakeError("No content")))
                             return
                         }
 
                         if messageContent.count != length {
                             printError("[\(#fileID):\(#line)] Reported and actual length do not match. Reported: \(length), actual: \(messageContent.count)")
-                            complete(.failure(Utils.MakeError("No content")))
-                            connection.cancel()
+                            completeRequest(.failure(Utils.MakeError("No content")))
                             return
                         }
 
@@ -121,15 +125,13 @@ internal class DNSClient: IClient {
                             message = try Message(messageData: messageContent, elapsed: timer.stop())
                         } catch {
                             printError("[\(#fileID):\(#line)] Invalid DNS message returned: \(error)")
-                            complete(.failure(error))
-                            connection.cancel()
+                            completeRequest(.failure(error))
                             return
                         }
 
                         printDebug("[\(#fileID):\(#line)] Answer: \(messageContent.hexEncodedString())")
 
-                        complete(.success(message))
-                        connection.cancel()
+                        completeRequest(.success(message))
                         return
                     }
                 }
@@ -139,15 +141,13 @@ internal class DNSClient: IClient {
 
                     if let error = oError {
                         printError("[\(#fileID):\(#line)] Error writing question: \(error)")
-                        complete(.failure(error))
-                        connection.cancel()
+                        completeRequest(.failure(error))
                         return
                     }
                 }))
             case .failed(let error):
                 printError("[\(#fileID):\(#line)] NWConnection failed with error: \(error)")
-                complete(.failure(error))
-                connection.cancel()
+                completeRequest(.failure(error))
             case .cancelled:
                 printInformation("[\(#fileID):\(#line)] NWConnection cancelled")
             default:
@@ -156,6 +156,14 @@ internal class DNSClient: IClient {
         }
         printDebug("[\(#fileID):\(#line)] Connecting to \(self.address)")
         connection.start(queue: queue)
+
+        _ = semaphore.wait(timeout: self.transportOptions.timeoutDispatchTime)
+        if !didComplete {
+            connection.cancel()
+            printError("[\(#fileID):\(#line)] Connection timed out")
+            complete(.failure(Utils.MakeError("Connection timed out")))
+            return
+        }
     }
 
     func authenticate(message: Message, complete: @escaping (DNSSECResult) -> Void) throws {
