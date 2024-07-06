@@ -123,7 +123,7 @@ struct MainView: View {
             self.lookupState.error = nil
         }
 
-        let transportOptions = TransportOptions(dnsPrefersTcp: UserOptions.dnsPrefersTcp)
+        let transportOptions = TransportOptions(dnsPrefersTcp: UserOptions.dnsPrefersTcp, timeout: UserOptions.timeoutSeconds)
         let queryOptions = QueryOptions(dnssecRequested: UserOptions.enableDnssec)
         let query: Query
         do {

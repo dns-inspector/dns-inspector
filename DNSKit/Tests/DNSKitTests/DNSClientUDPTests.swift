@@ -14,15 +14,19 @@ final class DNSClientUDPTests: XCTestCase, IClientTests {
         try await ClientTests(transportType: .DNS, serverAddress: "1.1.1.1:53").testAuthenticateMessage()
     }
 
-    func testRandomData() async throws {
-        try await ClientTests(transportType: .DNS, serverAddress: "127.0.0.1:8400").testRandomData()
+    func testLocalRandomData() async throws {
+        try await ClientTests(transportType: .DNS, serverAddress: "127.0.0.1:8400").testLocalRandomData()
     }
 
-    func testLengthOver() async throws {
+    func testLocalLengthOver() async throws {
         // Test does not apply
     }
 
-    func testLengthUnder() async throws {
+    func testLocalLengthUnder() async throws {
         // Test does not apply
+    }
+
+    func testLocalAQueryInvalidAddress() async throws {
+        try await ClientTests(transportType: .DNS, serverAddress: "127.0.0.1:8400").testLocalAQueryInvalidAddress()
     }
 }

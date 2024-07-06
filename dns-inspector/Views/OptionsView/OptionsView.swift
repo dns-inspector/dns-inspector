@@ -7,6 +7,7 @@ struct OptionsView: View {
     @State private var ttlDisplayMode = UserOptions.ttlDisplayMode
     @State private var showRecordDescription = UserOptions.showRecordDescription
     @State private var dnsPrefersTcp = UserOptions.dnsPrefersTcp
+    @State private var timeoutSeconds = "\(UserOptions.timeoutSeconds)"
 
     var body: some View {
         Navigation {
@@ -33,6 +34,13 @@ struct OptionsView: View {
                 Section(Localize("Network")) {
                     Toggle(Localize("Send traditional DNS requests using TCP"), isOn: $dnsPrefersTcp)
                     .tint(Color.accentColor)
+                    HStack {
+                        Text(localized: "Connection Timeout")
+                        TextField("Seconds", text: $timeoutSeconds)
+                            .multilineTextAlignment(.trailing)
+                        Text(localized: "Seconds")
+                            .foregroundStyle(.gray)
+                    }
                 }
             }
             .navigationTitle(localized: "Options")
@@ -60,6 +68,12 @@ struct OptionsView: View {
             }
             .onChange(of: dnsPrefersTcp) { newValue in
                 UserOptions.dnsPrefersTcp = newValue
+            }
+            .onChange(of: timeoutSeconds) { newValue in
+                guard let timeout = UInt8(newValue) else {
+                    return
+                }
+                UserOptions.timeoutSeconds = timeout
             }
         }
     }

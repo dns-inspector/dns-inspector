@@ -22,6 +22,7 @@ private struct OptionsType: Codable {
     public var ttlDisplayMode: TTLDisplayMode?
     public var showRecordDescription: Bool?
     public var dnsPrefersTcp: Bool?
+    public var timeoutSeconds: UInt8?
     public var appLanguage: SupportedLanguages?
     public var enableDnssec: Bool?
     public var automaticDnssecValidation: Bool?
@@ -189,6 +190,20 @@ public final class UserOptions {
         }
     }
 
+    public static var timeoutSeconds: UInt8 {
+        get {
+            return current.timeoutSeconds ?? 5
+        }
+        set {
+            if newValue == 0 {
+                return
+            }
+
+            current.timeoutSeconds = newValue
+            save()
+        }
+    }
+
     public static var appLanguage: SupportedLanguages? {
         get {
             return current.appLanguage
@@ -271,6 +286,7 @@ private struct OptionsType1: Codable {
         newOptions.ttlDisplayMode = self.ttlDisplayMode
         newOptions.showRecordDescription = self.showRecordDescription
         newOptions.dnsPrefersTcp = self.dnsPrefersTcp
+        newOptions.timeoutSeconds = 5
         newOptions.appLanguage = self.appLanguage
         newOptions.enableDnssec = self.enableDnssec
         newOptions.automaticDnssecValidation = self.automaticDnssecValidation

@@ -5,9 +5,10 @@ protocol IClientTests {
     func testQuery() async throws
     func testQueryNXDOMAIN() async throws
     func testAuthenticateMessage() async throws
-    func testRandomData() async throws
-    func testLengthOver() async throws
-    func testLengthUnder() async throws
+    func testLocalRandomData() async throws
+    func testLocalLengthOver() async throws
+    func testLocalLengthUnder() async throws
+    func testLocalAQueryInvalidAddress() async throws
 }
 
 final class ClientTests {
@@ -27,7 +28,9 @@ final class ClientTests {
     func testQuery() async throws {
         let query = Query(client: client, recordType: .A, name: "example.com")
         let reply = try await query.execute()
-        XCTAssertEqual(reply.answers.count, 1)
+        XCTAssertTrue(reply.answers.count == 1)
+        XCTAssertEqual(reply.answers[0].recordType, .A)
+        XCTAssertNotNil(reply.answers[0].data as? ARecordData)
     }
 
     func testQueryNXDOMAIN() async throws {
@@ -43,7 +46,7 @@ final class ClientTests {
         XCTAssertTrue(result.chainTrusted)
     }
 
-    func testRandomData() async throws {
+    func testLocalRandomData() async throws {
         let query = Query(client: client, recordType: .A, name: "random.example.com")
         do {
             _ = try await query.execute()
@@ -53,7 +56,7 @@ final class ClientTests {
         }
     }
 
-    func testLengthOver() async throws {
+    func testLocalLengthOver() async throws {
         let query = Query(client: client, recordType: .A, name: "length.over.example.com")
         do {
             _ = try await query.execute()
@@ -63,7 +66,7 @@ final class ClientTests {
         }
     }
 
-    func testLengthUnder() async throws {
+    func testLocalLengthUnder() async throws {
         let query = Query(client: client, recordType: .A, name: "length.under.example.com")
         do {
             _ = try await query.execute()
@@ -71,5 +74,13 @@ final class ClientTests {
         } catch {
             //
         }
+    }
+
+    func testLocalAQueryInvalidAddress() async throws {
+        let query = Query(client: client, recordType: .A, name: "invalid.ipv4.example.com")
+        let reply = try await query.execute()
+        XCTAssertTrue(reply.answers.count == 1)
+        XCTAssertEqual(reply.answers[0].recordType, .A)
+        XCTAssertNotNil(reply.answers[0].data as? ErrorRecordData)
     }
 }

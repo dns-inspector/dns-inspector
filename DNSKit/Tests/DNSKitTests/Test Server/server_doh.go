@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/rand"
 	"crypto/tls"
 	"encoding/base64"
 	"fmt"
@@ -76,11 +77,18 @@ func (s *tserverDNSOverHTTPS) ServeHTTP(rw http.ResponseWriter, r *http.Request)
 	testName := getDNSTestName(message)
 	log.Printf("HTTPS: %s", testName)
 
-	response, err := handleDNSQuery(message)
-	if err != nil {
-		rw.WriteHeader(400)
-		log.Printf("[DNSOverHTTPS] Error handling DNS query: %s", err.Error())
-		return
+	var response []byte
+
+	if testName == TestNameRandomData {
+		response = make([]byte, 265)
+		rand.Read(response)
+	} else {
+		response, err = handleDNSQuery(message)
+		if err != nil {
+			rw.WriteHeader(400)
+			log.Printf("[DNSOverHTTPS] Error handling DNS query: %s", err.Error())
+			return
+		}
 	}
 
 	rw.Header().Set("Content-Type", "application/dns-message")

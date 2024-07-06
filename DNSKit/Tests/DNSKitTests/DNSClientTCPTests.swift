@@ -14,15 +14,19 @@ final class DNSClientTCPTests: XCTestCase, IClientTests {
         try await ClientTests(transportType: .DNS, transportOptions: TransportOptions(dnsPrefersTcp: true), serverAddress: "1.1.1.1:53").testAuthenticateMessage()
     }
 
-    func testRandomData() async throws {
-        try await ClientTests(transportType: .DNS, transportOptions: TransportOptions(dnsPrefersTcp: true), serverAddress: "127.0.0.1:8401").testRandomData()
+    func testLocalRandomData() async throws {
+        try await ClientTests(transportType: .DNS, transportOptions: TransportOptions(dnsPrefersTcp: true), serverAddress: "127.0.0.1:8401").testLocalRandomData()
     }
 
-    func testLengthOver() async throws {
-        try await ClientTests(transportType: .DNS, transportOptions: TransportOptions(dnsPrefersTcp: true), serverAddress: "127.0.0.1:8401").testLengthOver()
+    func testLocalLengthOver() async throws {
+        try await ClientTests(transportType: .DNS, transportOptions: TransportOptions(dnsPrefersTcp: true), serverAddress: "127.0.0.1:8401").testLocalLengthOver()
     }
 
-    func testLengthUnder() async throws {
-        try await ClientTests(transportType: .DNS, transportOptions: TransportOptions(dnsPrefersTcp: true), serverAddress: "127.0.0.1:8401").testLengthUnder()
+    func testLocalLengthUnder() async throws {
+        try await ClientTests(transportType: .DNS, transportOptions: TransportOptions(dnsPrefersTcp: true), serverAddress: "127.0.0.1:8401").testLocalLengthUnder()
+    }
+
+    func testLocalAQueryInvalidAddress() async throws {
+        try await ClientTests(transportType: .DNS, transportOptions: TransportOptions(dnsPrefersTcp: true), serverAddress: "127.0.0.1:8401").testLocalAQueryInvalidAddress()
     }
 }

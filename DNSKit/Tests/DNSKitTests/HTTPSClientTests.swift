@@ -14,15 +14,19 @@ final class HTTPSClientTests: XCTestCase, IClientTests {
         try await ClientTests(transportType: .HTTPS, serverAddress: "https://dns.google/dns-query").testAuthenticateMessage()
     }
 
-    func testRandomData() async throws {
-        try await ClientTests(transportType: .HTTPS, serverAddress: "https://localhost:8402/dns-query").testRandomData()
+    func testLocalRandomData() async throws {
+        try await ClientTests(transportType: .HTTPS, serverAddress: "https://localhost:8402/dns-query").testLocalRandomData()
     }
 
-    func testLengthOver() async throws {
+    func testLocalLengthOver() async throws {
         // Test does not apply
     }
 
-    func testLengthUnder() async throws {
+    func testLocalLengthUnder() async throws {
         // Test does not apply
+    }
+
+    func testLocalAQueryInvalidAddress() async throws {
+        try await ClientTests(transportType: .HTTPS, serverAddress: "https://localhost:8402/dns-query").testLocalAQueryInvalidAddress()
     }
 }

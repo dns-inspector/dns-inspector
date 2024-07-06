@@ -39,7 +39,7 @@ public struct Message {
         self.duration = 0
     }
 
-    internal init(messageData: Data, elapsed: UInt64) throws {
+    internal init(messageData: Data, elapsed: UInt64 = 0) throws {
         if messageData.count < 12 {
             printError("[\(#fileID):\(#line)] Invalid DNS message: too short \(messageData.count)B")
             throw Utils.MakeError("Invalid DNS message: too short")

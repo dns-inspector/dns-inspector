@@ -229,7 +229,7 @@ final class MessageTests: XCTestCase {
         guard let data = message.answers[0].data as? DSRecordData else { fatalError("answer data incorrect type") }
         XCTAssertEqual(data.algorithm, .RSA_SHA256)
         XCTAssertEqual(data.digestType, .SHA256)
-        XCTAssertEqual(message.answers[0].description(), "dns.google. 900 IN DS 56044 8 2 1b0a7e90aa6b1ac65aa5b573efc44abf6cb2559444251b997103d2e40c351b08")
+        XCTAssertEqual(message.answers[0].description, "dns.google. 900 IN DS 56044 8 2 1b0a7e90aa6b1ac65aa5b573efc44abf6cb2559444251b997103d2e40c351b08")
     }
 
     func testParseDNSSECMessage() throws {
@@ -252,15 +252,15 @@ final class MessageTests: XCTestCase {
         guard let data3 = message.answers[2].data as? RRSIGRecordData else { fatalError("answer data incorrect type") }
         XCTAssertEqual(data1.ipAddress, "8.8.4.4")
         XCTAssertEqual(data2.ipAddress, "8.8.8.8")
-        XCTAssertEqual(data1.description(), "8.8.4.4")
-        XCTAssertEqual(data2.description(), "8.8.8.8")
-        XCTAssertEqual(message.answers[0].description(), "dns.google. 342 IN A 8.8.4.4")
-        XCTAssertEqual(message.answers[1].description(), "dns.google. 342 IN A 8.8.8.8")
+        XCTAssertEqual(data1.description, "8.8.4.4")
+        XCTAssertEqual(data2.description, "8.8.8.8")
+        XCTAssertEqual(message.answers[0].description, "dns.google. 342 IN A 8.8.4.4")
+        XCTAssertEqual(message.answers[1].description, "dns.google. 342 IN A 8.8.8.8")
         XCTAssertEqual(data3.typeCovered, .A)
         XCTAssertEqual(data3.algorithm, .RSA_SHA256)
         XCTAssertEqual(data3.labelCount, 2)
         XCTAssertEqual(data3.ttlSeconds, 900)
-        XCTAssertEqual(message.answers[2].description(), "dns.google. 342 IN RRSIG 8 2 900 20240407164854 20240316164854 45336 dns.google. JuwpKgWIwWlo6xILjDsBCcjeNsGiaAnOWoe5yCpVcCyRZHd2yELmvJMzGpUkppoRpWWdKw3j8FCFhRoN+IQ80+fvLc1e7tY/qU/IFNmE0tNRhE5/NAd3lFadoLUhX2qJ7XQrMji7eOQXb45CeFL/jZfEwNozeWu1HQVVGxtelZE=")
+        XCTAssertEqual(message.answers[2].description, "dns.google. 342 IN RRSIG 8 2 900 20240407164854 20240316164854 45336 dns.google. JuwpKgWIwWlo6xILjDsBCcjeNsGiaAnOWoe5yCpVcCyRZHd2yELmvJMzGpUkppoRpWWdKw3j8FCFhRoN+IQ80+fvLc1e7tY/qU/IFNmE0tNRhE5/NAd3lFadoLUhX2qJ7XQrMji7eOQXb45CeFL/jZfEwNozeWu1HQVVGxtelZE=")
         let signedData = try data3.signedData()
         XCTAssertEqual(signedData.hexEncodedString(), "0001080200000384661330e665f62fe6b11803646e7306676f6f676c6500")
     }
