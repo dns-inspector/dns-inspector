@@ -102,16 +102,17 @@ jobs:
         uses: actions/setup-go@cdcb36043654635271a94b9a6d1392de5bb323a7 #pin v5.0.1
         with:
           go-version: "stable"
-          cache-dependency-path: DNSKit/TestServer/go.sum
+          cache-dependency-path: "DNSKit/Tests/DNSKitTests/Test Server/go.sum"
 
       - name: Prepare Test Server
         id: testserver_prepare
         run: |
-          cd DNSKit/TestServer
+          cd "DNSKit/Tests/DNSKitTests/Test Server"
           echo "Compiling test server"
           CGO_ENABLED=0 go build
-          echo "Generating certifiate & key"
+          echo "Generating certificate & key"
           ./TestServer -g
+          openssl x509 -in root.crt -text
           xcrun simctl boot "${{ env.TEST_DEVICE }}"
           xcrun simctl keychain "${{ env.TEST_DEVICE }}" add-root-cert ./root.crt
 
@@ -119,7 +120,7 @@ jobs:
         id: testserver_start
         shell: bash
         run: |
-          cd DNSKit/TestServer
+          cd "DNSKit/Tests/DNSKitTests/Test Server"
           nohup ./TestServer -c root.crt -k root.key &
 
       - name: Run Automated Tests
