@@ -1,10 +1,15 @@
 import Foundation
 
 /// Describes all DNSSEC resources for a zone
-internal struct DNSSECResource {
-    internal let name: String
-    internal let dnsKeys: [Answer]
-    internal let keySignature: Answer
-    internal let ds: Answer?
-    internal let dsSignature: Answer?
+public struct DNSSECResource {
+    /// The zone name
+    public let zone: String
+    /// DNSKEY answers for this zone
+    public let dnsKeys: [Answer]
+    /// Signatures for the DNSKEY response
+    public let keySignature: Answer
+    /// DS answer for this zone
+    public let ds: Answer?
+    /// SIgnatures for the DS response
+    public let dsSignature: Answer?
 }

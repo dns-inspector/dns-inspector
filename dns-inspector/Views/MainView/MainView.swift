@@ -124,7 +124,7 @@ struct MainView: View {
         }
 
         let transportOptions = TransportOptions(dnsPrefersTcp: UserOptions.dnsPrefersTcp, timeout: UserOptions.timeoutSeconds)
-        let queryOptions = QueryOptions(dnssecRequested: UserOptions.enableDnssec)
+        let queryOptions = QueryOptions(dnssecRequested: true)
         let query: Query
         do {
             query = try Query(transportType: transportType, transportOptions: transportOptions, serverAddress: serverAddress, recordType: recordType, name: name, queryOptions: queryOptions)

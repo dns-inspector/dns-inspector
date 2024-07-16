@@ -52,6 +52,8 @@ internal struct DNSSECClient {
             return
         }
 
+        result.resources = resources
+
         // Double check that the root KSK is what we expect
         guard let rootResource = resources.last else {
             printError("[\(#fileID):\(#line)] No signing keys found")
@@ -131,7 +133,7 @@ internal struct DNSSECClient {
                 }
             }
             guard let zsk = oZsk else {
-                printError("[\(#fileID):\(#line)] No key with tag \(rrsig.keyTag) found on zone \(resources[0].name)")
+                printError("[\(#fileID):\(#line)] No key with tag \(rrsig.keyTag) found on zone \(resources[0].zone)")
                 result.signatureError = DNSSECError.missingKeys.error("No matching key found")
                 complete(result)
                 return
@@ -187,15 +189,15 @@ internal struct DNSSECClient {
         }
 
         // Verify the DS record of each parent zone, until the root
-        for i in 0...resources.count-1 {
+        for i in 0...resources.count-2 { // -2 because the root doesn't have a DS
             guard let dsAnswer = resources[i].ds else {
-                printError("[\(#fileID):\(#line)] Missing required DS record")
+                printError("[\(#fileID):\(#line)] Missing required DS record for zone \(resources[i].zone)")
                 result.chainError = DNSSECError.noSignatures.error("Missing required DS record")
                 complete(result)
                 return
             }
             guard let ds = dsAnswer.data as? DSRecordData else {
-                printError("[\(#fileID):\(#line)] Missing required DS record")
+                printError("[\(#fileID):\(#line)] Missing required DS record \(resources[i].zone)")
                 result.chainError = DNSSECError.noSignatures.error("Missing required DS record")
                 complete(result)
                 return
@@ -477,7 +479,7 @@ internal struct DNSSECClient {
                 }
             }
 
-            resources.append(DNSSECResource(name: name, dnsKeys: keys, keySignature: keySig, ds: ds, dsSignature: dsSig))
+            resources.append(DNSSECResource(zone: name, dnsKeys: keys, keySignature: keySig, ds: ds, dsSignature: dsSig))
         }
 
         printInformation("[\(#fileID):\(#line)] Fetched DNSKEY and DS for \(names.count) zones")

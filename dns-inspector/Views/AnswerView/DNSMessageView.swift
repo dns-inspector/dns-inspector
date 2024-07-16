@@ -4,8 +4,17 @@ import DNSKit
 public struct DNSMessageView: View {
     public let query: Query
     public let message: DNSKit.Message
+    private let hasRrsig: Bool
     @State private var showWhois = false
     @Environment(\.dismiss) private var dismiss
+
+    public init(query: Query, message: DNSKit.Message) {
+        self.query = query
+        self.message = message
+        self.hasRrsig = message.answers.first {
+            return $0.recordType == .RRSIG
+        } != nil
+    }
 
     public var body: some View {
         Navigation {
@@ -68,6 +77,18 @@ public struct DNSMessageView: View {
                         }
                     }
                 }
+                Section("DNSSEC") {
+                    if hasRrsig {
+                        NavigationLink {
+                            DNSMessageDNSSECView(query: self.query, message: self.message)
+                        } label: {
+                            Text(localized: "View DNSSEC Information")
+                        }
+                    } else {
+                        Text(localized: "DNSSEC not enabled on this zone, no RRSIG returned.")
+                            .foregroundStyle(.gray)
+                    }
+                }
             }
             .navigationTitle(localized: "Results")
             .navigationBarTitleDisplayMode(.inline)
@@ -111,13 +132,13 @@ public struct DNSMessageView: View {
         let elapsed = message.duration
 
         if elapsed > 1000000000 {
-            let elapsedStr = String(format: "%.2f", elapsed / 1000000000)
+            let elapsedStr = String(format: "%.2f", Double(elapsed) / 1000000000.0)
             return Localize("{duration} seconds", args: [elapsedStr])
         } else if elapsed > 1000000 {
-            let elapsedStr = String(format: "%.2f", elapsed / 1000000)
+            let elapsedStr = String(format: "%.2f", Double(elapsed) / 1000000.0)
             return Localize("{duration} milliseconds", args: [elapsedStr])
         } else if elapsed > 1000 {
-            let elapsedStr = String(format: "%.2f", elapsed / 1000)
+            let elapsedStr = String(format: "%.2f", Double(elapsed) / 1000.0)
             return Localize("{duration} microseconds", args: [elapsedStr])
         }
 

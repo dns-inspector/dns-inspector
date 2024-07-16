@@ -15,10 +15,16 @@ App language	App language
 Appearance & Behaviour	Appearance & Behaviour
 # TODO
 Automatically	Automatically
+# TODO
+Chain	Chain
+# TODO
+Connection Timeout	Connection Timeout
 Contribute to DNS Inspector	Contribuir to DNS Inspector
 DNS Inspector	DNS Inspector
 # TODO
 DNSSEC Enabled	DNSSEC Enabled
+# TODO
+DNSSEC not enabled on this zone, no RRSIG returned.	DNSSEC not enabled on this zone, no RRSIG returned.
 # TODO
 Digest	Digest
 # TODO
@@ -73,6 +79,8 @@ Results	Resultados
 # TODO
 Retry	Retry
 Save	Guardar
+# TODO
+Seconds	Seconds
 Send traditional DNS requests using TCP	Enviar peticiones DNS tradicionales con TCP
 # TODO
 Serial	Serial
@@ -86,10 +94,26 @@ Share DNS Inspector	Compartir DNS Inspector
 # TODO
 Show DNS record descriptions	Show DNS record descriptions
 Show TTL values as	Mostrar valores TTL (tiempo de vidxa) como
+# TODO
+Signature	Signature
+# TODO
+Signature Validation Failed	Signature Validation Failed
 TLS Inspector	TLS Inspector
 # TODO
+Trust Establishment Failed	Trust Establishment Failed
+# TODO
+Trusted	Trusted
+# TODO
+Untrusted	Untrusted
+# TODO
+Unverified	Unverified
+# TODO
 Verbose logging	Verbose logging
+# TODO
+Verified	Verified
 Version {version} (build {build})	Versión {0} (compilación {1})
+# TODO
+View DNSSEC Information	View DNSSEC Information
 # TODO
 Your changes will take affect only quitting and restarting DNS Inspector	Your changes will take affect only quitting and restarting DNS Inspector
 # TODO

@@ -7,47 +7,59 @@ public struct DNSMessageDNSSECView: View {
     @State private var result: Result<DNSSECResult, Error>?
 
     public var body: some View {
-        Section("DNSSEC") {
-            switch result {
+        List {
+            switch self.result {
             case .success(let dnssecResult):
-                HStack {
-                    if dnssecResult.signatureVerified {
-                        RoundedLabel(text: "Verified", color: .green)
-                    } else {
-                        RoundedLabel(text: "Unverified", color: .red)
+                Section(Localize("Results")) {
+                    HStack {
+                        Text(localized: "Signature")
+                        Spacer()
+                        if dnssecResult.signatureVerified {
+                            RoundedLabel(text: Localize("Verified"), color: .green)
+                        } else {
+                            RoundedLabel(text: Localize("Unverified"), color: .red)
+                        }
                     }
-                    Divider()
-                    Text("Message Signature")
+                    if let signatureError = dnssecResult.signatureError {
+                        VStack(alignment: .leading) {
+                            ErrorCellView(error: signatureError, titleKey: "Signature Validation Failed")
+                        }
+                    }
+                    HStack {
+                        Text(localized: "Chain")
+                        Spacer()
+                        if dnssecResult.chainTrusted {
+                            RoundedLabel(text: Localize("Trusted"), color: .green)
+                        } else {
+                            RoundedLabel(text: Localize("Untrusted"), color: .red)
+                        }
+                    }
+                    if let chainError = dnssecResult.chainError {
+                        VStack(alignment: .leading) {
+                            ErrorCellView(error: chainError, titleKey: "Trust Establishment Failed")
+                        }
+                    }
                 }
-                HStack {
-                    if dnssecResult.chainTrusted {
-                        RoundedLabel(text: "Established", color: .green)
-                    } else {
-                        RoundedLabel(text: "Broken", color: .red)
+                ForEach(dnssecResult.resources, id: \.zone) { zone in
+                    Section(zone.zone) {
+                        ForEach(zone.dnsKeys) { dnskeyAnswer in
+                            // DNSKit does this validation for us
+                            // swiftlint:disable force_cast
+                            RecordViewDNSKEY(data: dnskeyAnswer.data as! DNSKEYRecordData)
+                            // swiftlint:enable force_cast
+                        }
                     }
-                    Divider()
-                    Text("Chain of Trust")
                 }
             case .failure(let error):
                 ErrorCellView(error: error)
             case nil:
-                if UserOptions.automaticDnssecValidation {
-                    ProgressView().onAppear {
-                        Task {
-                            await doValidation()
-                        }
-                    }
-                } else {
-                    Button {
-                        Task {
-                            await doValidation()
-                        }
-                    } label: {
-                        Text(localized: "Validate")
+                ProgressView().onAppear {
+                    Task {
+                        await self.doValidation()
                     }
                 }
             }
-        }
+        }.navigationTitle("DNSSEC")
     }
 
     private func doValidation() async {

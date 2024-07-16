@@ -38,6 +38,7 @@ struct OptionsView: View {
                         Text(localized: "Connection Timeout")
                         TextField("Seconds", text: $timeoutSeconds)
                             .multilineTextAlignment(.trailing)
+                            .keyboardType(.numberPad)
                         Text(localized: "Seconds")
                             .foregroundStyle(.gray)
                     }

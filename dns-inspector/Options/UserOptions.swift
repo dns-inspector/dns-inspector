@@ -24,7 +24,6 @@ private struct OptionsType: Codable {
     public var dnsPrefersTcp: Bool?
     public var timeoutSeconds: UInt8?
     public var appLanguage: SupportedLanguages?
-    public var enableDnssec: Bool?
     public var automaticDnssecValidation: Bool?
 
     public var presetServers: [PresetServer]?
@@ -214,16 +213,6 @@ public final class UserOptions {
         }
     }
 
-    public static var enableDnssec: Bool {
-        get {
-            return current.enableDnssec ?? true
-        }
-        set {
-            current.enableDnssec = newValue
-            save()
-        }
-    }
-
     public static var automaticDnssecValidation: Bool {
         get {
             return current.automaticDnssecValidation ?? false
@@ -288,7 +277,6 @@ private struct OptionsType1: Codable {
         newOptions.dnsPrefersTcp = self.dnsPrefersTcp
         newOptions.timeoutSeconds = 5
         newOptions.appLanguage = self.appLanguage
-        newOptions.enableDnssec = self.enableDnssec
         newOptions.automaticDnssecValidation = self.automaticDnssecValidation
 
         if let oldPresetServers = self.presetServers {

@@ -15,4 +15,16 @@ public struct DNSSECResult {
     public var chainTrusted: Bool = false
     /// If the chain is not trusted, what error occured
     public var chainError: Error?
+    /// Zone delegation results
+    public var zoneDelegation: [ZoneDelegation] = []
+    /// DNSSEC resources for each zone
+    public var resources: [DNSSECResource] = []
+}
+
+/// Describes a zone delegation
+public struct ZoneDelegation {
+    /// The parent zone that delegated to this zone
+    public var delegatedFrom: String
+    /// If the delegation was verified
+    public var verified: Bool
 }
