@@ -1,0 +1,29 @@
+name: "Validate License"
+
+on:
+  push:
+    paths:
+      - '.github/workflows/validate_license.yml'
+      - 'dns-inspector/**'
+  pull_request:
+    paths:
+      - '.github/workflows/validate_license.yml'
+      - 'dns-inspector/**'
+  workflow_dispatch:
+
+permissions:
+  packages: read
+
+jobs:
+  validate_license:
+    name: "Validate License"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        id: checkout
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 #pin v4.1.7
+      
+      - name: Validate License Header
+        id: validate_license_header
+        run: |
+          python3 .github/check-license.py
