@@ -36,7 +36,7 @@ def get_file_year(filepath):
         pass
     return year
 
-def check_file_header(filepath, offset, prefix):
+def check_file_header(filepath, offset, prefixes):
     contents = ""
     with open(filepath, "r") as file:
         contents = file.read()
@@ -53,7 +53,12 @@ def check_file_header(filepath, offset, prefix):
 
     i = 0
     while i < len(header_lines)-1:
-        if lines[i + offset] != prefix + header_lines[i]:
+        any_match = False
+        for prefix in prefixes:
+            if lines[i + offset] == prefix + header_lines[i]:
+                any_match = True
+                break
+        if not any_match:
             return False
         i = i + 1
 
@@ -65,7 +70,7 @@ for source_dir in [ "dns-inspector" ]:
     swift_files = list(Path(source_dir).rglob("*.[Ss][Ww][Ii][Ff][Tt]"))
 
     for filepath in swift_files:
-        if not check_file_header(filepath, 0, "// "):
+        if not check_file_header(filepath, 0, ["//", "// "]):
             print(str(filepath) + ": Invalid license header", file=sys.stderr)
             all_passed = False
 
