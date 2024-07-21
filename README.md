@@ -10,7 +10,8 @@ advanced DNS queries anytime and anywhere.
 
 <img src="https://raw.githubusercontent.com/dns-inspector/dns-inspector/app-store/.github/iPhone67_1.png" alt="Screenshot of DNS Inspector showing the main view" height="300" />
 <img src="https://raw.githubusercontent.com/dns-inspector/dns-inspector/app-store/.github/iPhone67_2.png" alt="Screenshot of DNS Inspector showing the results of a lookup for apple.com" height="300" />
-<img src="https://raw.githubusercontent.com/dns-inspector/dns-inspector/app-store/.github/iPhone67_3.png" alt="Screenshot of DNS Inspector showing a list of DNS servers" height="300" />
+<img src="https://raw.githubusercontent.com/dns-inspector/dns-inspector/app-store/.github/iPhone67_3.png" alt="Screenshot of DNS Inspector showing details of DNSSEC validation" height="300" />
+<img src="https://raw.githubusercontent.com/dns-inspector/dns-inspector/app-store/.github/iPhone67_4.png" alt="Screenshot of DNS Inspector showing a list of DNS servers" height="300" />
 
 ## License
 
