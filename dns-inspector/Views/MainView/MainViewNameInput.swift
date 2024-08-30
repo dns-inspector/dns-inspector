@@ -17,14 +17,15 @@
 import SwiftUI
 import DNSKit
 
-struct MainViewNameInput: View {
-    @Binding var recordType: RecordType
-    @Binding var name: String
+public struct MainViewNameInput: View {
+    @Binding public var recordType: RecordType
+    @Binding public var name: String
+    private let validRecordTypes: [RecordType] = RecordType.allCases.filter({ return $0.canQuery() })
 
-    var body: some View {
+    public var body: some View {
         HStack {
             Menu {
-                ForEach(RecordType.allCases, id: \.self) { t in
+                ForEach(validRecordTypes, id: \.self) { t in
                     Button(action: {
                         recordType = t
                     }, label: {
