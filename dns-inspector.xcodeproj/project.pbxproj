@@ -716,7 +716,7 @@
 			repositoryURL = "https://github.com/dns-inspector/dnskit";
 			requirement = {
 				kind = revision;
-				revision = d18448372b9d854d0b600103b993324dd2b30100;
+				revision = 2a1496f6b5beda9c2609768ed5ae4fb9635641c2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
