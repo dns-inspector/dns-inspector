@@ -71,6 +71,8 @@ private struct RecordDataView: View {
             EmptyView()
         case .DNSKEY:
             RecordViewDNSKEY(data: data as! DNSKEYRecordData)
+        case .HTTPS:
+            RecordViewHTTPS(data: data as! HTTPSRecordData)
         }
     }
     // swiftlint:enable force_cast

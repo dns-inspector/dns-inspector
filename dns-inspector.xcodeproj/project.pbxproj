@@ -14,6 +14,7 @@
 		3C0C6B342B39108B006D3F41 /* ErrorCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C6B332B39108B006D3F41 /* ErrorCellView.swift */; };
 		3C26AD802BA6775E0022BABD /* WHOISView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C26AD7F2BA6775E0022BABD /* WHOISView.swift */; };
 		3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */; };
+		3C599C1F2C818467003BFC68 /* RecordViewHTTPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C599C1E2C818467003BFC68 /* RecordViewHTTPS.swift */; };
 		3C61432E2BA7B179006A8B14 /* View+Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61432D2BA7B179006A8B14 /* View+Destination.swift */; };
 		3C6CCD5A2B3BAC4700A3B6F2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CCD592B3BAC4700A3B6F2 /* Globals.swift */; };
 		3C6CCD5D2B3BB5C700A3B6F2 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CCD5C2B3BB5C700A3B6F2 /* Localization.swift */; };
@@ -82,6 +83,7 @@
 		3C0C6B332B39108B006D3F41 /* ErrorCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCellView.swift; sourceTree = "<group>"; };
 		3C26AD7F2BA6775E0022BABD /* WHOISView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WHOISView.swift; sourceTree = "<group>"; };
 		3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSMessageView.swift; sourceTree = "<group>"; };
+		3C599C1E2C818467003BFC68 /* RecordViewHTTPS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewHTTPS.swift; sourceTree = "<group>"; };
 		3C61432D2BA7B179006A8B14 /* View+Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Destination.swift"; sourceTree = "<group>"; };
 		3C6CCD592B3BAC4700A3B6F2 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		3C6CCD5C2B3BB5C700A3B6F2 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
@@ -221,10 +223,11 @@
 				3C7BD1C72C38A965004C2ECF /* RecordViewBasicName.swift */,
 				3CC646C72C0A8FFC0049CEC7 /* RecordViewDNSKEY.swift */,
 				3CC646CB2C0A967D0049CEC7 /* RecordViewDS.swift */,
+				3C599C1E2C818467003BFC68 /* RecordViewHTTPS.swift */,
+				3C7BD1CF2C38AB26004C2ECF /* RecordViewMX.swift */,
 				3CC646C32C0A8AA80049CEC7 /* RecordViewSOA.swift */,
 				3CC646C52C0A8F550049CEC7 /* RecordViewSRV.swift */,
 				3C7BD1CD2C38AB05004C2ECF /* RecordViewTXT.swift */,
-				3C7BD1CF2C38AB26004C2ECF /* RecordViewMX.swift */,
 			);
 			path = RecordView;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				3CAD46A32B903C8300E97A04 /* MainViewServerInput.swift in Sources */,
 				3CAD46A12B903BEC00E97A04 /* MainViewNameInput.swift in Sources */,
 				9AA8C13A2ADCA98000B93E45 /* App.swift in Sources */,
+				3C599C1F2C818467003BFC68 /* RecordViewHTTPS.swift in Sources */,
 				9AA8C18C2ADCC2CD00B93E45 /* AboutView.swift in Sources */,
 				3C7BD1C02C387A21004C2ECF /* LogWriter.swift in Sources */,
 			);
@@ -605,7 +609,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"dns-inspector/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WCW84NC7Y8;
@@ -625,7 +629,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.ecn.dns-inspector";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -648,7 +652,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"dns-inspector/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WCW84NC7Y8;
@@ -668,7 +672,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.ecn.dns-inspector";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -712,7 +716,7 @@
 			repositoryURL = "https://github.com/dns-inspector/dnskit";
 			requirement = {
 				kind = revision;
-				revision = 519567abeddee9e4eea8c4320a2b4352f0c0980d;
+				revision = 45dba7279100763ca75fac9f516e5950a841ea2c;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

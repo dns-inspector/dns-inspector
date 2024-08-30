@@ -24,6 +24,8 @@ Expire	Expire
 Follow @dnsinspector on Mastodon	Follow @dnsinspector on Mastodon
 General	General
 Get Involved	Get Involved
+IPv4 Hints	IPv4 Hints
+IPv6 Hints	IPv6 Hints
 Key Usage	Key Usage
 Key signing key	Key signing key
 Key tag	Key tag
@@ -36,10 +38,13 @@ Name	Name
 Network	Network
 New Preset Server	New Preset Server
 New query	New query
+No default ALPN	No default ALPN
 Options	Options
 Perform Validation	Perform Validation
+Port	Port
 Preset Servers	Preset Servers
 Preset servers	Preset servers
+Priority	Priority
 Provide feedback	Provide feedback
 Public key	Public key
 Query	Query
@@ -68,7 +73,9 @@ Show DNS record descriptions	Show DNS record descriptions
 Show TTL values as	Show TTL values as
 Signature	Signature
 Signature Validation Failed	Signature Validation Failed
+Supported Versions	Supported Versions
 TLS Inspector	TLS Inspector
+Target	Target
 Trust Establishment Failed	Trust Establishment Failed
 Trusted	Trusted
 Untrusted	Untrusted
@@ -88,6 +95,7 @@ record_description_apl	DNS APL records contain an IP address prefix list.
 record_description_cname	DNS CNAME records contain destination DNS name to follow.
 record_description_dnskey	DNS DNSKEY records contain cryptographic public keys used for authentication.
 record_description_ds	DNS DS records contain records of trusted delegation from the parent zone.
+record_description_https	DNS HTTPS records contain information about HTTPS web servers.
 record_description_mx	DNS MX records contain mail exchange server addresses.
 record_description_ns	DNS NS records contain the authoritative DNS server for this zone.
 record_description_ptr	DNS PTR records are used to resolve a domain name from an IP address.

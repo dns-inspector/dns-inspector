@@ -39,6 +39,10 @@ Follow @dnsinspector on Mastodon	Sigue a @dnsinspector en Mastodon
 General	General
 Get Involved	Involucrarse
 # TODO
+IPv4 Hints	IPv4 Hints
+# TODO
+IPv6 Hints	IPv6 Hints
+# TODO
 Key Usage	Key Usage
 # TODO
 Key signing key	Key signing key
@@ -56,11 +60,17 @@ Name	Nombre
 Network	Red
 New Preset Server	Nuevo servidor predefinido
 New query	Nueva petición
+# TODO
+No default ALPN	No default ALPN
 Options	Opciones
 # TODO
 Perform Validation	Perform Validation
+# TODO
+Port	Port
 Preset Servers	Servidores predefinidos
 Preset servers	Servidores predefinidos
+# TODO
+Priority	Priority
 # TODO
 Provide feedback	Provide feedback
 # TODO
@@ -98,7 +108,11 @@ Show TTL values as	Mostrar valores TTL (tiempo de vidxa) como
 Signature	Signature
 # TODO
 Signature Validation Failed	Signature Validation Failed
+# TODO
+Supported Versions	Supported Versions
 TLS Inspector	TLS Inspector
+# TODO
+Target	Target
 # TODO
 Trust Establishment Failed	Trust Establishment Failed
 # TODO
@@ -131,6 +145,8 @@ record_description_cname	Los registros DNS CNAME contienen un nombre DNS al que 
 record_description_dnskey	DNS DNSKEY records contain cryptographic public keys used for authentication.
 # TODO
 record_description_ds	DNS DS records contain records of trusted delegation from the parent zone.
+# TODO
+record_description_https	DNS HTTPS records contain information about HTTPS web servers.
 record_description_mx	Los registros DNS MX contienen direcciones de servidores de intercambio de correos electrónicos.
 # TODO
 record_description_ns	DNS NS records contain the authoritative DNS server for this zone.

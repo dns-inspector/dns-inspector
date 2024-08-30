@@ -96,6 +96,10 @@ internal final class LogWriter: ILogger {
         try? writer.write(contentsOf: data)
     }
 
+    func currentLevel() -> LogLevel? {
+        return level
+    }
+
     /// Close the log file. If the log file was not open take no action. Threadsafe.
     func close() {
         objc_sync_enter(self.lock)
