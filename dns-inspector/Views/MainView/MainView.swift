@@ -18,6 +18,7 @@ import SwiftUI
 import DNSKit
 import StoreKit
 
+@MainActor
 private class MainViewState: ObservableObject {
     @Published var loading = false
     @Published var query: Query?
@@ -26,6 +27,7 @@ private class MainViewState: ObservableObject {
     @Published var success = false
 }
 
+@MainActor
 private class MainViewQueryState: ObservableObject {
     @Published var recordType = RecordType.A
     @Published var name = ""

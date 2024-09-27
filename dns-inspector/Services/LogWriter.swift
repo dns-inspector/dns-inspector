@@ -22,9 +22,9 @@ import DNSKit
 /// > Warning: Do not create more than once instance of this class. Only use the `LogWriter.shared` singleton.
 internal final class LogWriter: ILogger {
     /// The shared instance of the logging facility.
-    static let shared = LogWriter()
+    nonisolated(unsafe) static let shared = LogWriter()
     /// The minimum log level. Messages below this level are discarded. Can be modified at any time.
-    var level: LogLevel
+    nonisolated(unsafe) private var level: LogLevel
 
     private let filePath: URL
     private let fileWriter: FileHandle?
@@ -67,6 +67,14 @@ internal final class LogWriter: ILogger {
 #endif
     }
 
+    /// Update the current logging level
+    /// - Parameter level: The new level to use
+    func setLevel(_ level: DNSKit.LogLevel) {
+        objc_sync_enter(self.lock)
+        defer { objc_sync_exit(self.lock) }
+        self.level = level
+    }
+
     /// Write a new event to the log. Events are printed to the console as well as saved in the log file. Threadsafe.
     ///
     /// Will only capture the event if the level is at or above the level of the logging facility.
@@ -97,6 +105,9 @@ internal final class LogWriter: ILogger {
     }
 
     func currentLevel() -> LogLevel? {
+        objc_sync_enter(self.lock)
+        defer { objc_sync_exit(self.lock) }
+
         return level
     }
 

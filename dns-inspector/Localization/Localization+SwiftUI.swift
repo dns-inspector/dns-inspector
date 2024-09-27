@@ -16,6 +16,7 @@
 
 import SwiftUI
 
+@MainActor
 public extension Text {
     init(localized: String) {
         self.init(verbatim: Localize(localized))
@@ -26,6 +27,7 @@ public extension Text {
     }
 }
 
+@MainActor
 public extension View {
     func navigationTitle(localized: String) -> some View {
         return self.navigationTitle(Text(localized: localized))

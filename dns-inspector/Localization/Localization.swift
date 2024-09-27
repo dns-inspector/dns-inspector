@@ -16,6 +16,7 @@
 
 import Foundation
 
+@MainActor
 public func Localize(_ key: String) -> String {
     if LOCALIZATION_DICTIONARY == nil {
         Localization.load()
@@ -32,6 +33,7 @@ public func Localize(_ key: String) -> String {
     return translated
 }
 
+@MainActor
 public func Localize(_ key: String, args: [String]) -> String {
     if LOCALIZATION_DICTIONARY == nil {
         Localization.load()
@@ -57,7 +59,7 @@ public func Localize(_ key: String, args: [String]) -> String {
     return translated
 }
 
-private var LOCALIZATION_DICTIONARY: [String: String]?
+@MainActor private var LOCALIZATION_DICTIONARY: [String: String]?
 
 public enum SupportedLanguages: String, CaseIterable, Codable {
     case English = "en"
@@ -68,7 +70,8 @@ public enum SupportedLanguages: String, CaseIterable, Codable {
     }
 }
 
-public class Localization {
+@MainActor
+public final class Localization {
     public static func load() {
         // Always load english, overwrite the keys with translated values if they exist
         LOCALIZATION_DICTIONARY = loadStringDictionaryForLanguage(.English)

@@ -19,16 +19,16 @@ permissions:
   packages: read
 
 env:
-  TEST_DEVICE: "iPhone 15 Pro"
+  TEST_DEVICE: "iPhone 16 Pro"
 
 jobs:
   build:
     name: "Build App"
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - name: Checkout Source
         id: checkout
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 #pin v4.1.7
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 #pin v4.2.0
 
       - name: Install Profile and Certificates
         id: install_credentials
@@ -51,7 +51,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          sudo xcode-select -s "/Applications/Xcode_15.4.app"
+          sudo xcode-select -s "/Applications/Xcode_16.app"
           echo "DERIVEDDATA_PATH=$(xcodebuild -project dns-inspector.xcodeproj -showBuildSettings -configuration Debug 2>/dev/null | grep " BUILD_DIR = " | cut -d '=' -f2 | awk '{$1=$1};1' | sed 's%/Build/Products%%g')" >> "$GITHUB_OUTPUT"
           echo "SWIFTLINT_CACHE_KEY=swiftlint_$(gh api repos/realm/swiftlint/releases/latest --jq '.assets[] | select(.name == "portable_swiftlint.zip") | .id')" >> "$GITHUB_OUTPUT"
           xcode-select -p

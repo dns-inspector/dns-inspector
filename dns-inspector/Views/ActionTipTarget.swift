@@ -16,6 +16,7 @@
 
 import UIKit
 
+@MainActor
 class ActionTipTarget {
     private var view: UIView?
     private var barButtonItem: UIBarButtonItem?

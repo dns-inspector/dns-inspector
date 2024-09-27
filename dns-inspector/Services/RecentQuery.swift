@@ -33,6 +33,7 @@ public struct RecentQuery: Codable, Identifiable, Equatable {
     }
 }
 
+@MainActor
 public class RecentQueryManager {
     static let shared = RecentQueryManager()
     public var queries: [RecentQuery]

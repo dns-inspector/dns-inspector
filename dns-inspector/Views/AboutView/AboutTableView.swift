@@ -21,8 +21,8 @@ import MessageUI
 
 // Apple hasn't yet updated the store and message UI SDKs to better work with SwiftUI. To avoid a mess of delegates and represted views, just
 // break out the table view itself to UIKit.
-
-class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, SKStoreProductViewControllerDelegate, MFMailComposeViewControllerDelegate {
+@MainActor
+class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @preconcurrency SKStoreProductViewControllerDelegate, @preconcurrency MFMailComposeViewControllerDelegate {
     let dnsInspectorAppId = 6470965982
     let dnsInspectorAppStoreCampaignId = "crash-override"
     let tlsInspectorAppId = 1100539810
@@ -96,7 +96,7 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
             cell.imageView?.image = UIImage(systemName: "ladybug.fill")
             cell.textLabel?.text = Localize("Verbose logging")
             let toggle = UISwitch()
-            toggle.isOn = LogWriter.shared.level == .Debug
+            toggle.isOn = LogWriter.shared.currentLevel() == .Debug
             toggle.addTarget(self, action: #selector(toggleVerboseLogging), for: .valueChanged)
             toggle.onTintColor = UIColor(named: "AccentColor")
             cell.accessoryView = toggle
@@ -188,6 +188,6 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, S
     }
 
     @objc func toggleVerboseLogging(toggle: UISwitch) {
-        LogWriter.shared.level = toggle.isOn ? .Debug : LogWriter.defaultLogLevel()
+        LogWriter.shared.setLevel(toggle.isOn ? .Debug : LogWriter.defaultLogLevel())
     }
 }

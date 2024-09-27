@@ -17,11 +17,13 @@
 import Foundation
 import DNSKit
 
+@MainActor
 public enum TTLDisplayMode: Int, Codable {
     case relative = 0
     case absolute = 1
 }
 
+@MainActor
 public struct LastUsedServer: Codable {
     let transportType: TransportType
     let address: String
@@ -46,6 +48,7 @@ private struct OptionsType: Codable {
     public var lastUsedServer: LastUsedServer?
 }
 
+@MainActor
 public final class UserOptions {
     private static let optionsFilePath = IO.fileInDocumentsDirectory("options.json")
     private static var current = OptionsType(schemaVersion: currentSchemaVersion)
