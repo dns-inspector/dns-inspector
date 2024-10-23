@@ -52,6 +52,7 @@ struct RecordViewDNSKEY: View {
                 Text(data.publicKey.base64EncodedString())
                     .fixedwidth()
                     .fixedSize(horizontal: false, vertical: true)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
     }

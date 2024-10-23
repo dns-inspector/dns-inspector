@@ -31,6 +31,7 @@ struct RecordViewSRV: View {
             Text(data.name)
                 .fixedwidth()
                 .textSelection(.enabled)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }

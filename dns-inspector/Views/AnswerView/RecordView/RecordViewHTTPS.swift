@@ -56,6 +56,7 @@ struct RecordViewHTTPS: View {
                     Text(ech.base64EncodedString())
                         .fixedwidth()
                         .fixedSize(horizontal: false, vertical: true)
+                        .fixedSize(horizontal: false, vertical: true)
                 }.padding(.bottom, 2)
             }
         }

@@ -24,5 +24,7 @@ struct RecordViewTXT: View {
         Text(data.text)
             .fixedwidth()
             .textSelection(.enabled)
+            .lineLimit(nil)
+            .fixedSize(horizontal: false, vertical: true)
     }
 }

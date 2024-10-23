@@ -53,6 +53,7 @@ struct RecordViewDS: View {
                 Text(data.digest.base64EncodedString())
                     .fixedwidth()
                     .fixedSize(horizontal: false, vertical: true)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
     }
