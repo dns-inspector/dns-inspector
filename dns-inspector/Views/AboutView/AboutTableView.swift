@@ -71,7 +71,7 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
         case 0:
             return 4
         case 1:
-            return 2
+            return 3
         case 2:
             return 1
         default:
@@ -104,6 +104,9 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
             cell.imageView?.image = UIImage(named: "Mastodon")
             cell.textLabel?.text = Localize("Follow @dnsinspector on Mastodon")
         case (1, 1):
+            cell.imageView?.image = UIImage(named: "Bluesky")
+            cell.textLabel?.text = Localize("Follow @dns-inspector.com on Bluesky")
+        case (1, 2):
             cell.imageView?.image = UIImage(systemName: "terminal.fill")
             cell.textLabel?.text = Localize("Contribute to DNS Inspector")
         case (2, 0):
@@ -153,6 +156,8 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
         case (1, 0):
             UIApplication.shared.open(URL(string: "https://infosec.exchange/@dnsinspector")!)
         case (1, 1):
+            UIApplication.shared.open(URL(string: "https://bsky.app/profile/dns-inspector.com")!)
+        case (1, 2):
             UIApplication.shared.open(URL(string: "https://github.com/dns-inspector/dns-inspector")!)
         case (2, 0):
             self.showProductInAppStore(tlsInspectorAppId, campaignId: tlsInspectorAppStoreCampaignId)
