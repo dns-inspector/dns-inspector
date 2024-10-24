@@ -18,6 +18,7 @@ import SwiftUI
 import DNSKit
 
 struct PresetServerEditView: View {
+    @Binding public var serverName: String
     @Binding public var transportType: TransportType
     @Binding public var serverAddress: String
     public let isNew: Bool
@@ -27,23 +28,30 @@ struct PresetServerEditView: View {
 
     var body: some View {
         List {
-            Picker(Localize("Server Type"), selection: $transportType) {
-                Text("DNS").tag(TransportType.DNS)
-                Text("HTTPS").tag(TransportType.HTTPS)
-                Text("TLS").tag(TransportType.TLS)
-            }
-            HStack {
-                TextField(text: $serverAddress) {
-                    Text(localized: "Server Address")
+            Section(Localize("Server Details")) {
+                HStack {
+                    Text(localized: "Friendly Name")
+                    TextField("My server", text: $serverName)
+                        .keyboardType(.asciiCapable)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
                 }
-                .keyboardType(.URL)
-                .autocorrectionDisabled()
-                .textInputAutocapitalization(.never)
-                .submitLabel(.done)
-                ClearButton(text: $serverAddress)
-            }
-            if let error = self.validationError {
-                ErrorCellView(error: error)
+                Picker(Localize("Server Type"), selection: $transportType) {
+                    Text("DNS").tag(TransportType.DNS)
+                    Text("HTTPS").tag(TransportType.HTTPS)
+                    Text("TLS").tag(TransportType.TLS)
+                }
+                HStack {
+                    Text(localized: "Server Address")
+                    TextField("192.0.2.1", text: $serverAddress)
+                        .keyboardType(.URL)
+                        .autocorrectionDisabled()
+                        .textInputAutocapitalization(.never)
+                        .submitLabel(.done)
+                }
+                if let error = self.validationError {
+                    ErrorCellView(error: error)
+                }
             }
         }
         .navigationTitle(localized: (isNew ? "New Preset Server" : "Edit Preset Server"))

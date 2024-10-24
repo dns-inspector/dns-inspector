@@ -19,10 +19,12 @@ DNSSEC not enabled on this zone, no RRSIG returned.	DNSSEC not enabled on this z
 Digest	Digest
 Dismiss	Dismiss
 Domain Information	Domain Information
+Edit Preset Server	Edit Preset Server
 Error	Error
 Expire	Expire
 Follow @dns-inspector.com on Bluesky	Follow @dns-inspector.com on Bluesky
 Follow @dnsinspector on Mastodon	Follow @dnsinspector on Mastodon
+Friendly Name	Friendly Name
 General	General
 Get Involved	Get Involved
 IPv4 Hints	IPv4 Hints
@@ -65,6 +67,7 @@ Send traditional DNS requests using TCP	Send traditional DNS requests using TCP
 Serial	Serial
 Server	Server
 Server Address	Server Address
+Server Details	Server Details
 Server IP	Server IP
 Server Type	Server Type
 Server URL	Server URL

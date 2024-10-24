@@ -19,6 +19,7 @@ import DNSKit
 
 struct PresetServerListView: View {
     @State private var presetServers: [PresetServer] = []
+    @State private var newServerName: String = ""
     @State private var newTransportType: TransportType = .DNS
     @State private var newServerAddress: String = ""
 
@@ -40,9 +41,10 @@ struct PresetServerListView: View {
         .listStyle(.plain)
         .toolbar(content: {
             NavigationLink {
-                PresetServerEditView(transportType: $newTransportType, serverAddress: $newServerAddress, isNew: true) {
-                    UserOptions.presetServers.append(PresetServer(type: newTransportType, address: newServerAddress))
+                PresetServerEditView(serverName: $newServerName, transportType: $newTransportType, serverAddress: $newServerAddress, isNew: true) {
+                    UserOptions.presetServers.append(PresetServer(name: newServerName, type: newTransportType, address: newServerAddress))
                     self.loadPresetServers()
+                    self.newServerName = ""
                     self.newTransportType = .DNS
                     self.newServerAddress = ""
                 }
@@ -61,11 +63,13 @@ struct PresetServerListView: View {
 
 private struct PresetServerListViewItem: View {
     let onEdit: () -> Void
+    @State private var name: String
     @State private var transportType: TransportType
     @State private var address: String
     private let serverID: UUID
 
     public init(presetServer: PresetServer, onEdit: @escaping () -> Void) {
+        _name = .init(initialValue: presetServer.name)
         _transportType = .init(initialValue: presetServer.type)
         _address = .init(initialValue: presetServer.address)
         self.serverID = presetServer.id
@@ -74,13 +78,13 @@ private struct PresetServerListViewItem: View {
 
     var body: some View {
         NavigationLink {
-            PresetServerEditView(transportType: $transportType, serverAddress: $address, isNew: false) {
+            PresetServerEditView(serverName: $name, transportType: $transportType, serverAddress: $address, isNew: false) {
                 for (index, server) in UserOptions.presetServers.enumerated() {
                     if server.id != serverID {
                         continue
                     }
 
-                    let newServer = PresetServer(type: transportType, address: address, id: serverID)
+                    let newServer = PresetServer(name: name, type: transportType, address: address, id: serverID)
                     UserOptions.presetServers[index] = newServer
                     self.onEdit()
                 }
@@ -88,7 +92,8 @@ private struct PresetServerListViewItem: View {
         } label: {
             HStack {
                 RoundedLabel(text: transportType.string())
-                Text(address)
+                Text(name)
+                Text(address).opacity(0.75)
             }
         }
     }

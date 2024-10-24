@@ -20,6 +20,7 @@ import DNSKit
 public struct PresetServerButton: View {
     @Binding public var transportType: TransportType
     @Binding public var serverAddress: String
+    @State private var newServerName = ""
     @State private var newTransportType = TransportType.HTTPS
     @State private var newServerAddress = ""
     @State private var presetServers: [PresetServer] = UserOptions.presetServers
@@ -33,7 +34,7 @@ public struct PresetServerButton: View {
                         self.transportType = server.type
                         self.serverAddress = server.address
                     }, label: {
-                        Text("\(server.type.string()) - \(server.address)")
+                        Text("\(server.type.string()) - \(server.name)")
                     })
                 }
             }
@@ -50,8 +51,8 @@ public struct PresetServerButton: View {
         })
         .popover(isPresented: $showEditServerView, content: {
             Navigation {
-                PresetServerEditView(transportType: $newTransportType, serverAddress: $newServerAddress, isNew: true) {
-                    UserOptions.presetServers.append(PresetServer(type: newTransportType, address: newServerAddress))
+                PresetServerEditView(serverName: $newServerName, transportType: $newTransportType, serverAddress: $newServerAddress, isNew: true) {
+                    UserOptions.presetServers.append(PresetServer(name: newServerName, type: newTransportType, address: newServerAddress))
                     transportType = newTransportType
                     serverAddress = newServerAddress
                 }

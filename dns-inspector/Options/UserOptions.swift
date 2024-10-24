@@ -29,7 +29,7 @@ public struct LastUsedServer: Codable {
     let address: String
 }
 
-private let currentSchemaVersion: Int = 2
+private let currentSchemaVersion: Int = 3
 
 private struct OptionsType: Codable {
     public var schemaVersion: Int
@@ -101,16 +101,18 @@ public final class UserOptions {
             }
 
             current = options
-        } else if currentVersion == 1 {
-            // Migration from Obj-C to Swift in DNSKit
-            let options: OptionsType1
+        } else if currentVersion == 2 {
+            LogWriter.shared.write(.Debug, message: "[\(#fileID):\(#line)] Migrating options")
+
+            // Add name to preset server
+            let options: OptionsType2
             do {
-                options = try JSONDecoder().decode(OptionsType1.self, from: data)
+                options = try JSONDecoder().decode(OptionsType2.self, from: data)
             } catch {
                 print("Error decoding options file \(optionsFilePath): \(error)")
                 return
             }
-            current = options.convertToOptions2()
+            current = options.convertToOptions()
         }
 
         LogWriter.shared.write(.Debug, message: "[\(#fileID):\(#line)] Loaded options")
@@ -245,9 +247,9 @@ public final class UserOptions {
     public static var presetServers: [PresetServer] {
         get {
             return current.presetServers ?? [
-                PresetServer(type: .TLS, address: "1.1.1.1"),
-                PresetServer(type: .DNS, address: "9.9.9.9"),
-                PresetServer(type: .HTTPS, address: "dns.google/dns-query")
+                PresetServer(name: "Cloudflare", type: .TLS, address: "1.1.1.1"),
+                PresetServer(name: "Quad9", type: .DNS, address: "9.9.9.9"),
+                PresetServer(name: "Google", type: .HTTPS, address: "dns.google/dns-query")
             ]
         }
         set {
@@ -268,7 +270,17 @@ public final class UserOptions {
     }
 }
 
-private struct OptionsType1: Codable {
+private struct PresetServer2: Codable, Identifiable {
+    public let type: TransportType
+    public let address: String
+    public var id = UUID()
+
+    enum CodingKeys: CodingKey {
+        case type, address
+    }
+}
+
+private struct OptionsType2: Codable {
     public var schemaVersion: Int
     public var appLaunchCount: Int?
     public var didPromptForReview: Bool?
@@ -277,16 +289,15 @@ private struct OptionsType1: Codable {
     public var ttlDisplayMode: TTLDisplayMode?
     public var showRecordDescription: Bool?
     public var dnsPrefersTcp: Bool?
+    public var timeoutSeconds: UInt8?
     public var appLanguage: SupportedLanguages?
-    public var enableDnssec: Bool?
     public var automaticDnssecValidation: Bool?
 
-    public var presetServers: [PresetServer1]?
-    public var lastUsedServer: LastUsedServer1?
+    public var presetServers: [PresetServer2]?
+    public var lastUsedServer: LastUsedServer?
 
-    public func convertToOptions2() -> OptionsType {
+    public func convertToOptions() -> OptionsType {
         var newOptions = OptionsType(schemaVersion: currentSchemaVersion)
-        newOptions.schemaVersion = self.schemaVersion
         newOptions.appLaunchCount = self.appLaunchCount
         newOptions.didPromptForReview = self.didPromptForReview
         newOptions.rememberQueries = self.rememberQueries
@@ -297,70 +308,25 @@ private struct OptionsType1: Codable {
         newOptions.timeoutSeconds = 5
         newOptions.appLanguage = self.appLanguage
         newOptions.automaticDnssecValidation = self.automaticDnssecValidation
+        newOptions.lastUsedServer = self.lastUsedServer
 
-        if let oldPresetServers = self.presetServers {
-            var newPresetServers: [PresetServer] = []
-            for presetServer in oldPresetServers {
-                guard let transportType = presetServer.transportType() else {
-                    continue
+        if let presetServers = self.presetServers {
+            newOptions.presetServers = []
+            for presetServer in presetServers {
+                let name: String
+                if presetServer.type == .TLS && presetServer.address == "1.1.1.1" {
+                    name = "Cloudflare"
+                } else if presetServer.type == .DNS && presetServer.address == "9.9.9.9" {
+                    name = "Quad9"
+                } else if presetServer.type == .HTTPS && presetServer.address == "dns.google/dns-query" {
+                    name = "Google"
+                } else {
+                    name = presetServer.address
                 }
-
-                newPresetServers.append(PresetServer(type: transportType, address: presetServer.address))
-            }
-            newOptions.presetServers = newPresetServers
-        }
-
-        if let lastUsedServer = self.lastUsedServer {
-            if let transportType = lastUsedServer.clientType.transportType() {
-                newOptions.lastUsedServer = LastUsedServer(transportType: transportType, address: lastUsedServer.address)
+                newOptions.presetServers?.append(PresetServer(name: name, type: presetServer.type, address: presetServer.address, id: presetServer.id))
             }
         }
+
         return newOptions
-    }
-}
-
-private struct PresetServer1: Codable {
-    public let type: UInt
-    public let address: String
-
-    enum CodingKeys: CodingKey {
-        case type, address
-    }
-
-    public func transportType() -> TransportType? {
-        switch self.type {
-        case 1:
-            return .DNS
-        case 2:
-            return .HTTPS
-        case 3:
-            return .TLS
-        default:
-            return nil
-        }
-    }
-}
-
-private struct LastUsedServer1: Codable {
-    let clientType: ClientType1
-    let address: String
-}
-
-private struct ClientType1: Codable {
-    public let name: String
-    public let dnsKitValue: UInt
-    public let id: UUID
-
-    public func transportType() -> TransportType? {
-        switch self.dnsKitValue {
-        case 1:
-            return .DNS
-        case 2:
-            return .HTTPS
-        case 3:
-            return .TLS
-        default:
-            return nil
-        }
     }
 }

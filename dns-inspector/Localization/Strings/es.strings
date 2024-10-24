@@ -32,12 +32,16 @@ Dismiss	Dismiss
 # TODO
 Domain Information	Domain Information
 # TODO
+Edit Preset Server	Edit Preset Server
+# TODO
 Error	Error
 # TODO
 Expire	Expire
 # TODO
 Follow @dns-inspector.com on Bluesky	Follow @dns-inspector.com on Bluesky
 Follow @dnsinspector on Mastodon	Sigue a @dnsinspector en Mastodon
+# TODO
+Friendly Name	Friendly Name
 General	General
 Get Involved	Involucrarse
 # TODO
@@ -98,6 +102,8 @@ Send traditional DNS requests using TCP	Enviar peticiones DNS tradicionales con 
 Serial	Serial
 Server	Servidor
 Server Address	Dirección del servidor
+# TODO
+Server Details	Server Details
 Server IP	IP del servidor
 Server Type	Tipo de servidor
 Server URL	URL del servidor
