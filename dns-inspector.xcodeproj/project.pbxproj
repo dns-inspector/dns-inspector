@@ -16,6 +16,7 @@
 		3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */; };
 		3C599C1F2C818467003BFC68 /* RecordViewHTTPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C599C1E2C818467003BFC68 /* RecordViewHTTPS.swift */; };
 		3C61432E2BA7B179006A8B14 /* View+Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61432D2BA7B179006A8B14 /* View+Destination.swift */; };
+		3C62351D2CD6FA3D00387F6E /* FullScreenTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62351C2CD6FA3500387F6E /* FullScreenTextView.swift */; };
 		3C6CCD5A2B3BAC4700A3B6F2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CCD592B3BAC4700A3B6F2 /* Globals.swift */; };
 		3C6CCD5D2B3BB5C700A3B6F2 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CCD5C2B3BB5C700A3B6F2 /* Localization.swift */; };
 		3C6CCD5F2B3BB66000A3B6F2 /* Localization+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CCD5E2B3BB66000A3B6F2 /* Localization+SwiftUI.swift */; };
@@ -85,6 +86,7 @@
 		3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSMessageView.swift; sourceTree = "<group>"; };
 		3C599C1E2C818467003BFC68 /* RecordViewHTTPS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewHTTPS.swift; sourceTree = "<group>"; };
 		3C61432D2BA7B179006A8B14 /* View+Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Destination.swift"; sourceTree = "<group>"; };
+		3C62351C2CD6FA3500387F6E /* FullScreenTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenTextView.swift; sourceTree = "<group>"; };
 		3C6CCD592B3BAC4700A3B6F2 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		3C6CCD5C2B3BB5C700A3B6F2 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		3C6CCD5E2B3BB66000A3B6F2 /* Localization+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+SwiftUI.swift"; sourceTree = "<group>"; };
@@ -152,6 +154,14 @@
 				9AA8C18D2ADD9B4600B93E45 /* OptionsView.swift */,
 			);
 			path = OptionsView;
+			sourceTree = "<group>";
+		};
+		3C62351B2CD6FA2B00387F6E /* Other Views */ = {
+			isa = PBXGroup;
+			children = (
+				3C62351C2CD6FA3500387F6E /* FullScreenTextView.swift */,
+			);
+			path = "Other Views";
 			sourceTree = "<group>";
 		};
 		3C6415142BA55A1600C78647 /* AnswerView */ = {
@@ -235,6 +245,7 @@
 		9A80CE272AEF2C6B00E97A63 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3C62351B2CD6FA2B00387F6E /* Other Views */,
 				3CAD46A62B90410100E97A04 /* AboutView */,
 				3C0C6B312B38F944006D3F41 /* ActionTipTarget.swift */,
 				3C6415142BA55A1600C78647 /* AnswerView */,
@@ -465,6 +476,7 @@
 				9A80CE292AEF2C7700E97A63 /* RoundedLabel.swift in Sources */,
 				9A80CE382AEF650200E97A63 /* PresetServerButton.swift in Sources */,
 				3C6CCD5A2B3BAC4700A3B6F2 /* Globals.swift in Sources */,
+				3C62351D2CD6FA3D00387F6E /* FullScreenTextView.swift in Sources */,
 				3C9AA7C92AF1F43F00B072FA /* DNSQuestionView.swift in Sources */,
 				3C7BD1C82C38A965004C2ECF /* RecordViewBasicName.swift in Sources */,
 				3C7BD1CE2C38AB05004C2ECF /* RecordViewTXT.swift in Sources */,
@@ -716,7 +728,7 @@
 			repositoryURL = "https://github.com/dns-inspector/dnskit";
 			requirement = {
 				kind = revision;
-				revision = 1949682905d2b5deaf4a8ae56cab5aa275348e23;
+				revision = f4d8c5370c80460a9cea0e615e47de37ee519e77;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

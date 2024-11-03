@@ -135,6 +135,8 @@ Verbose logging	Verbose logging
 Verified	Verified
 Version {version} (build {build})	Versión {0} (compilación {1})
 # TODO
+View All	View All
+# TODO
 View DNSSEC Information	View DNSSEC Information
 # TODO
 Your changes will take affect only quitting and restarting DNS Inspector	Your changes will take affect only quitting and restarting DNS Inspector

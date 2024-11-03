@@ -19,41 +19,41 @@ import DNSKit
 
 public struct WHOISView: View {
     public let domain: String
-    @State private var whoisResult: Result<String, Error>?
+    @State private var whoisResults: Result<[WHOISReply], Error>?
 
     public var body: some View {
-        switch whoisResult {
-        case .success(let result):
-            VStack(alignment: .leading) {
-                ScrollView([.horizontal, .vertical]) {
-                    Text(LocalizedStringKey(result))
-                        .multilineTextAlignment(.leading)
-                        .textSelection(.enabled)
-                        .padding()
+        List {
+            switch whoisResults {
+            case .success(let results):
+                ForEach(results, id: \.server) { reply in
+                    Section(reply.server) {
+                        Text(reply.data.prefix(100) + "...").fixedwidth()
+                        NavigationLink {
+                            FullScreenTextView(text: reply.data)
+                        } label: {
+                            Text(localized: "View All")
+                        }
+                    }
                 }
-            }
-            .navigationTitle("Domain Information")
-        case .failure(let error):
-            ErrorCellView(error: error).padding()
-        case nil:
-            VStack(alignment: .leading, content: {
-                ProgressView()
-            })
-            .padding()
-            .onAppear {
-                Task {
-                    await loadData()
+            case .failure(let error):
+                ErrorCellView(error: error)
+            case nil:
+                ProgressView().onAppear {
+                    Task {
+                        await loadData()
+                    }
                 }
             }
         }
+        .navigationTitle(localized: "Domain Information")
     }
 
     private func loadData() async {
         do {
-            let response = try await WHOIS.lookup(domain)
-            self.whoisResult = .success(response)
+            let response = try await WHOISClient.lookup(domain)
+            self.whoisResults = .success(response)
         } catch {
-            self.whoisResult = .failure(error)
+            self.whoisResults = .failure(error)
         }
     }
 }

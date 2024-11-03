@@ -87,6 +87,7 @@ Unverified	Unverified
 Verbose logging	Verbose logging
 Verified	Verified
 Version {version} (build {build})	Version {0} (build {1})
+View All	View All
 View DNSSEC Information	View DNSSEC Information
 Your changes will take affect only quitting and restarting DNS Inspector	Your changes will take affect only quitting and restarting DNS Inspector
 Zone signing key	Zone signing key
