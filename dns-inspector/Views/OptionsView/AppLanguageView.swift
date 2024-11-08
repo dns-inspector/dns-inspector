@@ -37,7 +37,8 @@ struct AppLanguageView: View {
                     }.buttonStyle(.plain)
                 }
             } footer: {
-                Text(localized: "localization_credits")
+                // This is intentionally not localized
+                Text("Spanish translation by Kevin López Brante. German translation by ErminesRoper. Interested in translating DNS Inspector to another language? Send us a message through the feedback link!")
             }
         }
         .navigationTitle(localized: "App language")

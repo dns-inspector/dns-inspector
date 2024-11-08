@@ -64,6 +64,7 @@ public func Localize(_ key: String, args: [String]) -> String {
 public enum SupportedLanguages: String, CaseIterable, Codable {
     case English = "en"
     case Spanish = "es"
+    case German = "de"
 
     var name: String {
         return String(describing: self)

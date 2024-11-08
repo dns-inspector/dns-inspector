@@ -87,12 +87,12 @@ Unverified	Falsifiziert
 Verbose logging	Erweitertes Protokollieren
 Verified	Verifiziert
 Version {version} (build {build})	Version {0} (Build {1})
+View All	Alle ansehen
 View DNSSEC Information	DNSSEC-Information anschauen
 Your changes will take affect only quitting and restarting DNS Inspector	Deine Änderungen werden erst nach Beenden und Neustart von DNS-Inspector wirksam
 Zone signing key	Zonensignaturschlüssel
 about_footer	DNS-Inspector ist eine kostenlose & freie, quelloffene Software, lizenziert unter GNU GPLv3. DNS-Inspector besitzt das Copyright © 2023-{0} Ian Spence.
 dnssec_footer	Wenn DNSSEC aktiviert ist, enthalten alle DNS-Anfragen eine Anfrage der Signaturaufzeichnung. DNSSEC-Verifizierung wird weitere Anfragen zur Vertrauensgewinnung durchführen und möglicherweise einige Sekunden zur Durchführung brauchen.
-localization_credits	Übersetzung auf Spanisch von Kevin López Brante. Übersetzung auf Deutsch von ErminesRoper. Interessiert, DNS-Inspector in weitere Sprachen zu übersetzen? Sende uns eine Nachricht via des Feedback-Links!
 record_description_a	DNS-A-Aufzeichnungen enthalten eine IPv4-Adresse.
 record_description_aaaa	DNS-AAAA-Aufzeichnungen enthalten eine IPv6-Adresse.
 record_description_apl	DNS-APL-Aufzeichnungen enthalten eine IP-Adressen-Prefix-Liste.

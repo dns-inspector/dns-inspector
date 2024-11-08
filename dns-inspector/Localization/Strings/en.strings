@@ -93,7 +93,6 @@ Your changes will take affect only quitting and restarting DNS Inspector	Your ch
 Zone signing key	Zone signing key
 about_footer	DNS Inspector is free & libre open source software licensed under the GNU GPLv3. DNS Inspector is copyright © 2023-{0} Ian Spence.
 dnssec_footer	When DNSSEC is enabled all DNS queries include a request for record signatures. DNSSEC verification will perform additional queries to establish trust and may take multiple seconds to complete.
-localization_credits	Spanish translation by Kevin López Brante. Interested in translating DNS Inspector to another language? Send us a message through the feedback link!
 record_description_a	DNS A records contain an IPv4 address.
 record_description_aaaa	DNS AAAA records contain an IPv6 address.
 record_description_apl	DNS APL records contain an IP address prefix list.
