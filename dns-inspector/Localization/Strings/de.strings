@@ -1,0 +1,113 @@
+# DNS Inspector localization strings for English
+# Copyright 2024 Ian Spence and DNS Inspector Authors
+# Licensed under CC BY-SA 4.0 Attribution-ShareAlike 4.0 International
+About	Über
+Absolute	Absolut
+Add Preset Server	Preset-Server hinzufügen
+Administrative address	Administrative Adresse
+Algorithm	Algorithmus
+Answers	Antworten
+App language	App-Sprache
+Appearance & Behaviour	Aussehen & Verhalten
+Automatically	Automatisch
+Chain	Kette
+Connection Timeout	Verbindung ausgelaufen
+Contribute to DNS Inspector	Zu DNS-Inspector beitragen
+DNS Inspector	DNS-Inspector
+DNSSEC Enabled	DNSSEC aktiviert
+DNSSEC not enabled on this zone, no RRSIG returned.	DNSSEC für diese Zone nicht aktiviert, kein RRSIG wiedergegeben.
+Digest	Verarbeiten
+Dismiss	Ignorieren
+Domain Information	Domain-Information
+Edit Preset Server	Preset-Server bearbeiten
+Error	Fehler
+Expire	Auslaufen lassen
+Follow @dns-inspector.com on Bluesky	Folge @dns-inspector.com auf Bluesky
+Follow @dnsinspector on Mastodon	Folge @dnsinspector auf Mastodon
+Friendly Name	Friendly-Name
+General	Allgemein
+Get Involved	Werde involviert
+IPv4 Hints	IPv4-Hints
+IPv6 Hints	IPv6-Hints
+Key Usage	Schlüssel-Gebrauch
+Key signing key	Schlüsselsignierungsschlüssel
+Key tag	Schlüsseletikett
+Loading...	Lädt...
+Main name server	Hauptnamensserver
+Manually	Manuell
+Minimum	Minimum
+More from the developer	Weiteres vom Entwickler
+Name	Name
+Network	Netzwerk
+New Preset Server	Neuer Preset-Server
+New query	Neue Anfrage
+No default ALPN	Kein standardmäßiges ALPN
+Options	Optionen
+Perform Validation	Validierung durchführen
+Port	Port
+Preset Servers	Preset-Server
+Preset servers	Preset-Server
+Priority	Priorität
+Provide feedback	Feedback hinterlassen
+Public key	Öffentlicher Schlüssel
+Query	Anfrage
+Question	Frage
+Rate in App Store	Im App-Store bewerten
+Recent queries	Letzte Anfragen
+Refresh	Neu laden
+Relative	Verwandt
+Remember last server	Letzten Server merken
+Remember recent queries	Letzte Anfragen merken
+Response	Antwort
+Results	Resultat
+Retry	Erneut versuchen
+Save	Sichern
+Seconds	Sekunden
+Send traditional DNS requests using TCP	Sende herkömmliche DNS-Anfragen mittels TCP
+Serial	Serie
+Server	Server
+Server Address	Server-Adresse
+Server Details	Server-Details
+Server IP	Server-IP
+Server Type	Server-Typus
+Server URL	Server-URL
+Share & Feedback	Teilen & Feedback
+Share DNS Inspector	DNS-Inspector teilen
+Show DNS record descriptions	Beschreibungen der DNS-Aufzeichnungen anzeigen
+Show TTL values as	Zeige TTL-Wert als
+Signature	Signatur
+Signature Validation Failed	Signaturvalidierung fehlgeschlagen
+Supported Versions	Unterstütze Versionen
+TLS Inspector	TLS-Inspector
+Target	Ziel
+Trust Establishment Failed	Vertrauensetablierung fehlgeschlagen
+Trusted	Vertraut
+Untrusted	Misstraut
+Unverified	Falsifiziert
+Verbose logging	Erweitertes Protokollieren
+Verified	Verifiziert
+Version {version} (build {build})	Version {0} (Build {1})
+View DNSSEC Information	DNSSEC-Information anschauen
+Your changes will take affect only quitting and restarting DNS Inspector	Deine Änderungen werden erst nach Beenden und Neustart von DNS-Inspector wirksam
+Zone signing key	Zonensignaturschlüssel
+about_footer	DNS-Inspector ist eine kostenlose & freie, quelloffene Software, lizenziert unter GNU GPLv3. DNS-Inspector besitzt das Copyright © 2023-{0} Ian Spence.
+dnssec_footer	Wenn DNSSEC aktiviert ist, enthalten alle DNS-Anfragen eine Anfrage der Signaturaufzeichnung. DNSSEC-Verifizierung wird weitere Anfragen zur Vertrauensgewinnung durchführen und möglicherweise einige Sekunden zur Durchführung brauchen.
+localization_credits	Übersetzung auf Spanisch von Kevin López Brante. Übersetzung auf Deutsch von ErminesRoper. Interessiert, DNS-Inspector in weitere Sprachen zu übersetzen? Sende uns eine Nachricht via des Feedback-Links!
+record_description_a	DNS-A-Aufzeichnungen enthalten eine IPv4-Adresse.
+record_description_aaaa	DNS-AAAA-Aufzeichnungen enthalten eine IPv6-Adresse.
+record_description_apl	DNS-APL-Aufzeichnungen enthalten eine IP-Adressen-Prefix-Liste.
+record_description_cname	DNS-CNAME-Aufzeichnungen enthalten Bestimmungs-DNS-Namen zum Verfolgen.
+record_description_dnskey	DNS-DNSKEY-Aufzeichnungen enthalten den kryptographischen, öffentlichen Schlüssel zur Authentifizierung.
+record_description_ds	DNS-DS-Aufzeichnungen enthalten Aufzeichnungen der vertrauten Delegation der Mutterzone.
+record_description_https	DNS-HTTPS-Aufzeichnungen enthalten Informationen über HTTPS-Web-Server.
+record_description_mx	DNS-MX-Aufzeichnungen enthalten E-Mail-Austausch-Server-Adressen.
+record_description_ns	DNS-NS-Aufzeichnungen enthalten den authorativen DNS-Server der jeweiligen Zone.
+record_description_ptr	DNS-PTR-Aufzeichnungen werden zur Auflösung einer Domain zu einer IP-Adresse genutzt.
+record_description_soa	DNS-SOA-Aufzeichnungen enhalten Administrativ- oder Inhaberschaftsinformationen der Domain.
+record_description_srv	DNS-SRV-Aufzeichnungen enthalten Informationen zur Ausmachung eines spezifischen Dienstes.
+record_description_txt	DNS-TXT-Aufzeichnungen enthalten Textdaten.
+{duration} microseconds	{0} Mikrosekunden
+{duration} milliseconds	{0} Millisekunden
+{duration} nanoseconds	{0} Nanosekunden
+{duration} seconds	{0} Sekunden
+{record type} Record	{0}-Aufzeichnung
