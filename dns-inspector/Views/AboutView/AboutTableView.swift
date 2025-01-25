@@ -1,5 +1,5 @@
 // DNS Inspector
-// Copyright (C) 2024 Ian Spence
+// Copyright (C) 2025 Ian Spence
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -46,6 +46,8 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
             return Localize("Get Involved")
         case 2:
             return Localize("More from the developer")
+        case 3:
+            return ""
         default:
             return ""
         }
@@ -57,13 +59,15 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
             return Localize("Version {version} (build {build})", args: [AppInfo.version(), AppInfo.build()])
         case 1:
             return Localize("about_footer", args: ["2024"])
+        case 3:
+            return "🏳️‍⚧️ Trans Rights!" // If this footer upsets or bothers you, I invite you to please fuck right off.
         default:
             return ""
         }
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -74,6 +78,8 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
             return 3
         case 2:
             return 1
+        case 3:
+            return 0
         default:
             return 0
         }
