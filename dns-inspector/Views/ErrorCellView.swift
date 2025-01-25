@@ -15,13 +15,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import SwiftUI
+import DNSKit
 
 public struct ErrorCellView: View {
     public let error: String
     public let titleKey: String
 
     public init(error: Error, titleKey: String = "Error") {
-        self.error = error.localizedDescription
+        self.error = localizedErrorDetails(error)
         self.titleKey = titleKey
     }
 

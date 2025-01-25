@@ -16,9 +16,13 @@ Appearance & Behaviour	Appearance & Behaviour
 # TODO
 Automatically	Automatically
 # TODO
+Bad signing key: {details}	Bad signing key: {0}
+# TODO
 Chain	Chain
 # TODO
 Connection Timeout	Connection Timeout
+# TODO
+Connection error: {details}	Connection error: {0}
 Contribute to DNS Inspector	Contribuir to DNS Inspector
 DNS Inspector	DNS Inspector
 # TODO
@@ -34,7 +38,11 @@ Domain Information	Domain Information
 # TODO
 Edit Preset Server	Edit Preset Server
 # TODO
+Empty response	Empty response
+# TODO
 Error	Error
+# TODO
+Excessive response size	Excessive response size
 # TODO
 Expire	Expire
 # TODO
@@ -45,9 +53,21 @@ Friendly Name	Friendly Name
 General	General
 Get Involved	Involucrarse
 # TODO
+HTTP {code}	HTTP {0}
+# TODO
 IPv4 Hints	IPv4 Hints
 # TODO
 IPv6 Hints	IPv6 Hints
+# TODO
+Internal error: {details}	Internal error: {0}
+# TODO
+Invalid URL	Invalid URL
+# TODO
+Invalid content type: {details}	Invalid content type: {0}
+# TODO
+Invalid data: {details}	Invalid data: {0}
+# TODO
+Invalid response: {details}	Invalid response: {0}
 # TODO
 Key Usage	Key Usage
 # TODO
@@ -61,6 +81,10 @@ Main name server	Main name server
 Manually	Manually
 # TODO
 Minimum	Minimum
+# TODO
+Missing data: {details}	Missing data: {0}
+# TODO
+Missing keys: {details}	Missing keys: {0}
 More from the developer	Más apps del desarrollador
 Name	Nombre
 Network	Red
@@ -68,6 +92,8 @@ New Preset Server	Nuevo servidor predefinido
 New query	Nueva petición
 # TODO
 No default ALPN	No default ALPN
+# TODO
+No signatures: {details}	No signatures: {0}
 Options	Opciones
 # TODO
 Perform Validation	Perform Validation
@@ -117,16 +143,28 @@ Signature	Signature
 # TODO
 Signature Validation Failed	Signature Validation Failed
 # TODO
+Signature failed	Signature failed
+# TODO
 Supported Versions	Supported Versions
 TLS Inspector	TLS Inspector
 # TODO
 Target	Target
 # TODO
+Timed out	Timed out
+# TODO
+Too many redirects	Too many redirects
+# TODO
 Trust Establishment Failed	Trust Establishment Failed
 # TODO
 Trusted	Trusted
 # TODO
+Unexpected response: {details}	Unexpected response: {0}
+# TODO
+Unsupported algorithm	Unsupported algorithm
+# TODO
 Untrusted	Untrusted
+# TODO
+Untrusted root signing key	Untrusted root signing key
 # TODO
 Unverified	Unverified
 # TODO
@@ -137,6 +175,8 @@ Version {version} (build {build})	Versión {0} (compilación {1})
 View All	Ver todo
 # TODO
 View DNSSEC Information	View DNSSEC Information
+# TODO
+WHOIS not supported on this domain	WHOIS not supported on this domain
 # TODO
 Your changes will take affect only quitting and restarting DNS Inspector	Your changes will take affect only quitting and restarting DNS Inspector
 # TODO

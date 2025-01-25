@@ -10,8 +10,12 @@ Answers	Antworten
 App language	App-Sprache
 Appearance & Behaviour	Aussehen & Verhalten
 Automatically	Automatisch
+# TODO
+Bad signing key: {details}	Bad signing key: {0}
 Chain	Kette
 Connection Timeout	Verbindung ausgelaufen
+# TODO
+Connection error: {details}	Connection error: {0}
 Contribute to DNS Inspector	Zu DNS-Inspector beitragen
 DNS Inspector	DNS-Inspector
 DNSSEC Enabled	DNSSEC aktiviert
@@ -20,15 +24,31 @@ Digest	Verarbeiten
 Dismiss	Ignorieren
 Domain Information	Domain-Information
 Edit Preset Server	Preset-Server bearbeiten
+# TODO
+Empty response	Empty response
 Error	Fehler
+# TODO
+Excessive response size	Excessive response size
 Expire	Auslaufen lassen
 Follow @dns-inspector.com on Bluesky	Folge @dns-inspector.com auf Bluesky
 Follow @dnsinspector on Mastodon	Folge @dnsinspector auf Mastodon
 Friendly Name	Friendly-Name
 General	Allgemein
 Get Involved	Werde involviert
+# TODO
+HTTP {code}	HTTP {0}
 IPv4 Hints	IPv4-Hints
 IPv6 Hints	IPv6-Hints
+# TODO
+Internal error: {details}	Internal error: {0}
+# TODO
+Invalid URL	Invalid URL
+# TODO
+Invalid content type: {details}	Invalid content type: {0}
+# TODO
+Invalid data: {details}	Invalid data: {0}
+# TODO
+Invalid response: {details}	Invalid response: {0}
 Key Usage	Schlüssel-Gebrauch
 Key signing key	Schlüsselsignierungsschlüssel
 Key tag	Schlüsseletikett
@@ -36,12 +56,18 @@ Loading...	Lädt...
 Main name server	Hauptnamensserver
 Manually	Manuell
 Minimum	Minimum
+# TODO
+Missing data: {details}	Missing data: {0}
+# TODO
+Missing keys: {details}	Missing keys: {0}
 More from the developer	Weiteres vom Entwickler
 Name	Name
 Network	Netzwerk
 New Preset Server	Neuer Preset-Server
 New query	Neue Anfrage
 No default ALPN	Kein standardmäßiges ALPN
+# TODO
+No signatures: {details}	No signatures: {0}
 Options	Optionen
 Perform Validation	Validierung durchführen
 Port	Port
@@ -77,18 +103,32 @@ Show DNS record descriptions	Beschreibungen der DNS-Aufzeichnungen anzeigen
 Show TTL values as	Zeige TTL-Wert als
 Signature	Signatur
 Signature Validation Failed	Signaturvalidierung fehlgeschlagen
+# TODO
+Signature failed	Signature failed
 Supported Versions	Unterstütze Versionen
 TLS Inspector	TLS-Inspector
 Target	Ziel
+# TODO
+Timed out	Timed out
+# TODO
+Too many redirects	Too many redirects
 Trust Establishment Failed	Vertrauensetablierung fehlgeschlagen
 Trusted	Vertraut
+# TODO
+Unexpected response: {details}	Unexpected response: {0}
+# TODO
+Unsupported algorithm	Unsupported algorithm
 Untrusted	Misstraut
+# TODO
+Untrusted root signing key	Untrusted root signing key
 Unverified	Falsifiziert
 Verbose logging	Erweitertes Protokollieren
 Verified	Verifiziert
 Version {version} (build {build})	Version {0} (Build {1})
 View All	Alle ansehen
 View DNSSEC Information	DNSSEC-Information anschauen
+# TODO
+WHOIS not supported on this domain	WHOIS not supported on this domain
 Your changes will take affect only quitting and restarting DNS Inspector	Deine Änderungen werden erst nach Beenden und Neustart von DNS-Inspector wirksam
 Zone signing key	Zonensignaturschlüssel
 about_footer	DNS-Inspector ist eine kostenlose & freie, quelloffene Software, lizenziert unter GNU GPLv3. DNS-Inspector besitzt das Copyright © 2023-{0} Ian Spence.

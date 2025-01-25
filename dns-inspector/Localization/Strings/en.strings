@@ -10,8 +10,10 @@ Answers	Answers
 App language	App language
 Appearance & Behaviour	Appearance & Behaviour
 Automatically	Automatically
+Bad signing key: {details}	Bad signing key: {0}
 Chain	Chain
 Connection Timeout	Connection Timeout
+Connection error: {details}	Connection error: {0}
 Contribute to DNS Inspector	Contribute to DNS Inspector
 DNS Inspector	DNS Inspector
 DNSSEC Enabled	DNSSEC Enabled
@@ -20,15 +22,23 @@ Digest	Digest
 Dismiss	Dismiss
 Domain Information	Domain Information
 Edit Preset Server	Edit Preset Server
+Empty response	Empty response
 Error	Error
+Excessive response size	Excessive response size
 Expire	Expire
 Follow @dns-inspector.com on Bluesky	Follow @dns-inspector.com on Bluesky
 Follow @dnsinspector on Mastodon	Follow @dnsinspector on Mastodon
 Friendly Name	Friendly Name
 General	General
 Get Involved	Get Involved
+HTTP {code}	HTTP {0}
 IPv4 Hints	IPv4 Hints
 IPv6 Hints	IPv6 Hints
+Internal error: {details}	Internal error: {0}
+Invalid URL	Invalid URL
+Invalid content type: {details}	Invalid content type: {0}
+Invalid data: {details}	Invalid data: {0}
+Invalid response: {details}	Invalid response: {0}
 Key Usage	Key Usage
 Key signing key	Key signing key
 Key tag	Key tag
@@ -36,12 +46,15 @@ Loading...	Loading...
 Main name server	Main name server
 Manually	Manually
 Minimum	Minimum
+Missing data: {details}	Missing data: {0}
+Missing keys: {details}	Missing keys: {0}
 More from the developer	More from the developer
 Name	Name
 Network	Network
 New Preset Server	New Preset Server
 New query	New query
 No default ALPN	No default ALPN
+No signatures: {details}	No signatures: {0}
 Options	Options
 Perform Validation	Perform Validation
 Port	Port
@@ -77,18 +90,25 @@ Show DNS record descriptions	Show DNS record descriptions
 Show TTL values as	Show TTL values as
 Signature	Signature
 Signature Validation Failed	Signature Validation Failed
+Signature failed	Signature failed
 Supported Versions	Supported Versions
 TLS Inspector	TLS Inspector
 Target	Target
+Timed out	Timed out
+Too many redirects	Too many redirects
 Trust Establishment Failed	Trust Establishment Failed
 Trusted	Trusted
+Unexpected response: {details}	Unexpected response: {0}
+Unsupported algorithm	Unsupported algorithm
 Untrusted	Untrusted
+Untrusted root signing key	Untrusted root signing key
 Unverified	Unverified
 Verbose logging	Verbose logging
 Verified	Verified
 Version {version} (build {build})	Version {0} (build {1})
 View All	View All
 View DNSSEC Information	View DNSSEC Information
+WHOIS not supported on this domain	WHOIS not supported on this domain
 Your changes will take affect only quitting and restarting DNS Inspector	Your changes will take affect only quitting and restarting DNS Inspector
 Zone signing key	Zone signing key
 about_footer	DNS Inspector is free & libre open source software licensed under the GNU GPLv3. DNS Inspector is copyright © 2023-{0} Ian Spence.
