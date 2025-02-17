@@ -1,6 +1,6 @@
 """
 DNS Inspector
-Copyright (C) 2024 Ian Spence
+Copyright (C) 2025 Ian Spence
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,8 +30,9 @@ def get_license_header(year):
 def get_file_year(filepath):
     year = datetime.now().strftime("%Y")
     try:
-        result = subprocess.run(["git", "--no-pager", "log", "-1", "--pretty=\"format:%ci\"", "--", filepath], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        year = result.stdout.split("-")[0]
+        result = subprocess.run(["git", "--no-pager", "log", "-1", "--pretty=%ci", "--", filepath], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        date = result.stdout.decode('utf-8')
+        year = date.split("-")[0]
     except Exception as e:
         pass
     return year
