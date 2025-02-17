@@ -1,8 +1,9 @@
 # DNS Inspector
 
+[![Follow us on Mastodon](https://img.shields.io/mastodon/follow/111626564034221195?domain=https%3A%2F%2Finfosec.exchange&logo=mastodon&logoColor=white&style=flat)](https://infosec.exchange/@dnsinspector)
+[![Follow us on Bluesky](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fpublic.api.bsky.app%2Fxrpc%2Fapp.bsky.actor.getProfile%2F%3Factor%3Ddns-inspector.com&query=%24.followersCount&style=social&logo=bluesky&style=flat&label=Follow%20%40dns-inspector.com)](https://bsky.app/profile/dns-inspector.com)
 [![Download](https://img.shields.io/itunes/v/6470965982.svg?label=iTunes%20App%20Store&logo=apple&style=flat)](https://dns-inspector.com/app-store)
 [![LICENSE](https://img.shields.io/github/license/dns-inspector/dns-inspector.svg?logo=gnu&style=flat)](https://github.com/dns-inspector/dns-inspector/blob/app-store/LICENSE)
-[![Follow](https://img.shields.io/mastodon/follow/111626564034221195?domain=https%3A%2F%2Finfosec.exchange&logo=mastodon&logoColor=white&style=flat)](https://infosec.exchange/@dnsinspector)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/8262/badge)](https://bestpractices.coreinfrastructure.org/projects/8262)
 
 DNS Inspector is a free & open source iOS and iPadOS application that empowers you to perform
