@@ -29,6 +29,8 @@ jobs:
       - name: Checkout Source
         id: checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #pin v4.2.2
+        with:
+          persist-credentials: false
 
       - name: Install Profile and Certificates
         id: install_credentials
@@ -60,7 +62,7 @@ jobs:
 
       - name: Restore Cached SwiftLint
         id: restore_swiftlint
-        uses: actions/cache@d4323d4df104b026a6aa633fdb11d772146be0bf #pin v4.2.2
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 #pin v4.2.3
         with:
           key: ${{ steps.prepare.outputs.SWIFTLINT_CACHE_KEY }}
           path: |
