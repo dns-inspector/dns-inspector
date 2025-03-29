@@ -1,6 +1,6 @@
 """
 DNS Inspector
-Copyright (C) 2025 Ian Spence
+Copyright (C) Ian Spence and other DNS Inspector Contributors
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -20,22 +20,21 @@ from datetime import datetime
 import subprocess
 import sys
 
-license_header_template = ""
-with open(".github/license-header.txt", "r") as file:
-    license_header_template = file.read().rstrip()
+license_header_template = """DNS Inspector
+Copyright (C) Ian Spence and other DNS Inspector Contributors
 
-def get_license_header(year):
-    return license_header_template.replace("##YEAR##", year)
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-def get_file_year(filepath):
-    year = datetime.now().strftime("%Y")
-    try:
-        result = subprocess.run(["git", "--no-pager", "log", "-1", "--pretty=%ci", "--", filepath], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        date = result.stdout.decode('utf-8')
-        year = date.split("-")[0]
-    except Exception as e:
-        pass
-    return year
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>."""
 
 def check_file_header(filepath, offset, prefixes):
     contents = ""
@@ -44,12 +43,11 @@ def check_file_header(filepath, offset, prefixes):
 
     lines = contents.split("\n")
 
-    year = get_file_year(filepath)
-
-    header = get_license_header(year)
+    header = license_header_template
     header_lines = header.split('\n')
 
     if len(lines) + offset < len(header_lines):
+        print(str(filepath) + ": Missing license header")
         return False
 
     i = 0
@@ -60,6 +58,7 @@ def check_file_header(filepath, offset, prefixes):
                 any_match = True
                 break
         if not any_match:
+            print(str(filepath) + ":" + str(i) + ": Got '" + lines[i + offset] + "' Expected '" + prefix + header_lines[i] + "'")
             return False
         i = i + 1
 
@@ -67,11 +66,23 @@ def check_file_header(filepath, offset, prefixes):
 
 all_passed = True
 
-for source_dir in [ "dns-inspector" ]:
+for source_dir in [ "dns-inspector", ".github" ]:
     swift_files = list(Path(source_dir).rglob("*.[Ss][Ww][Ii][Ff][Tt]"))
+    go_files = list(Path(source_dir).rglob("*.[Gg][Oo]"))
+    py_files = list(Path(source_dir).rglob("*.[Pp][Yy]"))
 
     for filepath in swift_files:
-        if not check_file_header(filepath, 0, ["//", "// "]):
+        if not check_file_header(filepath, 0, ["// ", "//"]):
+            print(str(filepath) + ": Invalid license header", file=sys.stderr)
+            all_passed = False
+
+    for filepath in go_files:
+        if not check_file_header(filepath, 1, [""]):
+            print(str(filepath) + ": Invalid license header", file=sys.stderr)
+            all_passed = False
+
+    for filepath in py_files:
+        if not check_file_header(filepath, 1, [""]):
             print(str(filepath) + ": Invalid license header", file=sys.stderr)
             all_passed = False
 
