@@ -7,7 +7,9 @@ Add Preset Server	Add Preset Server
 Administrative address	Administrative address
 Algorithm	Algorithm
 Answers	Answers
+App Icon	App Icon
 App language	App language
+AppIconFooter	The "Progress" pride flag was created by Daniel Quasar and is licensed under Create Commons BY-NC-SA. The trans flag was created by Monica Helms and was released to the public domain.
 Appearance & Behaviour	Appearance & Behaviour
 Automatically	Automatically
 Bad signing key: {details}	Bad signing key: {0}
@@ -34,6 +36,9 @@ Get Involved	Get Involved
 HTTP {code}	HTTP {0}
 IPv4 Hints	IPv4 Hints
 IPv6 Hints	IPv6 Hints
+IconDefault	Default
+IconPride	Pride
+IconTrans	Trans
 Internal error: {details}	Internal error: {0}
 Invalid URL	Invalid URL
 Invalid content type: {details}	Invalid content type: {0}

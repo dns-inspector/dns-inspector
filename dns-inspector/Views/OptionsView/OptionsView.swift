@@ -37,6 +37,9 @@ struct OptionsView: View {
                     NavigationLink(Localize("Preset servers")) {
                         PresetServerListView()
                     }
+                    NavigationLink(Localize("App Icon")) {
+                        AppIconView()
+                    }
                 }
                 Section(Localize("Appearance & Behaviour")) {
                     Toggle(Localize("Remember recent queries"), isOn: $rememberQueries).tint(Color.accentColor)

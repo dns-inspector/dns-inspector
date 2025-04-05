@@ -14,6 +14,7 @@
 		3C0C6B342B39108B006D3F41 /* ErrorCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C6B332B39108B006D3F41 /* ErrorCellView.swift */; };
 		3C26AD802BA6775E0022BABD /* WHOISView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C26AD7F2BA6775E0022BABD /* WHOISView.swift */; };
 		3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */; };
+		3C3801342DA1AEB9007126EB /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3801332DA1AEA5007126EB /* AppIconView.swift */; };
 		3C4BB6BF2CE84F9900C7F78F /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BB6BE2CE84F9700C7F78F /* Errors.swift */; };
 		3C51F5882CDD9E5F00B9693D /* de.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C51F5872CDD9E5F00B9693D /* de.plist */; };
 		3C599C1F2C818467003BFC68 /* RecordViewHTTPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C599C1E2C818467003BFC68 /* RecordViewHTTPS.swift */; };
@@ -86,6 +87,7 @@
 		3C0C6B332B39108B006D3F41 /* ErrorCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCellView.swift; sourceTree = "<group>"; };
 		3C26AD7F2BA6775E0022BABD /* WHOISView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WHOISView.swift; sourceTree = "<group>"; };
 		3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSMessageView.swift; sourceTree = "<group>"; };
+		3C3801332DA1AEA5007126EB /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		3C4BB6BE2CE84F9700C7F78F /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		3C51F5872CDD9E5F00B9693D /* de.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = de.plist; sourceTree = "<group>"; };
 		3C599C1E2C818467003BFC68 /* RecordViewHTTPS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewHTTPS.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		3C0410042B93D48200389A16 /* OptionsView */ = {
 			isa = PBXGroup;
 			children = (
+				3C3801332DA1AEA5007126EB /* AppIconView.swift */,
 				3C0410052B93D4BD00389A16 /* AppLanguageView.swift */,
 				9AA8C18D2ADD9B4600B93E45 /* OptionsView.swift */,
 			);
@@ -454,6 +457,7 @@
 				3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */,
 				3C0410062B93D4BD00389A16 /* AppLanguageView.swift in Sources */,
 				3C0C6B302B38F35F006D3F41 /* AboutTableViewRepresentable.swift in Sources */,
+				3C3801342DA1AEB9007126EB /* AppIconView.swift in Sources */,
 				9A80CE322AEF5C6100E97A63 /* AppDelegate.swift in Sources */,
 				3C0C6B342B39108B006D3F41 /* ErrorCellView.swift in Sources */,
 				9A80CE302AEF5A0A00E97A63 /* PresetServer.swift in Sources */,
@@ -626,8 +630,9 @@
 		9AA8C1452ADCA98200B93E45 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = IconDefault;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -668,8 +673,9 @@
 		9AA8C1462ADCA98200B93E45 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = IconDefault;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;

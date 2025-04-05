@@ -10,7 +10,11 @@ Administrative address	Administrative address
 Algorithm	Algorithm
 Answers	Respuestas
 # TODO
+App Icon	App Icon
+# TODO
 App language	App language
+# TODO
+AppIconFooter	The "Progress" pride flag was created by Daniel Quasar and is licensed under Create Commons BY-NC-SA. The trans flag was created by Monica Helms and was released to the public domain.
 # TODO
 Appearance & Behaviour	Appearance & Behaviour
 # TODO
@@ -58,6 +62,12 @@ HTTP {code}	HTTP {0}
 IPv4 Hints	IPv4 Hints
 # TODO
 IPv6 Hints	IPv6 Hints
+# TODO
+IconDefault	Default
+# TODO
+IconPride	Pride
+# TODO
+IconTrans	Trans
 # TODO
 Internal error: {details}	Internal error: {0}
 # TODO
