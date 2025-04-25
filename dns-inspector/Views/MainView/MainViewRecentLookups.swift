@@ -28,10 +28,14 @@ struct MainViewRecentLookups: View {
                 } label: {
                     HStack {
                         RoundedLabel(text: query.recordType.string(), textColor: .primary, borderColor: .gray)
+                            .layoutPriority(2)
                         Text(query.name)
+                            .lineLimit(2)
                         Divider()
                         RoundedLabel(text: query.transportType.string(), textColor: .primary, borderColor: .gray)
+                            .layoutPriority(2)
                         Text(query.serverAddress)
+                            .lineLimit(2)
                     }
                 }
                 .buttonStyle(.plain)

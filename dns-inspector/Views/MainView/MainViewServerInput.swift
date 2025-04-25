@@ -34,6 +34,7 @@ struct MainViewServerInput: View {
                 }
             } label: {
                 Text(transportType.wrappedValue.string())
+                    .layoutPriority(1)
                 Image(systemName: "chevron.up.chevron.down")
                     .resizable()
                     .scaledToFit()

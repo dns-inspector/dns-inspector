@@ -35,6 +35,7 @@ public struct MainViewNameInput: View {
             } label: {
                 HStack {
                     Text(recordType.string())
+                        .layoutPriority(1)
                     Image(systemName: "chevron.up.chevron.down")
                         .resizable()
                         .scaledToFit()
