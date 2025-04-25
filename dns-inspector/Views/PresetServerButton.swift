@@ -49,7 +49,7 @@ public struct PresetServerButton: View {
         .onReceive(NotificationCenter.default.publisher(for: presetServerChangedNotification), perform: { _ in
             self.loadServers()
         })
-        .popover(isPresented: $showEditServerView, content: {
+        .sheet(isPresented: $showEditServerView, content: {
             Navigation {
                 PresetServerEditView(serverName: $newServerName, transportType: $newTransportType, serverAddress: $newServerAddress, isNew: true) {
                     UserOptions.presetServers.append(PresetServer(name: newServerName, type: newTransportType, address: newServerAddress))
