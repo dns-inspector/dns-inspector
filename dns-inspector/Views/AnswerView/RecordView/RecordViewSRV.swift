@@ -28,10 +28,7 @@ struct RecordViewSRV: View {
             Divider()
             RoundedLabel(text: "\(data.port)", color: .primary)
             Divider()
-            Text(data.name)
-                .fixedwidth()
-                .textSelection(.enabled)
-                .fixedSize(horizontal: false, vertical: true)
+            FixedWidthText(data.name)
         }
     }
 }

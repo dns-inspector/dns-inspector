@@ -58,7 +58,7 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
         case 0:
             return Localize("Version {version} (build {build})", args: [AppInfo.version(), AppInfo.build()])
         case 1:
-            return Localize("about_footer", args: ["2024-2025"])
+            return Localize("about_footer", args: ["2025"])
         case 3:
             return "🏳️‍⚧️ Trans Rights!" // If this footer upsets or bothers you, I invite you to please fuck right off.
         default:

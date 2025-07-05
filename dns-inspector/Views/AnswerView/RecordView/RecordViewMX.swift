@@ -24,9 +24,7 @@ struct RecordViewMX: View {
         HStack {
             RoundedLabel(text: "\(data.priority)", color: .primary)
             Divider()
-            Text(data.name)
-                .fixedwidth()
-                .textSelection(.enabled)
+            FixedWidthText(data.name)
         }
     }
 }

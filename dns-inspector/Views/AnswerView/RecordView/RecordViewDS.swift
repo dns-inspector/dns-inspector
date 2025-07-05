@@ -50,10 +50,7 @@ struct RecordViewDS: View {
                 }
             }.padding(.bottom, 2)
             TitleValue(localizedTitle: "Digest") {
-                Text(data.digest.base64EncodedString())
-                    .fixedwidth()
-                    .fixedSize(horizontal: false, vertical: true)
-                    .fixedSize(horizontal: false, vertical: true)
+                FixedWidthText(data.digest.base64EncodedString())
             }
         }
     }

@@ -15,12 +15,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import SwiftUI
-import DNSKit
 
-struct RecordViewTXT: View {
-    let data: TXTRecordData
+struct FixedWidthText: View {
+    let text: String
+
+    init(_ text: String) {
+        self.text = text
+    }
 
     var body: some View {
-        FixedWidthText(data.text)
+        Text(text)
+            .fixedwidth()
+            .textSelection(.enabled)
+            .fixedSize(horizontal: false, vertical: true)
     }
 }

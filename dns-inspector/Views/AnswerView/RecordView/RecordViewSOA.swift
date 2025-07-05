@@ -23,42 +23,28 @@ struct RecordViewSOA: View {
     var body: some View {
         VStack(alignment: .leading) {
             TitleValue(localizedTitle: "Main name server") {
-                Text(data.mname)
-                    .fixedwidth()
-                    .textSelection(.enabled)
+                FixedWidthText(data.mname)
             }.padding(.bottom, 2)
             TitleValue(localizedTitle: "Administrative address") {
-                Text(data.rname)
-                    .fixedwidth()
-                    .textSelection(.enabled)
+                FixedWidthText(data.rname)
             }
             Divider()
                 .padding(.bottom, 2)
                 .padding(.top, 2)
             TitleValue(localizedTitle: "Serial") {
-                Text("\(data.serial)")
-                    .fixedwidth()
-                    .textSelection(.enabled)
+                FixedWidthText("\(data.serial)")
             }.padding(.bottom, 2)
             TitleValue(localizedTitle: "Refresh") {
-                Text("\(data.refresh)")
-                    .fixedwidth()
-                    .textSelection(.enabled)
+                FixedWidthText("\(data.refresh)")
             }.padding(.bottom, 2)
             TitleValue(localizedTitle: "Retry") {
-                Text("\(data.retry)")
-                    .fixedwidth()
-                    .textSelection(.enabled)
+                FixedWidthText("\(data.retry)")
             }.padding(.bottom, 2)
             TitleValue(localizedTitle: "Expire") {
-                Text("\(data.expire)")
-                    .fixedwidth()
-                    .textSelection(.enabled)
+                FixedWidthText("\(data.expire)")
             }.padding(.bottom, 2)
             TitleValue(localizedTitle: "Minimum") {
-                Text("\(data.minimum)")
-                    .fixedwidth()
-                    .textSelection(.enabled)
+                FixedWidthText("\(data.minimum)")
             }
         }
     }

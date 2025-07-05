@@ -21,8 +21,6 @@ struct RecordViewBasicName: View {
     let data: BasicNameRecordData
 
     var body: some View {
-        Text(data.name)
-            .fixedwidth()
-            .textSelection(.enabled)
+        FixedWidthText(data.name)
     }
 }

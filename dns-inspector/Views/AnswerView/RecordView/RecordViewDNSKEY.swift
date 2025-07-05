@@ -49,10 +49,7 @@ struct RecordViewDNSKEY: View {
                 }
             }.padding(.bottom, 2)
             TitleValue(localizedTitle: "Public key") {
-                Text(data.publicKey.base64EncodedString())
-                    .fixedwidth()
-                    .fixedSize(horizontal: false, vertical: true)
-                    .fixedSize(horizontal: false, vertical: true)
+                FixedWidthText(data.publicKey.base64EncodedString())
             }
         }
     }

@@ -35,6 +35,7 @@
 		3C9AA7C92AF1F43F00B072FA /* DNSQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9AA7C82AF1F43F00B072FA /* DNSQuestionView.swift */; };
 		3C9AA7CB2AF1FCF400B072FA /* RecentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9AA7CA2AF1FCF400B072FA /* RecentQuery.swift */; };
 		3C9AA7CE2AF2082100B072FA /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9AA7CD2AF2082100B072FA /* AppInfo.swift */; };
+		3CA6E32B2E19BB9E00165BFD /* FixedWidthText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA6E32A2E19BB9400165BFD /* FixedWidthText.swift */; };
 		3CAD46A12B903BEC00E97A04 /* MainViewNameInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD46A02B903BEC00E97A04 /* MainViewNameInput.swift */; };
 		3CAD46A32B903C8300E97A04 /* MainViewServerInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD46A22B903C8300E97A04 /* MainViewServerInput.swift */; };
 		3CAD46A52B903E1000E97A04 /* MainViewRecentLookups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD46A42B903E1000E97A04 /* MainViewRecentLookups.swift */; };
@@ -110,6 +111,7 @@
 		3C9AA7CA2AF1FCF400B072FA /* RecentQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentQuery.swift; sourceTree = "<group>"; };
 		3C9AA7CC2AF206D400B072FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C9AA7CD2AF2082100B072FA /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		3CA6E32A2E19BB9400165BFD /* FixedWidthText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedWidthText.swift; sourceTree = "<group>"; };
 		3CAD46A02B903BEC00E97A04 /* MainViewNameInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewNameInput.swift; sourceTree = "<group>"; };
 		3CAD46A22B903C8300E97A04 /* MainViewServerInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewServerInput.swift; sourceTree = "<group>"; };
 		3CAD46A42B903E1000E97A04 /* MainViewRecentLookups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRecentLookups.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 		9A80CE272AEF2C6B00E97A63 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3CA6E32A2E19BB9400165BFD /* FixedWidthText.swift */,
 				3C62351B2CD6FA2B00387F6E /* Other Views */,
 				3CAD46A62B90410100E97A04 /* AboutView */,
 				3C0C6B312B38F944006D3F41 /* ActionTipTarget.swift */,
@@ -457,6 +460,7 @@
 				3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */,
 				3C0410062B93D4BD00389A16 /* AppLanguageView.swift in Sources */,
 				3C0C6B302B38F35F006D3F41 /* AboutTableViewRepresentable.swift in Sources */,
+				3CA6E32B2E19BB9E00165BFD /* FixedWidthText.swift in Sources */,
 				3C3801342DA1AEB9007126EB /* AppIconView.swift in Sources */,
 				9A80CE322AEF5C6100E97A63 /* AppDelegate.swift in Sources */,
 				3C0C6B342B39108B006D3F41 /* ErrorCellView.swift in Sources */,
@@ -742,7 +746,7 @@
 			repositoryURL = "https://github.com/dns-inspector/dnskit";
 			requirement = {
 				kind = revision;
-				revision = 287505c2be1e146e828563d3801b02f4cb3b2aa1;
+				revision = ee0e29359ba7e8ebf22b73ff5863a3d771ac445b;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

@@ -41,7 +41,7 @@ struct RecordViewHTTPS: View {
                     Text(v4Hints.joined(separator: ", "))
                 }.padding(.bottom, 2)
             }
-            if let v6Hints = data.ipv4Hint {
+            if let v6Hints = data.ipv6Hint {
                 TitleValue(localizedTitle: "IPv6 Hints") {
                     Text(v6Hints.joined(separator: ", "))
                 }.padding(.bottom, 2)
@@ -53,10 +53,7 @@ struct RecordViewHTTPS: View {
             }
             if let ech = data.ech {
                 TitleValue(title: "ECH") {
-                    Text(ech.base64EncodedString())
-                        .fixedwidth()
-                        .fixedSize(horizontal: false, vertical: true)
-                        .fixedSize(horizontal: false, vertical: true)
+                    FixedWidthText(ech.base64EncodedString())
                 }.padding(.bottom, 2)
             }
         }
