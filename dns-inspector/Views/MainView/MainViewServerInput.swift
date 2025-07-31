@@ -64,6 +64,8 @@ struct MainViewServerInput: View {
             return "Server IP"
         case .HTTPS:
             return "Server URL"
+        case .QUIC:
+            return "Server IP"
         }
     }
 }

@@ -29,7 +29,11 @@ public struct LastUsedServer: Codable {
     let address: String
 }
 
-private let currentSchemaVersion: Int = 3
+/// Schema history:
+/// 2 - original releast
+/// 3 - add "name" field to preset server
+/// 4 - add DNS Inspector DoQ preset server
+private let currentSchemaVersion: Int = 4
 
 private struct OptionsType: Codable {
     public var schemaVersion: Int
@@ -101,6 +105,25 @@ public final class UserOptions {
             }
 
             current = options
+        } else if currentVersion == 3 {
+            LogWriter.shared.write(.Debug, message: "[\(#fileID):\(#line)] Migrating options")
+
+            var options: OptionsType
+            do {
+                options = try JSONDecoder().decode(OptionsType.self, from: data)
+            } catch {
+                print("Error decoding options file \(optionsFilePath): \(error)")
+                return
+            }
+
+            if options.presetServers?.contains(where: { server in
+                return server.type == .QUIC && server.address == "20.47.87.112:853"
+            }) == nil {
+                options.presetServers?.append(PresetServer(name: "DNS Inspector", type: .QUIC, address: "20.47.87.112:853"))
+            }
+
+            current = options
+            current.schemaVersion = 4
         } else if currentVersion == 2 {
             LogWriter.shared.write(.Debug, message: "[\(#fileID):\(#line)] Migrating options")
 
@@ -249,7 +272,8 @@ public final class UserOptions {
             return current.presetServers ?? [
                 PresetServer(name: "Cloudflare", type: .TLS, address: "1.1.1.1"),
                 PresetServer(name: "Quad9", type: .DNS, address: "9.9.9.9"),
-                PresetServer(name: "Google", type: .HTTPS, address: "dns.google/dns-query")
+                PresetServer(name: "Google", type: .HTTPS, address: "dns.google/dns-query"),
+                PresetServer(name: "DNS Inspector", type: .QUIC, address: "20.47.87.112:853"),
             ]
         }
         set {
