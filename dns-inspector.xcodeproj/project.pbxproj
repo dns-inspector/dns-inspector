@@ -18,6 +18,7 @@
 		3C4BB6BF2CE84F9900C7F78F /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BB6BE2CE84F9700C7F78F /* Errors.swift */; };
 		3C51F5882CDD9E5F00B9693D /* de.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C51F5872CDD9E5F00B9693D /* de.plist */; };
 		3C599C1F2C818467003BFC68 /* RecordViewHTTPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C599C1E2C818467003BFC68 /* RecordViewHTTPS.swift */; };
+		3C5D66922E2C3DBC00757247 /* RecordViewLOC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D66912E2C3DB600757247 /* RecordViewLOC.swift */; };
 		3C61432E2BA7B179006A8B14 /* View+Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61432D2BA7B179006A8B14 /* View+Destination.swift */; };
 		3C62351D2CD6FA3D00387F6E /* FullScreenTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62351C2CD6FA3500387F6E /* FullScreenTextView.swift */; };
 		3C6CCD5A2B3BAC4700A3B6F2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CCD592B3BAC4700A3B6F2 /* Globals.swift */; };
@@ -92,6 +93,7 @@
 		3C4BB6BE2CE84F9700C7F78F /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		3C51F5872CDD9E5F00B9693D /* de.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = de.plist; sourceTree = "<group>"; };
 		3C599C1E2C818467003BFC68 /* RecordViewHTTPS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewHTTPS.swift; sourceTree = "<group>"; };
+		3C5D66912E2C3DB600757247 /* RecordViewLOC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewLOC.swift; sourceTree = "<group>"; };
 		3C61432D2BA7B179006A8B14 /* View+Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Destination.swift"; sourceTree = "<group>"; };
 		3C62351C2CD6FA3500387F6E /* FullScreenTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenTextView.swift; sourceTree = "<group>"; };
 		3C6CCD592B3BAC4700A3B6F2 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 		3CC646C22C0A8A930049CEC7 /* RecordView */ = {
 			isa = PBXGroup;
 			children = (
+				3C5D66912E2C3DB600757247 /* RecordViewLOC.swift */,
 				3C7BD1C32C38A955004C2ECF /* RecordViewA.swift */,
 				3C7BD1C52C38A95C004C2ECF /* RecordViewAAAA.swift */,
 				3C7BD1C72C38A965004C2ECF /* RecordViewBasicName.swift */,
@@ -482,6 +485,7 @@
 				3C9AA7CB2AF1FCF400B072FA /* RecentQuery.swift in Sources */,
 				3CF7FF832B45256C000307CD /* ClearButton.swift in Sources */,
 				3CC646C42C0A8AA80049CEC7 /* RecordViewSOA.swift in Sources */,
+				3C5D66922E2C3DBC00757247 /* RecordViewLOC.swift in Sources */,
 				9AA8C13C2ADCA98000B93E45 /* MainView.swift in Sources */,
 				9A80CE3D2AEF6E4700E97A63 /* Navigation.swift in Sources */,
 				9AA8C18E2ADD9B4600B93E45 /* OptionsView.swift in Sources */,
@@ -746,7 +750,7 @@
 			repositoryURL = "https://github.com/dns-inspector/dnskit";
 			requirement = {
 				kind = revision;
-				revision = f0facbb1c52ed0140f9836d8d0c26d16a0eda2ac;
+				revision = f3a25e5bfdd7202b3b6093540ccc5a301607db40;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

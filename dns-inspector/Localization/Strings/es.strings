@@ -8,6 +8,8 @@ Add Preset Server	Añadir servidor predefinido
 Administrative address	Administrative address
 # TODO
 Algorithm	Algorithm
+# TODO
+Altitude	Altitude
 Answers	Respuestas
 # TODO
 App Icon	App Icon
@@ -17,6 +19,8 @@ App language	App language
 AppIconFooter	The "Progress" pride flag was created by Daniel Quasar and is licensed under Create Commons BY-NC-SA. The trans flag was created by Monica Helms and was released to the public domain.
 # TODO
 Appearance & Behaviour	Appearance & Behaviour
+# TODO
+Area	Area
 # TODO
 Automatically	Automatically
 # TODO
@@ -28,6 +32,8 @@ Connection Timeout	Connection Timeout
 # TODO
 Connection error: {details}	Connection error: {0}
 Contribute to DNS Inspector	Contribuir to DNS Inspector
+# TODO
+Coordinates	Coordinates
 DNS Inspector	DNS Inspector
 # TODO
 DNSSEC Enabled	DNSSEC Enabled
@@ -58,6 +64,8 @@ General	General
 Get Involved	Involucrarse
 # TODO
 HTTP {code}	HTTP {0}
+# TODO
+Horizontal Precision	Horizontal Precision
 # TODO
 IPv4 Hints	IPv4 Hints
 # TODO
@@ -182,6 +190,8 @@ Verbose logging	Verbose logging
 # TODO
 Verified	Verified
 Version {version} (build {build})	Versión {0} (compilación {1})
+# TODO
+Vertical Precision	Vertical Precision
 View All	Ver todo
 # TODO
 View DNSSEC Information	View DNSSEC Information
@@ -204,6 +214,8 @@ record_description_dnskey	DNS DNSKEY records contain cryptographic public keys u
 record_description_ds	DNS DS records contain records of trusted delegation from the parent zone.
 # TODO
 record_description_https	DNS HTTPS records contain information about HTTPS web servers.
+# TODO
+record_description_loc	DNS LOC records contain a geogrphical location.
 record_description_mx	Los registros DNS MX contienen direcciones de servidores de intercambio de correos electrónicos.
 # TODO
 record_description_ns	DNS NS records contain the authoritative DNS server for this zone.
