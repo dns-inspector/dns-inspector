@@ -626,6 +626,17 @@ public final class Localize {
             return "Manuell"
         }
     }
+    // key: Maximum History Size
+    static func maximumhistorysize() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Maximum History Size"
+        case .Spanish:
+            return "Maximum History Size"
+        case .German:
+            return "Maximum History Size"
+        }
+    }
     // key: Minimum
     static func minimum() -> String {
         switch currentLanguage {

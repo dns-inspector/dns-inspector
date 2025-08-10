@@ -75,6 +75,8 @@ Key tag	Schlüsseletikett
 Loading...	Lädt...
 Main name server	Hauptnamensserver
 Manually	Manuell
+# TODO
+Maximum History Size	Maximum History Size
 Minimum	Minimum
 # TODO
 Missing data: {details}	Missing data: {0}

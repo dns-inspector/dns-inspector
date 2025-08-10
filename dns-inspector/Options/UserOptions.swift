@@ -32,7 +32,7 @@ public struct LastUsedServer: Codable {
 /// Schema history:
 /// 2 - original releast
 /// 3 - add "name" field to preset server
-/// 4 - add DNS Inspector DoQ preset server
+/// 4 - add DNS Inspector DoQ preset server, add limit for number of remembered queries
 private let currentSchemaVersion: Int = 4
 
 private struct OptionsType: Codable {
@@ -40,6 +40,7 @@ private struct OptionsType: Codable {
     public var appLaunchCount: Int?
     public var didPromptForReview: Bool?
     public var rememberQueries: Bool?
+    public var queryLimit: UInt8?
     public var rememberLastServer: Bool?
     public var ttlDisplayMode: TTLDisplayMode?
     public var showRecordDescription: Bool?
@@ -122,6 +123,8 @@ public final class UserOptions {
                 options.presetServers?.append(PresetServer(name: "DNS Inspector", type: .QUIC, address: "20.47.87.112:853"))
             }
 
+            options.queryLimit = 5
+
             current = options
             current.schemaVersion = 4
         } else if currentVersion == 2 {
@@ -186,6 +189,16 @@ public final class UserOptions {
         }
         set {
             current.rememberQueries = newValue
+            save()
+        }
+    }
+
+    public static var queryLimit: UInt8 {
+        get {
+            return current.queryLimit ?? 5
+        }
+        set {
+            current.queryLimit = newValue
             save()
         }
     }

@@ -19,6 +19,7 @@ import SwiftUI
 struct OptionsView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var rememberQueries = UserOptions.rememberQueries
+    @State private var queryLimit = UserOptions.queryLimit
     @State private var rememberLastServer = UserOptions.rememberLastServer
     @State private var ttlDisplayMode = UserOptions.ttlDisplayMode
     @State private var showRecordDescription = UserOptions.showRecordDescription
@@ -43,6 +44,14 @@ struct OptionsView: View {
                 }
                 Section(Localize.appearancebehaviour()) {
                     Toggle(Localize.rememberrecentqueries(), isOn: $rememberQueries).tint(Color.accentColor)
+                    if rememberQueries {
+                        Picker(Localize.maximumhistorysize(), selection: $queryLimit) {
+                            Text("5").tag(UInt8(5))
+                            Text("10").tag(UInt8(10))
+                            Text("20").tag(UInt8(20))
+                            Text("50").tag(UInt8(50))
+                        }
+                    }
                     Toggle(Localize.rememberlastserver(), isOn: $rememberLastServer).tint(Color.accentColor)
                     Toggle(Localize.showdnsrecorddescriptions(), isOn: $showRecordDescription).tint(Color.accentColor)
                     Picker(Localize.showttlvaluesas(), selection: $ttlDisplayMode) {
@@ -76,6 +85,9 @@ struct OptionsView: View {
             }
             .onChange(of: rememberQueries) { newValue in
                 UserOptions.rememberQueries = newValue
+            }
+            .onChange(of: queryLimit) { newValue in
+                UserOptions.queryLimit = newValue
             }
             .onChange(of: rememberLastServer) { newValue in
                 UserOptions.rememberLastServer = newValue

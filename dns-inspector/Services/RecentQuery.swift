@@ -88,8 +88,8 @@ public class RecentQueryManager {
             return
         }
 
-        if self.queries.count >= 5 {
-            self.queries.remove(at: 4)
+        while self.queries.count >= UserOptions.queryLimit {
+            self.queries.removeLast()
         }
         self.queries.insert(recentQuery, at: 0)
         self.save()
