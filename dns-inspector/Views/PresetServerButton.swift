@@ -28,7 +28,7 @@ public struct PresetServerButton: View {
 
     public var body: some View {
         Menu {
-            Section(Localize("Preset Servers")) {
+            Section(Localize.presetservers()) {
                 ForEach(presetServers) { server in
                     Button(action: {
                         self.transportType = server.type
@@ -41,7 +41,7 @@ public struct PresetServerButton: View {
             Button {
                 self.showEditServerView.toggle()
             } label: {
-                Label(Localize("Add Preset Server"), systemImage: "plus")
+                Label(Localize.addpresetserver(), systemImage: "plus")
             }
         } label: {
             Image(systemName: "bolt.fill")

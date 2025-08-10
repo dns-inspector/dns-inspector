@@ -31,6 +31,8 @@ DNS Inspector	DNS-Inspector
 DNSSEC Enabled	DNSSEC aktiviert
 DNSSEC not enabled on this zone, no RRSIG returned.	DNSSEC für diese Zone nicht aktiviert, kein RRSIG wiedergegeben.
 Digest	Verarbeiten
+# TODO
+Digest Type	Digest Type
 Dismiss	Ignorieren
 Domain Information	Domain-Information
 Edit Preset Server	Preset-Server bearbeiten
@@ -90,7 +92,6 @@ Options	Optionen
 Perform Validation	Validierung durchführen
 Port	Port
 Preset Servers	Preset-Server
-Preset servers	Preset-Server
 Priority	Priorität
 Provide feedback	Feedback hinterlassen
 Public key	Öffentlicher Schlüssel
@@ -151,7 +152,7 @@ View DNSSEC Information	DNSSEC-Information anschauen
 WHOIS not supported on this domain	WHOIS not supported on this domain
 Your changes will take affect only quitting and restarting DNS Inspector	Deine Änderungen werden erst nach Beenden und Neustart von DNS-Inspector wirksam
 Zone signing key	Zonensignaturschlüssel
-about_footer	DNS-Inspector ist eine kostenlose & freie, quelloffene Software, lizenziert unter GNU GPLv3. DNS-Inspector besitzt das Copyright © 2023-{0} Ian Spence.
+about_footer_{year}	DNS-Inspector ist eine kostenlose & freie, quelloffene Software, lizenziert unter GNU GPLv3. DNS-Inspector besitzt das Copyright © 2023-{0} Ian Spence.
 dnssec_footer	Wenn DNSSEC aktiviert ist, enthalten alle DNS-Anfragen eine Anfrage der Signaturaufzeichnung. DNSSEC-Verifizierung wird weitere Anfragen zur Vertrauensgewinnung durchführen und möglicherweise einige Sekunden zur Durchführung brauchen.
 record_description_a	DNS-A-Aufzeichnungen enthalten eine IPv4-Adresse.
 record_description_aaaa	DNS-AAAA-Aufzeichnungen enthalten eine IPv6-Adresse.
@@ -161,7 +162,7 @@ record_description_dnskey	DNS-DNSKEY-Aufzeichnungen enthalten den kryptographisc
 record_description_ds	DNS-DS-Aufzeichnungen enthalten Aufzeichnungen der vertrauten Delegation der Mutterzone.
 record_description_https	DNS-HTTPS-Aufzeichnungen enthalten Informationen über HTTPS-Web-Server.
 # TODO
-record_description_loc	DNS LOC records contain a geogrphical location.
+record_description_loc	DNS LOC records contain a geographical location.
 record_description_mx	DNS-MX-Aufzeichnungen enthalten E-Mail-Austausch-Server-Adressen.
 record_description_ns	DNS-NS-Aufzeichnungen enthalten den authorativen DNS-Server der jeweiligen Zone.
 record_description_ptr	DNS-PTR-Aufzeichnungen werden zur Auflösung einer Domain zu einer IP-Adresse genutzt.
@@ -172,4 +173,4 @@ record_description_txt	DNS-TXT-Aufzeichnungen enthalten Textdaten.
 {duration} milliseconds	{0} Millisekunden
 {duration} nanoseconds	{0} Nanosekunden
 {duration} seconds	{0} Sekunden
-{record type} Record	{0}-Aufzeichnung
+{record_type} Record	{0}-Aufzeichnung

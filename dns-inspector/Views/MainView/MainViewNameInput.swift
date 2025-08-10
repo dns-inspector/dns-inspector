@@ -44,7 +44,7 @@ public struct MainViewNameInput: View {
             }
             Divider()
             TextField(text: $name) {
-                Text(localized: "Name")
+                Text(Localize.name())
             }
             .keyboardType(.URL)
             .textInputAutocapitalization(.never)

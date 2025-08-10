@@ -22,7 +22,7 @@ struct RecordViewMX: View {
 
     var body: some View {
         HStack {
-            RoundedLabel(text: "\(data.priority)", color: .primary)
+            RoundedLabel("\(data.priority)", color: .primary)
             Divider()
             FixedWidthText(data.name)
         }

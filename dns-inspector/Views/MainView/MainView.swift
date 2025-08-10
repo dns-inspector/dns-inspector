@@ -44,7 +44,7 @@ struct MainView: View {
     var body: some View {
         Navigation {
             List {
-                Section(Localize("New query")) {
+                Section(Localize.newquery()) {
                     MainViewNameInput(recordType: $query.recordType, name: $query.name)
                     .disabled(self.lookupState.loading)
                     MainViewServerInput(transportType: $query.transportType, serverAddress: $query.serverAddress) {
@@ -56,7 +56,7 @@ struct MainView: View {
                     if self.lookupState.loading {
                         HStack {
                             ProgressView()
-                            Text(localized: "Loading...")
+                            Text(Localize.loading())
                                 .padding(.leading, 8)
                                 .foregroundStyle(.gray)
                         }
@@ -73,19 +73,19 @@ struct MainView: View {
                     }
                 }
             }
-            .navigationTitle(localized: "DNS Inspector")
+            .navigationTitle(Localize.dnsinspector())
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Menu {
                         Button(action: {
                             self.showAboutView.toggle()
                         }, label: {
-                            Label(Localize("About"), systemImage: "info.circle.fill")
+                            Label(Localize.about(), systemImage: "info.circle.fill")
                         })
                         Button(action: {
                             self.showOptionsView.toggle()
                         }, label: {
-                            Label(Localize("Options"), systemImage: "gearshape.circle.fill")
+                            Label(Localize.options(), systemImage: "gearshape.circle.fill")
                         })
                     } label: {
                         Image(systemName: "ellipsis.circle")

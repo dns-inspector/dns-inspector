@@ -23,57 +23,57 @@ func localizedErrorDetails(_ error: any Error) -> String {
     if let error = error as? DNSKitError {
         switch error {
         case .connectionError(let details):
-            return Localize("Connection error: {details}", args: [details.localizedDescription])
+            return Localize.connectionerrordetails(details: details.localizedDescription)
         case .timedOut:
-            return Localize("Timed out")
+            return Localize.timedout()
         case .unexpectedResponse(let details):
-            return Localize("Unexpected response: {details}", args: [details.localizedDescription])
+            return Localize.unexpectedresponsedetails(details: details.localizedDescription)
         case .emptyResponse:
-            return Localize("Empty response")
+            return Localize.emptyresponse()
         case .invalidData(let details):
-            return Localize("Invalid data: {details}", args: [details])
+            return Localize.invaliddatadetails(details: details)
         case .missingData(let details):
-            return Localize("Missing data: {details}", args: [details])
+            return Localize.missingdatadetails(details: details)
         case .excessiveResponseSize:
-            return Localize("Excessive response size")
+            return Localize.excessiveresponsesize()
         case .unsupportedAlgorithm:
-            return Localize("Unsupported algorithm")
+            return Localize.unsupportedalgorithm()
         case .invalidUrl:
-            return Localize("Invalid URL")
+            return Localize.invalidurl()
         case .httpError(let details):
-            return Localize("HTTP {code}", args: ["\(details)"])
+            return Localize.httpcode(code: String(describing: details))
         case .invalidContentType(let details):
-            return Localize("Invalid content type: {details}", args: [details])
+            return Localize.invalidcontenttypedetails(details: details)
         }
     } else if let error = error as? DNSSECError {
         switch error {
         case .noSignatures(let details):
-            return Localize("No signatures: {details}", args: [details])
+            return Localize.nosignaturesdetails(details: details)
         case .unsupportedAlgorithm:
-            return Localize("Unsupported algorithm")
+            return Localize.unsupportedalgorithm()
         case .missingKeys(let details):
-            return Localize("Missing keys: {details}", args: [details])
+            return Localize.missingkeysdetails(details: details)
         case .untrustedRootSigningKey:
-            return Localize("Untrusted root signing key")
+            return Localize.untrustedrootsigningkey()
         case .signatureFailed:
-            return Localize("Signature failed")
+            return Localize.signaturefailed()
         case .invalidResponse(let details):
-            return Localize("Invalid response: {details}", args: [details])
+            return Localize.invalidresponsedetails(details: details)
         case .badSigningKey(let details):
-            return Localize("Bad signing key: {details}", args: [details])
+            return Localize.badsigningkeydetails(details: details)
         case .internalError(let details):
-            return Localize("Internal error: {details}", args: [details])
+            return Localize.internalerrordetails(details: details)
         }
     } else if let error = error as? WHOISError {
         switch error {
         case .connectionError(let details):
-            return Localize("Connection error: {details}", args: [details.localizedDescription])
+            return Localize.connectionerrordetails(details: details.localizedDescription)
         case .timedOut:
-            return Localize("Timed out")
+            return Localize.timedout()
         case .whoisNotSupported:
-            return Localize("WHOIS not supported on this domain")
+            return Localize.whoisnotsupportedonthisdomain()
         case .tooManyRedirects:
-            return Localize("Too many redirects")
+            return Localize.toomanyredirects()
         }
     }
 

@@ -22,19 +22,19 @@ struct RecordViewDNSKEY: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            TitleValue(localizedTitle: "Key tag") {
+            TitleValue(Localize.keytag()) {
                 Text(String(data.keyTag))
             }.padding(.bottom, 2)
             if data.keySigningKey {
-                TitleValue(localizedTitle: "Key Usage") {
-                    Text(localized: "Key signing key")
+                TitleValue(Localize.keyusage()) {
+                    Text(Localize.keysigningkey())
                 }.padding(.bottom, 2)
             } else if data.zoneKey {
-                TitleValue(localizedTitle: "Key Usage") {
-                    Text(localized: "Zone signing key")
+                TitleValue(Localize.keyusage()) {
+                    Text(Localize.zonesigningkey())
                 }.padding(.bottom, 2)
             }
-            TitleValue(localizedTitle: "Algorithm") {
+            TitleValue(Localize.algorithm()) {
                 switch data.algorithm {
                 case .ECDSAP384_SHA384:
                     Text("ECDSA-P384 with SHA-384")
@@ -48,7 +48,7 @@ struct RecordViewDNSKEY: View {
                     Text("RSA with SHA1")
                 }
             }.padding(.bottom, 2)
-            TitleValue(localizedTitle: "Public key") {
+            TitleValue(Localize.publickey()) {
                 FixedWidthText(data.publicKey.base64EncodedString())
             }
         }

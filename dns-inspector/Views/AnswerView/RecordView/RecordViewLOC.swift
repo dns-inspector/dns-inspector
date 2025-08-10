@@ -31,28 +31,28 @@ struct RecordViewLOC: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            TitleValue(localizedTitle: "Coordinates") {
+            TitleValue(Localize.coordinates()) {
                 Text("\(self.latitude) \(self.longitude)")
                     .fixedSize(horizontal: false, vertical: true)
             }.padding(.bottom, 2)
             HStack {
-                TitleValue(localizedTitle: "Altitude") {
+                TitleValue(Localize.altitude()) {
                     Text("\(self.data.altitudeMeters)m")
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 Divider()
-                TitleValue(localizedTitle: "Area") {
+                TitleValue(Localize.area()) {
                     Text("\(self.data.sizeMeters)m")
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }.padding(.bottom, 2)
             HStack {
-                TitleValue(localizedTitle: "Horizontal Precision") {
+                TitleValue(Localize.horizontalprecision()) {
                     Text("\(self.data.horizontalPrecisionMeters)m")
                         .fixedSize(horizontal: false, vertical: true)
                 }
                 Divider()
-                TitleValue(localizedTitle: "Vertical Precision") {
+                TitleValue(Localize.verticalprecision()) {
                     Text("\(self.data.verticalPrecisionMeters)m")
                         .fixedSize(horizontal: false, vertical: true)
                 }

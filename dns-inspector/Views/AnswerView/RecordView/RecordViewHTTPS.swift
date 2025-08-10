@@ -22,37 +22,37 @@ struct RecordViewHTTPS: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            TitleValue(localizedTitle: "Priority") {
+            TitleValue(Localize.priority()) {
                 Text(String(data.priority))
             }.padding(.bottom, 2)
-            TitleValue(localizedTitle: "Target") {
+            TitleValue(Localize.target()) {
                 Text(data.target)
             }.padding(.bottom, 2)
             if data.noDefaultAlpn ?? false {
-                Text(localized: "No default ALPN").padding(.bottom, 2)
+                Text(Localize.nodefaultalpn()).padding(.bottom, 2)
             }
             if let versions = data.alpn {
-                TitleValue(localizedTitle: "Supported Versions") {
+                TitleValue(Localize.supportedversions()) {
                     Text(versions.map({ String(describing: $0 )}).joined(separator: ", "))
                 }.padding(.bottom, 2)
             }
             if let v4Hints = data.ipv4Hint {
-                TitleValue(localizedTitle: "IPv4 Hints") {
+                TitleValue(Localize.ipv4hints()) {
                     Text(v4Hints.joined(separator: ", "))
                 }.padding(.bottom, 2)
             }
             if let v6Hints = data.ipv6Hint {
-                TitleValue(localizedTitle: "IPv6 Hints") {
+                TitleValue(Localize.ipv6hints()) {
                     Text(v6Hints.joined(separator: ", "))
                 }.padding(.bottom, 2)
             }
             if let port = data.port {
-                TitleValue(localizedTitle: "Port") {
+                TitleValue(Localize.port()) {
                     Text(String(port))
                 }.padding(.bottom, 2)
             }
             if let ech = data.ech {
-                TitleValue(title: "ECH") {
+                TitleValue("ECH") {
                     FixedWidthText(ech.base64EncodedString())
                 }.padding(.bottom, 2)
             }

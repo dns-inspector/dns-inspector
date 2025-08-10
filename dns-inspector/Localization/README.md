@@ -2,42 +2,90 @@
 
 DNS Inspector supports multiple languages through the code located here.
 
-Most of the text seen in the DNS Inspector application, such as labels on buttons and dialog
-messages, are localized strings which are loaded in from a dictionary at launch time.
+Nearly all the text seen in the DNS Inspector application, such as labels on buttons and dialog
+messages, are localized strings which reflect the language preference of the user.
 
-Items are mapped from a fixed key to the translated string. The key is typically the English
-translation, however it may be an identifier if the string is long, or the key is determined by a 
-variable.
+Localization helps to ensure that more than just English-reading people can use and enjoy the app.
+
+## Translators Guide
+
+Thank you for your interest in translating DNS Inspector! We've prepared this guide to help ensure
+you have a smooth process localizing the app into your language.
+
+To translate the app, please:
+
+1. Review section 1 ("How Localization Works in DNS Inspector") below
+2. Download a copy the [English strings file](https://github.com/dns-inspector/dns-inspector/blob/app-store/dns-inspector/Localization/Strings/en.strings)
+3. Translate all the string values
+
+If you are not comfortable making code changes or using git, you may stop here and email your
+translated file to hello@dns-inspector.com and we will take care of the rest. Otherwise, you can:
+
+4. Fork this repo and add your translated file to `dns-inspector/Localization/Strings`. Name the
+file with your language's two-letter code, similar to the other files in that directory.
+5. Modify the `languages` and `languageNameMap` variables in `dns-inspector/Localization/lang.py`
+6. Run `lang.py` to update the localization source
+7. Submit a pull request with your changes
+
+## 1. How Localization Works in DNS Inspector
+
+Individual localized texts are known as a string. Each string has a fixed key that identifies it 
+across languages.
+
+Typically these keys are the English translation, however, for long strings of text, a short
+descriptive name may be used instead.
+
+### 1.1. Variable Population
 
 Sometimes strings need to have variables inserted at specific locations within them. For example
 with `"Hello {name}"` we would need to replace `{name}` with a value.
 
-To identify a variable within a translated string you specify the index of that variable, for
-example: `"Hello {0}"`. In code, we pass an array of values that are populated into the string by
-their index. The order of the variables does not matter in the translated string, only that the
-index matches that of the array. For example, this is perfectly valid:
-`"My name is {1}, are you {0}?"`. Variables can be repeated multiple times.
+To accomplish this, we would use a string entry with a key of `Hello {name}` and a value of
+`Hello {0}`.
 
-## Strings Files
+In the key, we define a variable `{name}`. We use a short, single word to describe the variable to
+both help translates understand what will go there, as well as identify that value in code for
+programmers.
 
-DNS Inspector's localized strings are stored in so-called `.strings` files. These files contain
-one entry per line in the format of `key TAB value` (without spaces). Lines that begin with a `#`
-are ignored and can be used for comments. Values that contain line brakes should use literal `\n`.
-The file should be alphabetically sorted by key.
+In the value, we define the position of that variable with `{0}`. The number 0 is import here as it
+refers to the first parameter (`{name}`). The number is always one less, so `{0}`` refers to the
+first, `{1}` would refer to the second, so on.
+
+### 1.2. Strings Files
+
+DNS Inspector's localized strings are stored in `.strings` files. These files contain one entry per
+line in the format of the key and value separated by the TAB character (\t).
+
+There's a few rules with strings files that you should know:
+
+- The copyright and license at the top of the file is required and should not be changed.
+- Lines that begin with a `#` are ignored and can be used for comments.
+- If a string value must have a newline, instead use a literal `\n`.
+- Keys are case-insensitive, duplicate keys aren't allowed.
 
 English is the primary language, as that is the language best known by the developer. The English
 strings file is used as a reference for what strings needs to be present in the other string files.
 
-Keys that are in need of translation will have a preceding `TODO` comment above the entry. Please
+Keys that are in need of translation will have a preceding `#TODO` comment above the entry. Please
 remove this comment when the translation has been completed.
 
-As build time, these strings files are used to generate a Apple property list file, which is
-embedded in DNS Inspector.
+## 2. Compiling Localization
 
-The header at the top of the strings file must be present, but you may wish to update the
-copyright year should that be incorrect.
+An including python script `lang.py` is used to compile the localization of the app. This script:
 
-## Licensing
+- Organizes the strings files
+ - Sorts the strings alphabetically by key
+ - Remove string entries no longer present
+ - Adds missing string entries with a TODO comment
+- Generates the `Localization.swift` source to be used in the app
+
+## 3. Using Localized Strings in Code
+
+The python script generates a swift source code file that provides the `Localize` class. This class
+contains a static function for each string entry. If the entry uses variables, those are passed
+through as parameters to the function.
+
+## 4. Licensing
 
 While DNS Inspector is primarily a GPL3.0 product, localization strings are
 licensed using CC BY-SA 4.0 Attribution-ShareAlike 4.0 International.

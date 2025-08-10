@@ -14,3 +14,6 @@ cyclomatic_complexity: 12
 
 included:
     - "dns-inspector/"
+
+excluded:
+    - "dns-inspector/Localization/Localization.swift"

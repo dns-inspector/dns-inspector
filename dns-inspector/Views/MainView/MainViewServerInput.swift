@@ -42,7 +42,7 @@ struct MainViewServerInput: View {
             }
             Divider()
             TextField(text: serverAddress) {
-                Text(localized: serverPlaceholder())
+                Text(serverPlaceholder())
             }
             .keyboardType(.URL)
             .autocorrectionDisabled()
@@ -59,13 +59,13 @@ struct MainViewServerInput: View {
     func serverPlaceholder() -> String {
         switch transportType.wrappedValue {
         case .DNS:
-            return "Server IP"
+            return Localize.serverip()
         case .TLS:
-            return "Server IP"
+            return Localize.serverip()
         case .HTTPS:
-            return "Server URL"
+            return Localize.serverurl()
         case .QUIC:
-            return "Server IP"
+            return Localize.serverip()
         }
     }
 }

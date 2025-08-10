@@ -22,10 +22,10 @@ struct RecordViewDS: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            TitleValue(localizedTitle: "Key tag") {
+            TitleValue(Localize.keytag()) {
                 Text(String(data.keyTag))
             }.padding(.bottom, 2)
-            TitleValue(localizedTitle: "Algorithm") {
+            TitleValue(Localize.algorithm()) {
                 switch data.algorithm {
                 case .ECDSAP384_SHA384:
                     Text("ECDSA-P384 with SHA-384")
@@ -39,7 +39,7 @@ struct RecordViewDS: View {
                     Text("RSA with SHA1")
                 }
             }.padding(.bottom, 2)
-            TitleValue(localizedTitle: "Digest") {
+            TitleValue(Localize.digesttype()) {
                 switch data.digestType {
                 case .SHA1:
                     Text("SHA1")
@@ -49,7 +49,7 @@ struct RecordViewDS: View {
                     Text("SHA-384")
                 }
             }.padding(.bottom, 2)
-            TitleValue(localizedTitle: "Digest") {
+            TitleValue(Localize.digest()) {
                 FixedWidthText(data.digest.base64EncodedString())
             }
         }

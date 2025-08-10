@@ -17,13 +17,13 @@
 		3C3801342DA1AEB9007126EB /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3801332DA1AEA5007126EB /* AppIconView.swift */; };
 		3C4BB6BF2CE84F9900C7F78F /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BB6BE2CE84F9700C7F78F /* Errors.swift */; };
 		3C51F5882CDD9E5F00B9693D /* de.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C51F5872CDD9E5F00B9693D /* de.plist */; };
+		3C5511512E46AFAF009C4F70 /* Localization+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5511502E46AFA6009C4F70 /* Localization+Extra.swift */; };
 		3C599C1F2C818467003BFC68 /* RecordViewHTTPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C599C1E2C818467003BFC68 /* RecordViewHTTPS.swift */; };
 		3C5D66922E2C3DBC00757247 /* RecordViewLOC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D66912E2C3DB600757247 /* RecordViewLOC.swift */; };
 		3C61432E2BA7B179006A8B14 /* View+Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61432D2BA7B179006A8B14 /* View+Destination.swift */; };
 		3C62351D2CD6FA3D00387F6E /* FullScreenTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62351C2CD6FA3500387F6E /* FullScreenTextView.swift */; };
 		3C6CCD5A2B3BAC4700A3B6F2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CCD592B3BAC4700A3B6F2 /* Globals.swift */; };
 		3C6CCD5D2B3BB5C700A3B6F2 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CCD5C2B3BB5C700A3B6F2 /* Localization.swift */; };
-		3C6CCD5F2B3BB66000A3B6F2 /* Localization+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CCD5E2B3BB66000A3B6F2 /* Localization+SwiftUI.swift */; };
 		3C6CCD632B3BB75800A3B6F2 /* en.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C6CCD622B3BB75800A3B6F2 /* en.plist */; };
 		3C7BD1C02C387A21004C2ECF /* LogWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7BD1BF2C387A21004C2ECF /* LogWriter.swift */; };
 		3C7BD1C42C38A955004C2ECF /* RecordViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7BD1C32C38A955004C2ECF /* RecordViewA.swift */; };
@@ -92,13 +92,13 @@
 		3C3801332DA1AEA5007126EB /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		3C4BB6BE2CE84F9700C7F78F /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		3C51F5872CDD9E5F00B9693D /* de.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = de.plist; sourceTree = "<group>"; };
+		3C5511502E46AFA6009C4F70 /* Localization+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+Extra.swift"; sourceTree = "<group>"; };
 		3C599C1E2C818467003BFC68 /* RecordViewHTTPS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewHTTPS.swift; sourceTree = "<group>"; };
 		3C5D66912E2C3DB600757247 /* RecordViewLOC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewLOC.swift; sourceTree = "<group>"; };
 		3C61432D2BA7B179006A8B14 /* View+Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Destination.swift"; sourceTree = "<group>"; };
 		3C62351C2CD6FA3500387F6E /* FullScreenTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenTextView.swift; sourceTree = "<group>"; };
 		3C6CCD592B3BAC4700A3B6F2 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		3C6CCD5C2B3BB5C700A3B6F2 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
-		3C6CCD5E2B3BB66000A3B6F2 /* Localization+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Localization+SwiftUI.swift"; sourceTree = "<group>"; };
 		3C6CCD622B3BB75800A3B6F2 /* en.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = en.plist; sourceTree = "<group>"; };
 		3C7BD1BF2C387A21004C2ECF /* LogWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogWriter.swift; sourceTree = "<group>"; };
 		3C7BD1C32C38A955004C2ECF /* RecordViewA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewA.swift; sourceTree = "<group>"; };
@@ -192,9 +192,9 @@
 		3C6CCD5B2B3BB5B900A3B6F2 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
+				3C5511502E46AFA6009C4F70 /* Localization+Extra.swift */,
 				3C6CCD612B3BB74800A3B6F2 /* Strings */,
 				3C6CCD5C2B3BB5C700A3B6F2 /* Localization.swift */,
-				3C6CCD5E2B3BB66000A3B6F2 /* Localization+SwiftUI.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -458,7 +458,6 @@
 				3C0C6B322B38F944006D3F41 /* ActionTipTarget.swift in Sources */,
 				3CCA312B2AF5DAEE00C11280 /* DNSAnswerDataView.swift in Sources */,
 				3C26AD802BA6775E0022BABD /* WHOISView.swift in Sources */,
-				3C6CCD5F2B3BB66000A3B6F2 /* Localization+SwiftUI.swift in Sources */,
 				3CC646CC2C0A967D0049CEC7 /* RecordViewDS.swift in Sources */,
 				3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */,
 				3C0410062B93D4BD00389A16 /* AppLanguageView.swift in Sources */,
@@ -500,6 +499,7 @@
 				3C9AA7C92AF1F43F00B072FA /* DNSQuestionView.swift in Sources */,
 				3C7BD1C82C38A965004C2ECF /* RecordViewBasicName.swift in Sources */,
 				3C7BD1CE2C38AB05004C2ECF /* RecordViewTXT.swift in Sources */,
+				3C5511512E46AFAF009C4F70 /* Localization+Extra.swift in Sources */,
 				3C9AA7CE2AF2082100B072FA /* AppInfo.swift in Sources */,
 				3CC646CA2C0A90F80049CEC7 /* TitleValue.swift in Sources */,
 				3CAD46A32B903C8300E97A04 /* MainViewServerInput.swift in Sources */,

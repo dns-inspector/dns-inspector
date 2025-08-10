@@ -22,11 +22,11 @@ struct RecordViewSRV: View {
 
     var body: some View {
         HStack {
-            RoundedLabel(text: "\(data.priority)", color: .primary)
+            RoundedLabel("\(data.priority)", color: .primary)
             Divider()
-            RoundedLabel(text: "\(data.weight)", color: .primary)
+            RoundedLabel("\(data.weight)", color: .primary)
             Divider()
-            RoundedLabel(text: "\(data.port)", color: .primary)
+            RoundedLabel("\(data.port)", color: .primary)
             Divider()
             FixedWidthText(data.name)
         }

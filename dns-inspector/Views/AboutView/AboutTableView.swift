@@ -41,11 +41,11 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return Localize("Share & Feedback")
+            return Localize.sharefeedback()
         case 1:
-            return Localize("Get Involved")
+            return Localize.getinvolved()
         case 2:
-            return Localize("More from the developer")
+            return Localize.morefromthedeveloper()
         case 3:
             return ""
         default:
@@ -56,9 +56,9 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
     func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         switch section {
         case 0:
-            return Localize("Version {version} (build {build})", args: [AppInfo.version(), AppInfo.build()])
+            return Localize.versionversionbuildbuild(version: AppInfo.version(), build: AppInfo.build())
         case 1:
-            return Localize("about_footer", args: ["2025"])
+            return Localize.aboutfooteryear(year: "2025")
         case 3:
             return "🏳️‍⚧️ Trans Rights!" // If this footer upsets or bothers you, I invite you to please fuck right off.
         default:
@@ -91,16 +91,16 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
         switch (indexPath.section, indexPath.row) {
         case (0, 0):
             cell.imageView?.image = UIImage(systemName: "square.and.arrow.up.fill")
-            cell.textLabel?.text = Localize("Share DNS Inspector")
+            cell.textLabel?.text = Localize.sharednsinspector()
         case (0, 1):
             cell.imageView?.image = UIImage(systemName: "star.bubble.fill")
-            cell.textLabel?.text = Localize("Rate in App Store")
+            cell.textLabel?.text = Localize.rateinappstore()
         case (0, 2):
             cell.imageView?.image = UIImage(systemName: "bubble.left.and.exclamationmark.bubble.right.fill")
-            cell.textLabel?.text = Localize("Provide feedback")
+            cell.textLabel?.text = Localize.providefeedback()
         case (0, 3):
             cell.imageView?.image = UIImage(systemName: "ladybug.fill")
-            cell.textLabel?.text = Localize("Verbose logging")
+            cell.textLabel?.text = Localize.verboselogging()
             let toggle = UISwitch()
             toggle.isOn = LogWriter.shared.currentLevel() == .Debug
             toggle.addTarget(self, action: #selector(toggleVerboseLogging), for: .valueChanged)
@@ -108,16 +108,16 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
             cell.accessoryView = toggle
         case (1, 0):
             cell.imageView?.image = UIImage(named: "Mastodon")
-            cell.textLabel?.text = Localize("Follow @dnsinspector on Mastodon")
+            cell.textLabel?.text = Localize.followdnsinspectoronmastodon()
         case (1, 1):
             cell.imageView?.image = UIImage(named: "Bluesky")
-            cell.textLabel?.text = Localize("Follow @dns-inspector.com on Bluesky")
+            cell.textLabel?.text = Localize.followdnsinspectorcomonbluesky()
         case (1, 2):
             cell.imageView?.image = UIImage(systemName: "terminal.fill")
-            cell.textLabel?.text = Localize("Contribute to DNS Inspector")
+            cell.textLabel?.text = Localize.contributetodnsinspector()
         case (2, 0):
             cell.imageView?.image = UIImage(named: "TLS Inspector Icon")
-            cell.textLabel?.text = Localize("TLS Inspector")
+            cell.textLabel?.text = Localize.tlsinspector()
             cell.imageView?.clipsToBounds = true
             cell.imageView?.layer.cornerRadius = 7
         case (_, _): break

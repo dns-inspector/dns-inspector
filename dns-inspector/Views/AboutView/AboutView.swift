@@ -29,7 +29,7 @@ struct AboutView: View {
                             .resizable(resizingMode: .stretch)
                             .foregroundColor(Color.white)
                             .frame(width: 75.0, height: 75.0)
-                        Text(localized: "DNS Inspector")
+                        Text(Localize.dnsinspector())
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(Color.white)

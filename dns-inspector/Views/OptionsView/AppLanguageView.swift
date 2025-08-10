@@ -28,7 +28,7 @@ struct AppLanguageView: View {
                         currentLanguage = language
                     } label: {
                         HStack {
-                            Text(language.name)
+                            Text(String.init(describing: language))
                             Spacer()
                             if currentLanguage == language {
                                 Image(systemName: "checkmark").foregroundStyle(.accent)
@@ -41,21 +41,21 @@ struct AppLanguageView: View {
                 Text("Spanish translation by Kevin López Brante. German translation by ErminesRoper. Interested in translating DNS Inspector to another language? Send us a message through the feedback link!")
             }
         }
-        .navigationTitle(localized: "App language")
+        .navigationTitle(Localize.applanguage())
         .onChange(of: currentLanguage) { newLanguage in
             if newLanguage != UserOptions.appLanguage {
                 UserOptions.appLanguage = newLanguage
                 showRestartAlert = true
             }
         }
-        .alert(Localize("App language"), isPresented: $showRestartAlert) {
+        .alert(Localize.applanguage(), isPresented: $showRestartAlert) {
             Button {
                 showRestartAlert = false
             } label: {
-                Text(localized: "Dismiss")
+                Text(Localize.dismiss())
             }
         } message: {
-            Text(localized: "Your changes will take affect only quitting and restarting DNS Inspector")
+            Text(Localize.yourchangeswilltakeaffectonlyquittingandrestartingdnsinspector())
         }
 
     }

@@ -19,16 +19,16 @@ import DNSKit
 
 public struct ErrorCellView: View {
     public let error: String
-    public let titleKey: String
+    public let title: String
 
-    public init(error: Error, titleKey: String = "Error") {
+    public init(error: Error, title: String = "Error") {
         self.error = localizedErrorDetails(error)
-        self.titleKey = titleKey
+        self.title = title
     }
 
-    public init(error: String, titleKey: String = "Error") {
+    public init(error: String, title: String = "Error") {
         self.error = error
-        self.titleKey = titleKey
+        self.title = title
     }
 
     public var body: some View {
@@ -36,7 +36,7 @@ public struct ErrorCellView: View {
             HStack {
                 Image(systemName: "exclamationmark.circle.fill")
                     .foregroundStyle(.red)
-                Text(localized: self.titleKey).bold()
+                Text(self.title).bold()
             }
             Text(error)
         }

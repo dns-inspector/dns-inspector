@@ -21,19 +21,19 @@ struct RoundedLabel: View {
     let textColor: Color
     let borderColor: Color
 
-    init(text: String) {
+    init(_ text: String) {
         self.text = text
         self.textColor = .accent
         self.borderColor = .accent
     }
 
-    init(text: String, color: Color) {
+    init(_ text: String, color: Color) {
         self.text = text
         self.textColor = color
         self.borderColor = color
     }
 
-    init(text: String, textColor: Color, borderColor: Color) {
+    init(_ text: String, textColor: Color, borderColor: Color) {
         self.text = text
         self.textColor = textColor
         self.borderColor = borderColor

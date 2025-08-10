@@ -21,18 +21,18 @@ struct MainViewRecentLookups: View {
     let onTap: (RecentQuery) -> Void
 
     var body: some View {
-        Section(Localize("Recent queries")) {
+        Section(Localize.recentqueries()) {
             ForEach(RecentQueryManager.shared.queries) { query in
                 Button {
                     onTap(query)
                 } label: {
                     HStack {
-                        RoundedLabel(text: query.recordType.string(), textColor: .primary, borderColor: .gray)
+                        RoundedLabel(query.recordType.string(), textColor: .primary, borderColor: .gray)
                             .layoutPriority(2)
                         Text(query.name)
                             .lineLimit(2)
                         Divider()
-                        RoundedLabel(text: query.transportType.string(), textColor: .primary, borderColor: .gray)
+                        RoundedLabel(query.transportType.string(), textColor: .primary, borderColor: .gray)
                             .layoutPriority(2)
                         Text(query.serverAddress)
                             .lineLimit(2)

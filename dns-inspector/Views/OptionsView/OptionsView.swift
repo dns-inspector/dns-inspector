@@ -28,42 +28,42 @@ struct OptionsView: View {
     var body: some View {
         Navigation {
             List {
-                Section(Localize("General")) {
+                Section(Localize.general()) {
                     NavigationLink {
                         AppLanguageView()
                     } label: {
-                        Text(localized: "App language")
+                        Text(Localize.applanguage())
                     }
-                    NavigationLink(Localize("Preset servers")) {
+                    NavigationLink(Localize.presetservers()) {
                         PresetServerListView()
                     }
-                    NavigationLink(Localize("App Icon")) {
+                    NavigationLink(Localize.appicon()) {
                         AppIconView()
                     }
                 }
-                Section(Localize("Appearance & Behaviour")) {
-                    Toggle(Localize("Remember recent queries"), isOn: $rememberQueries).tint(Color.accentColor)
-                    Toggle(Localize("Remember last server"), isOn: $rememberLastServer).tint(Color.accentColor)
-                    Toggle(Localize("Show DNS record descriptions"), isOn: $showRecordDescription).tint(Color.accentColor)
-                    Picker(Localize("Show TTL values as"), selection: $ttlDisplayMode) {
-                        Text(localized: "Relative").tag(TTLDisplayMode.relative)
-                        Text(localized: "Absolute").tag(TTLDisplayMode.absolute)
+                Section(Localize.appearancebehaviour()) {
+                    Toggle(Localize.rememberrecentqueries(), isOn: $rememberQueries).tint(Color.accentColor)
+                    Toggle(Localize.rememberlastserver(), isOn: $rememberLastServer).tint(Color.accentColor)
+                    Toggle(Localize.showdnsrecorddescriptions(), isOn: $showRecordDescription).tint(Color.accentColor)
+                    Picker(Localize.showttlvaluesas(), selection: $ttlDisplayMode) {
+                        Text(Localize.relative()).tag(TTLDisplayMode.relative)
+                        Text(Localize.absolute()).tag(TTLDisplayMode.absolute)
                     }
                 }
-                Section(Localize("Network")) {
-                    Toggle(Localize("Send traditional DNS requests using TCP"), isOn: $dnsPrefersTcp)
+                Section(Localize.network()) {
+                    Toggle(Localize.sendtraditionaldnsrequestsusingtcp(), isOn: $dnsPrefersTcp)
                     .tint(Color.accentColor)
                     HStack {
-                        Text(localized: "Connection Timeout")
-                        TextField("Seconds", text: $timeoutSeconds)
+                        Text(Localize.connectiontimeout())
+                        TextField(Localize.seconds(), text: $timeoutSeconds)
                             .multilineTextAlignment(.trailing)
                             .keyboardType(.numberPad)
-                        Text(localized: "Seconds")
+                        Text(Localize.seconds())
                             .foregroundStyle(.gray)
                     }
                 }
             }
-            .navigationTitle(localized: "Options")
+            .navigationTitle(Localize.options())
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {

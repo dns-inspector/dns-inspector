@@ -29,9 +29,9 @@ public struct WHOISView: View {
                     Section(reply.server) {
                         Text(reply.data.prefix(100) + "...").fixedwidth()
                         NavigationLink {
-                            FullScreenTextView(text: reply.data)
+                            FullScreenTextView(reply.data)
                         } label: {
-                            Text(localized: "View All")
+                            Text(Localize.viewall())
                         }
                     }
                 }
@@ -45,7 +45,7 @@ public struct WHOISView: View {
                 }
             }
         }
-        .navigationTitle(localized: "Domain Information")
+        .navigationTitle(Localize.domaininformation())
     }
 
     private func loadData() async {

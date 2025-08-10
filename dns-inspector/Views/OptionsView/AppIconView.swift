@@ -28,13 +28,26 @@ struct AppIconView: View {
                     } label: {
                         HStack {
                             Image("Preview\(iconName)")
-                            Text(Localize("Icon\(iconName)"))
+                            Text(localizedIconName(iconName))
                         }
                     }
                 }
             } footer: {
-                Text(Localize("AppIconFooter"))
+                Text(Localize.appiconfooter())
             }
-        }.navigationTitle(Localize("App Icon"))
+        }.navigationTitle(Localize.appicon())
+    }
+
+    func localizedIconName(_ iconName: String) -> String {
+        switch iconName {
+        case "Default":
+            return Localize.icondefault()
+        case "Pride":
+            return Localize.iconpride()
+        case "Trans":
+            return Localize.icontrans()
+        default:
+            return ""
+        }
     }
 }

@@ -28,21 +28,21 @@ struct PresetServerEditView: View {
 
     var body: some View {
         List {
-            Section(Localize("Server Details")) {
+            Section(Localize.serverdetails()) {
                 HStack {
-                    Text(localized: "Friendly Name")
+                    Text(Localize.friendlyname())
                     TextField("My server", text: $serverName)
                         .keyboardType(.asciiCapable)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                 }
-                Picker(Localize("Server Type"), selection: $transportType) {
+                Picker(Localize.servertype(), selection: $transportType) {
                     Text("DNS").tag(TransportType.DNS)
                     Text("HTTPS").tag(TransportType.HTTPS)
                     Text("TLS").tag(TransportType.TLS)
                 }
                 HStack {
-                    Text(localized: "Server Address")
+                    Text(Localize.serveraddress())
                     TextField("192.0.2.1", text: $serverAddress)
                         .keyboardType(.URL)
                         .autocorrectionDisabled()
@@ -54,10 +54,10 @@ struct PresetServerEditView: View {
                 }
             }
         }
-        .navigationTitle(localized: (isNew ? "New Preset Server" : "Edit Preset Server"))
+        .navigationTitle(isNew ? Localize.newpresetserver() : Localize.editpresetserver())
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-                Button(Localize("Save")) {
+                Button(Localize.save()) {
                     if let err = Query.validateConfiguration(transportType: self.transportType, serverAddress: self.serverAddress) {
                         withAnimation {
                             self.validationError = err

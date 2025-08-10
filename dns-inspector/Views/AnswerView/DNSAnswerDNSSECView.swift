@@ -26,33 +26,33 @@ public struct DNSMessageDNSSECView: View {
         List {
             switch self.result {
             case .success(let dnssecResult):
-                Section(Localize("Results")) {
+                Section(Localize.results()) {
                     HStack {
-                        Text(localized: "Signature")
+                        Text(Localize.signature())
                         Spacer()
                         if dnssecResult.signatureVerified {
-                            RoundedLabel(text: Localize("Verified"), color: .green)
+                            RoundedLabel(Localize.verified(), color: .green)
                         } else {
-                            RoundedLabel(text: Localize("Unverified"), color: .red)
+                            RoundedLabel(Localize.unverified(), color: .red)
                         }
                     }
                     if let signatureError = dnssecResult.signatureError {
                         VStack(alignment: .leading) {
-                            ErrorCellView(error: signatureError, titleKey: "Signature Validation Failed")
+                            ErrorCellView(error: signatureError, title: Localize.signaturevalidationfailed())
                         }
                     }
                     HStack {
-                        Text(localized: "Chain")
+                        Text(Localize.chain())
                         Spacer()
                         if dnssecResult.chainTrusted {
-                            RoundedLabel(text: Localize("Trusted"), color: .green)
+                            RoundedLabel(Localize.trusted(), color: .green)
                         } else {
-                            RoundedLabel(text: Localize("Untrusted"), color: .red)
+                            RoundedLabel(Localize.untrusted(), color: .red)
                         }
                     }
                     if let chainError = dnssecResult.chainError {
                         VStack(alignment: .leading) {
-                            ErrorCellView(error: chainError, titleKey: "Trust Establishment Failed")
+                            ErrorCellView(error: chainError, title: Localize.trustestablishmentfailed())
                         }
                     }
                 }

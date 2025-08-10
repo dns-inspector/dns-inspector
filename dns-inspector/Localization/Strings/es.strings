@@ -42,6 +42,8 @@ DNSSEC not enabled on this zone, no RRSIG returned.	DNSSEC not enabled on this z
 # TODO
 Digest	Digest
 # TODO
+Digest Type	Digest Type
+# TODO
 Dismiss	Dismiss
 # TODO
 Domain Information	Domain Information
@@ -118,7 +120,6 @@ Perform Validation	Perform Validation
 # TODO
 Port	Port
 Preset Servers	Servidores predefinidos
-Preset servers	Servidores predefinidos
 # TODO
 Priority	Priority
 # TODO
@@ -201,7 +202,7 @@ WHOIS not supported on this domain	WHOIS not supported on this domain
 Your changes will take affect only quitting and restarting DNS Inspector	Your changes will take affect only quitting and restarting DNS Inspector
 # TODO
 Zone signing key	Zone signing key
-about_footer	DNS Inspector es software libre y gratuito bajo licencia GNU GPLv3. Derechos de autor de DNS Inspector © 2023-{0} Ian Spence.
+about_footer_{year}	DNS Inspector es software libre y gratuito bajo licencia GNU GPLv3. Derechos de autor de DNS Inspector © 2023-{0} Ian Spence.
 # TODO
 dnssec_footer	When DNSSEC is enabled all DNS queries include a request for record signatures. DNSSEC verification will perform additional queries to establish trust and may take multiple seconds to complete.
 record_description_a	Los registros DNS A contienen una dirección IPv4.
@@ -215,7 +216,7 @@ record_description_ds	DNS DS records contain records of trusted delegation from 
 # TODO
 record_description_https	DNS HTTPS records contain information about HTTPS web servers.
 # TODO
-record_description_loc	DNS LOC records contain a geogrphical location.
+record_description_loc	DNS LOC records contain a geographical location.
 record_description_mx	Los registros DNS MX contienen direcciones de servidores de intercambio de correos electrónicos.
 # TODO
 record_description_ns	DNS NS records contain the authoritative DNS server for this zone.
@@ -228,4 +229,4 @@ record_description_txt	Los registros DNS TXT pueden contener texto arbitrario.
 {duration} milliseconds	{0} milisegundos
 {duration} nanoseconds	{0} nanosegundos
 {duration} seconds	{0} segundos
-{record type} Record	Registro {0}
+{record_type} Record	Registro {0}

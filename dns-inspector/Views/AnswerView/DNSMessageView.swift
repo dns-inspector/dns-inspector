@@ -35,32 +35,32 @@ public struct DNSMessageView: View {
     public var body: some View {
         Navigation {
             List {
-                Section(Localize("Query")) {
+                Section(Localize.query()) {
                     HStack {
                         Text(String(message.idNumber)).fixedwidth()
                         Divider()
-                        RoundedLabel(text: query.transportType.string(), textColor: .primary, borderColor: .gray)
+                        RoundedLabel(query.transportType.string(), textColor: .primary, borderColor: .gray)
                         Divider()
                         Text(query.serverAddress).fixedwidth()
                     }
                 }
-                Section(Localize("Response")) {
+                Section(Localize.response()) {
                     HStack {
-                        RoundedLabel(text: message.responseCode.string(), color: responseCodeColor())
+                        RoundedLabel(message.responseCode.string(), color: responseCodeColor())
                         Divider()
                         if message.truncated {
-                            RoundedLabel(text: "TRUNC", color: .yellow)
+                            RoundedLabel("TRUNC", color: .yellow)
                             Divider()
                         }
                         if message.authoritativeAnswer {
-                            RoundedLabel(text: "AUTH", color: .green)
+                            RoundedLabel("AUTH", color: .green)
                             Divider()
                         }
                         Text(elapsedString())
                     }
                 }
                 if message.questions.count > 0 {
-                    Section(Localize("Question")) {
+                    Section(Localize.question()) {
                         ForEach(message.questions, id: \.name) { question in
                             DNSQuestionView(question: question)
                                 .listRowSeparator(.hidden)
@@ -75,7 +75,7 @@ public struct DNSMessageView: View {
                             }
                         }
                     } header: {
-                        Text(localized: "Answers")
+                        Text(Localize.answers())
                     } footer: {
                         VStack(alignment: .leading, spacing: 8.0) {
                             ForEach(answerRecordTypes(message.answers), id: \.self) { recordType in
@@ -83,11 +83,11 @@ public struct DNSMessageView: View {
                                     HStack(spacing: 2.0) {
                                         Image(systemName: "info.circle")
                                             .foregroundStyle(.accent)
-                                        Text(localized: "{record type} Record", args: [recordType.string()])
+                                        Text(Localize.recordtyperecord(record_type: recordType.string()))
                                             .bold()
                                             .foregroundStyle(.accent)
                                     }
-                                    Text(localized: "record_description_\(recordType.string().lowercased())")
+                                    Text(recordType.recordDescription())
                                 }
                             }
                         }
@@ -98,15 +98,15 @@ public struct DNSMessageView: View {
                         NavigationLink {
                             DNSMessageDNSSECView(query: self.query, message: self.message)
                         } label: {
-                            Text(localized: "View DNSSEC Information")
+                            Text(Localize.viewdnssecinformation())
                         }
                     } else {
-                        Text(localized: "DNSSEC not enabled on this zone, no RRSIG returned.")
+                        Text(Localize.dnssecnotenabledonthiszonenorrsigreturned())
                             .foregroundStyle(.gray)
                     }
                 }
             }
-            .navigationTitle(localized: "Results")
+            .navigationTitle(Localize.results())
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -122,7 +122,7 @@ public struct DNSMessageView: View {
                         Button {
                             showWhois.toggle()
                         } label: {
-                            Label(Localize("Domain Information"), systemImage: "person.text.rectangle")
+                            Label(Localize.domaininformation(), systemImage: "person.text.rectangle")
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")
@@ -149,17 +149,17 @@ public struct DNSMessageView: View {
 
         if elapsed > 1000000000 {
             let elapsedStr = String(format: "%.2f", Double(elapsed) / 1000000000.0)
-            return Localize("{duration} seconds", args: [elapsedStr])
+            return Localize.durationseconds(duration: elapsedStr)
         } else if elapsed > 1000000 {
             let elapsedStr = String(format: "%.2f", Double(elapsed) / 1000000.0)
-            return Localize("{duration} milliseconds", args: [elapsedStr])
+            return Localize.durationmicroseconds(duration: elapsedStr)
         } else if elapsed > 1000 {
             let elapsedStr = String(format: "%.2f", Double(elapsed) / 1000.0)
-            return Localize("{duration} microseconds", args: [elapsedStr])
+            return Localize.durationmicroseconds(duration: elapsedStr)
         }
 
         let elapsedStr = String(format: "%.2f", elapsed)
-        return Localize("{duration} nanoseconds", args: [elapsedStr])
+        return Localize.durationnanoseconds(duration: elapsedStr)
     }
 
     func answerRecordTypes(_ answers: [Answer]) -> [RecordType] {

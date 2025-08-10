@@ -53,7 +53,7 @@ struct PresetServerListView: View {
             }
             EditButton()
         })
-        .navigationTitle(localized: "Preset Servers")
+        .navigationTitle(Localize.presetservers())
     }
 
     func loadPresetServers() {
@@ -91,7 +91,7 @@ private struct PresetServerListViewItem: View {
             }
         } label: {
             HStack {
-                RoundedLabel(text: transportType.string())
+                RoundedLabel(transportType.string())
                 Text(name)
                 Text(address).opacity(0.75)
             }

@@ -22,28 +22,28 @@ struct RecordViewSOA: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            TitleValue(localizedTitle: "Main name server") {
+            TitleValue(Localize.mainnameserver()) {
                 FixedWidthText(data.mname)
             }.padding(.bottom, 2)
-            TitleValue(localizedTitle: "Administrative address") {
+            TitleValue(Localize.administrativeaddress()) {
                 FixedWidthText(data.rname)
             }
             Divider()
                 .padding(.bottom, 2)
                 .padding(.top, 2)
-            TitleValue(localizedTitle: "Serial") {
+            TitleValue(Localize.serial()) {
                 FixedWidthText("\(data.serial)")
             }.padding(.bottom, 2)
-            TitleValue(localizedTitle: "Refresh") {
+            TitleValue(Localize.refresh()) {
                 FixedWidthText("\(data.refresh)")
             }.padding(.bottom, 2)
-            TitleValue(localizedTitle: "Retry") {
+            TitleValue(Localize.retry()) {
                 FixedWidthText("\(data.retry)")
             }.padding(.bottom, 2)
-            TitleValue(localizedTitle: "Expire") {
+            TitleValue(Localize.expire()) {
                 FixedWidthText("\(data.expire)")
             }.padding(.bottom, 2)
-            TitleValue(localizedTitle: "Minimum") {
+            TitleValue(Localize.minimum()) {
                 FixedWidthText("\(data.minimum)")
             }
         }
