@@ -1374,6 +1374,28 @@ public final class Localize {
             return "DNS-Inspector ist eine kostenlose & freie, quelloffene Software, lizenziert unter GNU GPLv3. DNS-Inspector besitzt das Copyright © 2023-\(year) Ian Spence."
         }
     }
+    // key: dns_server_target_help_dns
+    static func dnsservertargethelpdns() -> String {
+        switch currentLanguage {
+        case .English:
+            return "We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets."
+        case .Spanish:
+            return "We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets."
+        case .German:
+            return "We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets."
+        }
+    }
+    // key: dns_server_target_help_url
+    static func dnsservertargethelpurl() -> String {
+        switch currentLanguage {
+        case .English:
+            return "We connect to the DNS server using a URL. Do not include the dns query parameter."
+        case .Spanish:
+            return "We connect to the DNS server using a URL. Do not include the dns query parameter."
+        case .German:
+            return "We connect to the DNS server using a URL. Do not include the dns query parameter."
+        }
+    }
     // key: dnssec_footer
     static func dnssecfooter() -> String {
         switch currentLanguage {

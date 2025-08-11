@@ -28,7 +28,7 @@ struct PresetServerEditView: View {
 
     var body: some View {
         List {
-            Section(Localize.serverdetails()) {
+            Section {
                 HStack {
                     Text(Localize.friendlyname())
                     TextField("My server", text: $serverName)
@@ -36,14 +36,24 @@ struct PresetServerEditView: View {
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                 }
-                Picker(Localize.servertype(), selection: $transportType) {
+                Picker(Localize.servertype(), selection: Binding(get: {
+                    transportType
+                }, set: { newValue in
+                    withAnimation {
+                        transportType = newValue
+                    }
+                })) {
                     Text("DNS").tag(TransportType.DNS)
                     Text("HTTPS").tag(TransportType.HTTPS)
                     Text("TLS").tag(TransportType.TLS)
+                    Text("QUIC").tag(TransportType.QUIC)
                 }
                 HStack {
-                    Text(Localize.serveraddress())
-                    TextField("192.0.2.1", text: $serverAddress)
+                    Text(transportType == .HTTPS ? Localize.serverurl() : Localize.serveraddress())
+                    // Have to use string interpolation here because otherwise the link is made blue. you can't tap on it,
+                    // but its blue. user inputted text isnt blue, but swiftui decided that the placeholder should be blue.
+                    // who asked for this??? why is this the default??????
+                    TextField("\(transportType == .HTTPS ? "https://example.com/dns-query" : "192.0.2.1")", text: $serverAddress)
                         .keyboardType(.URL)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
@@ -52,6 +62,10 @@ struct PresetServerEditView: View {
                 if let error = self.validationError {
                     ErrorCellView(error: error)
                 }
+            } header: {
+                Text(Localize.serverdetails())
+            } footer: {
+                Text(transportType == .HTTPS ? Localize.dnsservertargethelpurl() : Localize.dnsservertargethelpdns())
             }
         }
         .navigationTitle(isNew ? Localize.newpresetserver() : Localize.editpresetserver())

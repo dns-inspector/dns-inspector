@@ -43,7 +43,13 @@ struct OptionsView: View {
                     }
                 }
                 Section(Localize.appearancebehaviour()) {
-                    Toggle(Localize.rememberrecentqueries(), isOn: $rememberQueries).tint(Color.accentColor)
+                    Toggle(Localize.rememberrecentqueries(), isOn: Binding(get: {
+                        rememberQueries
+                    }, set: { newValue in
+                        withAnimation {
+                            rememberQueries = newValue
+                        }
+                    })).tint(Color.accentColor)
                     if rememberQueries {
                         Picker(Localize.maximumhistorysize(), selection: $queryLimit) {
                             Text("5").tag(UInt8(5))

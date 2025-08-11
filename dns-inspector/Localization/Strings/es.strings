@@ -206,6 +206,10 @@ Your changes will take affect only quitting and restarting DNS Inspector	Your ch
 Zone signing key	Zone signing key
 about_footer_{year}	DNS Inspector es software libre y gratuito bajo licencia GNU GPLv3. Derechos de autor de DNS Inspector © 2023-{0} Ian Spence.
 # TODO
+dns_server_target_help_dns	We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets.
+# TODO
+dns_server_target_help_url	We connect to the DNS server using a URL. Do not include the dns query parameter.
+# TODO
 dnssec_footer	When DNSSEC is enabled all DNS queries include a request for record signatures. DNSSEC verification will perform additional queries to establish trust and may take multiple seconds to complete.
 record_description_a	Los registros DNS A contienen una dirección IPv4.
 record_description_aaaa	Los registros DNS AAAA contienen una dirección IPv6.

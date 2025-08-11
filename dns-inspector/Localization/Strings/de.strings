@@ -155,6 +155,10 @@ WHOIS not supported on this domain	WHOIS not supported on this domain
 Your changes will take affect only quitting and restarting DNS Inspector	Deine Änderungen werden erst nach Beenden und Neustart von DNS-Inspector wirksam
 Zone signing key	Zonensignaturschlüssel
 about_footer_{year}	DNS-Inspector ist eine kostenlose & freie, quelloffene Software, lizenziert unter GNU GPLv3. DNS-Inspector besitzt das Copyright © 2023-{0} Ian Spence.
+# TODO
+dns_server_target_help_dns	We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets.
+# TODO
+dns_server_target_help_url	We connect to the DNS server using a URL. Do not include the dns query parameter.
 dnssec_footer	Wenn DNSSEC aktiviert ist, enthalten alle DNS-Anfragen eine Anfrage der Signaturaufzeichnung. DNSSEC-Verifizierung wird weitere Anfragen zur Vertrauensgewinnung durchführen und möglicherweise einige Sekunden zur Durchführung brauchen.
 record_description_a	DNS-A-Aufzeichnungen enthalten eine IPv4-Adresse.
 record_description_aaaa	DNS-AAAA-Aufzeichnungen enthalten eine IPv6-Adresse.
