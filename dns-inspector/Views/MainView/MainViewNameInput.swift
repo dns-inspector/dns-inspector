@@ -49,7 +49,7 @@ public struct MainViewNameInput: View {
             .keyboardType(.URL)
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled()
-            ClearButton(text: $name)
+            ClearTextButton(text: $name)
         }
     }
 }

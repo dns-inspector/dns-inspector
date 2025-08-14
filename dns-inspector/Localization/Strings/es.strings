@@ -152,6 +152,8 @@ Server Address	Dirección del servidor
 # TODO
 Server Details	Server Details
 Server IP	IP del servidor
+# TODO
+Server IP Address (Optional)	Server IP Address (Optional)
 Server Type	Tipo de servidor
 Server URL	URL del servidor
 Share & Feedback	Compartir y comentarios
@@ -208,7 +210,7 @@ about_footer_{year}	DNS Inspector es software libre y gratuito bajo licencia GNU
 # TODO
 dns_server_target_help_dns	We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets.
 # TODO
-dns_server_target_help_url	We connect to the DNS server using a URL. Do not include the dns query parameter.
+dns_server_target_help_url	We connect to the DNS server using a URL. Do not include the dns query parameter. You can specify the IP address of the server for improved privacy.
 # TODO
 dnssec_footer	When DNSSEC is enabled all DNS queries include a request for record signatures. DNSSEC verification will perform additional queries to establish trust and may take multiple seconds to complete.
 record_description_a	Los registros DNS A contienen una dirección IPv4.

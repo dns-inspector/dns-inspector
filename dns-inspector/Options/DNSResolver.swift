@@ -17,13 +17,25 @@
 import Foundation
 import DNSKit
 
-public struct PresetServer: Codable, Identifiable {
-    public let name: String
+/// Describes a DNS Resolver (DNS server)
+@MainActor
+public struct DNSResolver: Codable, Identifiable, Equatable {
+    /// The name of the DNS resolver, only used for saved (preset) servers.
+    public let name: String?
+    /// The transport type used for this DNS resolver.
     public let type: TransportType
+    /// The address of the resolver. For DNS over HTTPS this is a URL, otherwise it's an IP address.
     public let address: String
-    public var id = UUID()
+    /// The bootstrap IP address for DNS over HTTPS resolvers.
+    public let httpsBootstrapIp: String?
+    /// The ID of this resolver.
+    public let id: UUID
 
-    enum CodingKeys: CodingKey {
-        case name, type, address
+    public init(name: String? = nil, type: TransportType, address: String, httpsBootstrapIp: String? = nil, id: UUID) {
+        self.name = name
+        self.type = type
+        self.address = address
+        self.httpsBootstrapIp = httpsBootstrapIp
+        self.id = id
     }
 }

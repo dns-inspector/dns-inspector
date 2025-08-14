@@ -32,9 +32,9 @@ struct MainViewRecentLookups: View {
                         Text(query.name)
                             .lineLimit(2)
                         Divider()
-                        RoundedLabel(query.transportType.string(), textColor: .primary, borderColor: .gray)
+                        RoundedLabel(query.resolver.type.string(), textColor: .primary, borderColor: .gray)
                             .layoutPriority(2)
-                        Text(query.serverAddress)
+                        Text(query.resolver.address)
                             .lineLimit(2)
                     }
                 }

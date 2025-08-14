@@ -18,46 +18,74 @@ import SwiftUI
 import DNSKit
 
 struct MainViewServerInput: View {
-    var transportType: Binding<TransportType>
-    var serverAddress: Binding<String>
+    var resolver: Binding<DNSResolver>
+    @State private var useSavedServer: Bool
+    @State private var transportType: TransportType
+    @State private var server: String
     let onSubmit: () -> Void
+
+    init(resolver: Binding<DNSResolver>, _ onSubmit: @escaping () -> Void) {
+        self.resolver = resolver
+        self.useSavedServer = resolver.wrappedValue.name != nil
+        self.transportType = resolver.wrappedValue.type
+        self.server = resolver.wrappedValue.address
+        self.onSubmit = onSubmit
+    }
 
     var body: some View {
         HStack {
-            Menu {
-                ForEach(TransportType.allCases, id: \.self) { t in
-                    Button(action: {
-                        transportType.wrappedValue = t
-                    }, label: {
-                        Text(t.string())
-                    })
+            if self.useSavedServer {
+                RoundedLabel(resolver.wrappedValue.type.string().uppercased())
+                Text(resolver.wrappedValue.name!)
+                Spacer()
+                ClearButton {
+                    self.useSavedServer = false
                 }
-            } label: {
-                Text(transportType.wrappedValue.string())
-                    .layoutPriority(1)
-                Image(systemName: "chevron.up.chevron.down")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxHeight: 12)
+            } else {
+                Menu {
+                    ForEach(TransportType.allCases, id: \.self) { t in
+                        Button(action: {
+                            self.transportType = t
+                        }, label: {
+                            Text(t.string())
+                        })
+                    }
+                } label: {
+                    Text(self.transportType.string())
+                        .layoutPriority(1)
+                    Image(systemName: "chevron.up.chevron.down")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxHeight: 12)
+                }
+                Divider()
+                TextField(text: $server) {
+                    Text(serverPlaceholder())
+                }
+                .keyboardType(.URL)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
+                .submitLabel(.done)
+                .onSubmit {
+                    onSubmit()
+                }
+                ClearTextButton(text: $server)
             }
-            Divider()
-            TextField(text: serverAddress) {
-                Text(serverPlaceholder())
+            SavedServerButton { resolver in
+                self.resolver.wrappedValue = resolver
+                self.useSavedServer = true
             }
-            .keyboardType(.URL)
-            .autocorrectionDisabled()
-            .textInputAutocapitalization(.never)
-            .submitLabel(.done)
-            .onSubmit {
-                onSubmit()
-            }
-            ClearButton(text: serverAddress)
-            PresetServerButton(transportType: transportType, serverAddress: serverAddress)
+        }
+        .onChange(of: transportType) { _ in
+            self.resolver.wrappedValue = DNSResolver(type: self.transportType, address: self.server, id: UUID())
+        }
+        .onChange(of: server) { _ in
+            self.resolver.wrappedValue = DNSResolver(type: self.transportType, address: self.server, id: UUID())
         }
     }
 
     func serverPlaceholder() -> String {
-        switch transportType.wrappedValue {
+        switch transportType {
         case .DNS:
             return Localize.serverip()
         case .TLS:

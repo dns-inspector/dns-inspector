@@ -16,7 +16,7 @@
 
 import SwiftUI
 
-struct ClearButton: View {
+struct ClearTextButton: View {
     @Binding var text: String
 
     var body: some View {
@@ -30,5 +30,22 @@ struct ClearButton: View {
             }
             .padding(.trailing, 8)
         }
+    }
+}
+
+struct ClearButton: View {
+    let onTap: () -> Void
+
+    init(_ onTap: @escaping () -> Void) {
+        self.onTap = onTap
+    }
+
+    var body: some View {
+        Button(action: onTap) {
+            Image(systemName: "xmark.circle.fill")
+                .foregroundColor(.secondaryText)
+                .opacity(0.5)
+        }
+        .padding(.trailing, 8)
     }
 }

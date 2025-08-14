@@ -23,16 +23,10 @@ public enum TTLDisplayMode: Int, Codable {
     case absolute = 1
 }
 
-@MainActor
-public struct LastUsedServer: Codable {
-    let transportType: TransportType
-    let address: String
-}
-
 /// Schema history:
 /// 2 - original releast
 /// 3 - add "name" field to preset server
-/// 4 - add DNS Inspector DoQ preset server, add limit for number of remembered queries
+/// 4 - change preset server to DNSResolver, add DNS Inspector DoQ preset server, add limit for number of remembered queries
 private let currentSchemaVersion: Int = 4
 
 private struct OptionsType: Codable {
@@ -49,8 +43,8 @@ private struct OptionsType: Codable {
     public var appLanguage: SupportedLanguages?
     public var automaticDnssecValidation: Bool?
 
-    public var presetServers: [PresetServer]?
-    public var lastUsedServer: LastUsedServer?
+    public var savedServers: [DNSResolver]?
+    public var lastUsedServer: DNSResolver?
 }
 
 @MainActor
@@ -109,24 +103,15 @@ public final class UserOptions {
         } else if currentVersion == 3 {
             LogWriter.shared.write(.Debug, message: "[\(#fileID):\(#line)] Migrating options")
 
-            var options: OptionsType
+            // Add name to preset server
+            let options: OptionsType3
             do {
-                options = try JSONDecoder().decode(OptionsType.self, from: data)
+                options = try JSONDecoder().decode(OptionsType3.self, from: data)
             } catch {
                 print("Error decoding options file \(optionsFilePath): \(error)")
                 return
             }
-
-            if options.presetServers?.contains(where: { server in
-                return server.type == .QUIC && server.address == "20.47.87.112:853"
-            }) == nil {
-                options.presetServers?.append(PresetServer(name: "DNS Inspector", type: .QUIC, address: "20.47.87.112:853"))
-            }
-
-            options.queryLimit = 5
-
-            current = options
-            current.schemaVersion = 4
+            current = options.convertToOptions()
         } else if currentVersion == 2 {
             LogWriter.shared.write(.Debug, message: "[\(#fileID):\(#line)] Migrating options")
 
@@ -138,7 +123,8 @@ public final class UserOptions {
                 print("Error decoding options file \(optionsFilePath): \(error)")
                 return
             }
-            current = options.convertToOptions()
+            let options3 = options.convertToOptions()
+            current = options3.convertToOptions()
         }
 
         LogWriter.shared.write(.Debug, message: "[\(#fileID):\(#line)] Loaded options")
@@ -280,23 +266,23 @@ public final class UserOptions {
         }
     }
 
-    public static var presetServers: [PresetServer] {
+    public static var savedServers: [DNSResolver] {
         get {
-            return current.presetServers ?? [
-                PresetServer(name: "Cloudflare", type: .TLS, address: "1.1.1.1"),
-                PresetServer(name: "Quad9", type: .DNS, address: "9.9.9.9"),
-                PresetServer(name: "Google", type: .HTTPS, address: "dns.google/dns-query"),
-                PresetServer(name: "DNS Inspector", type: .QUIC, address: "20.47.87.112:853"),
+            return current.savedServers ?? [
+                DNSResolver(name: "Cloudflare", type: .TLS, address: "1.1.1.1", id: UUID(uuidString: "18796193-dea5-4a92-b742-42a1b7481d65")!),
+                DNSResolver(name: "Quad9", type: .DNS, address: "9.9.9.9", id: UUID(uuidString: "a10e153d-859c-4d3d-86fd-2791f13c96e4")!),
+                DNSResolver(name: "Google", type: .HTTPS, address: "dns.google/dns-query", httpsBootstrapIp: "8.8.8.8", id: UUID(uuidString: "3d5afcfb-e251-472b-90dc-a3dc4c2a36b7")!),
+                DNSResolver(name: "DNS Inspector", type: .QUIC, address: "20.47.87.112:853", id: UUID(uuidString: "ba689402-b08b-4f66-b8e6-e5a0ddd3ac12")!),
             ]
         }
         set {
-            current.presetServers = newValue
+            current.savedServers = newValue
             save()
             NotificationCenter.default.post(name: presetServerChangedNotification, object: nil)
         }
     }
 
-    public static var lastUsedServer: LastUsedServer? {
+    public static var lastUsedServer: DNSResolver? {
         get {
             return current.lastUsedServer
         }
@@ -317,6 +303,30 @@ private struct PresetServer2: Codable, Identifiable {
     }
 }
 
+private struct PresetServer3: Codable, Identifiable {
+    public let name: String
+    public let type: TransportType
+    public let address: String
+    public var id = UUID()
+
+    public init(name: String, type: TransportType, address: String, id: UUID = UUID()) {
+        self.name = name
+        self.type = type
+        self.address = address
+        self.id = id
+    }
+
+    enum CodingKeys: CodingKey {
+        case name, type, address
+    }
+}
+
+@MainActor
+public struct LastUsedServer2: Codable {
+    let transportType: TransportType
+    let address: String
+}
+
 private struct OptionsType2: Codable {
     public var schemaVersion: Int
     public var appLaunchCount: Int?
@@ -331,10 +341,10 @@ private struct OptionsType2: Codable {
     public var automaticDnssecValidation: Bool?
 
     public var presetServers: [PresetServer2]?
-    public var lastUsedServer: LastUsedServer?
+    public var lastUsedServer: LastUsedServer2?
 
-    public func convertToOptions() -> OptionsType {
-        var newOptions = OptionsType(schemaVersion: currentSchemaVersion)
+    @MainActor public func convertToOptions() -> OptionsType3 {
+        var newOptions = OptionsType3(schemaVersion: currentSchemaVersion)
         newOptions.appLaunchCount = self.appLaunchCount
         newOptions.didPromptForReview = self.didPromptForReview
         newOptions.rememberQueries = self.rememberQueries
@@ -360,9 +370,56 @@ private struct OptionsType2: Codable {
                 } else {
                     name = presetServer.address
                 }
-                newOptions.presetServers?.append(PresetServer(name: name, type: presetServer.type, address: presetServer.address, id: presetServer.id))
+                newOptions.presetServers?.append(PresetServer3(name: name, type: presetServer.type, address: presetServer.address, id: presetServer.id))
             }
         }
+
+        return newOptions
+    }
+}
+
+private struct OptionsType3: Codable {
+    public var schemaVersion: Int
+    public var appLaunchCount: Int?
+    public var didPromptForReview: Bool?
+    public var rememberQueries: Bool?
+    public var rememberLastServer: Bool?
+    public var ttlDisplayMode: TTLDisplayMode?
+    public var showRecordDescription: Bool?
+    public var dnsPrefersTcp: Bool?
+    public var timeoutSeconds: UInt8?
+    public var appLanguage: SupportedLanguages?
+    public var automaticDnssecValidation: Bool?
+
+    public var presetServers: [PresetServer3]?
+    public var lastUsedServer: LastUsedServer2?
+
+    @MainActor public func convertToOptions() -> OptionsType {
+        var newOptions = OptionsType(schemaVersion: currentSchemaVersion)
+        newOptions.appLaunchCount = self.appLaunchCount
+        newOptions.didPromptForReview = self.didPromptForReview
+        newOptions.rememberQueries = self.rememberQueries
+        newOptions.rememberLastServer = self.rememberLastServer
+        newOptions.ttlDisplayMode = self.ttlDisplayMode
+        newOptions.showRecordDescription = self.showRecordDescription
+        newOptions.dnsPrefersTcp = self.dnsPrefersTcp
+        newOptions.timeoutSeconds = 5
+        newOptions.appLanguage = self.appLanguage
+        newOptions.automaticDnssecValidation = self.automaticDnssecValidation
+        newOptions.lastUsedServer = nil
+
+        var savedServers: [DNSResolver] = []
+        for presetServer in self.presetServers ?? [] {
+            let httpsBootstrapIp: String?
+            if presetServer.type == .HTTPS && presetServer.address == "dns.google/dns-query" {
+                httpsBootstrapIp = "8.8.8.8"
+            } else {
+                httpsBootstrapIp = nil
+            }
+            savedServers.append(DNSResolver(name: presetServer.name, type: presetServer.type, address: presetServer.address, httpsBootstrapIp: httpsBootstrapIp, id: presetServer.id))
+        }
+        savedServers.append(DNSResolver(name: "DNS Inspector", type: .QUIC, address: "20.47.87.112:853", id: UUID(uuidString: "ba689402-b08b-4f66-b8e6-e5a0ddd3ac12")!))
+        newOptions.savedServers = savedServers
 
         return newOptions
     }

@@ -1033,6 +1033,17 @@ public final class Localize {
             return "Server-IP"
         }
     }
+    // key: Server IP Address (Optional)
+    static func serveripaddressoptional() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Server IP Address (Optional)"
+        case .Spanish:
+            return "Server IP Address (Optional)"
+        case .German:
+            return "Server IP Address (Optional)"
+        }
+    }
     // key: Server Type
     static func servertype() -> String {
         switch currentLanguage {
@@ -1389,11 +1400,11 @@ public final class Localize {
     static func dnsservertargethelpurl() -> String {
         switch currentLanguage {
         case .English:
-            return "We connect to the DNS server using a URL. Do not include the dns query parameter."
+            return "We connect to the DNS server using a URL. Do not include the dns query parameter. You can specify the IP address of the server for improved privacy."
         case .Spanish:
-            return "We connect to the DNS server using a URL. Do not include the dns query parameter."
+            return "We connect to the DNS server using a URL. Do not include the dns query parameter. You can specify the IP address of the server for improved privacy."
         case .German:
-            return "We connect to the DNS server using a URL. Do not include the dns query parameter."
+            return "We connect to the DNS server using a URL. Do not include the dns query parameter. You can specify the IP address of the server for improved privacy."
         }
     }
     // key: dnssec_footer

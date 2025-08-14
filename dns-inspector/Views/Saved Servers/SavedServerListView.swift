@@ -18,20 +18,21 @@ import SwiftUI
 import DNSKit
 
 struct PresetServerListView: View {
-    @State private var presetServers: [PresetServer] = []
+    @State private var savedServers: [DNSResolver] = []
     @State private var newServerName: String = ""
     @State private var newTransportType: TransportType = .DNS
     @State private var newServerAddress: String = ""
+    @State private var newHttpsBootstrapIp: String = ""
 
     var body: some View {
         List {
-            ForEach(presetServers) { server in
-                PresetServerListViewItem(presetServer: server) {
+            ForEach(savedServers) { server in
+                SavedServerListViewItem(savedServer: server) {
                     self.loadPresetServers()
                 }
             }
             .onDelete { idx in
-                UserOptions.presetServers.remove(atOffsets: idx)
+                UserOptions.savedServers.remove(atOffsets: idx)
                 self.loadPresetServers()
             }
         }
@@ -41,12 +42,19 @@ struct PresetServerListView: View {
         .listStyle(.plain)
         .toolbar(content: {
             NavigationLink {
-                PresetServerEditView(serverName: $newServerName, transportType: $newTransportType, serverAddress: $newServerAddress, isNew: true) {
-                    UserOptions.presetServers.append(PresetServer(name: newServerName, type: newTransportType, address: newServerAddress))
+                SavedServerEditView(serverName: $newServerName, transportType: $newTransportType, serverAddress: $newServerAddress, httpsBootstrapIp: $newHttpsBootstrapIp, isNew: true) {
+                    let newResolver: DNSResolver
+                    if self.newTransportType == .HTTPS && !newHttpsBootstrapIp.isEmpty {
+                        newResolver = DNSResolver(name: newServerName, type: newTransportType, address: newServerAddress, httpsBootstrapIp: newHttpsBootstrapIp, id: UUID())
+                    } else {
+                        newResolver = DNSResolver(name: newServerName, type: newTransportType, address: newServerAddress, id: UUID())
+                    }
+                    UserOptions.savedServers.append(newResolver)
                     self.loadPresetServers()
                     self.newServerName = ""
                     self.newTransportType = .DNS
                     self.newServerAddress = ""
+                    self.newHttpsBootstrapIp = ""
                 }
             } label: {
                 Image(systemName: "plus")
@@ -57,35 +65,43 @@ struct PresetServerListView: View {
     }
 
     func loadPresetServers() {
-        self.presetServers = UserOptions.presetServers
+        self.savedServers = UserOptions.savedServers
     }
 }
 
-private struct PresetServerListViewItem: View {
+private struct SavedServerListViewItem: View {
     let onEdit: () -> Void
     @State private var name: String
     @State private var transportType: TransportType
     @State private var address: String
+    @State private var httpsBootstrapIp: String
     private let serverID: UUID
 
-    public init(presetServer: PresetServer, onEdit: @escaping () -> Void) {
-        _name = .init(initialValue: presetServer.name)
-        _transportType = .init(initialValue: presetServer.type)
-        _address = .init(initialValue: presetServer.address)
-        self.serverID = presetServer.id
+    public init(savedServer: DNSResolver, onEdit: @escaping () -> Void) {
+        _name = .init(initialValue: savedServer.name ?? "")
+        _transportType = .init(initialValue: savedServer.type)
+        _address = .init(initialValue: savedServer.address)
+        _httpsBootstrapIp = .init(initialValue: savedServer.httpsBootstrapIp ?? "")
+        self.serverID = savedServer.id
         self.onEdit = onEdit
     }
 
     var body: some View {
         NavigationLink {
-            PresetServerEditView(serverName: $name, transportType: $transportType, serverAddress: $address, isNew: false) {
-                for (index, server) in UserOptions.presetServers.enumerated() {
+            SavedServerEditView(serverName: $name, transportType: $transportType, serverAddress: $address, httpsBootstrapIp: $httpsBootstrapIp, isNew: false) {
+                for (index, server) in UserOptions.savedServers.enumerated() {
                     if server.id != serverID {
                         continue
                     }
 
-                    let newServer = PresetServer(name: name, type: transportType, address: address, id: serverID)
-                    UserOptions.presetServers[index] = newServer
+                    let newResolver: DNSResolver
+                    if transportType == .HTTPS && !httpsBootstrapIp.isEmpty {
+                        newResolver = DNSResolver(name: name, type: transportType, address: address, httpsBootstrapIp: httpsBootstrapIp, id: serverID)
+                    } else {
+                        newResolver = DNSResolver(name: name, type: transportType, address: address, id: serverID)
+                    }
+
+                    UserOptions.savedServers[index] = newResolver
                     self.onEdit()
                 }
             }

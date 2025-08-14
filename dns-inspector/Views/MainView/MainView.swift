@@ -29,17 +29,26 @@ private class MainViewState: ObservableObject {
 
 @MainActor
 private class MainViewQueryState: ObservableObject {
-    @Published var recordType = RecordType.A
-    @Published var name = ""
-    @Published var transportType = UserOptions.lastUsedServer?.transportType ?? TransportType.DNS
-    @Published var serverAddress = UserOptions.lastUsedServer?.address ?? ""
+    @Published var recordType: RecordType
+    @Published var name: String
+    @Published var resolver: DNSResolver
+
+    init(recordType: RecordType = RecordType.A, name: String = "", resolver: DNSResolver) {
+        self.recordType = recordType
+        self.name = name
+        self.resolver = resolver
+    }
 }
 
 struct MainView: View {
-    @StateObject private var query = MainViewQueryState()
+    @StateObject private var query: MainViewQueryState
     @StateObject private var lookupState = MainViewState()
     @State private var showAboutView = false
     @State private var showOptionsView = false
+
+    init() {
+        _query = StateObject(wrappedValue: MainViewQueryState(resolver: UserOptions.lastUsedServer ?? DNSResolver(type: .DNS, address: "", id: UUID())))
+    }
 
     var body: some View {
         Navigation {
@@ -47,7 +56,7 @@ struct MainView: View {
                 Section(Localize.newquery()) {
                     MainViewNameInput(recordType: $query.recordType, name: $query.name)
                     .disabled(self.lookupState.loading)
-                    MainViewServerInput(transportType: $query.transportType, serverAddress: $query.serverAddress) {
+                    MainViewServerInput(resolver: $query.resolver) {
                         Task {
                             await doInspect()
                         }
@@ -68,7 +77,7 @@ struct MainView: View {
                 if UserOptions.rememberQueries && RecentQueryManager.shared.queries.count > 0 {
                     MainViewRecentLookups { query in
                         Task {
-                            await doInspect(recordType: query.recordType, name: query.name, transportType: query.transportType, serverAddress: query.serverAddress)
+                            await doInspect(recordType: query.recordType, name: query.name, resolver: query.resolver)
                         }
                     }
                 }
@@ -128,24 +137,24 @@ struct MainView: View {
     }
 
     func isInvalid() -> Bool {
-        return self.query.name.isEmpty || self.query.serverAddress.isEmpty
+        return self.query.resolver.address.isEmpty
     }
 
     func doInspect() async {
-        await doInspect(recordType: self.query.recordType, name: self.query.name, transportType: self.query.transportType, serverAddress: self.query.serverAddress)
+        await doInspect(recordType: self.query.recordType, name: self.query.name, resolver: self.query.resolver)
     }
 
-    func doInspect(recordType: RecordType, name: String, transportType: TransportType, serverAddress: String) async {
+    func doInspect(recordType: RecordType, name: String, resolver: DNSResolver) async {
         withAnimation {
             self.lookupState.loading = true
             self.lookupState.error = nil
         }
 
-        let transportOptions = TransportOptions(dnsPrefersTcp: UserOptions.dnsPrefersTcp, timeout: UserOptions.timeoutSeconds)
+        let transportOptions = TransportOptions(dnsPrefersTcp: UserOptions.dnsPrefersTcp, timeout: UserOptions.timeoutSeconds, httpsServerAddress: resolver.httpsBootstrapIp)
         let queryOptions = QueryOptions(dnssecRequested: true)
         let query: Query
         do {
-            query = try Query(transportType: transportType, transportOptions: transportOptions, serverAddress: serverAddress, recordType: recordType, name: name, queryOptions: queryOptions)
+            query = try Query(transportType: resolver.type, transportOptions: transportOptions, serverAddress: resolver.address, recordType: recordType, name: name, queryOptions: queryOptions)
         } catch {
             withAnimation {
                 self.lookupState.error = error
@@ -170,9 +179,9 @@ struct MainView: View {
         self.lookupState.result = message
         self.lookupState.query = query
         self.lookupState.success = true
-        RecentQueryManager.shared.add(RecentQuery(recordType: query.recordType, name: query.name, transportType: query.transportType, serverAddress: query.serverAddress))
+        RecentQueryManager.shared.add(RecentQuery(recordType: query.recordType, name: query.name, resolver: resolver))
         if UserOptions.rememberLastServer {
-            UserOptions.lastUsedServer = LastUsedServer(transportType: self.query.transportType, address: self.query.serverAddress)
+            UserOptions.lastUsedServer = resolver
         }
     }
 }

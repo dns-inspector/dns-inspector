@@ -17,10 +17,11 @@
 import SwiftUI
 import DNSKit
 
-struct PresetServerEditView: View {
+struct SavedServerEditView: View {
     @Binding public var serverName: String
     @Binding public var transportType: TransportType
     @Binding public var serverAddress: String
+    @Binding public var httpsBootstrapIp: String
     public let isNew: Bool
     public let didSave: () -> Void
     @State private var validationError: Error?
@@ -29,7 +30,7 @@ struct PresetServerEditView: View {
     var body: some View {
         List {
             Section {
-                HStack {
+                VStack(alignment: .leading) {
                     Text(Localize.friendlyname())
                     TextField("My server", text: $serverName)
                         .keyboardType(.asciiCapable)
@@ -48,7 +49,7 @@ struct PresetServerEditView: View {
                     Text("TLS").tag(TransportType.TLS)
                     Text("QUIC").tag(TransportType.QUIC)
                 }
-                HStack {
+                VStack(alignment: .leading) {
                     Text(transportType == .HTTPS ? Localize.serverurl() : Localize.serveraddress())
                     // Have to use string interpolation here because otherwise the link is made blue. you can't tap on it,
                     // but its blue. user inputted text isnt blue, but swiftui decided that the placeholder should be blue.
@@ -58,6 +59,16 @@ struct PresetServerEditView: View {
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                         .submitLabel(.done)
+                }
+                if transportType == .HTTPS {
+                    VStack(alignment: .leading) {
+                        Text(Localize.serveripaddressoptional())
+                        TextField("192.0.2.1", text: $httpsBootstrapIp)
+                            .keyboardType(.URL)
+                            .autocorrectionDisabled()
+                            .textInputAutocapitalization(.never)
+                            .submitLabel(.done)
+                    }
                 }
                 if let error = self.validationError {
                     ErrorCellView(error: error)

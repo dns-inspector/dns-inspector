@@ -17,24 +17,27 @@
 import SwiftUI
 import DNSKit
 
-public struct PresetServerButton: View {
-    @Binding public var transportType: TransportType
-    @Binding public var serverAddress: String
+public struct SavedServerButton: View {
+    public let onSelect: (DNSResolver) -> Void
     @State private var newServerName = ""
     @State private var newTransportType = TransportType.HTTPS
     @State private var newServerAddress = ""
-    @State private var presetServers: [PresetServer] = UserOptions.presetServers
+    @State private var newHttpsBootstrapIp = ""
+    @State private var savedServers: [DNSResolver] = UserOptions.savedServers
     @State private var showEditServerView = false
+
+    public init(_ onSelect: @escaping (DNSResolver) -> Void) {
+        self.onSelect = onSelect
+    }
 
     public var body: some View {
         Menu {
             Section(Localize.presetservers()) {
-                ForEach(presetServers) { server in
+                ForEach(savedServers) { server in
                     Button(action: {
-                        self.transportType = server.type
-                        self.serverAddress = server.address
+                        self.onSelect(server)
                     }, label: {
-                        Text("\(server.type.string()) - \(server.name)")
+                        Text("\(server.type.string()) - \(server.name!)")
                     })
                 }
             }
@@ -51,10 +54,15 @@ public struct PresetServerButton: View {
         })
         .sheet(isPresented: $showEditServerView, content: {
             Navigation {
-                PresetServerEditView(serverName: $newServerName, transportType: $newTransportType, serverAddress: $newServerAddress, isNew: true) {
-                    UserOptions.presetServers.append(PresetServer(name: newServerName, type: newTransportType, address: newServerAddress))
-                    transportType = newTransportType
-                    serverAddress = newServerAddress
+                SavedServerEditView(serverName: $newServerName, transportType: $newTransportType, serverAddress: $newServerAddress, httpsBootstrapIp: $newHttpsBootstrapIp, isNew: true) {
+                    let newResolver: DNSResolver
+                    if self.newTransportType == .HTTPS && !newHttpsBootstrapIp.isEmpty {
+                        newResolver = DNSResolver(name: newServerName, type: newTransportType, address: newServerAddress, httpsBootstrapIp: newHttpsBootstrapIp, id: UUID())
+                    } else {
+                        newResolver = DNSResolver(name: newServerName, type: newTransportType, address: newServerAddress, id: UUID())
+                    }
+                    UserOptions.savedServers.append(newResolver)
+                    self.onSelect(newResolver)
                 }
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
@@ -70,6 +78,6 @@ public struct PresetServerButton: View {
     }
 
     func loadServers() {
-        self.presetServers = UserOptions.presetServers
+        self.savedServers = UserOptions.savedServers
     }
 }
