@@ -20,6 +20,7 @@ permissions:
 
 env:
   TEST_DEVICE: "iPhone 16 Pro"
+  XCODE_VERSION: "Xcode_16.4" # https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md
 
 jobs:
   build:
@@ -28,7 +29,7 @@ jobs:
     steps:
       - name: Checkout Source
         id: checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #pin v4.2.2
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 #pin v5.0.0
         with:
           persist-credentials: false
 
@@ -53,16 +54,17 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          sudo xcode-select -s "/Applications/Xcode_16.app"
+          echo "Switching to ${{ env.XCODE_VERSION }}"
+          sudo xcode-select -s /Applications/${{ env.XCODE_VERSION }}.app/Contents/Developer
+          xcode-select -p
           echo "DERIVEDDATA_PATH=$(xcodebuild -project dns-inspector.xcodeproj -showBuildSettings -configuration Debug 2>/dev/null | grep " BUILD_DIR = " | cut -d '=' -f2 | awk '{$1=$1};1' | sed 's%/Build/Products%%g')" >> "$GITHUB_OUTPUT"
           echo "SWIFTLINT_CACHE_KEY=swiftlint_$(gh api repos/realm/swiftlint/releases/latest --jq '.assets[] | select(.name == "portable_swiftlint.zip") | .id')" >> "$GITHUB_OUTPUT"
-          xcode-select -p
           defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
           defaults write com.apple.dt.Xcode IDESkipMacroFingerprintValidation -bool YES
 
       - name: Restore Cached SwiftLint
         id: restore_swiftlint
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 #pin v4.2.3
+        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 #pin v4.2.4
         with:
           key: ${{ steps.prepare.outputs.SWIFTLINT_CACHE_KEY }}
           path: |
