@@ -44,6 +44,9 @@ func localizedErrorDetails(_ error: any Error) -> String {
             return Localize.httpcode(code: String(describing: details))
         case .invalidContentType(let details):
             return Localize.invalidcontenttypedetails(details: details)
+        case .internalError:
+            // Should never be seen
+            return ""
         }
     } else if let error = error as? DNSSECError {
         switch error {

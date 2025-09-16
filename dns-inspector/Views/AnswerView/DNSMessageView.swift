@@ -20,13 +20,15 @@ import DNSKit
 public struct DNSMessageView: View {
     public let query: Query
     public let message: DNSKit.Message
+    public let serverAddress: String
     private let hasRrsig: Bool
     @State private var showWhois = false
     @Environment(\.dismiss) private var dismiss
 
-    public init(query: Query, message: DNSKit.Message) {
+    public init(query: Query, response: Response) {
         self.query = query
-        self.message = message
+        self.message = response.message
+        self.serverAddress = response.serverAddress
         self.hasRrsig = message.answers.first {
             return $0.recordType == .RRSIG
         } != nil
@@ -41,7 +43,7 @@ public struct DNSMessageView: View {
                         Divider()
                         RoundedLabel(query.transportType.string(), textColor: .primary, borderColor: .gray)
                         Divider()
-                        Text(query.serverAddress).fixedwidth()
+                        Text(serverAddress).fixedwidth()
                     }
                 }
                 Section(Localize.response()) {

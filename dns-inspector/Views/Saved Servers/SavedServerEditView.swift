@@ -20,8 +20,8 @@ import DNSKit
 struct SavedServerEditView: View {
     @Binding public var serverName: String
     @Binding public var transportType: TransportType
-    @Binding public var serverAddress: String
-    @Binding public var httpsBootstrapIp: String
+    @Binding public var serverAddresses: [String]
+    @Binding public var httpsBootstrapIps: [String]
     public let isNew: Bool
     public let didSave: () -> Void
     @State private var validationError: Error?
@@ -29,10 +29,10 @@ struct SavedServerEditView: View {
 
     var body: some View {
         List {
-            Section {
+            Section(Localize.serverdetails()) {
                 VStack(alignment: .leading) {
                     Text(Localize.friendlyname())
-                    TextField("My server", text: $serverName)
+                    TextField(Localize.myserver(), text: $serverName)
                         .keyboardType(.asciiCapable)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
@@ -49,41 +49,64 @@ struct SavedServerEditView: View {
                     Text("TLS").tag(TransportType.TLS)
                     Text("QUIC").tag(TransportType.QUIC)
                 }
-                VStack(alignment: .leading) {
-                    Text(transportType == .HTTPS ? Localize.serverurl() : Localize.serveraddress())
+            }
+            Section {
+                ForEach($serverAddresses.indices, id: \.self) { index in
                     // Have to use string interpolation here because otherwise the link is made blue. you can't tap on it,
                     // but its blue. user inputted text isnt blue, but swiftui decided that the placeholder should be blue.
-                    // who asked for this??? why is this the default??????
-                    TextField("\(transportType == .HTTPS ? "https://example.com/dns-query" : "192.0.2.1")", text: $serverAddress)
+                    // who asked for this??? why is this the default?????? why isn't anyone answering my questions????????
+                    TextField("\(transportType == .HTTPS ? "https://example.com/dns-query" : "192.0.2.1")", text: $serverAddresses[index])
+                        .font(Font.custom("Menlo", size: 16, relativeTo: .body))
                         .keyboardType(.URL)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                         .submitLabel(.done)
                 }
-                if transportType == .HTTPS {
-                    VStack(alignment: .leading) {
-                        Text(Localize.serveripaddressoptional())
-                        TextField("192.0.2.1", text: $httpsBootstrapIp)
+            } header: {
+                HStack {
+                    Text(transportType == .HTTPS ? Localize.serverurl() : Localize.serveraddresses())
+                    if transportType != .HTTPS {
+                        Spacer()
+                        Button {
+                            self.serverAddresses.append("")
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                    }
+                }
+            } footer: {
+                Text(transportType == .HTTPS ? Localize.dnsservertargethelpurl() : Localize.dnsservertargethelpdns())
+            }
+            if transportType == .HTTPS {
+                Section {
+                    ForEach($httpsBootstrapIps.indices, id: \.self) { index in
+                        TextField("192.0.2.1", text: $httpsBootstrapIps[index])
+                            .font(Font.custom("Menlo", size: 16, relativeTo: .body))
                             .keyboardType(.URL)
                             .autocorrectionDisabled()
                             .textInputAutocapitalization(.never)
                             .submitLabel(.done)
                     }
+                } header: {
+                    HStack {
+                        Text(Localize.serveripaddressesoptional())
+                        Spacer()
+                        Button {
+                            self.httpsBootstrapIps.append("")
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                    }
+                } footer: {
+                    Text(Localize.dnsserverdohbootstrap())
                 }
-                if let error = self.validationError {
-                    ErrorCellView(error: error)
-                }
-            } header: {
-                Text(Localize.serverdetails())
-            } footer: {
-                Text(transportType == .HTTPS ? Localize.dnsservertargethelpurl() : Localize.dnsservertargethelpdns())
             }
         }
         .navigationTitle(isNew ? Localize.newpresetserver() : Localize.editpresetserver())
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button(Localize.save()) {
-                    if let err = Query.validateConfiguration(transportType: self.transportType, serverAddress: self.serverAddress) {
+                    if let err = Query.validateConfiguration(transportType: self.transportType, serverAddresses: self.serverAddresses, bootstrapIps: self.httpsBootstrapIps) {
                         withAnimation {
                             self.validationError = err
                         }

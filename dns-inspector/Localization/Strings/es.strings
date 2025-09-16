@@ -108,6 +108,8 @@ Missing data: {details}	Missing data: {0}
 # TODO
 Missing keys: {details}	Missing keys: {0}
 More from the developer	Más apps del desarrollador
+# TODO
+My Server	My Server
 Name	Nombre
 Network	Red
 New Preset Server	Nuevo servidor predefinido
@@ -148,12 +150,13 @@ Send traditional DNS requests using TCP	Enviar peticiones DNS tradicionales con 
 # TODO
 Serial	Serial
 Server	Servidor
-Server Address	Dirección del servidor
+# TODO
+Server Addresses	Server Addresses
 # TODO
 Server Details	Server Details
 Server IP	IP del servidor
 # TODO
-Server IP Address (Optional)	Server IP Address (Optional)
+Server IP Addresses (Optional)	Server IP Addresses (Optional)
 Server Type	Tipo de servidor
 Server URL	URL del servidor
 Share & Feedback	Compartir y comentarios
@@ -208,9 +211,11 @@ Your changes will take affect only quitting and restarting DNS Inspector	Your ch
 Zone signing key	Zone signing key
 about_footer_{year}	DNS Inspector es software libre y gratuito bajo licencia GNU GPLv3. Derechos de autor de DNS Inspector © 2023-{0} Ian Spence.
 # TODO
-dns_server_target_help_dns	We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets.
+dns_server_doh_bootstrap	You can specify the IP addresses of this DNS over HTTPS server for enhanced privacy.
 # TODO
-dns_server_target_help_url	We connect to the DNS server using a URL. Do not include the dns query parameter. You can specify the IP address of the server for improved privacy.
+dns_server_target_help_dns	We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets. You can specify multiple IP addresses and DNS Inspector will attempt to use all of them.
+# TODO
+dns_server_target_help_url	We connect to the DNS server using a URL. Do not include the dns query parameter.
 # TODO
 dnssec_footer	When DNSSEC is enabled all DNS queries include a request for record signatures. DNSSEC verification will perform additional queries to establish trust and may take multiple seconds to complete.
 record_description_a	Los registros DNS A contienen una dirección IPv4.

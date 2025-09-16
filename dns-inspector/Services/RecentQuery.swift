@@ -50,7 +50,7 @@ private struct RecentQuery1: Codable {
     let serverAddress: String
 
     func update() -> RecentQuery {
-        return RecentQuery(recordType: self.recordType, name: self.name, resolver: DNSResolver(type: self.transportType, address: self.serverAddress, id: UUID()))
+        return RecentQuery(recordType: self.recordType, name: self.name, resolver: DNSResolver(type: self.transportType, addresses: [self.serverAddress], id: UUID()))
     }
 }
 

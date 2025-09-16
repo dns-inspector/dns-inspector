@@ -22,7 +22,7 @@ import StoreKit
 private class MainViewState: ObservableObject {
     @Published var loading = false
     @Published var query: Query?
-    @Published var result: DNSKit.Message?
+    @Published var result: Response?
     @Published var error: Error?
     @Published var success = false
 }
@@ -47,7 +47,7 @@ struct MainView: View {
     @State private var showOptionsView = false
 
     init() {
-        _query = StateObject(wrappedValue: MainViewQueryState(resolver: UserOptions.lastUsedServer ?? DNSResolver(type: .DNS, address: "", id: UUID())))
+        _query = StateObject(wrappedValue: MainViewQueryState(resolver: UserOptions.lastUsedServer ?? DNSResolver(type: .DNS, addresses: [""], id: UUID())))
     }
 
     var body: some View {
@@ -120,7 +120,7 @@ struct MainView: View {
             OptionsView()
         })
         .fullScreenCover(isPresented: $lookupState.success) {
-            DNSMessageView(query: lookupState.query!, message: lookupState.result!)
+            DNSMessageView(query: lookupState.query!, response: lookupState.result!)
         }
         .onAppear {
             #if !DEBUG
@@ -137,7 +137,7 @@ struct MainView: View {
     }
 
     func isInvalid() -> Bool {
-        return self.query.resolver.address.isEmpty
+        return self.query.resolver.addresses.count == 0 || self.query.resolver.addresses[0].isEmpty
     }
 
     func doInspect() async {
@@ -150,11 +150,11 @@ struct MainView: View {
             self.lookupState.error = nil
         }
 
-        let transportOptions = TransportOptions(dnsPrefersTcp: UserOptions.dnsPrefersTcp, timeout: UserOptions.timeoutSeconds, httpsServerAddress: resolver.httpsBootstrapIp)
+        let transportOptions = TransportOptions(dnsPrefersTcp: UserOptions.dnsPrefersTcp, timeout: UserOptions.timeoutSeconds, httpsBootstrapIps: resolver.httpsBootstrapIps)
         let queryOptions = QueryOptions(dnssecRequested: true)
         let query: Query
         do {
-            query = try Query(transportType: resolver.type, transportOptions: transportOptions, serverAddress: resolver.address, recordType: recordType, name: name, queryOptions: queryOptions)
+            query = try Query(transportType: resolver.type, transportOptions: transportOptions, serverAddresses: resolver.addresses, recordType: recordType, name: name, queryOptions: queryOptions)
         } catch {
             withAnimation {
                 self.lookupState.error = error
@@ -163,9 +163,9 @@ struct MainView: View {
             return
         }
 
-        let message: DNSKit.Message
+        let response: Response
         do {
-            message = try await query.execute()
+            response = try await query.execute()
         } catch {
             withAnimation {
                 self.lookupState.error = error
@@ -176,7 +176,7 @@ struct MainView: View {
 
         self.lookupState.error = nil
         self.lookupState.loading = false
-        self.lookupState.result = message
+        self.lookupState.result = response
         self.lookupState.query = query
         self.lookupState.success = true
         RecentQueryManager.shared.add(RecentQuery(recordType: query.recordType, name: query.name, resolver: resolver))

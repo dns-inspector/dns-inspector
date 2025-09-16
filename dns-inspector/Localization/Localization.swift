@@ -681,6 +681,17 @@ public final class Localize {
             return "Weiteres vom Entwickler"
         }
     }
+    // key: My Server
+    static func myserver() -> String {
+        switch currentLanguage {
+        case .English:
+            return "My Server"
+        case .Spanish:
+            return "My Server"
+        case .German:
+            return "My Server"
+        }
+    }
     // key: Name
     static func name() -> String {
         switch currentLanguage {
@@ -1000,15 +1011,15 @@ public final class Localize {
             return "Server"
         }
     }
-    // key: Server Address
-    static func serveraddress() -> String {
+    // key: Server Addresses
+    static func serveraddresses() -> String {
         switch currentLanguage {
         case .English:
-            return "Server Address"
+            return "Server Addresses"
         case .Spanish:
-            return "Dirección del servidor"
+            return "Server Addresses"
         case .German:
-            return "Server-Adresse"
+            return "Server Addresses"
         }
     }
     // key: Server Details
@@ -1033,15 +1044,15 @@ public final class Localize {
             return "Server-IP"
         }
     }
-    // key: Server IP Address (Optional)
-    static func serveripaddressoptional() -> String {
+    // key: Server IP Addresses (Optional)
+    static func serveripaddressesoptional() -> String {
         switch currentLanguage {
         case .English:
-            return "Server IP Address (Optional)"
+            return "Server IP Addresses (Optional)"
         case .Spanish:
-            return "Server IP Address (Optional)"
+            return "Server IP Addresses (Optional)"
         case .German:
-            return "Server IP Address (Optional)"
+            return "Server IP Addresses (Optional)"
         }
     }
     // key: Server Type
@@ -1385,26 +1396,37 @@ public final class Localize {
             return "DNS-Inspector ist eine kostenlose & freie, quelloffene Software, lizenziert unter GNU GPLv3. DNS-Inspector besitzt das Copyright © 2023-\(year) Ian Spence."
         }
     }
+    // key: dns_server_doh_bootstrap
+    static func dnsserverdohbootstrap() -> String {
+        switch currentLanguage {
+        case .English:
+            return "You can specify the IP addresses of this DNS over HTTPS server for enhanced privacy."
+        case .Spanish:
+            return "You can specify the IP addresses of this DNS over HTTPS server for enhanced privacy."
+        case .German:
+            return "You can specify the IP addresses of this DNS over HTTPS server for enhanced privacy."
+        }
+    }
     // key: dns_server_target_help_dns
     static func dnsservertargethelpdns() -> String {
         switch currentLanguage {
         case .English:
-            return "We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets."
+            return "We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets. You can specify multiple IP addresses and DNS Inspector will attempt to use all of them."
         case .Spanish:
-            return "We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets."
+            return "We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets. You can specify multiple IP addresses and DNS Inspector will attempt to use all of them."
         case .German:
-            return "We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets."
+            return "We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets. You can specify multiple IP addresses and DNS Inspector will attempt to use all of them."
         }
     }
     // key: dns_server_target_help_url
     static func dnsservertargethelpurl() -> String {
         switch currentLanguage {
         case .English:
-            return "We connect to the DNS server using a URL. Do not include the dns query parameter. You can specify the IP address of the server for improved privacy."
+            return "We connect to the DNS server using a URL. Do not include the dns query parameter."
         case .Spanish:
-            return "We connect to the DNS server using a URL. Do not include the dns query parameter. You can specify the IP address of the server for improved privacy."
+            return "We connect to the DNS server using a URL. Do not include the dns query parameter."
         case .German:
-            return "We connect to the DNS server using a URL. Do not include the dns query parameter. You can specify the IP address of the server for improved privacy."
+            return "We connect to the DNS server using a URL. Do not include the dns query parameter."
         }
     }
     // key: dnssec_footer

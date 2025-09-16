@@ -21,8 +21,8 @@ public struct SavedServerButton: View {
     public let onSelect: (DNSResolver) -> Void
     @State private var newServerName = ""
     @State private var newTransportType = TransportType.HTTPS
-    @State private var newServerAddress = ""
-    @State private var newHttpsBootstrapIp = ""
+    @State private var newServerAddresses = [""]
+    @State private var newHttpsBootstrapIps: [String] = []
     @State private var savedServers: [DNSResolver] = UserOptions.savedServers
     @State private var showEditServerView = false
 
@@ -54,12 +54,12 @@ public struct SavedServerButton: View {
         })
         .sheet(isPresented: $showEditServerView, content: {
             Navigation {
-                SavedServerEditView(serverName: $newServerName, transportType: $newTransportType, serverAddress: $newServerAddress, httpsBootstrapIp: $newHttpsBootstrapIp, isNew: true) {
+                SavedServerEditView(serverName: $newServerName, transportType: $newTransportType, serverAddresses: $newServerAddresses, httpsBootstrapIps: $newHttpsBootstrapIps, isNew: true) {
                     let newResolver: DNSResolver
-                    if self.newTransportType == .HTTPS && !newHttpsBootstrapIp.isEmpty {
-                        newResolver = DNSResolver(name: newServerName, type: newTransportType, address: newServerAddress, httpsBootstrapIp: newHttpsBootstrapIp, id: UUID())
+                    if self.newTransportType == .HTTPS && !newHttpsBootstrapIps.isEmpty {
+                        newResolver = DNSResolver(name: newServerName, type: newTransportType, addresses: newServerAddresses, httpsBootstrapIps: newHttpsBootstrapIps, id: UUID())
                     } else {
-                        newResolver = DNSResolver(name: newServerName, type: newTransportType, address: newServerAddress, id: UUID())
+                        newResolver = DNSResolver(name: newServerName, type: newTransportType, addresses: newServerAddresses, id: UUID())
                     }
                     UserOptions.savedServers.append(newResolver)
                     self.onSelect(newResolver)

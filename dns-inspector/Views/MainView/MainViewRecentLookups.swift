@@ -34,7 +34,7 @@ struct MainViewRecentLookups: View {
                         Divider()
                         RoundedLabel(query.resolver.type.string(), textColor: .primary, borderColor: .gray)
                             .layoutPriority(2)
-                        Text(query.resolver.address)
+                        Text(query.resolver.addresses[0])
                             .lineLimit(2)
                     }
                 }

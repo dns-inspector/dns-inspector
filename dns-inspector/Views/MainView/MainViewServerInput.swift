@@ -28,7 +28,7 @@ struct MainViewServerInput: View {
         self.resolver = resolver
         self.useSavedServer = resolver.wrappedValue.name != nil
         self.transportType = resolver.wrappedValue.type
-        self.server = resolver.wrappedValue.address
+        self.server = resolver.wrappedValue.addresses[0]
         self.onSubmit = onSubmit
     }
 
@@ -77,10 +77,10 @@ struct MainViewServerInput: View {
             }
         }
         .onChange(of: transportType) { _ in
-            self.resolver.wrappedValue = DNSResolver(type: self.transportType, address: self.server, id: UUID())
+            self.resolver.wrappedValue = DNSResolver(type: self.transportType, addresses: [self.server], id: UUID())
         }
         .onChange(of: server) { _ in
-            self.resolver.wrappedValue = DNSResolver(type: self.transportType, address: self.server, id: UUID())
+            self.resolver.wrappedValue = DNSResolver(type: self.transportType, addresses: [self.server], id: UUID())
         }
     }
 
