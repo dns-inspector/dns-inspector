@@ -29,6 +29,18 @@ struct SavedServerEditView: View {
 
     var body: some View {
         List {
+            if let error = validationError {
+                Section {
+                    HStack(alignment: .top) {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                        VStack(alignment: .leading) {
+                            Text(Localize.unabletosaveyourchanges()).bold()
+                            Text(localizedErrorDetails(error))
+                        }
+                    }
+                    .listRowBackground(Color.red)
+                }
+            }
             Section(Localize.serverdetails()) {
                 VStack(alignment: .leading) {
                     Text(Localize.friendlyname())
@@ -106,6 +118,8 @@ struct SavedServerEditView: View {
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button(Localize.save()) {
+                    self.serverAddresses.removeAll(where: \.isEmpty)
+                    self.httpsBootstrapIps.removeAll(where: \.isEmpty)
                     if let err = Query.validateConfiguration(transportType: self.transportType, serverAddresses: self.serverAddresses, bootstrapIps: self.httpsBootstrapIps) {
                         withAnimation {
                             self.validationError = err

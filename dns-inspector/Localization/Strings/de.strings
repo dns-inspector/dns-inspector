@@ -141,6 +141,8 @@ Too many redirects	Too many redirects
 Trust Establishment Failed	Vertrauensetablierung fehlgeschlagen
 Trusted	Vertraut
 # TODO
+Unable to save your changes	Unable to save your changes
+# TODO
 Unexpected response: {details}	Unexpected response: {0}
 # TODO
 Unsupported algorithm	Unsupported algorithm

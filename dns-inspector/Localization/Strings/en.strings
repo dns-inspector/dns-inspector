@@ -110,6 +110,7 @@ Timed out	Timed out
 Too many redirects	Too many redirects
 Trust Establishment Failed	Trust Establishment Failed
 Trusted	Trusted
+Unable to save your changes	Unable to save your changes
 Unexpected response: {details}	Unexpected response: {0}
 Unsupported algorithm	Unsupported algorithm
 Untrusted	Untrusted

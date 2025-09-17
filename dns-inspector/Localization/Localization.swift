@@ -1231,6 +1231,17 @@ public final class Localize {
             return "Vertraut"
         }
     }
+    // key: Unable to save your changes
+    static func unabletosaveyourchanges() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Unable to save your changes"
+        case .Spanish:
+            return "Unable to save your changes"
+        case .German:
+            return "Unable to save your changes"
+        }
+    }
     // key: Unexpected response: {details}
     static func unexpectedresponsedetails(details: String) -> String {
         switch currentLanguage {

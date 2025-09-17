@@ -184,6 +184,8 @@ Trust Establishment Failed	Trust Establishment Failed
 # TODO
 Trusted	Trusted
 # TODO
+Unable to save your changes	Unable to save your changes
+# TODO
 Unexpected response: {details}	Unexpected response: {0}
 # TODO
 Unsupported algorithm	Unsupported algorithm
