@@ -18,7 +18,6 @@
 		3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */; };
 		3C3801342DA1AEB9007126EB /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3801332DA1AEA5007126EB /* AppIconView.swift */; };
 		3C4BB6BF2CE84F9900C7F78F /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4BB6BE2CE84F9700C7F78F /* Errors.swift */; };
-		3C51F5882CDD9E5F00B9693D /* de.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C51F5872CDD9E5F00B9693D /* de.plist */; };
 		3C5511512E46AFAF009C4F70 /* Localization+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5511502E46AFA6009C4F70 /* Localization+Extra.swift */; };
 		3C599C1F2C818467003BFC68 /* RecordViewHTTPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C599C1E2C818467003BFC68 /* RecordViewHTTPS.swift */; };
 		3C5D66922E2C3DBC00757247 /* RecordViewLOC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D66912E2C3DB600757247 /* RecordViewLOC.swift */; };
@@ -26,7 +25,6 @@
 		3C62351D2CD6FA3D00387F6E /* FullScreenTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62351C2CD6FA3500387F6E /* FullScreenTextView.swift */; };
 		3C6CCD5A2B3BAC4700A3B6F2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CCD592B3BAC4700A3B6F2 /* Globals.swift */; };
 		3C6CCD5D2B3BB5C700A3B6F2 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CCD5C2B3BB5C700A3B6F2 /* Localization.swift */; };
-		3C6CCD632B3BB75800A3B6F2 /* en.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3C6CCD622B3BB75800A3B6F2 /* en.plist */; };
 		3C7BD1C02C387A21004C2ECF /* LogWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7BD1BF2C387A21004C2ECF /* LogWriter.swift */; };
 		3C7BD1C42C38A955004C2ECF /* RecordViewA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7BD1C32C38A955004C2ECF /* RecordViewA.swift */; };
 		3C7BD1C62C38A95C004C2ECF /* RecordViewAAAA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7BD1C52C38A95C004C2ECF /* RecordViewAAAA.swift */; };
@@ -49,7 +47,6 @@
 		3CC646CC2C0A967D0049CEC7 /* RecordViewDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC646CB2C0A967D0049CEC7 /* RecordViewDS.swift */; };
 		3CCA312B2AF5DAEE00C11280 /* DNSAnswerDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA312A2AF5DAEE00C11280 /* DNSAnswerDataView.swift */; };
 		3CCCC60E2E7CA71E00C388B9 /* DNSKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3CCCC60D2E7CA71E00C388B9 /* DNSKit */; };
-		3CE4E35D2BD8D84E00715E6C /* es.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3CE4E35C2BD8D84E00715E6C /* es.plist */; };
 		3CE4E35F2BD8DB1B00715E6C /* DNSAnswerDNSSECView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE4E35E2BD8DB1B00715E6C /* DNSAnswerDNSSECView.swift */; };
 		3CF7FF832B45256C000307CD /* ClearButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF7FF822B45256C000307CD /* ClearButton.swift */; };
 		9A80CE292AEF2C7700E97A63 /* RoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A80CE282AEF2C7700E97A63 /* RoundedLabel.swift */; };
@@ -431,10 +428,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C6CCD632B3BB75800A3B6F2 /* en.plist in Resources */,
 				9AA8C1412ADCA98200B93E45 /* Preview Assets.xcassets in Resources */,
-				3CE4E35D2BD8D84E00715E6C /* es.plist in Resources */,
-				3C51F5882CDD9E5F00B9693D /* de.plist in Resources */,
 				9AA8C13E2ADCA98200B93E45 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
