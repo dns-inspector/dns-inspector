@@ -23,6 +23,7 @@ struct PresetServerListView: View {
     @State private var newTransportType: TransportType = .DNS
     @State private var newServerAddresses = [""]
     @State private var newHttpsBootstrapIps: [String] = []
+    @State private var useHttp2: Bool = true
 
     var body: some View {
         List {
@@ -42,7 +43,7 @@ struct PresetServerListView: View {
         .listStyle(.plain)
         .toolbar(content: {
             NavigationLink {
-                SavedServerEditView(serverName: $newServerName, transportType: $newTransportType, serverAddresses: $newServerAddresses, httpsBootstrapIps: $newHttpsBootstrapIps, isNew: true) {
+                SavedServerEditView(serverName: $newServerName, transportType: $newTransportType, serverAddresses: $newServerAddresses, httpsBootstrapIps: $newHttpsBootstrapIps, useHttp2: $useHttp2, isNew: true) {
                     let newResolver: DNSResolver
                     if self.newTransportType == .HTTPS && !newHttpsBootstrapIps.isEmpty {
                         newResolver = DNSResolver(name: newServerName, type: newTransportType, addresses: newServerAddresses, httpsBootstrapIps: newHttpsBootstrapIps, id: UUID())
@@ -75,6 +76,7 @@ private struct SavedServerListViewItem: View {
     @State private var transportType: TransportType
     @State private var addresses: [String]
     @State private var httpsBootstrapIps: [String]
+    @State private var useHttp2: Bool
     private let serverID: UUID
 
     public init(savedServer: DNSResolver, onEdit: @escaping () -> Void) {
@@ -82,13 +84,14 @@ private struct SavedServerListViewItem: View {
         _transportType = .init(initialValue: savedServer.type)
         _addresses = .init(initialValue: savedServer.addresses)
         _httpsBootstrapIps = .init(initialValue: savedServer.httpsBootstrapIps ?? [])
+        _useHttp2 = .init(initialValue: savedServer.useHttp2 ?? true)
         self.serverID = savedServer.id
         self.onEdit = onEdit
     }
 
     var body: some View {
         NavigationLink {
-            SavedServerEditView(serverName: $name, transportType: $transportType, serverAddresses: $addresses, httpsBootstrapIps: $httpsBootstrapIps, isNew: false) {
+            SavedServerEditView(serverName: $name, transportType: $transportType, serverAddresses: $addresses, httpsBootstrapIps: $httpsBootstrapIps, useHttp2: $useHttp2, isNew: false) {
                 for (index, server) in UserOptions.savedServers.enumerated() {
                     if server.id != serverID {
                         continue

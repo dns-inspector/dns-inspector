@@ -1297,6 +1297,17 @@ public final class Localize {
             return "Falsifiziert"
         }
     }
+    // key: Use HTTP/2
+    static func usehttp2() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Use HTTP/2"
+        case .Spanish:
+            return "Use HTTP/2"
+        case .German:
+            return "Use HTTP/2"
+        }
+    }
     // key: Verbose logging
     static func verboselogging() -> String {
         switch currentLanguage {
@@ -1449,6 +1460,17 @@ public final class Localize {
             return "When DNSSEC is enabled all DNS queries include a request for record signatures. DNSSEC verification will perform additional queries to establish trust and may take multiple seconds to complete."
         case .German:
             return "Wenn DNSSEC aktiviert ist, enthalten alle DNS-Anfragen eine Anfrage der Signaturaufzeichnung. DNSSEC-Verifizierung wird weitere Anfragen zur Vertrauensgewinnung durchführen und möglicherweise einige Sekunden zur Durchführung brauchen."
+        }
+    }
+    // key: http2_bootstrap_ip_footer
+    static func http2bootstrapipfooter() -> String {
+        switch currentLanguage {
+        case .English:
+            return "DNS Inspector does not support HTTP/2 when one or more server IP address is defined."
+        case .Spanish:
+            return "DNS Inspector does not support HTTP/2 when one or more server IP address is defined."
+        case .German:
+            return "DNS Inspector does not support HTTP/2 when one or more server IP address is defined."
         }
     }
     // key: record_description_a

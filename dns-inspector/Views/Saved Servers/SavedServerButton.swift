@@ -23,6 +23,7 @@ public struct SavedServerButton: View {
     @State private var newTransportType = TransportType.HTTPS
     @State private var newServerAddresses = [""]
     @State private var newHttpsBootstrapIps: [String] = []
+    @State private var useHttp2: Bool = true
     @State private var savedServers: [DNSResolver] = UserOptions.savedServers
     @State private var showEditServerView = false
 
@@ -54,7 +55,7 @@ public struct SavedServerButton: View {
         })
         .sheet(isPresented: $showEditServerView, content: {
             Navigation {
-                SavedServerEditView(serverName: $newServerName, transportType: $newTransportType, serverAddresses: $newServerAddresses, httpsBootstrapIps: $newHttpsBootstrapIps, isNew: true) {
+                SavedServerEditView(serverName: $newServerName, transportType: $newTransportType, serverAddresses: $newServerAddresses, httpsBootstrapIps: $newHttpsBootstrapIps, useHttp2: $useHttp2, isNew: true) {
                     let newResolver: DNSResolver
                     if self.newTransportType == .HTTPS && !newHttpsBootstrapIps.isEmpty {
                         newResolver = DNSResolver(name: newServerName, type: newTransportType, addresses: newServerAddresses, httpsBootstrapIps: newHttpsBootstrapIps, id: UUID())

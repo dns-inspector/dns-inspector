@@ -116,6 +116,7 @@ Unsupported algorithm	Unsupported algorithm
 Untrusted	Untrusted
 Untrusted root signing key	Untrusted root signing key
 Unverified	Unverified
+Use HTTP/2	Use HTTP/2
 Verbose logging	Verbose logging
 Verified	Verified
 Version {version} (build {build})	Version {0} (build {1})
@@ -130,6 +131,7 @@ dns_server_doh_bootstrap	You can specify the IP addresses of this DNS over HTTPS
 dns_server_target_help_dns	We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets. You can specify multiple IP addresses and DNS Inspector will attempt to use all of them.
 dns_server_target_help_url	We connect to the DNS server using a URL. Do not include the dns query parameter.
 dnssec_footer	When DNSSEC is enabled all DNS queries include a request for record signatures. DNSSEC verification will perform additional queries to establish trust and may take multiple seconds to complete.
+http2_bootstrap_ip_footer	DNS Inspector does not support HTTP/2 when one or more server IP address is defined.
 record_description_a	DNS A records contain an IPv4 address.
 record_description_aaaa	DNS AAAA records contain an IPv6 address.
 record_description_apl	DNS APL records contain an IP address prefix list.

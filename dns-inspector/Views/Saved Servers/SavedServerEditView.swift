@@ -22,6 +22,7 @@ struct SavedServerEditView: View {
     @Binding public var transportType: TransportType
     @Binding public var serverAddresses: [String]
     @Binding public var httpsBootstrapIps: [String]
+    @Binding public var useHttp2: Bool
     public let isNew: Bool
     public let didSave: () -> Void
     @State private var validationError: Error?
@@ -112,6 +113,12 @@ struct SavedServerEditView: View {
                 } footer: {
                     Text(Localize.dnsserverdohbootstrap())
                 }
+                Section {
+                    Toggle(Localize.usehttp2(), isOn: $useHttp2)
+                        .disabled(self.hasAtLeastOneBootstrapIp())
+                } footer: {
+                    Text(Localize.http2bootstrapipfooter())
+                }
             }
         }
         .navigationTitle(isNew ? Localize.newpresetserver() : Localize.editpresetserver())
@@ -134,5 +141,18 @@ struct SavedServerEditView: View {
                 }
             }
         }
+        .onChange(of: httpsBootstrapIps) { _ in
+            if hasAtLeastOneBootstrapIp() && useHttp2 {
+                self.useHttp2 = false
+            }
+        }
+    }
+
+    func hasAtLeastOneBootstrapIp() -> Bool {
+        if self.httpsBootstrapIps.count == 0 {
+            return false
+        }
+
+        return self.httpsBootstrapIps.first(where: { !$0.isEmpty }) != nil
     }
 }

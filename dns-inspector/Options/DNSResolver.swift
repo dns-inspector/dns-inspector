@@ -28,14 +28,21 @@ public struct DNSResolver: Codable, Identifiable, Equatable {
     public let addresses: [String]
     /// The bootstrap IP address for DNS over HTTPS resolvers.
     public let httpsBootstrapIps: [String]?
+    /// If HTTP/2 should be used
+    public let useHttp2: Bool?
     /// The ID of this resolver.
     public let id: UUID
 
-    public init(name: String? = nil, type: TransportType, addresses: [String], httpsBootstrapIps: [String]? = nil, id: UUID) {
+    public init(name: String? = nil, type: TransportType, addresses: [String], httpsBootstrapIps: [String]? = nil, useHttp2: Bool? = nil, id: UUID) {
         self.name = name
         self.type = type
         self.addresses = addresses
         self.httpsBootstrapIps = httpsBootstrapIps
+        if httpsBootstrapIps == nil {
+            self.useHttp2 = useHttp2
+        } else {
+            self.useHttp2 = false
+        }
         self.id = id
     }
 }

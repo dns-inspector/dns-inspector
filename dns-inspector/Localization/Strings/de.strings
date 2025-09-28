@@ -150,6 +150,8 @@ Untrusted	Misstraut
 # TODO
 Untrusted root signing key	Untrusted root signing key
 Unverified	Falsifiziert
+# TODO
+Use HTTP/2	Use HTTP/2
 Verbose logging	Erweitertes Protokollieren
 Verified	Verifiziert
 Version {version} (build {build})	Version {0} (Build {1})
@@ -169,6 +171,8 @@ dns_server_target_help_dns	We connect to the DNS server using an IP address. IPv
 # TODO
 dns_server_target_help_url	We connect to the DNS server using a URL. Do not include the dns query parameter.
 dnssec_footer	Wenn DNSSEC aktiviert ist, enthalten alle DNS-Anfragen eine Anfrage der Signaturaufzeichnung. DNSSEC-Verifizierung wird weitere Anfragen zur Vertrauensgewinnung durchführen und möglicherweise einige Sekunden zur Durchführung brauchen.
+# TODO
+http2_bootstrap_ip_footer	DNS Inspector does not support HTTP/2 when one or more server IP address is defined.
 record_description_a	DNS-A-Aufzeichnungen enthalten eine IPv4-Adresse.
 record_description_aaaa	DNS-AAAA-Aufzeichnungen enthalten eine IPv6-Adresse.
 record_description_apl	DNS-APL-Aufzeichnungen enthalten eine IP-Adressen-Prefix-Liste.
