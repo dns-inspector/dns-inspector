@@ -758,6 +758,17 @@ public final class Localize {
             return "No signatures: \(details)"
         }
     }
+    // key: Open source licenses & attributions
+    static func opensourcelicensesattributions() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Open source licenses & attributions"
+        case .Spanish:
+            return "Open source licenses & attributions"
+        case .German:
+            return "Open source licenses & attributions"
+        }
+    }
     // key: Options
     static func options() -> String {
         switch currentLanguage {

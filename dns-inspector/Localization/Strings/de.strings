@@ -92,6 +92,8 @@ New query	Neue Anfrage
 No default ALPN	Kein standardmäßiges ALPN
 # TODO
 No signatures: {details}	No signatures: {0}
+# TODO
+Open source licenses & attributions	Open source licenses & attributions
 Options	Optionen
 Perform Validation	Validierung durchführen
 Port	Port

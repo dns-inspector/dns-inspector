@@ -89,15 +89,19 @@ struct MainView: View {
                         Button(action: {
                             self.showAboutView.toggle()
                         }, label: {
-                            Label(Localize.about(), systemImage: "info.circle.fill")
+                            Label(Localize.about(), systemImage: "info")
                         })
                         Button(action: {
                             self.showOptionsView.toggle()
                         }, label: {
-                            Label(Localize.options(), systemImage: "gearshape.circle.fill")
+                            Label(Localize.options(), systemImage: "gearshape.fill")
                         })
                     } label: {
-                        Image(systemName: "ellipsis.circle")
+                        if #available(iOS 26.0, *) {
+                            Image(systemName: "ellipsis")
+                        } else {
+                            Image(systemName: "ellipsis.circle")
+                        }
                     }
 
                 }
@@ -107,7 +111,11 @@ struct MainView: View {
                             await doInspect()
                         }
                     }, label: {
-                        Image(systemName: "arrow.right.circle")
+                        if #available(iOS 26.0, *) {
+                            Image(systemName: "arrow.right")
+                        } else {
+                            Image(systemName: "arrow.right.circle")
+                        }
                     })
                     .disabled(self.isInvalid())
                 }

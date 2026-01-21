@@ -18,6 +18,7 @@ import UIKit
 import DNSKit
 import StoreKit
 import MessageUI
+import WebKit
 
 // Apple hasn't yet updated the store and message UI SDKs to better work with SwiftUI. To avoid a mess of delegates and represted views, just
 // break out the table view itself to UIKit.
@@ -75,7 +76,7 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
         case 0:
             return 4
         case 1:
-            return 3
+            return 4
         case 2:
             return 1
         case 3:
@@ -115,6 +116,9 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
         case (1, 2):
             cell.imageView?.image = UIImage(systemName: "terminal.fill")
             cell.textLabel?.text = Localize.contributetodnsinspector()
+        case (1, 3):
+            cell.imageView?.image = UIImage(systemName: "heart.fill")
+            cell.textLabel?.text = Localize.opensourcelicensesattributions()
         case (2, 0):
             cell.imageView?.image = UIImage(named: "TLS Inspector Icon")
             cell.textLabel?.text = Localize.tlsinspector()
@@ -165,6 +169,8 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
             UIApplication.shared.open(URL(string: "https://bsky.app/profile/dns-inspector.com")!)
         case (1, 2):
             UIApplication.shared.open(URL(string: "https://github.com/dns-inspector/dns-inspector")!)
+        case (1, 3):
+            self.showLicenseWebView()
         case (2, 0):
             self.showProductInAppStore(tlsInspectorAppId, campaignId: tlsInspectorAppStoreCampaignId)
         case (_, _): break
@@ -200,5 +206,28 @@ class AboutTableView: UITableView, UITableViewDelegate, UITableViewDataSource, @
 
     @objc func toggleVerboseLogging(toggle: UISwitch) {
         LogWriter.shared.setLevel(toggle.isOn ? .Debug : LogWriter.defaultLogLevel())
+    }
+
+    // MARK: - OSS Methods
+
+    func showLicenseWebView() {
+        guard let attrPath = Bundle.main.url(forResource: "attr", withExtension: "html") else { return }
+        guard let attrHtml = try? String(contentsOf: attrPath) else { return }
+
+        let viewController = UIViewController()
+        let navigationController = UINavigationController(rootViewController: viewController)
+        let closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(dismissLicenseView))
+
+        viewController.navigationItem.leftBarButtonItem = closeButton
+        let webView = WKWebView()
+        viewController.view = webView
+        viewController.title = Localize.opensourcelicensesattributions()
+        webView.loadHTMLString(attrHtml, baseURL: nil)
+
+        self.present(navigationController, animated: true)
+    }
+
+    @objc func dismissLicenseView(_ target: UIBarButtonItem) {
+        self.window?.rootViewController?.presentedViewController?.dismiss(animated: true)
     }
 }
