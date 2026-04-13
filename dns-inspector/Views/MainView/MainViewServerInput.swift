@@ -94,6 +94,8 @@ struct MainViewServerInput: View {
             return Localize.serverurl()
         case .QUIC:
             return Localize.serverip()
+        case .System:
+            return ""
         }
     }
 }

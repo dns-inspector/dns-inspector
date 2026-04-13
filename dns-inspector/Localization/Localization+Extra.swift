@@ -49,6 +49,10 @@ public extension RecordType {
             return Localize.recorddescriptiondnskey()
         case .HTTPS:
             return Localize.recorddescriptionhttps()
+        case .NSEC:
+            return Localize.recorddescriptionnsec()
+        case .NSEC3:
+            return Localize.recorddescriptionnsec3()
         }
     }
     // swiftlint:enable cyclomatic_complexity

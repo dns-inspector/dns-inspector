@@ -81,7 +81,7 @@ internal final class LogWriter: ILogger {
     /// - Parameters:
     ///   - level: The level of the event
     ///   - message: The message to write
-    func write(_ level: DNSKit.LogLevel, message: String) {
+    func write(_ level: DNSKit.LogLevel, message: @autoclosure () -> String) {
         if level.rawValue < self.level.rawValue {
             return
         }
@@ -89,7 +89,7 @@ internal final class LogWriter: ILogger {
         objc_sync_enter(self.lock)
         defer { objc_sync_exit(self.lock) }
 
-        let message = "[\(level.string().uppercased())] [\(Date().ISO8601Format())] \(message)"
+        let message = "[\(level.string().uppercased())] [\(Date().ISO8601Format())] \(message())"
         print(message)
         if !self.isOpen {
             return

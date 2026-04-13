@@ -13,6 +13,7 @@ App language	App language
 AppIconFooter	The "Progress" pride flag was created by Daniel Quasar and is licensed under Create Commons BY-NC-SA. The trans flag was created by Monica Helms and was released to the public domain.
 Appearance & Behaviour	Appearance & Behaviour
 Area	Area
+Authority	Authority
 Automatically	Automatically
 Bad signing key: {details}	Bad signing key: {0}
 Chain	Chain
@@ -38,6 +39,7 @@ Friendly Name	Friendly Name
 General	General
 Get Involved	Get Involved
 HTTP {code}	HTTP {0}
+Hashed Next Name	Hashed Next Name
 Horizontal Precision	Horizontal Precision
 IPv4 Hints	IPv4 Hints
 IPv6 Hints	IPv6 Hints
@@ -65,6 +67,7 @@ Name	Name
 Network	Network
 New Preset Server	New Preset Server
 New query	New query
+Next Name	Next Name
 No default ALPN	No default ALPN
 No signatures: {details}	No signatures: {0}
 Open source licenses & attributions	Open source licenses & attributions
@@ -79,11 +82,13 @@ Query	Query
 Question	Question
 Rate in App Store	Rate in App Store
 Recent queries	Recent queries
+Record Types	Record Types
 Refresh	Refresh
 Relative	Relative
 Remember last server	Remember last server
 Remember recent queries	Remember recent queries
 Response	Response
+Response contained no answers	Response contained no answers
 Results	Results
 Retry	Retry
 Save	Save
@@ -127,7 +132,7 @@ View DNSSEC Information	View DNSSEC Information
 WHOIS not supported on this domain	WHOIS not supported on this domain
 Your changes will take affect only quitting and restarting DNS Inspector	Your changes will take affect only quitting and restarting DNS Inspector
 Zone signing key	Zone signing key
-about_footer_{year}	DNS Inspector is free & libre open source software licensed under the GNU GPLv3. DNS Inspector is copyright © 2023-{0} Ian Spence.
+about_footer_{year}	DNS Inspector is free & libre open source software licensed under the GNU GPLv3. DNS Inspector is copyright © 2023-{0} Ian Spence. DNS Inspector is made entirely without the use of Artificial Intelligence (AI) or Large Language Models (LLMs).
 dns_server_doh_bootstrap	You can specify the IP addresses of this DNS over HTTPS server for enhanced privacy.
 dns_server_target_help_dns	We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets. You can specify multiple IP addresses and DNS Inspector will attempt to use all of them.
 dns_server_target_help_url	We connect to the DNS server using a URL. Do not include the dns query parameter.
@@ -143,6 +148,8 @@ record_description_https	DNS HTTPS records contain information about HTTPS web s
 record_description_loc	DNS LOC records contain a geographical location.
 record_description_mx	DNS MX records contain mail exchange server addresses.
 record_description_ns	DNS NS records contain the authoritative DNS server for this zone.
+record_description_nsec	DNS NSEC records contain security information about available records in a zone.
+record_description_nsec3	DNS NSEC3 contains security information about available records in a zone.
 record_description_ptr	DNS PTR records are used to resolve a domain name from an IP address.
 record_description_soa	DNS SOA records contain administrative or ownership information about the domain.
 record_description_srv	DNS SRV records contain information for locating a specific service.

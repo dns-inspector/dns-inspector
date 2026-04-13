@@ -22,6 +22,8 @@ Appearance & Behaviour	Appearance & Behaviour
 # TODO
 Area	Area
 # TODO
+Authority	Authority
+# TODO
 Automatically	Automatically
 # TODO
 Bad signing key: {details}	Bad signing key: {0}
@@ -66,6 +68,8 @@ General	General
 Get Involved	Involucrarse
 # TODO
 HTTP {code}	HTTP {0}
+# TODO
+Hashed Next Name	Hashed Next Name
 # TODO
 Horizontal Precision	Horizontal Precision
 # TODO
@@ -115,6 +119,8 @@ Network	Red
 New Preset Server	Nuevo servidor predefinido
 New query	Nueva petición
 # TODO
+Next Name	Next Name
+# TODO
 No default ALPN	No default ALPN
 # TODO
 No signatures: {details}	No signatures: {0}
@@ -137,11 +143,15 @@ Question	Pregunta
 Rate in App Store	Calificar en la App Store
 Recent queries	Peticiones recientes
 # TODO
+Record Types	Record Types
+# TODO
 Refresh	Refresh
 Relative	Relativo
 Remember last server	Recordar último servidor
 Remember recent queries	Recordar peticiones recientes
 Response	Respuesta
+# TODO
+Response contained no answers	Response contained no answers
 Results	Resultados
 # TODO
 Retry	Retry
@@ -241,6 +251,10 @@ record_description_loc	DNS LOC records contain a geographical location.
 record_description_mx	Los registros DNS MX contienen direcciones de servidores de intercambio de correos electrónicos.
 # TODO
 record_description_ns	DNS NS records contain the authoritative DNS server for this zone.
+# TODO
+record_description_nsec	DNS NSEC records contain security information about available records in a zone.
+# TODO
+record_description_nsec3	DNS NSEC3 contains security information about available records in a zone.
 record_description_ptr	Los registros DNS PTR se usan para resolver un dominio DNS a partir de una dirección IP.
 # TODO
 record_description_soa	DNS SOA records contain administrative or ownership information about the domain.

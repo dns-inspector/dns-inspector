@@ -15,6 +15,9 @@
 		3C1F20952E8339E800C3E900 /* DNSKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3C1F20942E8339E800C3E900 /* DNSKit */; };
 		3C26AD802BA6775E0022BABD /* WHOISView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C26AD7F2BA6775E0022BABD /* WHOISView.swift */; };
 		3C2E21002E4E7CE700E87842 /* DNSResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2E20FF2E4E7CE300E87842 /* DNSResolver.swift */; };
+		3C32E7342F8C8DB100C13847 /* RecordViewNSEC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C32E7332F8C8DAA00C13847 /* RecordViewNSEC.swift */; };
+		3C32E7362F8C8F4E00C13847 /* RecordViewNSEC3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C32E7352F8C8F4A00C13847 /* RecordViewNSEC3.swift */; };
+		3C32E7382F8C918300C13847 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C32E7372F8C918200C13847 /* Data.swift */; };
 		3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */; };
 		3C3801342DA1AEB9007126EB /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3801332DA1AEA5007126EB /* AppIconView.swift */; };
 		3C48BED92F20741C00DE5267 /* attr.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C48BED82F20741C00DE5267 /* attr.html */; };
@@ -88,6 +91,9 @@
 		3C0C6B332B39108B006D3F41 /* ErrorCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCellView.swift; sourceTree = "<group>"; };
 		3C26AD7F2BA6775E0022BABD /* WHOISView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WHOISView.swift; sourceTree = "<group>"; };
 		3C2E20FF2E4E7CE300E87842 /* DNSResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSResolver.swift; sourceTree = "<group>"; };
+		3C32E7332F8C8DAA00C13847 /* RecordViewNSEC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewNSEC.swift; sourceTree = "<group>"; };
+		3C32E7352F8C8F4A00C13847 /* RecordViewNSEC3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewNSEC3.swift; sourceTree = "<group>"; };
+		3C32E7372F8C918200C13847 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSMessageView.swift; sourceTree = "<group>"; };
 		3C3801332DA1AEA5007126EB /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		3C48BED82F20741C00DE5267 /* attr.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = attr.html; sourceTree = "<group>"; };
@@ -254,6 +260,8 @@
 		3CC646C22C0A8A930049CEC7 /* RecordView */ = {
 			isa = PBXGroup;
 			children = (
+				3C32E7352F8C8F4A00C13847 /* RecordViewNSEC3.swift */,
+				3C32E7332F8C8DAA00C13847 /* RecordViewNSEC.swift */,
 				3C5D66912E2C3DB600757247 /* RecordViewLOC.swift */,
 				3C7BD1C32C38A955004C2ECF /* RecordViewA.swift */,
 				3C7BD1C52C38A95C004C2ECF /* RecordViewAAAA.swift */,
@@ -313,6 +321,7 @@
 		9A80CE3E2AEF6FE600E97A63 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3C32E7372F8C918200C13847 /* Data.swift */,
 				9A80CE3F2AEF6FF400E97A63 /* Text+Fixedwidth.swift */,
 				3C9AA7C62AF1E94100B072FA /* View+RoundedCorners.swift */,
 				3C61432D2BA7B179006A8B14 /* View+Destination.swift */,
@@ -473,6 +482,7 @@
 				3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */,
 				3C0410062B93D4BD00389A16 /* AppLanguageView.swift in Sources */,
 				3C0C6B302B38F35F006D3F41 /* AboutTableViewRepresentable.swift in Sources */,
+				3C32E7382F8C918300C13847 /* Data.swift in Sources */,
 				3CA6E32B2E19BB9E00165BFD /* FixedWidthText.swift in Sources */,
 				3C3801342DA1AEB9007126EB /* AppIconView.swift in Sources */,
 				9A80CE322AEF5C6100E97A63 /* AppDelegate.swift in Sources */,
@@ -492,6 +502,8 @@
 				3C61432E2BA7B179006A8B14 /* View+Destination.swift in Sources */,
 				9A80CE362AEF634700E97A63 /* SavedServerListView.swift in Sources */,
 				3C9AA7CB2AF1FCF400B072FA /* RecentQuery.swift in Sources */,
+				3C32E7342F8C8DB100C13847 /* RecordViewNSEC.swift in Sources */,
+				3C32E7362F8C8F4E00C13847 /* RecordViewNSEC3.swift in Sources */,
 				3CF7FF832B45256C000307CD /* ClearButton.swift in Sources */,
 				3CC646C42C0A8AA80049CEC7 /* RecordViewSOA.swift in Sources */,
 				3C5D66922E2C3DBC00757247 /* RecordViewLOC.swift in Sources */,
@@ -655,7 +667,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"dns-inspector/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WCW84NC7Y8;
@@ -669,13 +681,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.ecn.dns-inspector";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -698,7 +710,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 23;
 				DEVELOPMENT_ASSET_PATHS = "\"dns-inspector/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WCW84NC7Y8;
@@ -712,13 +724,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.5;
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.4.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.ecn.dns-inspector";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -761,7 +773,7 @@
 			repositoryURL = "https://github.com/dns-inspector/dnskit";
 			requirement = {
 				kind = revision;
-				revision = cda0a47738acfa23b6217eff97b97014b10122a3;
+				revision = e3b262f1bd6af5da02d78fe4b96df7e1a8056aeb;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

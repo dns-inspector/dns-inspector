@@ -75,6 +75,10 @@ private struct RecordDataView: View {
             RecordViewHTTPS(data: data as! HTTPSRecordData)
         case .LOC:
             RecordViewLOC(data: data as! LOCRecordData)
+        case .NSEC:
+            RecordViewNSEC(data: data as! NSECRecordData)
+        case .NSEC3:
+            RecordViewNSEC3(data: data as! NSEC3RecordData)
         }
     }
     // swiftlint:enable force_cast

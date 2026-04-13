@@ -164,6 +164,17 @@ public final class Localize {
             return "Area"
         }
     }
+    // key: Authority
+    static func authority() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Authority"
+        case .Spanish:
+            return "Authority"
+        case .German:
+            return "Authority"
+        }
+    }
     // key: Automatically
     static func automatically() -> String {
         switch currentLanguage {
@@ -437,6 +448,17 @@ public final class Localize {
             return "HTTP \(code)"
         case .German:
             return "HTTP \(code)"
+        }
+    }
+    // key: Hashed Next Name
+    static func hashednextname() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Hashed Next Name"
+        case .Spanish:
+            return "Hashed Next Name"
+        case .German:
+            return "Hashed Next Name"
         }
     }
     // key: Horizontal Precision
@@ -736,6 +758,17 @@ public final class Localize {
             return "Neue Anfrage"
         }
     }
+    // key: Next Name
+    static func nextname() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Next Name"
+        case .Spanish:
+            return "Next Name"
+        case .German:
+            return "Next Name"
+        }
+    }
     // key: No default ALPN
     static func nodefaultalpn() -> String {
         switch currentLanguage {
@@ -890,6 +923,17 @@ public final class Localize {
             return "Letzte Anfragen"
         }
     }
+    // key: Record Types
+    static func recordtypes() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Record Types"
+        case .Spanish:
+            return "Record Types"
+        case .German:
+            return "Record Types"
+        }
+    }
     // key: Refresh
     static func refresh() -> String {
         switch currentLanguage {
@@ -943,6 +987,17 @@ public final class Localize {
             return "Respuesta"
         case .German:
             return "Antwort"
+        }
+    }
+    // key: Response contained no answers
+    static func responsecontainednoanswers() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Response contained no answers"
+        case .Spanish:
+            return "Response contained no answers"
+        case .German:
+            return "Response contained no answers"
         }
     }
     // key: Results
@@ -1422,7 +1477,7 @@ public final class Localize {
     static func aboutfooteryear(year: String) -> String {
         switch currentLanguage {
         case .English:
-            return "DNS Inspector is free & libre open source software licensed under the GNU GPLv3. DNS Inspector is copyright © 2023-\(year) Ian Spence."
+            return "DNS Inspector is free & libre open source software licensed under the GNU GPLv3. DNS Inspector is copyright © 2023-\(year) Ian Spence. DNS Inspector is made entirely without the use of Artificial Intelligence (AI) or Large Language Models (LLMs)."
         case .Spanish:
             return "DNS Inspector es software libre y gratuito bajo licencia GNU GPLv3. Derechos de autor de DNS Inspector © 2023-\(year) Ian Spence."
         case .German:
@@ -1592,6 +1647,28 @@ public final class Localize {
             return "DNS NS records contain the authoritative DNS server for this zone."
         case .German:
             return "DNS-NS-Aufzeichnungen enthalten den authorativen DNS-Server der jeweiligen Zone."
+        }
+    }
+    // key: record_description_nsec
+    static func recorddescriptionnsec() -> String {
+        switch currentLanguage {
+        case .English:
+            return "DNS NSEC records contain security information about available records in a zone."
+        case .Spanish:
+            return "DNS NSEC records contain security information about available records in a zone."
+        case .German:
+            return "DNS NSEC records contain security information about available records in a zone."
+        }
+    }
+    // key: record_description_nsec3
+    static func recorddescriptionnsec3() -> String {
+        switch currentLanguage {
+        case .English:
+            return "DNS NSEC3 contains security information about available records in a zone."
+        case .Spanish:
+            return "DNS NSEC3 contains security information about available records in a zone."
+        case .German:
+            return "DNS NSEC3 contains security information about available records in a zone."
         }
     }
     // key: record_description_ptr

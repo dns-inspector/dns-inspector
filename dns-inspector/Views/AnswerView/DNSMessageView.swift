@@ -17,10 +17,29 @@
 import SwiftUI
 import DNSKit
 
+private extension DNSKit.Message {
+    func hasAtLeastOneRRSIG() -> Bool {
+        if (self.answers.first {
+            return $0.recordType == .RRSIG
+        }) != nil {
+            return true
+        }
+
+        if (self.authority.first {
+            return $0.recordType == .RRSIG
+        }) != nil {
+            return true
+        }
+
+        return false
+    }
+}
+
 public struct DNSMessageView: View {
     public let query: Query
     public let message: DNSKit.Message
-    public let serverAddress: String
+    public let serverAddress: String?
+    public let elapsed: UInt64
     private let hasRrsig: Bool
     @State private var showWhois = false
     @Environment(\.dismiss) private var dismiss
@@ -29,9 +48,8 @@ public struct DNSMessageView: View {
         self.query = query
         self.message = response.message
         self.serverAddress = response.serverAddress
-        self.hasRrsig = message.answers.first {
-            return $0.recordType == .RRSIG
-        } != nil
+        self.elapsed = response.elapsed
+        self.hasRrsig = message.hasAtLeastOneRRSIG()
     }
 
     public var body: some View {
@@ -42,8 +60,10 @@ public struct DNSMessageView: View {
                         Text(String(message.idNumber)).fixedwidth()
                         Divider()
                         RoundedLabel(query.transportType.string(), textColor: .primary, borderColor: .gray)
-                        Divider()
-                        Text(serverAddress).fixedwidth()
+                        if let serverAddress = self.serverAddress {
+                            Divider()
+                            Text(serverAddress).fixedwidth()
+                        }
                     }
                 }
                 Section(Localize.response()) {
@@ -91,6 +111,20 @@ public struct DNSMessageView: View {
                                     }
                                     Text(recordType.recordDescription())
                                 }
+                            }
+                        }
+                    }
+                } else {
+                    Section(Localize.answers()) {
+                        Text(Localize.responsecontainednoanswers())
+                            .foregroundStyle(.gray)
+                    }
+                }
+                if message.authority.count > 0 {
+                    Section(Localize.authority()) {
+                        ForEach(message.authority) { answer in
+                            if isRecordTypeDisplayable(answer.recordType) {
+                                DNSAnswerView(answer: answer).listRowSeparator(.hidden)
                             }
                         }
                     }
@@ -147,7 +181,7 @@ public struct DNSMessageView: View {
     }
 
     func elapsedString() -> String {
-        let elapsed = message.duration
+        let elapsed = self.elapsed
 
         if elapsed > 1000000000 {
             let elapsedStr = String(format: "%.2f", Double(elapsed) / 1000000000.0)

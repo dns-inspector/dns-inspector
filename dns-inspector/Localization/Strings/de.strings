@@ -17,6 +17,8 @@ AppIconFooter	The "Progress" pride flag was created by Daniel Quasar and is lice
 Appearance & Behaviour	Aussehen & Verhalten
 # TODO
 Area	Area
+# TODO
+Authority	Authority
 Automatically	Automatisch
 # TODO
 Bad signing key: {details}	Bad signing key: {0}
@@ -49,6 +51,8 @@ General	Allgemein
 Get Involved	Werde involviert
 # TODO
 HTTP {code}	HTTP {0}
+# TODO
+Hashed Next Name	Hashed Next Name
 # TODO
 Horizontal Precision	Horizontal Precision
 IPv4 Hints	IPv4-Hints
@@ -89,6 +93,8 @@ Name	Name
 Network	Netzwerk
 New Preset Server	Neuer Preset-Server
 New query	Neue Anfrage
+# TODO
+Next Name	Next Name
 No default ALPN	Kein standardmäßiges ALPN
 # TODO
 No signatures: {details}	No signatures: {0}
@@ -105,11 +111,15 @@ Query	Anfrage
 Question	Frage
 Rate in App Store	Im App-Store bewerten
 Recent queries	Letzte Anfragen
+# TODO
+Record Types	Record Types
 Refresh	Neu laden
 Relative	Verwandt
 Remember last server	Letzten Server merken
 Remember recent queries	Letzte Anfragen merken
 Response	Antwort
+# TODO
+Response contained no answers	Response contained no answers
 Results	Resultat
 Retry	Erneut versuchen
 Save	Sichern
@@ -186,6 +196,10 @@ record_description_https	DNS-HTTPS-Aufzeichnungen enthalten Informationen über 
 record_description_loc	DNS LOC records contain a geographical location.
 record_description_mx	DNS-MX-Aufzeichnungen enthalten E-Mail-Austausch-Server-Adressen.
 record_description_ns	DNS-NS-Aufzeichnungen enthalten den authorativen DNS-Server der jeweiligen Zone.
+# TODO
+record_description_nsec	DNS NSEC records contain security information about available records in a zone.
+# TODO
+record_description_nsec3	DNS NSEC3 contains security information about available records in a zone.
 record_description_ptr	DNS-PTR-Aufzeichnungen werden zur Auflösung einer Domain zu einer IP-Adresse genutzt.
 record_description_soa	DNS-SOA-Aufzeichnungen enhalten Administrativ- oder Inhaberschaftsinformationen der Domain.
 record_description_srv	DNS-SRV-Aufzeichnungen enthalten Informationen zur Ausmachung eines spezifischen Dienstes.
