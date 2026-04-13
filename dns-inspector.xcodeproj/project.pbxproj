@@ -18,6 +18,9 @@
 		3C32E7342F8C8DB100C13847 /* RecordViewNSEC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C32E7332F8C8DAA00C13847 /* RecordViewNSEC.swift */; };
 		3C32E7362F8C8F4E00C13847 /* RecordViewNSEC3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C32E7352F8C8F4A00C13847 /* RecordViewNSEC3.swift */; };
 		3C32E7382F8C918300C13847 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C32E7372F8C918200C13847 /* Data.swift */; };
+		3C32E73F2F8C98B000C13847 /* Migrate1to2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C32E73E2F8C98AB00C13847 /* Migrate1to2.swift */; };
+		3C32E7412F8C98E000C13847 /* Migrate2to3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C32E7402F8C98DC00C13847 /* Migrate2to3.swift */; };
+		3C32E7432F8C98ED00C13847 /* Migrate3to4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C32E7422F8C98EA00C13847 /* Migrate3to4.swift */; };
 		3C343D432ADE1B2E00C282D0 /* DNSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */; };
 		3C3801342DA1AEB9007126EB /* AppIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3801332DA1AEA5007126EB /* AppIconView.swift */; };
 		3C48BED92F20741C00DE5267 /* attr.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C48BED82F20741C00DE5267 /* attr.html */; };
@@ -94,6 +97,9 @@
 		3C32E7332F8C8DAA00C13847 /* RecordViewNSEC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewNSEC.swift; sourceTree = "<group>"; };
 		3C32E7352F8C8F4A00C13847 /* RecordViewNSEC3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewNSEC3.swift; sourceTree = "<group>"; };
 		3C32E7372F8C918200C13847 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		3C32E73E2F8C98AB00C13847 /* Migrate1to2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrate1to2.swift; sourceTree = "<group>"; };
+		3C32E7402F8C98DC00C13847 /* Migrate2to3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrate2to3.swift; sourceTree = "<group>"; };
+		3C32E7422F8C98EA00C13847 /* Migrate3to4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migrate3to4.swift; sourceTree = "<group>"; };
 		3C343D422ADE1B2E00C282D0 /* DNSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSMessageView.swift; sourceTree = "<group>"; };
 		3C3801332DA1AEA5007126EB /* AppIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconView.swift; sourceTree = "<group>"; };
 		3C48BED82F20741C00DE5267 /* attr.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = attr.html; sourceTree = "<group>"; };
@@ -183,6 +189,16 @@
 				9A80CE352AEF634700E97A63 /* SavedServerListView.swift */,
 			);
 			path = "Saved Servers";
+			sourceTree = "<group>";
+		};
+		3C32E73D2F8C989700C13847 /* Migration */ = {
+			isa = PBXGroup;
+			children = (
+				3C32E7422F8C98EA00C13847 /* Migrate3to4.swift */,
+				3C32E7402F8C98DC00C13847 /* Migrate2to3.swift */,
+				3C32E73E2F8C98AB00C13847 /* Migrate1to2.swift */,
+			);
+			path = Migration;
 			sourceTree = "<group>";
 		};
 		3C62351B2CD6FA2B00387F6E /* Other Views */ = {
@@ -300,6 +316,7 @@
 		9A80CE2A2AEF336600E97A63 /* Options */ = {
 			isa = PBXGroup;
 			children = (
+				3C32E73D2F8C989700C13847 /* Migration */,
 				3C2E20FF2E4E7CE300E87842 /* DNSResolver.swift */,
 				9A80CE2D2AEF339700E97A63 /* UserOptions.swift */,
 			);
@@ -513,6 +530,7 @@
 				9A80CE2E2AEF339700E97A63 /* UserOptions.swift in Sources */,
 				3C0C6B2E2B38F309006D3F41 /* AboutTableView.swift in Sources */,
 				9A80CE3B2AEF6D0200E97A63 /* IO.swift in Sources */,
+				3C32E7432F8C98ED00C13847 /* Migrate3to4.swift in Sources */,
 				3C6CCD5D2B3BB5C700A3B6F2 /* Localization.swift in Sources */,
 				9A80CE292AEF2C7700E97A63 /* RoundedLabel.swift in Sources */,
 				9A80CE382AEF650200E97A63 /* SavedServerButton.swift in Sources */,
@@ -530,6 +548,8 @@
 				9AA8C13A2ADCA98000B93E45 /* App.swift in Sources */,
 				3C599C1F2C818467003BFC68 /* RecordViewHTTPS.swift in Sources */,
 				9AA8C18C2ADCC2CD00B93E45 /* AboutView.swift in Sources */,
+				3C32E7412F8C98E000C13847 /* Migrate2to3.swift in Sources */,
+				3C32E73F2F8C98B000C13847 /* Migrate1to2.swift in Sources */,
 				3C7BD1C02C387A21004C2ECF /* LogWriter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

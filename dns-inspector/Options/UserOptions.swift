@@ -33,9 +33,10 @@ public enum BinaryDataDisplayMode: Int, Codable {
 /// 2 - original releast
 /// 3 - add "name" field to preset server
 /// 4 - change preset server to DNSResolver, add DNS Inspector DoQ preset server, add limit for number of remembered queries
-private let currentSchemaVersion: Int = 4
+/// 5 - remove saved servers without any addresses
+private let currentSchemaVersion: Int = 5
 
-private struct OptionsType: Codable {
+internal struct OptionsType: Codable {
     public var schemaVersion: Int
     public var appLaunchCount: Int?
     public var didPromptForReview: Bool?
@@ -59,6 +60,8 @@ public final class UserOptions {
     private static let optionsFilePath = IO.fileInDocumentsDirectory("options.json")
     private static var current = OptionsType(schemaVersion: currentSchemaVersion)
 
+    // Have to disable this rule here as there's no real way to work around it - migration code is messy.
+    // swiftlint:disable cyclomatic_complexity
     public static func load() {
         defer {
             UserOptions.save()
@@ -94,10 +97,8 @@ public final class UserOptions {
             return
         }
 
-        if currentVersion > currentSchemaVersion {
-            LogWriter.shared.write(.Error, message: "[\(#fileID):\(#line)] Schema of settings file is newer than what is supported by the app. \(currentVersion) > \(currentSchemaVersion)")
-            return
-        } else if currentVersion == currentSchemaVersion {
+        switch currentVersion {
+        case currentSchemaVersion:
             let options: OptionsType
             do {
                 options = try JSONDecoder().decode(OptionsType.self, from: data)
@@ -107,7 +108,19 @@ public final class UserOptions {
             }
 
             current = options
-        } else if currentVersion == 3 {
+        case 4:
+            LogWriter.shared.write(.Debug, message: "[\(#fileID):\(#line)] Migrating options")
+
+            // Remove invalid preset servers (those without at least one server address)
+            let options: OptionsType4
+            do {
+                options = try JSONDecoder().decode(OptionsType4.self, from: data)
+            } catch {
+                print("Error decoding options file \(optionsFilePath): \(error)")
+                return
+            }
+            current = options.convertToOptions()
+        case 3:
             LogWriter.shared.write(.Debug, message: "[\(#fileID):\(#line)] Migrating options")
 
             // Add name to preset server
@@ -119,7 +132,7 @@ public final class UserOptions {
                 return
             }
             current = options.convertToOptions()
-        } else if currentVersion == 2 {
+        case 2:
             LogWriter.shared.write(.Debug, message: "[\(#fileID):\(#line)] Migrating options")
 
             // Add name to preset server
@@ -132,10 +145,14 @@ public final class UserOptions {
             }
             let options3 = options.convertToOptions()
             current = options3.convertToOptions()
+        default:
+            LogWriter.shared.write(.Error, message: "[\(#fileID):\(#line)] Schema of settings file is newer than what is supported by the app. \(currentVersion) > \(currentSchemaVersion)")
+            return
         }
 
         LogWriter.shared.write(.Debug, message: "[\(#fileID):\(#line)] Loaded options")
     }
+    // swiftlint:enable cyclomatic_complexity
 
     public static func save() {
         let data: Data
@@ -307,137 +324,5 @@ public final class UserOptions {
             current.lastUsedServer = newValue
             save()
         }
-    }
-}
-
-private struct PresetServer2: Codable, Identifiable {
-    public let type: TransportType
-    public let address: String
-    public var id = UUID()
-
-    enum CodingKeys: CodingKey {
-        case type, address
-    }
-}
-
-private struct PresetServer3: Codable, Identifiable {
-    public let name: String
-    public let type: TransportType
-    public let address: String
-    public var id = UUID()
-
-    public init(name: String, type: TransportType, address: String, id: UUID = UUID()) {
-        self.name = name
-        self.type = type
-        self.address = address
-        self.id = id
-    }
-
-    enum CodingKeys: CodingKey {
-        case name, type, address
-    }
-}
-
-@MainActor
-public struct LastUsedServer2: Codable {
-    let transportType: TransportType
-    let address: String
-}
-
-private struct OptionsType2: Codable {
-    public var schemaVersion: Int
-    public var appLaunchCount: Int?
-    public var didPromptForReview: Bool?
-    public var rememberQueries: Bool?
-    public var rememberLastServer: Bool?
-    public var ttlDisplayMode: TTLDisplayMode?
-    public var showRecordDescription: Bool?
-    public var dnsPrefersTcp: Bool?
-    public var timeoutSeconds: UInt8?
-    public var appLanguage: SupportedLanguages?
-    public var automaticDnssecValidation: Bool?
-
-    public var presetServers: [PresetServer2]?
-    public var lastUsedServer: LastUsedServer2?
-
-    @MainActor public func convertToOptions() -> OptionsType3 {
-        var newOptions = OptionsType3(schemaVersion: currentSchemaVersion)
-        newOptions.appLaunchCount = self.appLaunchCount
-        newOptions.didPromptForReview = self.didPromptForReview
-        newOptions.rememberQueries = self.rememberQueries
-        newOptions.rememberLastServer = self.rememberLastServer
-        newOptions.ttlDisplayMode = self.ttlDisplayMode
-        newOptions.showRecordDescription = self.showRecordDescription
-        newOptions.dnsPrefersTcp = self.dnsPrefersTcp
-        newOptions.timeoutSeconds = 5
-        newOptions.appLanguage = self.appLanguage
-        newOptions.automaticDnssecValidation = self.automaticDnssecValidation
-        newOptions.lastUsedServer = self.lastUsedServer
-
-        if let presetServers = self.presetServers {
-            newOptions.presetServers = []
-            for presetServer in presetServers {
-                let name: String
-                if presetServer.type == .TLS && presetServer.address == "1.1.1.1" {
-                    name = "Cloudflare"
-                } else if presetServer.type == .DNS && presetServer.address == "9.9.9.9" {
-                    name = "Quad9"
-                } else if presetServer.type == .HTTPS && presetServer.address == "dns.google/dns-query" {
-                    name = "Google"
-                } else {
-                    name = presetServer.address
-                }
-                newOptions.presetServers?.append(PresetServer3(name: name, type: presetServer.type, address: presetServer.address, id: presetServer.id))
-            }
-        }
-
-        return newOptions
-    }
-}
-
-private struct OptionsType3: Codable {
-    public var schemaVersion: Int
-    public var appLaunchCount: Int?
-    public var didPromptForReview: Bool?
-    public var rememberQueries: Bool?
-    public var rememberLastServer: Bool?
-    public var ttlDisplayMode: TTLDisplayMode?
-    public var showRecordDescription: Bool?
-    public var dnsPrefersTcp: Bool?
-    public var timeoutSeconds: UInt8?
-    public var appLanguage: SupportedLanguages?
-    public var automaticDnssecValidation: Bool?
-
-    public var presetServers: [PresetServer3]?
-    public var lastUsedServer: LastUsedServer2?
-
-    @MainActor public func convertToOptions() -> OptionsType {
-        var newOptions = OptionsType(schemaVersion: currentSchemaVersion)
-        newOptions.appLaunchCount = self.appLaunchCount
-        newOptions.didPromptForReview = self.didPromptForReview
-        newOptions.rememberQueries = self.rememberQueries
-        newOptions.rememberLastServer = self.rememberLastServer
-        newOptions.ttlDisplayMode = self.ttlDisplayMode
-        newOptions.showRecordDescription = self.showRecordDescription
-        newOptions.dnsPrefersTcp = self.dnsPrefersTcp
-        newOptions.timeoutSeconds = 5
-        newOptions.appLanguage = self.appLanguage
-        newOptions.automaticDnssecValidation = self.automaticDnssecValidation
-        newOptions.lastUsedServer = nil
-
-        var savedServers: [DNSResolver] = []
-        for presetServer in self.presetServers ?? [] {
-            let httpsBootstrapIps: [String]?
-            if presetServer.type == .HTTPS && presetServer.address == "dns.google/dns-query" {
-                httpsBootstrapIps = ["8.8.8.8", "8.8.4.4", "2001:4860:4860::8888", "2001:4860:4860::8844"]
-            } else {
-                httpsBootstrapIps = nil
-            }
-            savedServers.append(DNSResolver(name: presetServer.name, type: presetServer.type, addresses: [presetServer.address], httpsBootstrapIps: httpsBootstrapIps, id: presetServer.id))
-        }
-        savedServers.append(DNSResolver(name: "DNS Inspector", type: .QUIC, addresses: ["20.47.87.112:853", "20.47.87.115:853", "[2603:1030:f02:3::3fd]:853", "[2603:1030:f02:3::430]:853"], id: UUID(uuidString: "ba689402-b08b-4f66-b8e6-e5a0ddd3ac12")!))
-        newOptions.savedServers = savedServers
-
-        return newOptions
     }
 }

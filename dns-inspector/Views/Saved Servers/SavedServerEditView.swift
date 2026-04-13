@@ -139,6 +139,7 @@ struct SavedServerEditView: View {
                         }
                     }
                 }
+                .disabled(isInvalid())
             }
         }
         .onChange(of: httpsBootstrapIps) { _ in
@@ -154,5 +155,19 @@ struct SavedServerEditView: View {
         }
 
         return self.httpsBootstrapIps.first(where: { !$0.isEmpty }) != nil
+    }
+
+    func isInvalid() -> Bool {
+        if self.serverName.isEmpty {
+            return true
+        }
+
+        var addresses = self.serverAddresses
+        addresses.removeAll(where: \.isEmpty)
+        if addresses.isEmpty {
+            return true
+        }
+
+        return false
     }
 }

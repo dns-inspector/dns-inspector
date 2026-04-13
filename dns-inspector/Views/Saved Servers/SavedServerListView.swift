@@ -112,7 +112,7 @@ private struct SavedServerListViewItem: View {
             HStack {
                 RoundedLabel(transportType.string())
                 Text(name)
-                Text(addresses[0]).opacity(0.75)
+                Text(addresses.first ?? "").opacity(0.75)
             }
         }
     }
