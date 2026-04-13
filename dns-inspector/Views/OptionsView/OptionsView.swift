@@ -22,6 +22,7 @@ struct OptionsView: View {
     @State private var queryLimit = UserOptions.queryLimit
     @State private var rememberLastServer = UserOptions.rememberLastServer
     @State private var ttlDisplayMode = UserOptions.ttlDisplayMode
+    @State private var binaryDataDisplayMode = UserOptions.binaryDataDisplayMode
     @State private var showRecordDescription = UserOptions.showRecordDescription
     @State private var dnsPrefersTcp = UserOptions.dnsPrefersTcp
     @State private var timeoutSeconds = "\(UserOptions.timeoutSeconds)"
@@ -64,6 +65,10 @@ struct OptionsView: View {
                         Text(Localize.relative()).tag(TTLDisplayMode.relative)
                         Text(Localize.absolute()).tag(TTLDisplayMode.absolute)
                     }
+                    Picker(Localize.formatbinarydataas(), selection: $binaryDataDisplayMode) {
+                        Text("Hex").tag(BinaryDataDisplayMode.hex)
+                        Text("Base64").tag(BinaryDataDisplayMode.base64)
+                    }
                 }
                 Section(Localize.network()) {
                     Toggle(Localize.sendtraditionaldnsrequestsusingtcp(), isOn: $dnsPrefersTcp)
@@ -100,6 +105,9 @@ struct OptionsView: View {
             }
             .onChange(of: ttlDisplayMode) { newValue in
                 UserOptions.ttlDisplayMode = newValue
+            }
+            .onChange(of: binaryDataDisplayMode) { newValue in
+                UserOptions.binaryDataDisplayMode = newValue
             }
             .onChange(of: showRecordDescription) { newValue in
                 UserOptions.showRecordDescription = newValue

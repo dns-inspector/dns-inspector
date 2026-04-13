@@ -53,7 +53,7 @@ struct RecordViewHTTPS: View {
             }
             if let ech = data.ech {
                 TitleValue("ECH") {
-                    FixedWidthText(ech.base64EncodedString())
+                    FixedWidthText(data: ech)
                 }.padding(.bottom, 2)
             }
         }

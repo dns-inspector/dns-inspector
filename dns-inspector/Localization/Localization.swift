@@ -406,6 +406,17 @@ public final class Localize {
             return "Folge @dnsinspector auf Mastodon"
         }
     }
+    // key: Format binary data as
+    static func formatbinarydataas() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Format binary data as"
+        case .Spanish:
+            return "Format binary data as"
+        case .German:
+            return "Format binary data as"
+        }
+    }
     // key: Friendly Name
     static func friendlyname() -> String {
         switch currentLanguage {

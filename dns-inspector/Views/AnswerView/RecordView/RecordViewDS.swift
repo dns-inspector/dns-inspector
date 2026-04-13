@@ -50,7 +50,7 @@ struct RecordViewDS: View {
                 }
             }.padding(.bottom, 2)
             TitleValue(Localize.digest()) {
-                FixedWidthText(data.digest.base64EncodedString())
+                FixedWidthText(data: data.digest)
             }
         }
     }

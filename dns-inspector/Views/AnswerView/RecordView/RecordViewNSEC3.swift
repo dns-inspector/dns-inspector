@@ -37,7 +37,7 @@ struct RecordViewNSEC3: View {
     var body: some View {
         VStack(alignment: .leading) {
             TitleValue(Localize.hashednextname()) {
-                FixedWidthText(self.data.hashedNextName.base64EncodedString())
+                FixedWidthText(data: self.data.hashedNextName)
             }
             TitleValue(Localize.recordtypes()) {
                 Text(self.types.joined(separator: ", "))

@@ -23,6 +23,15 @@ struct FixedWidthText: View {
         self.text = text
     }
 
+    init(data: Data) {
+        switch UserOptions.binaryDataDisplayMode {
+        case .hex:
+            self.text = data.hexEncodedString()
+        case .base64:
+            self.text = data.base64EncodedString()
+        }
+    }
+
     var body: some View {
         Text(text)
             .fixedwidth()

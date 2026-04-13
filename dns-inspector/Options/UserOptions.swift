@@ -23,6 +23,12 @@ public enum TTLDisplayMode: Int, Codable {
     case absolute = 1
 }
 
+@MainActor
+public enum BinaryDataDisplayMode: Int, Codable {
+    case hex = 0
+    case base64 = 1
+}
+
 /// Schema history:
 /// 2 - original releast
 /// 3 - add "name" field to preset server
@@ -42,6 +48,7 @@ private struct OptionsType: Codable {
     public var timeoutSeconds: UInt8?
     public var appLanguage: SupportedLanguages?
     public var automaticDnssecValidation: Bool?
+    public var binaryDataDisplayMode: BinaryDataDisplayMode?
 
     public var savedServers: [DNSResolver]?
     public var lastUsedServer: DNSResolver?
@@ -262,6 +269,16 @@ public final class UserOptions {
         }
         set {
             current.automaticDnssecValidation = newValue
+            save()
+        }
+    }
+
+    public static var binaryDataDisplayMode: BinaryDataDisplayMode {
+        get {
+            return current.binaryDataDisplayMode ?? .base64
+        }
+        set {
+            current.binaryDataDisplayMode = newValue
             save()
         }
     }
