@@ -20,11 +20,14 @@
 
 import Foundation
 
-@MainActor
-public enum SupportedLanguages: String, CaseIterable, Codable {
+public enum SupportedLanguages: String, Sendable, Hashable, Identifiable, CaseIterable, Codable {
     case English = "en"
     case Spanish = "es"
     case German = "de"
+
+    public var id: Self {
+        return self
+    }
 }
 
 @MainActor
@@ -33,7 +36,7 @@ public var currentLanguage: SupportedLanguages = .English
 @MainActor
 public final class Localize {
     // key: About
-    static func about() -> String {
+    public static func about() -> String {
         switch currentLanguage {
         case .English:
             return "About"
@@ -44,7 +47,7 @@ public final class Localize {
         }
     }
     // key: Absolute
-    static func absolute() -> String {
+    public static func absolute() -> String {
         switch currentLanguage {
         case .English:
             return "Absolute"
@@ -55,7 +58,7 @@ public final class Localize {
         }
     }
     // key: Add Saved Server
-    static func addsavedserver() -> String {
+    public static func addsavedserver() -> String {
         switch currentLanguage {
         case .English:
             return "Add Saved Server"
@@ -66,7 +69,7 @@ public final class Localize {
         }
     }
     // key: Administrative address
-    static func administrativeaddress() -> String {
+    public static func administrativeaddress() -> String {
         switch currentLanguage {
         case .English:
             return "Administrative address"
@@ -77,7 +80,7 @@ public final class Localize {
         }
     }
     // key: Algorithm
-    static func algorithm() -> String {
+    public static func algorithm() -> String {
         switch currentLanguage {
         case .English:
             return "Algorithm"
@@ -88,7 +91,7 @@ public final class Localize {
         }
     }
     // key: Altitude
-    static func altitude() -> String {
+    public static func altitude() -> String {
         switch currentLanguage {
         case .English:
             return "Altitude"
@@ -99,7 +102,7 @@ public final class Localize {
         }
     }
     // key: Answers
-    static func answers() -> String {
+    public static func answers() -> String {
         switch currentLanguage {
         case .English:
             return "Answers"
@@ -110,7 +113,7 @@ public final class Localize {
         }
     }
     // key: App Icon
-    static func appicon() -> String {
+    public static func appicon() -> String {
         switch currentLanguage {
         case .English:
             return "App Icon"
@@ -121,7 +124,7 @@ public final class Localize {
         }
     }
     // key: App language
-    static func applanguage() -> String {
+    public static func applanguage() -> String {
         switch currentLanguage {
         case .English:
             return "App language"
@@ -132,7 +135,7 @@ public final class Localize {
         }
     }
     // key: AppIconFooter
-    static func appiconfooter() -> String {
+    public static func appiconfooter() -> String {
         switch currentLanguage {
         case .English:
             return "The \"Progress\" pride flag was created by Daniel Quasar and is licensed under Create Commons BY-NC-SA. The trans flag was created by Monica Helms and was released to the public domain."
@@ -143,7 +146,7 @@ public final class Localize {
         }
     }
     // key: Appearance & Behaviour
-    static func appearancebehaviour() -> String {
+    public static func appearancebehaviour() -> String {
         switch currentLanguage {
         case .English:
             return "Appearance & Behaviour"
@@ -154,7 +157,7 @@ public final class Localize {
         }
     }
     // key: Area
-    static func area() -> String {
+    public static func area() -> String {
         switch currentLanguage {
         case .English:
             return "Area"
@@ -165,7 +168,7 @@ public final class Localize {
         }
     }
     // key: Authority
-    static func authority() -> String {
+    public static func authority() -> String {
         switch currentLanguage {
         case .English:
             return "Authority"
@@ -173,21 +176,10 @@ public final class Localize {
             return "Authority"
         case .German:
             return "Authority"
-        }
-    }
-    // key: Automatically
-    static func automatically() -> String {
-        switch currentLanguage {
-        case .English:
-            return "Automatically"
-        case .Spanish:
-            return "Automatically"
-        case .German:
-            return "Automatisch"
         }
     }
     // key: Bad signing key: {details}
-    static func badsigningkeydetails(details: String) -> String {
+    public static func badsigningkeydetails(details: String) -> String {
         switch currentLanguage {
         case .English:
             return "Bad signing key: \(details)"
@@ -198,7 +190,7 @@ public final class Localize {
         }
     }
     // key: Chain
-    static func chain() -> String {
+    public static func chain() -> String {
         switch currentLanguage {
         case .English:
             return "Chain"
@@ -209,7 +201,7 @@ public final class Localize {
         }
     }
     // key: Connection Timeout
-    static func connectiontimeout() -> String {
+    public static func connectiontimeout() -> String {
         switch currentLanguage {
         case .English:
             return "Connection Timeout"
@@ -220,7 +212,7 @@ public final class Localize {
         }
     }
     // key: Connection error: {details}
-    static func connectionerrordetails(details: String) -> String {
+    public static func connectionerrordetails(details: String) -> String {
         switch currentLanguage {
         case .English:
             return "Connection error: \(details)"
@@ -231,7 +223,7 @@ public final class Localize {
         }
     }
     // key: Contribute to DNS Inspector
-    static func contributetodnsinspector() -> String {
+    public static func contributetodnsinspector() -> String {
         switch currentLanguage {
         case .English:
             return "Contribute to DNS Inspector"
@@ -242,7 +234,7 @@ public final class Localize {
         }
     }
     // key: Coordinates
-    static func coordinates() -> String {
+    public static func coordinates() -> String {
         switch currentLanguage {
         case .English:
             return "Coordinates"
@@ -253,7 +245,7 @@ public final class Localize {
         }
     }
     // key: Custom Server
-    static func customserver() -> String {
+    public static func customserver() -> String {
         switch currentLanguage {
         case .English:
             return "Custom Server"
@@ -264,7 +256,7 @@ public final class Localize {
         }
     }
     // key: DNS Inspector
-    static func dnsinspector() -> String {
+    public static func dnsinspector() -> String {
         switch currentLanguage {
         case .English:
             return "DNS Inspector"
@@ -275,7 +267,7 @@ public final class Localize {
         }
     }
     // key: DNS over HTTPS
-    static func dnsoverhttps() -> String {
+    public static func dnsoverhttps() -> String {
         switch currentLanguage {
         case .English:
             return "DNS over HTTPS"
@@ -286,7 +278,7 @@ public final class Localize {
         }
     }
     // key: DNS over QUIC
-    static func dnsoverquic() -> String {
+    public static func dnsoverquic() -> String {
         switch currentLanguage {
         case .English:
             return "DNS over QUIC"
@@ -297,7 +289,7 @@ public final class Localize {
         }
     }
     // key: DNS over TLS
-    static func dnsovertls() -> String {
+    public static func dnsovertls() -> String {
         switch currentLanguage {
         case .English:
             return "DNS over TLS"
@@ -305,21 +297,10 @@ public final class Localize {
             return "DNS over TLS"
         case .German:
             return "DNS over TLS"
-        }
-    }
-    // key: DNSSEC Enabled
-    static func dnssecenabled() -> String {
-        switch currentLanguage {
-        case .English:
-            return "DNSSEC Enabled"
-        case .Spanish:
-            return "DNSSEC Enabled"
-        case .German:
-            return "DNSSEC aktiviert"
         }
     }
     // key: DNSSEC not enabled on this zone, no RRSIG returned.
-    static func dnssecnotenabledonthiszonenorrsigreturned() -> String {
+    public static func dnssecnotenabledonthiszonenorrsigreturned() -> String {
         switch currentLanguage {
         case .English:
             return "DNSSEC not enabled on this zone, no RRSIG returned."
@@ -330,7 +311,7 @@ public final class Localize {
         }
     }
     // key: Destination
-    static func destination() -> String {
+    public static func destination() -> String {
         switch currentLanguage {
         case .English:
             return "Destination"
@@ -341,7 +322,7 @@ public final class Localize {
         }
     }
     // key: Digest
-    static func digest() -> String {
+    public static func digest() -> String {
         switch currentLanguage {
         case .English:
             return "Digest"
@@ -352,7 +333,7 @@ public final class Localize {
         }
     }
     // key: Digest Type
-    static func digesttype() -> String {
+    public static func digesttype() -> String {
         switch currentLanguage {
         case .English:
             return "Digest Type"
@@ -363,7 +344,7 @@ public final class Localize {
         }
     }
     // key: Dismiss
-    static func dismiss() -> String {
+    public static func dismiss() -> String {
         switch currentLanguage {
         case .English:
             return "Dismiss"
@@ -374,7 +355,7 @@ public final class Localize {
         }
     }
     // key: Domain Information
-    static func domaininformation() -> String {
+    public static func domaininformation() -> String {
         switch currentLanguage {
         case .English:
             return "Domain Information"
@@ -385,7 +366,7 @@ public final class Localize {
         }
     }
     // key: Edit Saved Server
-    static func editsavedserver() -> String {
+    public static func editsavedserver() -> String {
         switch currentLanguage {
         case .English:
             return "Edit Saved Server"
@@ -396,7 +377,7 @@ public final class Localize {
         }
     }
     // key: Edit Saved Servers
-    static func editsavedservers() -> String {
+    public static func editsavedservers() -> String {
         switch currentLanguage {
         case .English:
             return "Edit Saved Servers"
@@ -407,7 +388,7 @@ public final class Localize {
         }
     }
     // key: Empty response
-    static func emptyresponse() -> String {
+    public static func emptyresponse() -> String {
         switch currentLanguage {
         case .English:
             return "Empty response"
@@ -415,21 +396,10 @@ public final class Localize {
             return "Empty response"
         case .German:
             return "Empty response"
-        }
-    }
-    // key: Error
-    static func error() -> String {
-        switch currentLanguage {
-        case .English:
-            return "Error"
-        case .Spanish:
-            return "Error"
-        case .German:
-            return "Fehler"
         }
     }
     // key: Excessive response size
-    static func excessiveresponsesize() -> String {
+    public static func excessiveresponsesize() -> String {
         switch currentLanguage {
         case .English:
             return "Excessive response size"
@@ -440,7 +410,7 @@ public final class Localize {
         }
     }
     // key: Expire
-    static func expire() -> String {
+    public static func expire() -> String {
         switch currentLanguage {
         case .English:
             return "Expire"
@@ -451,7 +421,7 @@ public final class Localize {
         }
     }
     // key: Follow @dns-inspector.com on Bluesky
-    static func followdnsinspectorcomonbluesky() -> String {
+    public static func followdnsinspectorcomonbluesky() -> String {
         switch currentLanguage {
         case .English:
             return "Follow @dns-inspector.com on Bluesky"
@@ -462,7 +432,7 @@ public final class Localize {
         }
     }
     // key: Follow @dnsinspector on Mastodon
-    static func followdnsinspectoronmastodon() -> String {
+    public static func followdnsinspectoronmastodon() -> String {
         switch currentLanguage {
         case .English:
             return "Follow @dnsinspector on Mastodon"
@@ -473,7 +443,7 @@ public final class Localize {
         }
     }
     // key: Format binary data as
-    static func formatbinarydataas() -> String {
+    public static func formatbinarydataas() -> String {
         switch currentLanguage {
         case .English:
             return "Format binary data as"
@@ -484,7 +454,7 @@ public final class Localize {
         }
     }
     // key: Friendly Name
-    static func friendlyname() -> String {
+    public static func friendlyname() -> String {
         switch currentLanguage {
         case .English:
             return "Friendly Name"
@@ -495,7 +465,7 @@ public final class Localize {
         }
     }
     // key: General
-    static func general() -> String {
+    public static func general() -> String {
         switch currentLanguage {
         case .English:
             return "General"
@@ -506,7 +476,7 @@ public final class Localize {
         }
     }
     // key: Get Involved
-    static func getinvolved() -> String {
+    public static func getinvolved() -> String {
         switch currentLanguage {
         case .English:
             return "Get Involved"
@@ -517,7 +487,7 @@ public final class Localize {
         }
     }
     // key: HTTP {code}
-    static func httpcode(code: String) -> String {
+    public static func httpcode(code: String) -> String {
         switch currentLanguage {
         case .English:
             return "HTTP \(code)"
@@ -528,7 +498,7 @@ public final class Localize {
         }
     }
     // key: Hashed Next Name
-    static func hashednextname() -> String {
+    public static func hashednextname() -> String {
         switch currentLanguage {
         case .English:
             return "Hashed Next Name"
@@ -539,7 +509,7 @@ public final class Localize {
         }
     }
     // key: Horizontal Precision
-    static func horizontalprecision() -> String {
+    public static func horizontalprecision() -> String {
         switch currentLanguage {
         case .English:
             return "Horizontal Precision"
@@ -550,7 +520,7 @@ public final class Localize {
         }
     }
     // key: IPv4 Hints
-    static func ipv4hints() -> String {
+    public static func ipv4hints() -> String {
         switch currentLanguage {
         case .English:
             return "IPv4 Hints"
@@ -561,7 +531,7 @@ public final class Localize {
         }
     }
     // key: IPv6 Hints
-    static func ipv6hints() -> String {
+    public static func ipv6hints() -> String {
         switch currentLanguage {
         case .English:
             return "IPv6 Hints"
@@ -572,7 +542,7 @@ public final class Localize {
         }
     }
     // key: IconDefault
-    static func icondefault() -> String {
+    public static func icondefault() -> String {
         switch currentLanguage {
         case .English:
             return "Default"
@@ -583,7 +553,7 @@ public final class Localize {
         }
     }
     // key: IconPride
-    static func iconpride() -> String {
+    public static func iconpride() -> String {
         switch currentLanguage {
         case .English:
             return "Pride"
@@ -594,7 +564,7 @@ public final class Localize {
         }
     }
     // key: IconTrans
-    static func icontrans() -> String {
+    public static func icontrans() -> String {
         switch currentLanguage {
         case .English:
             return "Trans"
@@ -605,7 +575,7 @@ public final class Localize {
         }
     }
     // key: Internal error: {details}
-    static func internalerrordetails(details: String) -> String {
+    public static func internalerrordetails(details: String) -> String {
         switch currentLanguage {
         case .English:
             return "Internal error: \(details)"
@@ -616,7 +586,7 @@ public final class Localize {
         }
     }
     // key: Invalid URL
-    static func invalidurl() -> String {
+    public static func invalidurl() -> String {
         switch currentLanguage {
         case .English:
             return "Invalid URL"
@@ -627,7 +597,7 @@ public final class Localize {
         }
     }
     // key: Invalid content type: {details}
-    static func invalidcontenttypedetails(details: String) -> String {
+    public static func invalidcontenttypedetails(details: String) -> String {
         switch currentLanguage {
         case .English:
             return "Invalid content type: \(details)"
@@ -638,7 +608,7 @@ public final class Localize {
         }
     }
     // key: Invalid data: {details}
-    static func invaliddatadetails(details: String) -> String {
+    public static func invaliddatadetails(details: String) -> String {
         switch currentLanguage {
         case .English:
             return "Invalid data: \(details)"
@@ -649,7 +619,7 @@ public final class Localize {
         }
     }
     // key: Invalid response: {details}
-    static func invalidresponsedetails(details: String) -> String {
+    public static func invalidresponsedetails(details: String) -> String {
         switch currentLanguage {
         case .English:
             return "Invalid response: \(details)"
@@ -660,7 +630,7 @@ public final class Localize {
         }
     }
     // key: Key Usage
-    static func keyusage() -> String {
+    public static func keyusage() -> String {
         switch currentLanguage {
         case .English:
             return "Key Usage"
@@ -671,7 +641,7 @@ public final class Localize {
         }
     }
     // key: Key signing key
-    static func keysigningkey() -> String {
+    public static func keysigningkey() -> String {
         switch currentLanguage {
         case .English:
             return "Key signing key"
@@ -682,7 +652,7 @@ public final class Localize {
         }
     }
     // key: Key tag
-    static func keytag() -> String {
+    public static func keytag() -> String {
         switch currentLanguage {
         case .English:
             return "Key tag"
@@ -693,7 +663,7 @@ public final class Localize {
         }
     }
     // key: Loading...
-    static func loading() -> String {
+    public static func loading() -> String {
         switch currentLanguage {
         case .English:
             return "Loading..."
@@ -704,7 +674,7 @@ public final class Localize {
         }
     }
     // key: Main name server
-    static func mainnameserver() -> String {
+    public static func mainnameserver() -> String {
         switch currentLanguage {
         case .English:
             return "Main name server"
@@ -714,19 +684,8 @@ public final class Localize {
             return "Hauptnamensserver"
         }
     }
-    // key: Manually
-    static func manually() -> String {
-        switch currentLanguage {
-        case .English:
-            return "Manually"
-        case .Spanish:
-            return "Manually"
-        case .German:
-            return "Manuell"
-        }
-    }
     // key: Maximum History Size
-    static func maximumhistorysize() -> String {
+    public static func maximumhistorysize() -> String {
         switch currentLanguage {
         case .English:
             return "Maximum History Size"
@@ -737,7 +696,7 @@ public final class Localize {
         }
     }
     // key: Minimum
-    static func minimum() -> String {
+    public static func minimum() -> String {
         switch currentLanguage {
         case .English:
             return "Minimum"
@@ -748,7 +707,7 @@ public final class Localize {
         }
     }
     // key: Missing data: {details}
-    static func missingdatadetails(details: String) -> String {
+    public static func missingdatadetails(details: String) -> String {
         switch currentLanguage {
         case .English:
             return "Missing data: \(details)"
@@ -759,7 +718,7 @@ public final class Localize {
         }
     }
     // key: Missing keys: {details}
-    static func missingkeysdetails(details: String) -> String {
+    public static func missingkeysdetails(details: String) -> String {
         switch currentLanguage {
         case .English:
             return "Missing keys: \(details)"
@@ -770,7 +729,7 @@ public final class Localize {
         }
     }
     // key: More from the developer
-    static func morefromthedeveloper() -> String {
+    public static func morefromthedeveloper() -> String {
         switch currentLanguage {
         case .English:
             return "More from the developer"
@@ -781,7 +740,7 @@ public final class Localize {
         }
     }
     // key: My Server
-    static func myserver() -> String {
+    public static func myserver() -> String {
         switch currentLanguage {
         case .English:
             return "My Server"
@@ -792,7 +751,7 @@ public final class Localize {
         }
     }
     // key: Name
-    static func name() -> String {
+    public static func name() -> String {
         switch currentLanguage {
         case .English:
             return "Name"
@@ -803,7 +762,7 @@ public final class Localize {
         }
     }
     // key: Network
-    static func network() -> String {
+    public static func network() -> String {
         switch currentLanguage {
         case .English:
             return "Network"
@@ -814,7 +773,7 @@ public final class Localize {
         }
     }
     // key: New Saved Server
-    static func newsavedserver() -> String {
+    public static func newsavedserver() -> String {
         switch currentLanguage {
         case .English:
             return "New Saved Server"
@@ -825,7 +784,7 @@ public final class Localize {
         }
     }
     // key: New query
-    static func newquery() -> String {
+    public static func newquery() -> String {
         switch currentLanguage {
         case .English:
             return "New query"
@@ -836,7 +795,7 @@ public final class Localize {
         }
     }
     // key: Next Name
-    static func nextname() -> String {
+    public static func nextname() -> String {
         switch currentLanguage {
         case .English:
             return "Next Name"
@@ -847,7 +806,7 @@ public final class Localize {
         }
     }
     // key: No default ALPN
-    static func nodefaultalpn() -> String {
+    public static func nodefaultalpn() -> String {
         switch currentLanguage {
         case .English:
             return "No default ALPN"
@@ -858,7 +817,7 @@ public final class Localize {
         }
     }
     // key: No signatures: {details}
-    static func nosignaturesdetails(details: String) -> String {
+    public static func nosignaturesdetails(details: String) -> String {
         switch currentLanguage {
         case .English:
             return "No signatures: \(details)"
@@ -869,7 +828,7 @@ public final class Localize {
         }
     }
     // key: Open source licenses & attributions
-    static func opensourcelicensesattributions() -> String {
+    public static func opensourcelicensesattributions() -> String {
         switch currentLanguage {
         case .English:
             return "Open source licenses & attributions"
@@ -880,7 +839,7 @@ public final class Localize {
         }
     }
     // key: Options
-    static func options() -> String {
+    public static func options() -> String {
         switch currentLanguage {
         case .English:
             return "Options"
@@ -890,19 +849,8 @@ public final class Localize {
             return "Optionen"
         }
     }
-    // key: Perform Validation
-    static func performvalidation() -> String {
-        switch currentLanguage {
-        case .English:
-            return "Perform Validation"
-        case .Spanish:
-            return "Perform Validation"
-        case .German:
-            return "Validierung durchführen"
-        }
-    }
     // key: Port
-    static func port() -> String {
+    public static func port() -> String {
         switch currentLanguage {
         case .English:
             return "Port"
@@ -913,7 +861,7 @@ public final class Localize {
         }
     }
     // key: Priority
-    static func priority() -> String {
+    public static func priority() -> String {
         switch currentLanguage {
         case .English:
             return "Priority"
@@ -924,7 +872,7 @@ public final class Localize {
         }
     }
     // key: Provide feedback
-    static func providefeedback() -> String {
+    public static func providefeedback() -> String {
         switch currentLanguage {
         case .English:
             return "Provide feedback"
@@ -935,7 +883,7 @@ public final class Localize {
         }
     }
     // key: Public key
-    static func publickey() -> String {
+    public static func publickey() -> String {
         switch currentLanguage {
         case .English:
             return "Public key"
@@ -946,7 +894,7 @@ public final class Localize {
         }
     }
     // key: Query
-    static func query() -> String {
+    public static func query() -> String {
         switch currentLanguage {
         case .English:
             return "Query"
@@ -957,7 +905,7 @@ public final class Localize {
         }
     }
     // key: Question
-    static func question() -> String {
+    public static func question() -> String {
         switch currentLanguage {
         case .English:
             return "Question"
@@ -968,7 +916,7 @@ public final class Localize {
         }
     }
     // key: Rate in App Store
-    static func rateinappstore() -> String {
+    public static func rateinappstore() -> String {
         switch currentLanguage {
         case .English:
             return "Rate in App Store"
@@ -979,7 +927,7 @@ public final class Localize {
         }
     }
     // key: Recent queries
-    static func recentqueries() -> String {
+    public static func recentqueries() -> String {
         switch currentLanguage {
         case .English:
             return "Recent queries"
@@ -990,7 +938,7 @@ public final class Localize {
         }
     }
     // key: Record Type
-    static func recordtype() -> String {
+    public static func recordtype() -> String {
         switch currentLanguage {
         case .English:
             return "Record Type"
@@ -1001,7 +949,7 @@ public final class Localize {
         }
     }
     // key: Record Types
-    static func recordtypes() -> String {
+    public static func recordtypes() -> String {
         switch currentLanguage {
         case .English:
             return "Record Types"
@@ -1012,7 +960,7 @@ public final class Localize {
         }
     }
     // key: Refresh
-    static func refresh() -> String {
+    public static func refresh() -> String {
         switch currentLanguage {
         case .English:
             return "Refresh"
@@ -1023,7 +971,7 @@ public final class Localize {
         }
     }
     // key: Relative
-    static func relative() -> String {
+    public static func relative() -> String {
         switch currentLanguage {
         case .English:
             return "Relative"
@@ -1034,7 +982,7 @@ public final class Localize {
         }
     }
     // key: Remember last server
-    static func rememberlastserver() -> String {
+    public static func rememberlastserver() -> String {
         switch currentLanguage {
         case .English:
             return "Remember last server"
@@ -1045,7 +993,7 @@ public final class Localize {
         }
     }
     // key: Remember recent queries
-    static func rememberrecentqueries() -> String {
+    public static func rememberrecentqueries() -> String {
         switch currentLanguage {
         case .English:
             return "Remember recent queries"
@@ -1056,7 +1004,7 @@ public final class Localize {
         }
     }
     // key: Response
-    static func response() -> String {
+    public static func response() -> String {
         switch currentLanguage {
         case .English:
             return "Response"
@@ -1067,7 +1015,7 @@ public final class Localize {
         }
     }
     // key: Response contained no answers
-    static func responsecontainednoanswers() -> String {
+    public static func responsecontainednoanswers() -> String {
         switch currentLanguage {
         case .English:
             return "Response contained no answers"
@@ -1078,7 +1026,7 @@ public final class Localize {
         }
     }
     // key: Results
-    static func results() -> String {
+    public static func results() -> String {
         switch currentLanguage {
         case .English:
             return "Results"
@@ -1089,7 +1037,7 @@ public final class Localize {
         }
     }
     // key: Retry
-    static func retry() -> String {
+    public static func retry() -> String {
         switch currentLanguage {
         case .English:
             return "Retry"
@@ -1100,7 +1048,7 @@ public final class Localize {
         }
     }
     // key: Save
-    static func save() -> String {
+    public static func save() -> String {
         switch currentLanguage {
         case .English:
             return "Save"
@@ -1111,7 +1059,7 @@ public final class Localize {
         }
     }
     // key: Saved Server
-    static func savedserver() -> String {
+    public static func savedserver() -> String {
         switch currentLanguage {
         case .English:
             return "Saved Server"
@@ -1122,7 +1070,7 @@ public final class Localize {
         }
     }
     // key: Saved Servers
-    static func savedservers() -> String {
+    public static func savedservers() -> String {
         switch currentLanguage {
         case .English:
             return "Saved Servers"
@@ -1133,7 +1081,7 @@ public final class Localize {
         }
     }
     // key: Seconds
-    static func seconds() -> String {
+    public static func seconds() -> String {
         switch currentLanguage {
         case .English:
             return "Seconds"
@@ -1144,7 +1092,7 @@ public final class Localize {
         }
     }
     // key: Send traditional DNS requests using TCP
-    static func sendtraditionaldnsrequestsusingtcp() -> String {
+    public static func sendtraditionaldnsrequestsusingtcp() -> String {
         switch currentLanguage {
         case .English:
             return "Send traditional DNS requests using TCP"
@@ -1155,7 +1103,7 @@ public final class Localize {
         }
     }
     // key: Serial
-    static func serial() -> String {
+    public static func serial() -> String {
         switch currentLanguage {
         case .English:
             return "Serial"
@@ -1166,7 +1114,7 @@ public final class Localize {
         }
     }
     // key: Server
-    static func server() -> String {
+    public static func server() -> String {
         switch currentLanguage {
         case .English:
             return "Server"
@@ -1177,7 +1125,7 @@ public final class Localize {
         }
     }
     // key: Server Addresses
-    static func serveraddresses() -> String {
+    public static func serveraddresses() -> String {
         switch currentLanguage {
         case .English:
             return "Server Addresses"
@@ -1188,7 +1136,7 @@ public final class Localize {
         }
     }
     // key: Server Details
-    static func serverdetails() -> String {
+    public static func serverdetails() -> String {
         switch currentLanguage {
         case .English:
             return "Server Details"
@@ -1199,7 +1147,7 @@ public final class Localize {
         }
     }
     // key: Server IP
-    static func serverip() -> String {
+    public static func serverip() -> String {
         switch currentLanguage {
         case .English:
             return "Server IP"
@@ -1210,7 +1158,7 @@ public final class Localize {
         }
     }
     // key: Server IP Addresses (Optional)
-    static func serveripaddressesoptional() -> String {
+    public static func serveripaddressesoptional() -> String {
         switch currentLanguage {
         case .English:
             return "Server IP Addresses (Optional)"
@@ -1221,7 +1169,7 @@ public final class Localize {
         }
     }
     // key: Server Type
-    static func servertype() -> String {
+    public static func servertype() -> String {
         switch currentLanguage {
         case .English:
             return "Server Type"
@@ -1232,7 +1180,7 @@ public final class Localize {
         }
     }
     // key: Server URL
-    static func serverurl() -> String {
+    public static func serverurl() -> String {
         switch currentLanguage {
         case .English:
             return "Server URL"
@@ -1243,7 +1191,7 @@ public final class Localize {
         }
     }
     // key: Share & Feedback
-    static func sharefeedback() -> String {
+    public static func sharefeedback() -> String {
         switch currentLanguage {
         case .English:
             return "Share & Feedback"
@@ -1254,7 +1202,7 @@ public final class Localize {
         }
     }
     // key: Share DNS Inspector
-    static func sharednsinspector() -> String {
+    public static func sharednsinspector() -> String {
         switch currentLanguage {
         case .English:
             return "Share DNS Inspector"
@@ -1265,7 +1213,7 @@ public final class Localize {
         }
     }
     // key: Show DNS record descriptions
-    static func showdnsrecorddescriptions() -> String {
+    public static func showdnsrecorddescriptions() -> String {
         switch currentLanguage {
         case .English:
             return "Show DNS record descriptions"
@@ -1276,7 +1224,7 @@ public final class Localize {
         }
     }
     // key: Show TTL values as
-    static func showttlvaluesas() -> String {
+    public static func showttlvaluesas() -> String {
         switch currentLanguage {
         case .English:
             return "Show TTL values as"
@@ -1287,7 +1235,7 @@ public final class Localize {
         }
     }
     // key: Signature
-    static func signature() -> String {
+    public static func signature() -> String {
         switch currentLanguage {
         case .English:
             return "Signature"
@@ -1298,7 +1246,7 @@ public final class Localize {
         }
     }
     // key: Signature Validation Failed
-    static func signaturevalidationfailed() -> String {
+    public static func signaturevalidationfailed() -> String {
         switch currentLanguage {
         case .English:
             return "Signature Validation Failed"
@@ -1309,7 +1257,7 @@ public final class Localize {
         }
     }
     // key: Signature failed
-    static func signaturefailed() -> String {
+    public static func signaturefailed() -> String {
         switch currentLanguage {
         case .English:
             return "Signature failed"
@@ -1320,7 +1268,7 @@ public final class Localize {
         }
     }
     // key: Supported Versions
-    static func supportedversions() -> String {
+    public static func supportedversions() -> String {
         switch currentLanguage {
         case .English:
             return "Supported Versions"
@@ -1331,7 +1279,7 @@ public final class Localize {
         }
     }
     // key: System DNS
-    static func systemdns() -> String {
+    public static func systemdns() -> String {
         switch currentLanguage {
         case .English:
             return "System DNS"
@@ -1342,7 +1290,7 @@ public final class Localize {
         }
     }
     // key: TLS Inspector
-    static func tlsinspector() -> String {
+    public static func tlsinspector() -> String {
         switch currentLanguage {
         case .English:
             return "TLS Inspector"
@@ -1353,7 +1301,7 @@ public final class Localize {
         }
     }
     // key: Target
-    static func target() -> String {
+    public static func target() -> String {
         switch currentLanguage {
         case .English:
             return "Target"
@@ -1364,7 +1312,7 @@ public final class Localize {
         }
     }
     // key: Timed out
-    static func timedout() -> String {
+    public static func timedout() -> String {
         switch currentLanguage {
         case .English:
             return "Timed out"
@@ -1375,7 +1323,7 @@ public final class Localize {
         }
     }
     // key: Too many redirects
-    static func toomanyredirects() -> String {
+    public static func toomanyredirects() -> String {
         switch currentLanguage {
         case .English:
             return "Too many redirects"
@@ -1386,7 +1334,7 @@ public final class Localize {
         }
     }
     // key: Traditional DNS
-    static func traditionaldns() -> String {
+    public static func traditionaldns() -> String {
         switch currentLanguage {
         case .English:
             return "Traditional DNS"
@@ -1397,7 +1345,7 @@ public final class Localize {
         }
     }
     // key: Trust Establishment Failed
-    static func trustestablishmentfailed() -> String {
+    public static func trustestablishmentfailed() -> String {
         switch currentLanguage {
         case .English:
             return "Trust Establishment Failed"
@@ -1408,7 +1356,7 @@ public final class Localize {
         }
     }
     // key: Trusted
-    static func trusted() -> String {
+    public static func trusted() -> String {
         switch currentLanguage {
         case .English:
             return "Trusted"
@@ -1419,7 +1367,7 @@ public final class Localize {
         }
     }
     // key: Unable to save your changes
-    static func unabletosaveyourchanges() -> String {
+    public static func unabletosaveyourchanges() -> String {
         switch currentLanguage {
         case .English:
             return "Unable to save your changes"
@@ -1430,7 +1378,7 @@ public final class Localize {
         }
     }
     // key: Unexpected response: {details}
-    static func unexpectedresponsedetails(details: String) -> String {
+    public static func unexpectedresponsedetails(details: String) -> String {
         switch currentLanguage {
         case .English:
             return "Unexpected response: \(details)"
@@ -1441,7 +1389,7 @@ public final class Localize {
         }
     }
     // key: Unsupported algorithm
-    static func unsupportedalgorithm() -> String {
+    public static func unsupportedalgorithm() -> String {
         switch currentLanguage {
         case .English:
             return "Unsupported algorithm"
@@ -1452,7 +1400,7 @@ public final class Localize {
         }
     }
     // key: Untrusted
-    static func untrusted() -> String {
+    public static func untrusted() -> String {
         switch currentLanguage {
         case .English:
             return "Untrusted"
@@ -1463,7 +1411,7 @@ public final class Localize {
         }
     }
     // key: Untrusted root signing key
-    static func untrustedrootsigningkey() -> String {
+    public static func untrustedrootsigningkey() -> String {
         switch currentLanguage {
         case .English:
             return "Untrusted root signing key"
@@ -1474,7 +1422,7 @@ public final class Localize {
         }
     }
     // key: Unverified
-    static func unverified() -> String {
+    public static func unverified() -> String {
         switch currentLanguage {
         case .English:
             return "Unverified"
@@ -1485,7 +1433,7 @@ public final class Localize {
         }
     }
     // key: Use HTTP/2
-    static func usehttp2() -> String {
+    public static func usehttp2() -> String {
         switch currentLanguage {
         case .English:
             return "Use HTTP/2"
@@ -1496,7 +1444,7 @@ public final class Localize {
         }
     }
     // key: Verbose logging
-    static func verboselogging() -> String {
+    public static func verboselogging() -> String {
         switch currentLanguage {
         case .English:
             return "Verbose logging"
@@ -1507,7 +1455,7 @@ public final class Localize {
         }
     }
     // key: Verified
-    static func verified() -> String {
+    public static func verified() -> String {
         switch currentLanguage {
         case .English:
             return "Verified"
@@ -1518,7 +1466,7 @@ public final class Localize {
         }
     }
     // key: Version {version} (build {build})
-    static func versionversionbuildbuild(version: String, build: String) -> String {
+    public static func versionversionbuildbuild(version: String, build: String) -> String {
         switch currentLanguage {
         case .English:
             return "Version \(version) (build \(build))"
@@ -1529,7 +1477,7 @@ public final class Localize {
         }
     }
     // key: Vertical Precision
-    static func verticalprecision() -> String {
+    public static func verticalprecision() -> String {
         switch currentLanguage {
         case .English:
             return "Vertical Precision"
@@ -1540,7 +1488,7 @@ public final class Localize {
         }
     }
     // key: View All
-    static func viewall() -> String {
+    public static func viewall() -> String {
         switch currentLanguage {
         case .English:
             return "View All"
@@ -1551,7 +1499,7 @@ public final class Localize {
         }
     }
     // key: View DNSSEC Information
-    static func viewdnssecinformation() -> String {
+    public static func viewdnssecinformation() -> String {
         switch currentLanguage {
         case .English:
             return "View DNSSEC Information"
@@ -1562,7 +1510,7 @@ public final class Localize {
         }
     }
     // key: WHOIS not supported on this domain
-    static func whoisnotsupportedonthisdomain() -> String {
+    public static func whoisnotsupportedonthisdomain() -> String {
         switch currentLanguage {
         case .English:
             return "WHOIS not supported on this domain"
@@ -1573,7 +1521,7 @@ public final class Localize {
         }
     }
     // key: Your changes will take affect only quitting and restarting DNS Inspector
-    static func yourchangeswilltakeaffectonlyquittingandrestartingdnsinspector() -> String {
+    public static func yourchangeswilltakeaffectonlyquittingandrestartingdnsinspector() -> String {
         switch currentLanguage {
         case .English:
             return "Your changes will take affect only quitting and restarting DNS Inspector"
@@ -1584,7 +1532,7 @@ public final class Localize {
         }
     }
     // key: Zone signing key
-    static func zonesigningkey() -> String {
+    public static func zonesigningkey() -> String {
         switch currentLanguage {
         case .English:
             return "Zone signing key"
@@ -1595,7 +1543,7 @@ public final class Localize {
         }
     }
     // key: about_footer_{year}
-    static func aboutfooteryear(year: String) -> String {
+    public static func aboutfooteryear(year: String) -> String {
         switch currentLanguage {
         case .English:
             return "DNS Inspector is free & libre open source software licensed under the GNU GPLv3. DNS Inspector is copyright © 2023-\(year) Ian Spence. DNS Inspector is made entirely without the use of Artificial Intelligence (AI) or Large Language Models (LLMs)."
@@ -1606,7 +1554,7 @@ public final class Localize {
         }
     }
     // key: dns_server_doh_bootstrap
-    static func dnsserverdohbootstrap() -> String {
+    public static func dnsserverdohbootstrap() -> String {
         switch currentLanguage {
         case .English:
             return "You can specify the IP addresses of this DNS over HTTPS server for enhanced privacy."
@@ -1617,7 +1565,7 @@ public final class Localize {
         }
     }
     // key: dns_server_target_help_dns
-    static func dnsservertargethelpdns() -> String {
+    public static func dnsservertargethelpdns() -> String {
         switch currentLanguage {
         case .English:
             return "We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets. You can specify multiple IP addresses and DNS Inspector will attempt to use all of them."
@@ -1628,29 +1576,18 @@ public final class Localize {
         }
     }
     // key: dns_server_target_help_url
-    static func dnsservertargethelpurl() -> String {
+    public static func dnsservertargethelpurl() -> String {
         switch currentLanguage {
         case .English:
-            return "We connect to the DNS server using a URL. Do not include the dns query parameter."
+            return "We connect to the DNS server using a URL. Do not include the `dns` query parameter."
         case .Spanish:
             return "We connect to the DNS server using a URL. Do not include the dns query parameter."
         case .German:
             return "We connect to the DNS server using a URL. Do not include the dns query parameter."
-        }
-    }
-    // key: dnssec_footer
-    static func dnssecfooter() -> String {
-        switch currentLanguage {
-        case .English:
-            return "When DNSSEC is enabled all DNS queries include a request for record signatures. DNSSEC verification will perform additional queries to establish trust and may take multiple seconds to complete."
-        case .Spanish:
-            return "When DNSSEC is enabled all DNS queries include a request for record signatures. DNSSEC verification will perform additional queries to establish trust and may take multiple seconds to complete."
-        case .German:
-            return "Wenn DNSSEC aktiviert ist, enthalten alle DNS-Anfragen eine Anfrage der Signaturaufzeichnung. DNSSEC-Verifizierung wird weitere Anfragen zur Vertrauensgewinnung durchführen und möglicherweise einige Sekunden zur Durchführung brauchen."
         }
     }
     // key: http2_bootstrap_ip_footer
-    static func http2bootstrapipfooter() -> String {
+    public static func http2bootstrapipfooter() -> String {
         switch currentLanguage {
         case .English:
             return "DNS Inspector does not support HTTP/2 when one or more server IP address is defined."
@@ -1661,7 +1598,7 @@ public final class Localize {
         }
     }
     // key: record_description_a
-    static func recorddescriptiona() -> String {
+    public static func recorddescriptiona() -> String {
         switch currentLanguage {
         case .English:
             return "DNS A records contain an IPv4 address."
@@ -1672,7 +1609,7 @@ public final class Localize {
         }
     }
     // key: record_description_aaaa
-    static func recorddescriptionaaaa() -> String {
+    public static func recorddescriptionaaaa() -> String {
         switch currentLanguage {
         case .English:
             return "DNS AAAA records contain an IPv6 address."
@@ -1682,19 +1619,8 @@ public final class Localize {
             return "DNS-AAAA-Aufzeichnungen enthalten eine IPv6-Adresse."
         }
     }
-    // key: record_description_apl
-    static func recorddescriptionapl() -> String {
-        switch currentLanguage {
-        case .English:
-            return "DNS APL records contain an IP address prefix list."
-        case .Spanish:
-            return "Los registros DNS APL contienen una lista de prefijos IP."
-        case .German:
-            return "DNS-APL-Aufzeichnungen enthalten eine IP-Adressen-Prefix-Liste."
-        }
-    }
     // key: record_description_cname
-    static func recorddescriptioncname() -> String {
+    public static func recorddescriptioncname() -> String {
         switch currentLanguage {
         case .English:
             return "DNS CNAME records contain destination DNS name to follow."
@@ -1705,7 +1631,7 @@ public final class Localize {
         }
     }
     // key: record_description_dnskey
-    static func recorddescriptiondnskey() -> String {
+    public static func recorddescriptiondnskey() -> String {
         switch currentLanguage {
         case .English:
             return "DNS DNSKEY records contain cryptographic public keys used for authentication."
@@ -1716,7 +1642,7 @@ public final class Localize {
         }
     }
     // key: record_description_ds
-    static func recorddescriptionds() -> String {
+    public static func recorddescriptionds() -> String {
         switch currentLanguage {
         case .English:
             return "DNS DS records contain records of trusted delegation from the parent zone."
@@ -1727,7 +1653,7 @@ public final class Localize {
         }
     }
     // key: record_description_https
-    static func recorddescriptionhttps() -> String {
+    public static func recorddescriptionhttps() -> String {
         switch currentLanguage {
         case .English:
             return "DNS HTTPS records contain information about HTTPS web servers."
@@ -1738,7 +1664,7 @@ public final class Localize {
         }
     }
     // key: record_description_loc
-    static func recorddescriptionloc() -> String {
+    public static func recorddescriptionloc() -> String {
         switch currentLanguage {
         case .English:
             return "DNS LOC records contain a geographical location."
@@ -1749,7 +1675,7 @@ public final class Localize {
         }
     }
     // key: record_description_mx
-    static func recorddescriptionmx() -> String {
+    public static func recorddescriptionmx() -> String {
         switch currentLanguage {
         case .English:
             return "DNS MX records contain mail exchange server addresses."
@@ -1760,7 +1686,7 @@ public final class Localize {
         }
     }
     // key: record_description_ns
-    static func recorddescriptionns() -> String {
+    public static func recorddescriptionns() -> String {
         switch currentLanguage {
         case .English:
             return "DNS NS records contain the authoritative DNS server for this zone."
@@ -1771,7 +1697,7 @@ public final class Localize {
         }
     }
     // key: record_description_nsec
-    static func recorddescriptionnsec() -> String {
+    public static func recorddescriptionnsec() -> String {
         switch currentLanguage {
         case .English:
             return "DNS NSEC records contain security information about available records in a zone."
@@ -1782,7 +1708,7 @@ public final class Localize {
         }
     }
     // key: record_description_nsec3
-    static func recorddescriptionnsec3() -> String {
+    public static func recorddescriptionnsec3() -> String {
         switch currentLanguage {
         case .English:
             return "DNS NSEC3 contains security information about available records in a zone."
@@ -1793,7 +1719,7 @@ public final class Localize {
         }
     }
     // key: record_description_ptr
-    static func recorddescriptionptr() -> String {
+    public static func recorddescriptionptr() -> String {
         switch currentLanguage {
         case .English:
             return "DNS PTR records are used to resolve a domain name from an IP address."
@@ -1804,7 +1730,7 @@ public final class Localize {
         }
     }
     // key: record_description_soa
-    static func recorddescriptionsoa() -> String {
+    public static func recorddescriptionsoa() -> String {
         switch currentLanguage {
         case .English:
             return "DNS SOA records contain administrative or ownership information about the domain."
@@ -1815,7 +1741,7 @@ public final class Localize {
         }
     }
     // key: record_description_srv
-    static func recorddescriptionsrv() -> String {
+    public static func recorddescriptionsrv() -> String {
         switch currentLanguage {
         case .English:
             return "DNS SRV records contain information for locating a specific service."
@@ -1826,7 +1752,7 @@ public final class Localize {
         }
     }
     // key: record_description_txt
-    static func recorddescriptiontxt() -> String {
+    public static func recorddescriptiontxt() -> String {
         switch currentLanguage {
         case .English:
             return "DNS TXT records contain any text data."
@@ -1837,7 +1763,7 @@ public final class Localize {
         }
     }
     // key: saved_server_footer
-    static func savedserverfooter() -> String {
+    public static func savedserverfooter() -> String {
         switch currentLanguage {
         case .English:
             return "DNS Inspector includes several saved servers to help you get started. Cloudflare, Google, and Quad9 are registered trademarks of their respective owners and are not affiliated with and do not endorse DNS Inspector."
@@ -1848,7 +1774,7 @@ public final class Localize {
         }
     }
     // key: {duration} microseconds
-    static func durationmicroseconds(duration: String) -> String {
+    public static func durationmicroseconds(duration: String) -> String {
         switch currentLanguage {
         case .English:
             return "\(duration) microseconds"
@@ -1859,7 +1785,7 @@ public final class Localize {
         }
     }
     // key: {duration} milliseconds
-    static func durationmilliseconds(duration: String) -> String {
+    public static func durationmilliseconds(duration: String) -> String {
         switch currentLanguage {
         case .English:
             return "\(duration) milliseconds"
@@ -1870,7 +1796,7 @@ public final class Localize {
         }
     }
     // key: {duration} nanoseconds
-    static func durationnanoseconds(duration: String) -> String {
+    public static func durationnanoseconds(duration: String) -> String {
         switch currentLanguage {
         case .English:
             return "\(duration) nanoseconds"
@@ -1881,7 +1807,7 @@ public final class Localize {
         }
     }
     // key: {duration} seconds
-    static func durationseconds(duration: String) -> String {
+    public static func durationseconds(duration: String) -> String {
         switch currentLanguage {
         case .English:
             return "\(duration) seconds"
@@ -1892,7 +1818,7 @@ public final class Localize {
         }
     }
     // key: {record_type} Record
-    static func recordtyperecord(record_type: String) -> String {
+    public static func recordtyperecord(record_type: String) -> String {
         switch currentLanguage {
         case .English:
             return "\(record_type) Record"

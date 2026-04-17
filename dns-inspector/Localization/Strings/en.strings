@@ -14,7 +14,6 @@ AppIconFooter	The "Progress" pride flag was created by Daniel Quasar and is lice
 Appearance & Behaviour	Appearance & Behaviour
 Area	Area
 Authority	Authority
-Automatically	Automatically
 Bad signing key: {details}	Bad signing key: {0}
 Chain	Chain
 Connection Timeout	Connection Timeout
@@ -26,7 +25,6 @@ DNS Inspector	DNS Inspector
 DNS over HTTPS	DNS over HTTPS
 DNS over QUIC	DNS over QUIC
 DNS over TLS	DNS over TLS
-DNSSEC Enabled	DNSSEC Enabled
 DNSSEC not enabled on this zone, no RRSIG returned.	DNSSEC not enabled on this zone, no RRSIG returned.
 Destination	Destination
 Digest	Digest
@@ -36,7 +34,6 @@ Domain Information	Domain Information
 Edit Saved Server	Edit Saved Server
 Edit Saved Servers	Edit Saved Servers
 Empty response	Empty response
-Error	Error
 Excessive response size	Excessive response size
 Expire	Expire
 Follow @dns-inspector.com on Bluesky	Follow @dns-inspector.com on Bluesky
@@ -63,7 +60,6 @@ Key signing key	Key signing key
 Key tag	Key tag
 Loading...	Loading...
 Main name server	Main name server
-Manually	Manually
 Maximum History Size	Maximum History Size
 Minimum	Minimum
 Missing data: {details}	Missing data: {0}
@@ -79,7 +75,6 @@ No default ALPN	No default ALPN
 No signatures: {details}	No signatures: {0}
 Open source licenses & attributions	Open source licenses & attributions
 Options	Options
-Perform Validation	Perform Validation
 Port	Port
 Priority	Priority
 Provide feedback	Provide feedback
@@ -146,12 +141,10 @@ Zone signing key	Zone signing key
 about_footer_{year}	DNS Inspector is free & libre open source software licensed under the GNU GPLv3. DNS Inspector is copyright © 2023-{0} Ian Spence. DNS Inspector is made entirely without the use of Artificial Intelligence (AI) or Large Language Models (LLMs).
 dns_server_doh_bootstrap	You can specify the IP addresses of this DNS over HTTPS server for enhanced privacy.
 dns_server_target_help_dns	We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets. You can specify multiple IP addresses and DNS Inspector will attempt to use all of them.
-dns_server_target_help_url	We connect to the DNS server using a URL. Do not include the dns query parameter.
-dnssec_footer	When DNSSEC is enabled all DNS queries include a request for record signatures. DNSSEC verification will perform additional queries to establish trust and may take multiple seconds to complete.
+dns_server_target_help_url	We connect to the DNS server using a URL. Do not include the `dns` query parameter.
 http2_bootstrap_ip_footer	DNS Inspector does not support HTTP/2 when one or more server IP address is defined.
 record_description_a	DNS A records contain an IPv4 address.
 record_description_aaaa	DNS AAAA records contain an IPv6 address.
-record_description_apl	DNS APL records contain an IP address prefix list.
 record_description_cname	DNS CNAME records contain destination DNS name to follow.
 record_description_dnskey	DNS DNSKEY records contain cryptographic public keys used for authentication.
 record_description_ds	DNS DS records contain records of trusted delegation from the parent zone.
@@ -161,6 +154,7 @@ record_description_mx	DNS MX records contain mail exchange server addresses.
 record_description_ns	DNS NS records contain the authoritative DNS server for this zone.
 record_description_nsec	DNS NSEC records contain security information about available records in a zone.
 record_description_nsec3	DNS NSEC3 contains security information about available records in a zone.
+# spellcheck:ignore
 record_description_ptr	DNS PTR records are used to resolve a domain name from an IP address.
 record_description_soa	DNS SOA records contain administrative or ownership information about the domain.
 record_description_srv	DNS SRV records contain information for locating a specific service.

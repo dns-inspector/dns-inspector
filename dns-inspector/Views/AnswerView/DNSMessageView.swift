@@ -186,7 +186,7 @@ public struct DNSMessageView: View {
             return Localize.durationseconds(duration: elapsedStr)
         } else if elapsed > 1000000 {
             let elapsedStr = String(format: "%.2f", Double(elapsed) / 1000000.0)
-            return Localize.durationmicroseconds(duration: elapsedStr)
+            return Localize.durationmilliseconds(duration: elapsedStr)
         } else if elapsed > 1000 {
             let elapsedStr = String(format: "%.2f", Double(elapsed) / 1000.0)
             return Localize.durationmicroseconds(duration: elapsedStr)

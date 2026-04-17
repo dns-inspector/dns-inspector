@@ -25,8 +25,6 @@ Area	Area
 # TODO
 Authority	Authority
 # TODO
-Automatically	Automatically
-# TODO
 Bad signing key: {details}	Bad signing key: {0}
 # TODO
 Chain	Chain
@@ -47,8 +45,6 @@ DNS over QUIC	DNS over QUIC
 # TODO
 DNS over TLS	DNS over TLS
 # TODO
-DNSSEC Enabled	DNSSEC Enabled
-# TODO
 DNSSEC not enabled on this zone, no RRSIG returned.	DNSSEC not enabled on this zone, no RRSIG returned.
 # TODO
 Destination	Destination
@@ -66,8 +62,6 @@ Edit Saved Server	Edit Saved Server
 Edit Saved Servers	Edit Saved Servers
 # TODO
 Empty response	Empty response
-# TODO
-Error	Error
 # TODO
 Excessive response size	Excessive response size
 # TODO
@@ -117,8 +111,6 @@ Loading...	Cargando...
 # TODO
 Main name server	Main name server
 # TODO
-Manually	Manually
-# TODO
 Maximum History Size	Maximum History Size
 # TODO
 Minimum	Minimum
@@ -143,8 +135,6 @@ No signatures: {details}	No signatures: {0}
 # TODO
 Open source licenses & attributions	Open source licenses & attributions
 Options	Opciones
-# TODO
-Perform Validation	Perform Validation
 # TODO
 Port	Port
 # TODO
@@ -258,12 +248,9 @@ dns_server_target_help_dns	We connect to the DNS server using an IP address. IPv
 # TODO
 dns_server_target_help_url	We connect to the DNS server using a URL. Do not include the dns query parameter.
 # TODO
-dnssec_footer	When DNSSEC is enabled all DNS queries include a request for record signatures. DNSSEC verification will perform additional queries to establish trust and may take multiple seconds to complete.
-# TODO
 http2_bootstrap_ip_footer	DNS Inspector does not support HTTP/2 when one or more server IP address is defined.
 record_description_a	Los registros DNS A contienen una dirección IPv4.
 record_description_aaaa	Los registros DNS AAAA contienen una dirección IPv6.
-record_description_apl	Los registros DNS APL contienen una lista de prefijos IP.
 record_description_cname	Los registros DNS CNAME contienen un nombre DNS al que seguir.
 # TODO
 record_description_dnskey	DNS DNSKEY records contain cryptographic public keys used for authentication.

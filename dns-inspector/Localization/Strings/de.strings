@@ -20,7 +20,6 @@ Appearance & Behaviour	Aussehen & Verhalten
 Area	Area
 # TODO
 Authority	Authority
-Automatically	Automatisch
 # TODO
 Bad signing key: {details}	Bad signing key: {0}
 Chain	Kette
@@ -39,7 +38,6 @@ DNS over HTTPS	DNS over HTTPS
 DNS over QUIC	DNS over QUIC
 # TODO
 DNS over TLS	DNS over TLS
-DNSSEC Enabled	DNSSEC aktiviert
 DNSSEC not enabled on this zone, no RRSIG returned.	DNSSEC für diese Zone nicht aktiviert, kein RRSIG wiedergegeben.
 # TODO
 Destination	Destination
@@ -54,7 +52,6 @@ Edit Saved Server	Edit Saved Server
 Edit Saved Servers	Edit Saved Servers
 # TODO
 Empty response	Empty response
-Error	Fehler
 # TODO
 Excessive response size	Excessive response size
 Expire	Auslaufen lassen
@@ -94,7 +91,6 @@ Key signing key	Schlüsselsignierungsschlüssel
 Key tag	Schlüsseletikett
 Loading...	Lädt...
 Main name server	Hauptnamensserver
-Manually	Manuell
 # TODO
 Maximum History Size	Maximum History Size
 Minimum	Minimum
@@ -118,7 +114,6 @@ No signatures: {details}	No signatures: {0}
 # TODO
 Open source licenses & attributions	Open source licenses & attributions
 Options	Optionen
-Perform Validation	Validierung durchführen
 Port	Port
 Priority	Priorität
 Provide feedback	Feedback hinterlassen
@@ -208,12 +203,10 @@ dns_server_doh_bootstrap	You can specify the IP addresses of this DNS over HTTPS
 dns_server_target_help_dns	We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets. You can specify multiple IP addresses and DNS Inspector will attempt to use all of them.
 # TODO
 dns_server_target_help_url	We connect to the DNS server using a URL. Do not include the dns query parameter.
-dnssec_footer	Wenn DNSSEC aktiviert ist, enthalten alle DNS-Anfragen eine Anfrage der Signaturaufzeichnung. DNSSEC-Verifizierung wird weitere Anfragen zur Vertrauensgewinnung durchführen und möglicherweise einige Sekunden zur Durchführung brauchen.
 # TODO
 http2_bootstrap_ip_footer	DNS Inspector does not support HTTP/2 when one or more server IP address is defined.
 record_description_a	DNS-A-Aufzeichnungen enthalten eine IPv4-Adresse.
 record_description_aaaa	DNS-AAAA-Aufzeichnungen enthalten eine IPv6-Adresse.
-record_description_apl	DNS-APL-Aufzeichnungen enthalten eine IP-Adressen-Prefix-Liste.
 record_description_cname	DNS-CNAME-Aufzeichnungen enthalten Bestimmungs-DNS-Namen zum Verfolgen.
 record_description_dnskey	DNS-DNSKEY-Aufzeichnungen enthalten den kryptographischen, öffentlichen Schlüssel zur Authentifizierung.
 record_description_ds	DNS-DS-Aufzeichnungen enthalten Aufzeichnungen der vertrauten Delegation der Mutterzone.

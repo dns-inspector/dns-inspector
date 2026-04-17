@@ -15,19 +15,19 @@ permissions:
 jobs:
   build:
     name: "Validate Localization"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     steps:
       - name: Checkout Source
         id: checkout
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 #pin v5.0.0
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd #pin v6.0.2
         with:
           persist-credentials: false
-      
+
       - name: Validate localization
         id: validate_localization
         run: |
-          cd "dns-inspector/Localization"
-          python3 lang.py
+          cd dns-inspector/Localization
+          python3 lang.py --validate
           if [[ $(git diff --stat) != '' ]]; then
             echo "::error ::Untracked changes to localization detected!"
             git status
@@ -35,3 +35,10 @@ jobs:
           else
             echo "No untracked changes to localization detected"
           fi
+
+      - name: Check Spelling
+        id: spellcheck
+        run: |
+          cd .github/spellcheck
+          npm ci
+          node index.js ../../dns-inspector/Localization/Strings/en.strings
