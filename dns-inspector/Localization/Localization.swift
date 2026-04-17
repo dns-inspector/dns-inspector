@@ -1836,6 +1836,17 @@ public final class Localize {
             return "DNS-TXT-Aufzeichnungen enthalten Textdaten."
         }
     }
+    // key: saved_server_footer
+    static func savedserverfooter() -> String {
+        switch currentLanguage {
+        case .English:
+            return "DNS Inspector includes several saved servers to help you get started. Cloudflare, Google, and Quad9 are registered trademarks of their respective owners and are not affiliated with and do not endorse DNS Inspector."
+        case .Spanish:
+            return "DNS Inspector includes several saved servers to help you get started. Cloudflare, Google, and Quad9 are registered trademarks of their respective owners and are not affiliated with and do not endorse DNS Inspector."
+        case .German:
+            return "DNS Inspector includes several saved servers to help you get started. Cloudflare, Google, and Quad9 are registered trademarks of their respective owners and are not affiliated with and do not endorse DNS Inspector."
+        }
+    }
     // key: {duration} microseconds
     static func durationmicroseconds(duration: String) -> String {
         switch currentLanguage {

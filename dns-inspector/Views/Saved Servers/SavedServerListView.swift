@@ -33,21 +33,24 @@ struct PresetServerListView: View {
 
     var body: some View {
         List {
-            ForEach(savedServers) { server in
-                SavedServerListViewItem(savedServer: server) {
+            Section {
+                ForEach(savedServers) { server in
+                    SavedServerListViewItem(savedServer: server) {
+                        self.loadPresetServers()
+                    }
+                }
+                .onDelete { idx in
+                    UserOptions.savedServers.remove(atOffsets: idx)
                     self.loadPresetServers()
                 }
+                .deleteDisabled(savedServers.count == 1)
+            } footer: {
+                Text(Localize.savedserverfooter())
             }
-            .onDelete { idx in
-                UserOptions.savedServers.remove(atOffsets: idx)
-                self.loadPresetServers()
-            }
-            .deleteDisabled(savedServers.count == 1)
         }
         .onAppear {
             loadPresetServers()
         }
-        .listStyle(.plain)
         .toolbar(content: {
             NavigationLink {
                 SavedServerEditView(serverName: $newServerName, transportType: $newTransportType, serverAddresses: $newServerAddresses, httpsBootstrapIps: $newHttpsBootstrapIps, useHttp2: $useHttp2, isNew: true) {

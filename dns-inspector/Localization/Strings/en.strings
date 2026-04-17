@@ -165,6 +165,7 @@ record_description_ptr	DNS PTR records are used to resolve a domain name from an
 record_description_soa	DNS SOA records contain administrative or ownership information about the domain.
 record_description_srv	DNS SRV records contain information for locating a specific service.
 record_description_txt	DNS TXT records contain any text data.
+saved_server_footer	DNS Inspector includes several saved servers to help you get started. Cloudflare, Google, and Quad9 are registered trademarks of their respective owners and are not affiliated with and do not endorse DNS Inspector.
 {duration} microseconds	{0} microseconds
 {duration} milliseconds	{0} milliseconds
 {duration} nanoseconds	{0} nanoseconds

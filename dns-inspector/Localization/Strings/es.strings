@@ -285,6 +285,8 @@ record_description_ptr	Los registros DNS PTR se usan para resolver un dominio DN
 record_description_soa	DNS SOA records contain administrative or ownership information about the domain.
 record_description_srv	Los registros DNS SRV contienen información para localizar un servicio específico.
 record_description_txt	Los registros DNS TXT pueden contener texto arbitrario.
+# TODO
+saved_server_footer	DNS Inspector includes several saved servers to help you get started. Cloudflare, Google, and Quad9 are registered trademarks of their respective owners and are not affiliated with and do not endorse DNS Inspector.
 {duration} microseconds	{0} microsegundos
 {duration} milliseconds	{0} milisegundos
 {duration} nanoseconds	{0} nanosegundos

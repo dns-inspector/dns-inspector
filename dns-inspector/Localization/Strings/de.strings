@@ -230,6 +230,8 @@ record_description_ptr	DNS-PTR-Aufzeichnungen werden zur Auflösung einer Domain
 record_description_soa	DNS-SOA-Aufzeichnungen enhalten Administrativ- oder Inhaberschaftsinformationen der Domain.
 record_description_srv	DNS-SRV-Aufzeichnungen enthalten Informationen zur Ausmachung eines spezifischen Dienstes.
 record_description_txt	DNS-TXT-Aufzeichnungen enthalten Textdaten.
+# TODO
+saved_server_footer	DNS Inspector includes several saved servers to help you get started. Cloudflare, Google, and Quad9 are registered trademarks of their respective owners and are not affiliated with and do not endorse DNS Inspector.
 {duration} microseconds	{0} Mikrosekunden
 {duration} milliseconds	{0} Millisekunden
 {duration} nanoseconds	{0} Nanosekunden
