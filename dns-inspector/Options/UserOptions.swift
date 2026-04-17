@@ -275,6 +275,9 @@ public final class UserOptions {
             return current.appLanguage
         }
         set {
+            if let newValue = newValue {
+                currentLanguage = newValue
+            }
             current.appLanguage = newValue
             save()
         }
