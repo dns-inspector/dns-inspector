@@ -41,11 +41,9 @@ struct AboutView: View {
                 .ignoresSafeArea()
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
-                        Button(action: {
-                            dismiss()
-                        }, label: {
-                            Image(systemName: "xmark")
-                        })
+                        CloseButton {
+                            self.dismiss()
+                        }
                         .tint(.white)
                     }
                 }

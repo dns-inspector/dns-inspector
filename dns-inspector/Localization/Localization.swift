@@ -54,15 +54,15 @@ public final class Localize {
             return "Absolut"
         }
     }
-    // key: Add Preset Server
-    static func addpresetserver() -> String {
+    // key: Add Saved Server
+    static func addsavedserver() -> String {
         switch currentLanguage {
         case .English:
-            return "Add Preset Server"
+            return "Add Saved Server"
         case .Spanish:
-            return "Añadir servidor predefinido"
+            return "Add Saved Server"
         case .German:
-            return "Preset-Server hinzufügen"
+            return "Add Saved Server"
         }
     }
     // key: Administrative address
@@ -252,6 +252,17 @@ public final class Localize {
             return "Coordinates"
         }
     }
+    // key: Custom Server
+    static func customserver() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Custom Server"
+        case .Spanish:
+            return "Custom Server"
+        case .German:
+            return "Custom Server"
+        }
+    }
     // key: DNS Inspector
     static func dnsinspector() -> String {
         switch currentLanguage {
@@ -261,6 +272,39 @@ public final class Localize {
             return "DNS Inspector"
         case .German:
             return "DNS-Inspector"
+        }
+    }
+    // key: DNS over HTTPS
+    static func dnsoverhttps() -> String {
+        switch currentLanguage {
+        case .English:
+            return "DNS over HTTPS"
+        case .Spanish:
+            return "DNS over HTTPS"
+        case .German:
+            return "DNS over HTTPS"
+        }
+    }
+    // key: DNS over QUIC
+    static func dnsoverquic() -> String {
+        switch currentLanguage {
+        case .English:
+            return "DNS over QUIC"
+        case .Spanish:
+            return "DNS over QUIC"
+        case .German:
+            return "DNS over QUIC"
+        }
+    }
+    // key: DNS over TLS
+    static func dnsovertls() -> String {
+        switch currentLanguage {
+        case .English:
+            return "DNS over TLS"
+        case .Spanish:
+            return "DNS over TLS"
+        case .German:
+            return "DNS over TLS"
         }
     }
     // key: DNSSEC Enabled
@@ -283,6 +327,17 @@ public final class Localize {
             return "DNSSEC not enabled on this zone, no RRSIG returned."
         case .German:
             return "DNSSEC für diese Zone nicht aktiviert, kein RRSIG wiedergegeben."
+        }
+    }
+    // key: Destination
+    static func destination() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Destination"
+        case .Spanish:
+            return "Destination"
+        case .German:
+            return "Destination"
         }
     }
     // key: Digest
@@ -329,15 +384,26 @@ public final class Localize {
             return "Domain-Information"
         }
     }
-    // key: Edit Preset Server
-    static func editpresetserver() -> String {
+    // key: Edit Saved Server
+    static func editsavedserver() -> String {
         switch currentLanguage {
         case .English:
-            return "Edit Preset Server"
+            return "Edit Saved Server"
         case .Spanish:
-            return "Edit Preset Server"
+            return "Edit Saved Server"
         case .German:
-            return "Preset-Server bearbeiten"
+            return "Edit Saved Server"
+        }
+    }
+    // key: Edit Saved Servers
+    static func editsavedservers() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Edit Saved Servers"
+        case .Spanish:
+            return "Edit Saved Servers"
+        case .German:
+            return "Edit Saved Servers"
         }
     }
     // key: Empty response
@@ -747,15 +813,15 @@ public final class Localize {
             return "Netzwerk"
         }
     }
-    // key: New Preset Server
-    static func newpresetserver() -> String {
+    // key: New Saved Server
+    static func newsavedserver() -> String {
         switch currentLanguage {
         case .English:
-            return "New Preset Server"
+            return "New Saved Server"
         case .Spanish:
-            return "Nuevo servidor predefinido"
+            return "New Saved Server"
         case .German:
-            return "Neuer Preset-Server"
+            return "New Saved Server"
         }
     }
     // key: New query
@@ -846,17 +912,6 @@ public final class Localize {
             return "Port"
         }
     }
-    // key: Preset Servers
-    static func presetservers() -> String {
-        switch currentLanguage {
-        case .English:
-            return "Preset Servers"
-        case .Spanish:
-            return "Servidores predefinidos"
-        case .German:
-            return "Preset-Server"
-        }
-    }
     // key: Priority
     static func priority() -> String {
         switch currentLanguage {
@@ -932,6 +987,17 @@ public final class Localize {
             return "Peticiones recientes"
         case .German:
             return "Letzte Anfragen"
+        }
+    }
+    // key: Record Type
+    static func recordtype() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Record Type"
+        case .Spanish:
+            return "Record Type"
+        case .German:
+            return "Record Type"
         }
     }
     // key: Record Types
@@ -1042,6 +1108,28 @@ public final class Localize {
             return "Guardar"
         case .German:
             return "Sichern"
+        }
+    }
+    // key: Saved Server
+    static func savedserver() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Saved Server"
+        case .Spanish:
+            return "Saved Server"
+        case .German:
+            return "Saved Server"
+        }
+    }
+    // key: Saved Servers
+    static func savedservers() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Saved Servers"
+        case .Spanish:
+            return "Saved Servers"
+        case .German:
+            return "Saved Servers"
         }
     }
     // key: Seconds
@@ -1242,6 +1330,17 @@ public final class Localize {
             return "Unterstütze Versionen"
         }
     }
+    // key: System DNS
+    static func systemdns() -> String {
+        switch currentLanguage {
+        case .English:
+            return "System DNS"
+        case .Spanish:
+            return "System DNS"
+        case .German:
+            return "System DNS"
+        }
+    }
     // key: TLS Inspector
     static func tlsinspector() -> String {
         switch currentLanguage {
@@ -1284,6 +1383,17 @@ public final class Localize {
             return "Too many redirects"
         case .German:
             return "Too many redirects"
+        }
+    }
+    // key: Traditional DNS
+    static func traditionaldns() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Traditional DNS"
+        case .Spanish:
+            return "Traditional DNS"
+        case .German:
+            return "Traditional DNS"
         }
     }
     // key: Trust Establishment Failed

@@ -3,7 +3,8 @@
 # Licensed under CC BY-SA 4.0 Attribution-ShareAlike 4.0 International
 About	Acerca de
 Absolute	Absoluto
-Add Preset Server	Añadir servidor predefinido
+# TODO
+Add Saved Server	Add Saved Server
 # TODO
 Administrative address	Administrative address
 # TODO
@@ -36,11 +37,21 @@ Connection error: {details}	Connection error: {0}
 Contribute to DNS Inspector	Contribuir to DNS Inspector
 # TODO
 Coordinates	Coordinates
+# TODO
+Custom Server	Custom Server
 DNS Inspector	DNS Inspector
+# TODO
+DNS over HTTPS	DNS over HTTPS
+# TODO
+DNS over QUIC	DNS over QUIC
+# TODO
+DNS over TLS	DNS over TLS
 # TODO
 DNSSEC Enabled	DNSSEC Enabled
 # TODO
 DNSSEC not enabled on this zone, no RRSIG returned.	DNSSEC not enabled on this zone, no RRSIG returned.
+# TODO
+Destination	Destination
 # TODO
 Digest	Digest
 # TODO
@@ -50,7 +61,9 @@ Dismiss	Dismiss
 # TODO
 Domain Information	Domain Information
 # TODO
-Edit Preset Server	Edit Preset Server
+Edit Saved Server	Edit Saved Server
+# TODO
+Edit Saved Servers	Edit Saved Servers
 # TODO
 Empty response	Empty response
 # TODO
@@ -118,7 +131,8 @@ More from the developer	Más apps del desarrollador
 My Server	My Server
 Name	Nombre
 Network	Red
-New Preset Server	Nuevo servidor predefinido
+# TODO
+New Saved Server	New Saved Server
 New query	Nueva petición
 # TODO
 Next Name	Next Name
@@ -133,7 +147,6 @@ Options	Opciones
 Perform Validation	Perform Validation
 # TODO
 Port	Port
-Preset Servers	Servidores predefinidos
 # TODO
 Priority	Priority
 # TODO
@@ -144,6 +157,8 @@ Query	Petición
 Question	Pregunta
 Rate in App Store	Calificar en la App Store
 Recent queries	Peticiones recientes
+# TODO
+Record Type	Record Type
 # TODO
 Record Types	Record Types
 # TODO
@@ -158,6 +173,10 @@ Results	Resultados
 # TODO
 Retry	Retry
 Save	Guardar
+# TODO
+Saved Server	Saved Server
+# TODO
+Saved Servers	Saved Servers
 # TODO
 Seconds	Seconds
 Send traditional DNS requests using TCP	Enviar peticiones DNS tradicionales con TCP
@@ -186,6 +205,8 @@ Signature Validation Failed	Signature Validation Failed
 Signature failed	Signature failed
 # TODO
 Supported Versions	Supported Versions
+# TODO
+System DNS	System DNS
 TLS Inspector	TLS Inspector
 # TODO
 Target	Target
@@ -193,6 +214,8 @@ Target	Target
 Timed out	Timed out
 # TODO
 Too many redirects	Too many redirects
+# TODO
+Traditional DNS	Traditional DNS
 # TODO
 Trust Establishment Failed	Trust Establishment Failed
 # TODO

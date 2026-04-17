@@ -3,7 +3,8 @@
 # Licensed under CC BY-SA 4.0 Attribution-ShareAlike 4.0 International
 About	Über
 Absolute	Absolut
-Add Preset Server	Preset-Server hinzufügen
+# TODO
+Add Saved Server	Add Saved Server
 Administrative address	Administrative Adresse
 Algorithm	Algorithmus
 # TODO
@@ -29,15 +30,28 @@ Connection error: {details}	Connection error: {0}
 Contribute to DNS Inspector	Zu DNS-Inspector beitragen
 # TODO
 Coordinates	Coordinates
+# TODO
+Custom Server	Custom Server
 DNS Inspector	DNS-Inspector
+# TODO
+DNS over HTTPS	DNS over HTTPS
+# TODO
+DNS over QUIC	DNS over QUIC
+# TODO
+DNS over TLS	DNS over TLS
 DNSSEC Enabled	DNSSEC aktiviert
 DNSSEC not enabled on this zone, no RRSIG returned.	DNSSEC für diese Zone nicht aktiviert, kein RRSIG wiedergegeben.
+# TODO
+Destination	Destination
 Digest	Verarbeiten
 # TODO
 Digest Type	Digest Type
 Dismiss	Ignorieren
 Domain Information	Domain-Information
-Edit Preset Server	Preset-Server bearbeiten
+# TODO
+Edit Saved Server	Edit Saved Server
+# TODO
+Edit Saved Servers	Edit Saved Servers
 # TODO
 Empty response	Empty response
 Error	Fehler
@@ -93,7 +107,8 @@ More from the developer	Weiteres vom Entwickler
 My Server	My Server
 Name	Name
 Network	Netzwerk
-New Preset Server	Neuer Preset-Server
+# TODO
+New Saved Server	New Saved Server
 New query	Neue Anfrage
 # TODO
 Next Name	Next Name
@@ -105,7 +120,6 @@ Open source licenses & attributions	Open source licenses & attributions
 Options	Optionen
 Perform Validation	Validierung durchführen
 Port	Port
-Preset Servers	Preset-Server
 Priority	Priorität
 Provide feedback	Feedback hinterlassen
 Public key	Öffentlicher Schlüssel
@@ -113,6 +127,8 @@ Query	Anfrage
 Question	Frage
 Rate in App Store	Im App-Store bewerten
 Recent queries	Letzte Anfragen
+# TODO
+Record Type	Record Type
 # TODO
 Record Types	Record Types
 Refresh	Neu laden
@@ -125,6 +141,10 @@ Response contained no answers	Response contained no answers
 Results	Resultat
 Retry	Erneut versuchen
 Save	Sichern
+# TODO
+Saved Server	Saved Server
+# TODO
+Saved Servers	Saved Servers
 Seconds	Sekunden
 Send traditional DNS requests using TCP	Sende herkömmliche DNS-Anfragen mittels TCP
 Serial	Serie
@@ -146,12 +166,16 @@ Signature Validation Failed	Signaturvalidierung fehlgeschlagen
 # TODO
 Signature failed	Signature failed
 Supported Versions	Unterstütze Versionen
+# TODO
+System DNS	System DNS
 TLS Inspector	TLS-Inspector
 Target	Ziel
 # TODO
 Timed out	Timed out
 # TODO
 Too many redirects	Too many redirects
+# TODO
+Traditional DNS	Traditional DNS
 Trust Establishment Failed	Vertrauensetablierung fehlgeschlagen
 Trusted	Vertraut
 # TODO

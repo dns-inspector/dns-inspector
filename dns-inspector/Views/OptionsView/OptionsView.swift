@@ -34,13 +34,17 @@ struct OptionsView: View {
                     NavigationLink {
                         AppLanguageView()
                     } label: {
-                        Text(Localize.applanguage())
+                        Label(Localize.applanguage(), systemImage: "globe")
                     }
-                    NavigationLink(Localize.presetservers()) {
+                    NavigationLink {
                         PresetServerListView()
+                    } label: {
+                        Label(Localize.savedservers(), systemImage: "plus.circle")
                     }
-                    NavigationLink(Localize.appicon()) {
+                    NavigationLink {
                         AppIconView()
+                    } label: {
+                        Label(Localize.appicon(), systemImage: "app.badge")
                     }
                 }
                 Section(Localize.appearancebehaviour()) {
@@ -87,11 +91,9 @@ struct OptionsView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(action: {
-                        dismiss()
-                    }, label: {
-                        Image(systemName: "xmark")
-                    })
+                    CloseButton {
+                        self.dismiss()
+                    }
                 }
             }
             .onChange(of: rememberQueries) { newValue in

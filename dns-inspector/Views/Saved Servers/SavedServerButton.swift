@@ -33,7 +33,7 @@ public struct SavedServerButton: View {
 
     public var body: some View {
         Menu {
-            Section(Localize.presetservers()) {
+            Section(Localize.savedservers()) {
                 ForEach(savedServers) { server in
                     Button(action: {
                         self.onSelect(server)
@@ -45,7 +45,7 @@ public struct SavedServerButton: View {
             Button {
                 self.showEditServerView.toggle()
             } label: {
-                Label(Localize.addpresetserver(), systemImage: "plus")
+                Label(Localize.addsavedserver(), systemImage: "plus")
             }
         } label: {
             Image(systemName: "bolt.fill")

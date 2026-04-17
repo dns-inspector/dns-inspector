@@ -24,6 +24,12 @@ struct PresetServerListView: View {
     @State private var newServerAddresses = [""]
     @State private var newHttpsBootstrapIps: [String] = []
     @State private var useHttp2: Bool = true
+    private let showCloseButton: Bool
+    @Environment(\.dismiss) private var dismiss
+
+    init(showCloseButton: Bool = false) {
+        self.showCloseButton = showCloseButton
+    }
 
     var body: some View {
         List {
@@ -36,6 +42,7 @@ struct PresetServerListView: View {
                 UserOptions.savedServers.remove(atOffsets: idx)
                 self.loadPresetServers()
             }
+            .deleteDisabled(savedServers.count == 1)
         }
         .onAppear {
             loadPresetServers()
@@ -62,7 +69,18 @@ struct PresetServerListView: View {
             }
             EditButton()
         })
-        .navigationTitle(Localize.presetservers())
+        .toolbar(content: {
+            ToolbarItem(placement: .cancellationAction) {
+                if self.showCloseButton {
+                    CloseButton {
+                        self.dismiss()
+                    }
+                } else {
+                    EmptyView()
+                }
+            }
+        })
+        .navigationTitle(Localize.savedservers())
     }
 
     func loadPresetServers() {

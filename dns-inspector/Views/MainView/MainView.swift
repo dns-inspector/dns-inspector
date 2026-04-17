@@ -33,35 +33,41 @@ private class MainViewQueryState: ObservableObject {
     @Published var name: String
     @Published var resolver: DNSResolver
 
-    init(recordType: RecordType = RecordType.A, name: String = "", resolver: DNSResolver) {
+    init(recordType: RecordType = RecordType.A, name: String = "", resolver: DNSResolver? = nil) {
         self.recordType = recordType
         self.name = name
-        self.resolver = resolver
+        if let resolver = resolver {
+            self.resolver = resolver
+        } else {
+            if let lastUsedServer = UserOptions.lastUsedServer {
+                self.resolver = lastUsedServer
+            } else {
+                self.resolver = DNSResolver(type: .System, addresses: [])
+            }
+        }
     }
 }
 
 struct MainView: View {
-    @StateObject private var query: MainViewQueryState
+    @StateObject private var query = MainViewQueryState()
     @StateObject private var lookupState = MainViewState()
+    @State private var showSavedServerListView = false
     @State private var showAboutView = false
     @State private var showOptionsView = false
-
-    init() {
-        _query = StateObject(wrappedValue: MainViewQueryState(resolver: UserOptions.lastUsedServer ?? DNSResolver(type: .DNS, addresses: [""], id: UUID())))
-    }
 
     var body: some View {
         Navigation {
             List {
                 Section(Localize.newquery()) {
-                    MainViewNameInput(recordType: $query.recordType, name: $query.name)
-                    .disabled(self.lookupState.loading)
-                    MainViewServerInput(resolver: $query.resolver) {
+                    MainViewNewQueryView(recordType: $query.recordType, name: $query.name, resolver: $query.resolver, disabled: self.lookupState.loading, showEditSavedServerView: $showSavedServerListView) {
+                        if !self.isValid() {
+                            return
+                        }
+
                         Task {
                             await doInspect()
                         }
                     }
-                    .disabled(self.lookupState.loading)
                     if self.lookupState.loading {
                         HStack {
                             ProgressView()
@@ -117,10 +123,15 @@ struct MainView: View {
                             Image(systemName: "arrow.right.circle")
                         }
                     })
-                    .disabled(self.isInvalid())
+                    .disabled(!self.isValid())
                 }
             }
         }
+        .fullScreenCover(isPresented: $showSavedServerListView, content: {
+            Navigation {
+                PresetServerListView(showCloseButton: true)
+            }
+        })
         .sheet(isPresented: $showAboutView, content: {
             AboutView()
         })
@@ -144,8 +155,21 @@ struct MainView: View {
         }
     }
 
-    func isInvalid() -> Bool {
-        return self.query.resolver.addresses.count == 0 || self.query.resolver.addresses[0].isEmpty
+    func isValid() -> Bool {
+        if self.query.name.isEmpty {
+            return false
+        }
+        if self.query.resolver.type == .System {
+            return true
+        }
+        if self.query.resolver.addresses.isEmpty {
+            return false
+        }
+        if self.query.resolver.addresses[0].isEmpty {
+            return false
+        }
+
+        return true
     }
 
     func doInspect() async {
@@ -164,6 +188,7 @@ struct MainView: View {
         do {
             query = try Query(transportType: resolver.type, transportOptions: transportOptions, serverAddresses: resolver.addresses, recordType: recordType, name: name, queryOptions: queryOptions)
         } catch {
+            print("initalize error: \(error)")
             withAnimation {
                 self.lookupState.error = error
                 self.lookupState.loading = false
@@ -175,6 +200,7 @@ struct MainView: View {
         do {
             response = try await query.execute()
         } catch {
+            print("execute error: \(error)")
             withAnimation {
                 self.lookupState.error = error
                 self.lookupState.loading = false

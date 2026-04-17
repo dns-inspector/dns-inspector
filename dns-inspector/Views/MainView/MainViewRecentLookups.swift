@@ -34,8 +34,10 @@ struct MainViewRecentLookups: View {
                         Divider()
                         RoundedLabel(query.resolver.type.string(), textColor: .primary, borderColor: .gray)
                             .layoutPriority(2)
-                        Text(query.resolver.addresses[0])
-                            .lineLimit(2)
+                        if query.resolver.type != .System {
+                            Text(query.resolver.addresses[0])
+                                .lineLimit(2)
+                        }
                     }
                 }
                 .buttonStyle(.plain)

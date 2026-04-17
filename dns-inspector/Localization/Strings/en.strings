@@ -3,7 +3,7 @@
 # Licensed under CC BY-SA 4.0 Attribution-ShareAlike 4.0 International
 About	About
 Absolute	Absolute
-Add Preset Server	Add Preset Server
+Add Saved Server	Add Saved Server
 Administrative address	Administrative address
 Algorithm	Algorithm
 Altitude	Altitude
@@ -21,14 +21,20 @@ Connection Timeout	Connection Timeout
 Connection error: {details}	Connection error: {0}
 Contribute to DNS Inspector	Contribute to DNS Inspector
 Coordinates	Coordinates
+Custom Server	Custom Server
 DNS Inspector	DNS Inspector
+DNS over HTTPS	DNS over HTTPS
+DNS over QUIC	DNS over QUIC
+DNS over TLS	DNS over TLS
 DNSSEC Enabled	DNSSEC Enabled
 DNSSEC not enabled on this zone, no RRSIG returned.	DNSSEC not enabled on this zone, no RRSIG returned.
+Destination	Destination
 Digest	Digest
 Digest Type	Digest Type
 Dismiss	Dismiss
 Domain Information	Domain Information
-Edit Preset Server	Edit Preset Server
+Edit Saved Server	Edit Saved Server
+Edit Saved Servers	Edit Saved Servers
 Empty response	Empty response
 Error	Error
 Excessive response size	Excessive response size
@@ -66,7 +72,7 @@ More from the developer	More from the developer
 My Server	My Server
 Name	Name
 Network	Network
-New Preset Server	New Preset Server
+New Saved Server	New Saved Server
 New query	New query
 Next Name	Next Name
 No default ALPN	No default ALPN
@@ -75,7 +81,6 @@ Open source licenses & attributions	Open source licenses & attributions
 Options	Options
 Perform Validation	Perform Validation
 Port	Port
-Preset Servers	Preset Servers
 Priority	Priority
 Provide feedback	Provide feedback
 Public key	Public key
@@ -83,6 +88,7 @@ Query	Query
 Question	Question
 Rate in App Store	Rate in App Store
 Recent queries	Recent queries
+Record Type	Record Type
 Record Types	Record Types
 Refresh	Refresh
 Relative	Relative
@@ -93,6 +99,8 @@ Response contained no answers	Response contained no answers
 Results	Results
 Retry	Retry
 Save	Save
+Saved Server	Saved Server
+Saved Servers	Saved Servers
 Seconds	Seconds
 Send traditional DNS requests using TCP	Send traditional DNS requests using TCP
 Serial	Serial
@@ -111,10 +119,12 @@ Signature	Signature
 Signature Validation Failed	Signature Validation Failed
 Signature failed	Signature failed
 Supported Versions	Supported Versions
+System DNS	System DNS
 TLS Inspector	TLS Inspector
 Target	Target
 Timed out	Timed out
 Too many redirects	Too many redirects
+Traditional DNS	Traditional DNS
 Trust Establishment Failed	Trust Establishment Failed
 Trusted	Trusted
 Unable to save your changes	Unable to save your changes

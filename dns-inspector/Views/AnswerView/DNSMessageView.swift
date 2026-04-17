@@ -146,11 +146,9 @@ public struct DNSMessageView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(action: {
-                        dismiss()
-                    }, label: {
-                        Image(systemName: "xmark")
-                    })
+                    CloseButton {
+                        self.dismiss()
+                    }
                 }
                 ToolbarItem {
                     Menu {

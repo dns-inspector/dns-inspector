@@ -33,7 +33,7 @@ public struct DNSResolver: Codable, Identifiable, Equatable {
     /// The ID of this resolver.
     public let id: UUID
 
-    public init(name: String? = nil, type: TransportType, addresses: [String], httpsBootstrapIps: [String]? = nil, useHttp2: Bool? = nil, id: UUID) {
+    public init(name: String? = nil, type: TransportType, addresses: [String], httpsBootstrapIps: [String]? = nil, useHttp2: Bool? = nil, id: UUID = UUID()) {
         self.name = name
         self.type = type
         self.addresses = addresses

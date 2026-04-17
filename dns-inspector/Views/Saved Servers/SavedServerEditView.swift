@@ -115,13 +115,14 @@ struct SavedServerEditView: View {
                 }
                 Section {
                     Toggle(Localize.usehttp2(), isOn: $useHttp2)
+                        .tint(Color.accentColor)
                         .disabled(self.hasAtLeastOneBootstrapIp())
                 } footer: {
                     Text(Localize.http2bootstrapipfooter())
                 }
             }
         }
-        .navigationTitle(isNew ? Localize.newpresetserver() : Localize.editpresetserver())
+        .navigationTitle(isNew ? Localize.newsavedserver() : Localize.editsavedserver())
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button(Localize.save()) {
