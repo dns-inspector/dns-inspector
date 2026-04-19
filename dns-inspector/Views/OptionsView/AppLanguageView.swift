@@ -17,11 +17,18 @@
 import SwiftUI
 
 struct AppLanguageView: View {
+    @State private var useSystemLanguage = UserOptions.appLanguage == nil
     @State private var currentLanguage = UserOptions.appLanguage ?? .English
     @State private var showRestartAlert = false
 
     var body: some View {
         List {
+            Section {
+                Toggle(isOn: $useSystemLanguage) {
+                    Text(Localize.usesystemlanguage())
+                }
+                .tint(.accent)
+            }
             Section {
                 ForEach(SupportedLanguages.allCases, id:\.rawValue) { language in
                     Button {
@@ -34,7 +41,9 @@ struct AppLanguageView: View {
                                 Image(systemName: "checkmark").foregroundStyle(.accent)
                             }
                         }
-                    }.buttonStyle(.plain)
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(useSystemLanguage)
                 }
             } footer: {
                 // This is intentionally not localized
@@ -42,6 +51,14 @@ struct AppLanguageView: View {
             }
         }
         .navigationTitle(Localize.applanguage())
+        .onChange(of: useSystemLanguage) { newValue in
+            if newValue {
+                UserOptions.appLanguage = nil
+            } else {
+                UserOptions.appLanguage = currentLanguage
+            }
+            showRestartAlert = true
+        }
         .onChange(of: currentLanguage) { newLanguage in
             if newLanguage != UserOptions.appLanguage {
                 UserOptions.appLanguage = newLanguage

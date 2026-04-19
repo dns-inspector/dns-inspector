@@ -1443,6 +1443,17 @@ public final class Localize {
             return "Use HTTP/2"
         }
     }
+    // key: Use System Language
+    public static func usesystemlanguage() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Use System Language"
+        case .Spanish:
+            return "Use System Language"
+        case .German:
+            return "Use System Language"
+        }
+    }
     // key: Verbose logging
     public static func verboselogging() -> String {
         switch currentLanguage {

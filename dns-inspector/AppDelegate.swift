@@ -22,6 +22,29 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         UserOptions.load()
         DNSKit.log = LogWriter.shared
 
+        if let preferredLanguage = UserOptions.appLanguage {
+            currentLanguage = preferredLanguage
+        } else {
+            var didSet = false
+            // Try to find the preferredn language
+            for lang in Locale.preferredLanguages {
+                if lang.hasPrefix("en-") {
+                    currentLanguage = .English
+                    didSet = true
+                } else if lang.hasPrefix("es-") {
+                    currentLanguage = .Spanish
+                    didSet = true
+                } else if lang.hasPrefix("de-") {
+                    currentLanguage = .German
+                    didSet = true
+                }
+            }
+
+            if !didSet {
+                currentLanguage = .English
+            }
+        }
+
         LogWriter.shared.write(.Debug, message: "[\(#fileID):\(#line)] App loaded")
 
         NSSetUncaughtExceptionHandler { exc in

@@ -129,6 +129,7 @@ Untrusted	Untrusted
 Untrusted root signing key	Untrusted root signing key
 Unverified	Unverified
 Use HTTP/2	Use HTTP/2
+Use System Language	Use System Language
 Verbose logging	Verbose logging
 Verified	Verified
 Version {version} (build {build})	Version {0} (build {1})

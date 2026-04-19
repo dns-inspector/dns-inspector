@@ -185,6 +185,8 @@ Untrusted root signing key	Untrusted root signing key
 Unverified	Falsifiziert
 # TODO
 Use HTTP/2	Use HTTP/2
+# TODO
+Use System Language	Use System Language
 Verbose logging	Erweitertes Protokollieren
 Verified	Verifiziert
 Version {version} (build {build})	Version {0} (Build {1})
