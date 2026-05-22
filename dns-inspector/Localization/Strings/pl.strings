@@ -1,0 +1,168 @@
+# DNS Inspector localization strings for Polish
+# Copyright 2024 Ian Spence and DNS Inspector Authors
+# Licensed under CC BY-SA 4.0 Attribution-ShareAlike 4.0 International
+About	O aplikacji
+Absolute	Bezwzględne
+Add Saved Server	Dodaj zapisany serwer
+Administrative address	Adres administracyjny
+Algorithm	Algorytm
+Altitude	Wysokość
+Answers	Odpowiedzi
+App Icon	Ikona aplikacji
+App language	Język aplikacji
+AppIconFooter	Flaga Pride została stworzona przez Daniela Quasara i jest licencjonowana na warunkach Creative Commons BY-NC-SA. Flaga Trans została stworzona przez Monicę Helms i udostępniona do domeny publicznej.
+Appearance & Behaviour	Wygląd i zachowanie
+Area	Obszar
+Authority	Autorytatywny
+Bad signing key: {details}	Nieprawidłowy klucz podpisujący: {0}
+Chain	Łańcuch
+Connection Timeout	Limit czasu połączenia
+Connection error: {details}	Błąd połączenia: {0}
+Contribute to DNS Inspector	Współtwórz DNS Inspector
+Coordinates	Współrzędne
+Custom Server	Niestandardowy serwer
+DNS Inspector	DNS Inspector
+DNS over HTTPS	DNS przez HTTPS
+DNS over QUIC	DNS przez QUIC
+DNS over TLS	DNS przez TLS
+DNSSEC not enabled on this zone, no RRSIG returned.	DNSSEC nie jest włączony dla tej strefy, nie zwrócono RRSIG.
+Destination	Cel
+Digest	Skrót
+Digest Type	Typ skrótu
+Dismiss	Zamknij
+Domain Information	Informacje o domenie
+Edit Saved Server	Edytuj zapisany serwer
+Edit Saved Servers	Edytuj zapisane serwery
+Empty response	Pusta odpowiedź
+Excessive response size	Zbyt duży rozmiar odpowiedzi
+Expire	Wygaśnięcie
+Follow @dns-inspector.com on Bluesky	Obserwuj @dns-inspector.com na Bluesky
+Follow @dnsinspector on Mastodon	Obserwuj @dnsinspector na Mastodon
+Format binary data as	Formatuj dane binarne jako
+Friendly Name	Przyjazna nazwa
+General	Ogólne
+Get Involved	Dołącz do projektu
+HTTP {code}	HTTP {0}
+Hashed Next Name	Haszowana następna nazwa
+Horizontal Precision	Dokładność pozioma
+IPv4 Hints	Wskazówki IPv4
+IPv6 Hints	Wskazówki IPv6
+IconDefault	Domyślna
+IconPride	Pride
+IconTrans	Trans
+Internal error: {details}	Błąd wewnętrzny: {0}
+Invalid URL	Nieprawidłowy adres URL
+Invalid content type: {details}	Nieprawidłowy typ zawartości: {0}
+Invalid data: {details}	Nieprawidłowe dane: {0}
+Invalid response: {details}	Nieprawidłowa odpowiedź: {0}
+Key Usage	Użycie klucza
+Key signing key	Klucz podpisujący klucze
+Key tag	Tag klucza
+Loading...	Ładowanie...
+Main name server	Główny serwer nazw
+Maximum History Size	Maksymalny rozmiar historii
+Minimum	Minimum
+Missing data: {details}	Brak danych: {0}
+Missing keys: {details}	Brak kluczy: {0}
+More from the developer	Więcej od dewelopera
+My Server	Mój serwer
+Name	Nazwa
+Network	Sieć
+New Saved Server	Zapisz nowy serwer
+New query	Nowe zapytanie
+Next Name	Następna nazwa
+No default ALPN	Brak domyślnego ALPN
+No signatures: {details}	Brak podpisów: {0}
+Open source licenses & attributions	Licencje open source i atrybuty
+Options	Opcje
+Port	Port
+Priority	Priorytet
+Provide feedback	Przekaż opinię
+Public key	Klucz publiczny
+Query	Zapytanie
+Question	Pytanie
+Rate in App Store	Oceń w App Store
+Recent queries	Ostatnie zapytania
+Record Type	Typ rekordu
+Record Types	Typy rekordów
+Refresh	Odśwież
+Relative	Względne
+Remember last server	Zapamiętaj ostatni serwer
+Remember recent queries	Zapamiętaj ostatnie zapytania
+Response	Odpowiedź
+Response contained no answers	Nie zwrócono odpowiedzi
+Results	Wyniki
+Retry	Ponów
+Save	Zapisz
+Saved Server	Zapisany serwer
+Saved Servers	Zapisane serwery
+Seconds	Sekund
+Send traditional DNS requests using TCP	Wysyłaj tradycyjne zapytania DNS przez TCP
+Serial	Numer seryjny
+Server	Serwer
+Server Addresses	Adresy serwera
+Server Details	Szczegóły serwera
+Server IP	IP serwera
+Server IP Addresses (Optional)	Adresy IP serwera (opcjonalnie)
+Server Type	Typ serwera
+Server URL	Adres URL serwera
+Share & Feedback	Udostępnianie i opinie
+Share DNS Inspector	Udostępnij DNS Inspector
+Show DNS record descriptions	Pokaż opisy rekordów DNS
+Show TTL values as	Pokazuj wartości TTL jako
+Signature	Podpis
+Signature Validation Failed	Weryfikacja podpisu nie powiodła się
+Signature failed	Podpis nieprawidłowy
+Supported Versions	Obsługiwane wersje
+System DNS	Systemowy DNS
+TLS Inspector	TLS Inspector
+Target	Cel
+Timed out	Przekroczono limit czasu
+Too many redirects	Zbyt wiele przekierowań
+Traditional DNS	Tradycyjny DNS
+Trust Establishment Failed	Nie udało się ustanowić relacji zaufania
+Trusted	Zaufany
+Unable to save your changes	Nie można zapisać zmian
+Unexpected response: {details}	Nieoczekiwana odpowiedź: {0}
+Unsupported algorithm	Nieobsługiwany algorytm
+Untrusted	Niezaufany
+Untrusted root signing key	Niezaufany główny klucz podpisujący
+Unverified	Niezweryfikowany
+Use HTTP/2	Używaj HTTP/2
+Use System Language	Użyj języka systemowego
+Verbose logging	Szczegółowe logowanie
+Verified	Zweryfikowany
+Version {version} (build {build})	Wersja {0} (kompilacja {1})
+Vertical Precision	Dokładność pionowa
+View All	Zobacz wszystko
+View DNSSEC Information	Zobacz informacje DNSSEC
+WHOIS not supported on this domain	WHOIS nie jest obsługiwany dla tej domeny
+Your changes will take affect only quitting and restarting DNS Inspector	Zmiany zostaną zastosowane dopiero po zamknięciu i ponownym uruchomieniu DNS Inspector
+Zone signing key	Klucz podpisujący strefę
+about_footer_{year}	DNS Inspector to darmowe i wolne oprogramowanie open source licencjonowane na warunkach GNU GPLv3. Prawa autorskie do DNS Inspector © 2023-{0} Ian Spence. DNS Inspector jest tworzony całkowicie bez użycia Sztucznej Inteligencji (AI) ani Dużych Modeli Językowych (LLM).
+dns_server_doh_bootstrap	Możesz podać adresy IP tego serwera DNS przez HTTPS, aby zwiększyć prywatność.
+dns_server_target_help_dns	Łączymy się z serwerem DNS przy użyciu adresu IP. Obsługiwane są adresy IPv4 i IPv6. Aby podać port dla adresu IPv6, umieść adres w nawiasach kwadratowych. Możesz podać wiele adresów IP, a DNS Inspector spróbuje użyć ich wszystkich.
+dns_server_target_help_url	Łączymy się z serwerem DNS przy użyciu adresu URL. Nie dołączaj parametru zapytania `dns`.
+http2_bootstrap_ip_footer	DNS Inspector nie obsługuje HTTP/2, gdy zdefiniowano co najmniej jeden adres IP serwera.
+record_description_a	Rekordy DNS A zawierają adres IPv4.
+record_description_aaaa	Rekordy DNS AAAA zawierają adres IPv6.
+record_description_cname	Rekordy DNS CNAME zawierają docelową nazwę DNS do śledzenia.
+record_description_dnskey	Rekordy DNS DNSKEY zawierają kryptograficzne klucze publiczne używane do uwierzytelniania.
+record_description_ds	Rekordy DNS DS zawierają informacje o zaufanej delegacji ze strefy nadrzędnej.
+record_description_https	Rekordy DNS HTTPS zawierają informacje o serwerach WWW HTTPS.
+record_description_loc	Rekordy DNS LOC zawierają położenie geograficzne.
+record_description_mx	Rekordy DNS MX zawierają adresy serwerów wymiany poczty.
+record_description_ns	Rekordy DNS NS zawierają autorytatywny serwer DNS dla tej strefy.
+record_description_nsec	Rekordy DNS NSEC zawierają informacje bezpieczeństwa o dostępnych rekordach w strefie.
+record_description_nsec3	Rekordy DNS NSEC3 zawierają informacje bezpieczeństwa o dostępnych rekordach w strefie.
+# spellcheck:ignore
+record_description_ptr	Rekordy DNS PTR służą do rozwiązywania nazwy domeny na podstawie adresu IP.
+record_description_soa	Rekordy DNS SOA zawierają informacje administracyjne lub własnościowe o domenie.
+record_description_srv	Rekordy DNS SRV zawierają informacje potrzebne do lokalizowania konkretnej usługi.
+record_description_txt	Rekordy DNS TXT zawierają dowolne dane tekstowe.
+saved_server_footer	DNS Inspector zawiera kilka zapisanych serwerów, które pomogą Ci zacząć. Cloudflare, Google i Quad9 są zastrzeżonymi znakami towarowymi ich właścicieli i nie są powiązane z DNS Inspector ani go nie wspierają.
+{duration} microseconds	{0} mikrosekund
+{duration} milliseconds	{0} milisekund
+{duration} nanoseconds	{0} nanosekund
+{duration} seconds	{0} sekund
+{record_type} Record	Rekord {0}
