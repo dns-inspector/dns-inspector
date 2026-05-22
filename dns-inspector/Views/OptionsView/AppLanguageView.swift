@@ -35,7 +35,10 @@ struct AppLanguageView: View {
                         currentLanguage = language
                     } label: {
                         HStack {
-                            Text(String.init(describing: language))
+                            VStack(alignment: .leading) {
+                                Text(String.init(describing: language))
+                                Text(Localize.percentcomplete(percent: "\(language.percentTranslated)")).font(.caption)
+                            }
                             Spacer()
                             if currentLanguage == language {
                                 Image(systemName: "checkmark").foregroundStyle(.accent)
@@ -47,7 +50,7 @@ struct AppLanguageView: View {
                 }
             } footer: {
                 // This is intentionally not localized
-                Text("Spanish translation by Kevin López Brante. German translation by ErminesRoper. Interested in translating DNS Inspector to another language? Send us a message through the feedback link!")
+                Text("• Spanish translation by Kevin López Brante.\n• German translation by ErminesRoper.\n• Polish translation by @marcinmajsc on Github.\n\nInterested in translating DNS Inspector to another language? Send us a message through the feedback link!")
             }
         }
         .navigationTitle(Localize.applanguage())

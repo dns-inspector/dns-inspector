@@ -1,6 +1,5 @@
-# DNS Inspector localization strings for Polish
-# Copyright 2024 Ian Spence and DNS Inspector Authors
-# Licensed under CC BY-SA 4.0 Attribution-ShareAlike 4.0 International
+% Copyright Ian Spence and DNS Inspector Authors
+% Licensed under CC BY-SA 4.0 Attribution-ShareAlike 4.0 International
 About	O aplikacji
 Absolute	Bezwzględne
 Add Saved Server	Dodaj zapisany serwer
@@ -165,4 +164,5 @@ saved_server_footer	DNS Inspector zawiera kilka zapisanych serwerów, które pom
 {duration} milliseconds	{0} milisekund
 {duration} nanoseconds	{0} nanosekund
 {duration} seconds	{0} sekund
+{percent}% complete	{0}% ukończenia
 {record_type} Record	Rekord {0}

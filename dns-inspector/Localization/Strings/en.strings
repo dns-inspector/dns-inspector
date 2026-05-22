@@ -1,6 +1,5 @@
-# DNS Inspector localization strings for English
-# Copyright 2024 Ian Spence and DNS Inspector Authors
-# Licensed under CC BY-SA 4.0 Attribution-ShareAlike 4.0 International
+% Copyright Ian Spence and DNS Inspector Authors
+% Licensed under CC BY-SA 4.0 Attribution-ShareAlike 4.0 International
 About	About
 Absolute	Absolute
 Add Saved Server	Add Saved Server
@@ -165,4 +164,5 @@ saved_server_footer	DNS Inspector includes several saved servers to help you get
 {duration} milliseconds	{0} milliseconds
 {duration} nanoseconds	{0} nanoseconds
 {duration} seconds	{0} seconds
+{percent}% complete	{0}% complete
 {record_type} Record	{0} Record

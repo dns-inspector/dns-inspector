@@ -45,6 +45,24 @@ for arg in sys.argv:
     if arg == "--validate":
         validate = True
 
+licnese_header = """% Copyright Ian Spence and DNS Inspector Authors
+% Licensed under CC BY-SA 4.0 Attribution-ShareAlike 4.0 International"""
+
+def check_license(r):
+    header_lines = licnese_header.split("\n")
+
+    l = 0
+    for expected_line in header_lines:
+        actual_line = r.readline().rstrip()
+
+        if actual_line != expected_line:
+            print("Expected line: '%s'\nActual line: '%s'" % (expected_line, actual_line))
+            return -1
+
+        l += 1
+
+    return l
+
 def normalizeKey(key):
     normalizedKey = re.sub(r"[^A-Za-z0-9]", "", key.lower())
     if key[0] >= '0' and key[0] <= '9':
@@ -61,6 +79,14 @@ def read_strings(lang):
         line_n = 0
         last_comment = []
         while True:
+            if line_n == 0:
+                skipped = check_license(r)
+                if skipped == -1:
+                    print("error: Invalid or missing license header in %s" % (lang+".strings"))
+                    os.exit(1)
+                line_n += skipped
+                continue
+
             line_n += 1
             line = r.readline()
             if not line:
@@ -147,6 +173,7 @@ def process_strings(lang):
 
     # Write new lang file
     with open(atomic_path, 'w') as w:
+        w.write(licnese_header + "\n")
         for entry in lang_entries:
             key = entry['key']
             value = entry['value']
@@ -162,6 +189,17 @@ def process_strings(lang):
         pass
 
     os.rename(atomic_path, strings_path)
+
+def pct_complete(lang):
+    strings = read_strings(lang)
+
+    complete = len(strings)
+
+    for entry in strings:
+        if len(entry["comments"]) > 0 and entry["comments"][0] == "TODO":
+            complete = complete - 1
+
+    return int((complete / len(strings)) * 100)
 
 def getArgs(key):
     return re.findall(r"\{[A-Za-z0-9\-_]+\}", key)
@@ -212,10 +250,39 @@ public enum SupportedLanguages: String, Sendable, Hashable, Identifiable, CaseIt
     public var id: Self {
         return self
     }
+
+    public var percentTranslated: Int {
+        switch self {
+"""
+        file.write(header)
+
+        for language in languages:
+            file.write("        case ." + languageNameMap[language] + ": return " + str(pct_complete(language)) + "\n")
+
+
+        header = """        }
+    }
 }
 
 @MainActor
 public var currentLanguage: SupportedLanguages = .English
+
+@MainActor
+public func updateCurrentLanguageToDeviceLocale() {
+    for lang in Locale.preferredLanguages {
+"""
+        file.write(header)
+
+        for language in languages:
+            file.write("        if lang.hasPrefix(\"" + language + "-\") {\n")
+            file.write("            currentLanguage = ." + languageNameMap[language] + "\n")
+            file.write("            return\n")
+            file.write("        }\n")
+
+        header = """    }
+
+    currentLanguage = .English
+}
 
 @MainActor
 public final class Localize {
@@ -286,7 +353,7 @@ if not validate:
 is_valid = True
 for entry in en_entries:
     q = "Localize." + normalizeKey(entry["key"])
-    r = subprocess.run(["git", "--no-pager", "grep", q, "../"], capture_output=True)
+    r = subprocess.run(["git", "--no-pager", "grep", q, "../../../"], capture_output=True)
 
     if len(r.stdout) == 0:
         print("::error ::Unused localization key: " + entry["key"])

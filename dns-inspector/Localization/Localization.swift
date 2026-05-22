@@ -29,10 +29,43 @@ public enum SupportedLanguages: String, Sendable, Hashable, Identifiable, CaseIt
     public var id: Self {
         return self
     }
+
+    public var percentTranslated: Int {
+        switch self {
+        case .English: return 100
+        case .Spanish: return 29
+        case .German: return 59
+        case .Polish: return 100
+        }
+    }
 }
 
 @MainActor
 public var currentLanguage: SupportedLanguages = .English
+
+@MainActor
+public func updateCurrentLanguageToDeviceLocale() {
+    for lang in Locale.preferredLanguages {
+        if lang.hasPrefix("en-") {
+            currentLanguage = .English
+            return
+        }
+        if lang.hasPrefix("es-") {
+            currentLanguage = .Spanish
+            return
+        }
+        if lang.hasPrefix("de-") {
+            currentLanguage = .German
+            return
+        }
+        if lang.hasPrefix("pl-") {
+            currentLanguage = .Polish
+            return
+        }
+    }
+
+    currentLanguage = .English
+}
 
 @MainActor
 public final class Localize {
@@ -2153,6 +2186,19 @@ public final class Localize {
             return "\(duration) Sekunden"
         case .Polish:
             return "\(duration) sekund"
+        }
+    }
+    // key: {percent}% complete
+    public static func percentcomplete(percent: String) -> String {
+        switch currentLanguage {
+        case .English:
+            return "\(percent)% complete"
+        case .Spanish:
+            return "\(percent)% completado"
+        case .German:
+            return "\(percent)% fertig"
+        case .Polish:
+            return "\(percent)% ukończenia"
         }
     }
     // key: {record_type} Record

@@ -1,6 +1,5 @@
-# DNS Inspector localization strings for English
-# Copyright 2024 Kevin López Brante and DNS Inspector Authors
-# Licensed under CC BY-SA 4.0 Attribution-ShareAlike 4.0 International
+% Copyright Ian Spence and DNS Inspector Authors
+% Licensed under CC BY-SA 4.0 Attribution-ShareAlike 4.0 International
 About	Acerca de
 Absolute	Absoluto
 # TODO
@@ -280,4 +279,5 @@ saved_server_footer	DNS Inspector includes several saved servers to help you get
 {duration} milliseconds	{0} milisegundos
 {duration} nanoseconds	{0} nanosegundos
 {duration} seconds	{0} segundos
+{percent}% complete	{0}% completado
 {record_type} Record	Registro {0}
