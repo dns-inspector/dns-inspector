@@ -24,6 +24,7 @@ public enum SupportedLanguages: String, Sendable, Hashable, Identifiable, CaseIt
     case English = "en"
     case Spanish = "es"
     case German = "de"
+    case Polish = "pl"
 
     public var id: Self {
         return self
@@ -44,6 +45,8 @@ public final class Localize {
             return "Acerca de"
         case .German:
             return "Über"
+        case .Polish:
+            return "O aplikacji"
         }
     }
     // key: Absolute
@@ -55,6 +58,8 @@ public final class Localize {
             return "Absoluto"
         case .German:
             return "Absolut"
+        case .Polish:
+            return "Bezwzględne"
         }
     }
     // key: Add Saved Server
@@ -66,6 +71,8 @@ public final class Localize {
             return "Add Saved Server"
         case .German:
             return "Add Saved Server"
+        case .Polish:
+            return "Dodaj zapisany serwer"
         }
     }
     // key: Administrative address
@@ -77,6 +84,8 @@ public final class Localize {
             return "Administrative address"
         case .German:
             return "Administrative Adresse"
+        case .Polish:
+            return "Adres administracyjny"
         }
     }
     // key: Algorithm
@@ -88,6 +97,8 @@ public final class Localize {
             return "Algorithm"
         case .German:
             return "Algorithmus"
+        case .Polish:
+            return "Algorytm"
         }
     }
     // key: Altitude
@@ -99,6 +110,8 @@ public final class Localize {
             return "Altitude"
         case .German:
             return "Altitude"
+        case .Polish:
+            return "Wysokość"
         }
     }
     // key: Answers
@@ -110,6 +123,8 @@ public final class Localize {
             return "Respuestas"
         case .German:
             return "Antworten"
+        case .Polish:
+            return "Odpowiedzi"
         }
     }
     // key: App Icon
@@ -121,6 +136,8 @@ public final class Localize {
             return "App Icon"
         case .German:
             return "App Icon"
+        case .Polish:
+            return "Ikona aplikacji"
         }
     }
     // key: App language
@@ -132,6 +149,8 @@ public final class Localize {
             return "App language"
         case .German:
             return "App-Sprache"
+        case .Polish:
+            return "Język aplikacji"
         }
     }
     // key: AppIconFooter
@@ -143,6 +162,8 @@ public final class Localize {
             return "The \"Progress\" pride flag was created by Daniel Quasar and is licensed under Create Commons BY-NC-SA. The trans flag was created by Monica Helms and was released to the public domain."
         case .German:
             return "The \"Progress\" pride flag was created by Daniel Quasar and is licensed under Create Commons BY-NC-SA. The trans flag was created by Monica Helms and was released to the public domain."
+        case .Polish:
+            return "Flaga Pride została stworzona przez Daniela Quasara i jest licencjonowana na warunkach Creative Commons BY-NC-SA. Flaga Trans została stworzona przez Monicę Helms i udostępniona do domeny publicznej."
         }
     }
     // key: Appearance & Behaviour
@@ -154,6 +175,8 @@ public final class Localize {
             return "Appearance & Behaviour"
         case .German:
             return "Aussehen & Verhalten"
+        case .Polish:
+            return "Wygląd i zachowanie"
         }
     }
     // key: Area
@@ -165,6 +188,8 @@ public final class Localize {
             return "Area"
         case .German:
             return "Area"
+        case .Polish:
+            return "Obszar"
         }
     }
     // key: Authority
@@ -176,6 +201,8 @@ public final class Localize {
             return "Authority"
         case .German:
             return "Authority"
+        case .Polish:
+            return "Autorytatywny"
         }
     }
     // key: Bad signing key: {details}
@@ -187,6 +214,8 @@ public final class Localize {
             return "Bad signing key: \(details)"
         case .German:
             return "Bad signing key: \(details)"
+        case .Polish:
+            return "Nieprawidłowy klucz podpisujący: \(details)"
         }
     }
     // key: Chain
@@ -198,6 +227,8 @@ public final class Localize {
             return "Chain"
         case .German:
             return "Kette"
+        case .Polish:
+            return "Łańcuch"
         }
     }
     // key: Connection Timeout
@@ -209,6 +240,8 @@ public final class Localize {
             return "Connection Timeout"
         case .German:
             return "Verbindung ausgelaufen"
+        case .Polish:
+            return "Limit czasu połączenia"
         }
     }
     // key: Connection error: {details}
@@ -220,6 +253,8 @@ public final class Localize {
             return "Connection error: \(details)"
         case .German:
             return "Connection error: \(details)"
+        case .Polish:
+            return "Błąd połączenia: \(details)"
         }
     }
     // key: Contribute to DNS Inspector
@@ -231,6 +266,8 @@ public final class Localize {
             return "Contribuir to DNS Inspector"
         case .German:
             return "Zu DNS-Inspector beitragen"
+        case .Polish:
+            return "Współtwórz DNS Inspector"
         }
     }
     // key: Coordinates
@@ -242,6 +279,8 @@ public final class Localize {
             return "Coordinates"
         case .German:
             return "Coordinates"
+        case .Polish:
+            return "Współrzędne"
         }
     }
     // key: Custom Server
@@ -253,6 +292,8 @@ public final class Localize {
             return "Custom Server"
         case .German:
             return "Custom Server"
+        case .Polish:
+            return "Niestandardowy serwer"
         }
     }
     // key: DNS Inspector
@@ -264,6 +305,8 @@ public final class Localize {
             return "DNS Inspector"
         case .German:
             return "DNS-Inspector"
+        case .Polish:
+            return "DNS Inspector"
         }
     }
     // key: DNS over HTTPS
@@ -275,6 +318,8 @@ public final class Localize {
             return "DNS over HTTPS"
         case .German:
             return "DNS over HTTPS"
+        case .Polish:
+            return "DNS przez HTTPS"
         }
     }
     // key: DNS over QUIC
@@ -286,6 +331,8 @@ public final class Localize {
             return "DNS over QUIC"
         case .German:
             return "DNS over QUIC"
+        case .Polish:
+            return "DNS przez QUIC"
         }
     }
     // key: DNS over TLS
@@ -297,6 +344,8 @@ public final class Localize {
             return "DNS over TLS"
         case .German:
             return "DNS over TLS"
+        case .Polish:
+            return "DNS przez TLS"
         }
     }
     // key: DNSSEC not enabled on this zone, no RRSIG returned.
@@ -308,6 +357,8 @@ public final class Localize {
             return "DNSSEC not enabled on this zone, no RRSIG returned."
         case .German:
             return "DNSSEC für diese Zone nicht aktiviert, kein RRSIG wiedergegeben."
+        case .Polish:
+            return "DNSSEC nie jest włączony dla tej strefy, nie zwrócono RRSIG."
         }
     }
     // key: Destination
@@ -319,6 +370,8 @@ public final class Localize {
             return "Destination"
         case .German:
             return "Destination"
+        case .Polish:
+            return "Cel"
         }
     }
     // key: Digest
@@ -330,6 +383,8 @@ public final class Localize {
             return "Digest"
         case .German:
             return "Verarbeiten"
+        case .Polish:
+            return "Skrót"
         }
     }
     // key: Digest Type
@@ -341,6 +396,8 @@ public final class Localize {
             return "Digest Type"
         case .German:
             return "Digest Type"
+        case .Polish:
+            return "Typ skrótu"
         }
     }
     // key: Dismiss
@@ -352,6 +409,8 @@ public final class Localize {
             return "Dismiss"
         case .German:
             return "Ignorieren"
+        case .Polish:
+            return "Zamknij"
         }
     }
     // key: Domain Information
@@ -363,6 +422,8 @@ public final class Localize {
             return "Domain Information"
         case .German:
             return "Domain-Information"
+        case .Polish:
+            return "Informacje o domenie"
         }
     }
     // key: Edit Saved Server
@@ -374,6 +435,8 @@ public final class Localize {
             return "Edit Saved Server"
         case .German:
             return "Edit Saved Server"
+        case .Polish:
+            return "Edytuj zapisany serwer"
         }
     }
     // key: Edit Saved Servers
@@ -385,6 +448,8 @@ public final class Localize {
             return "Edit Saved Servers"
         case .German:
             return "Edit Saved Servers"
+        case .Polish:
+            return "Edytuj zapisane serwery"
         }
     }
     // key: Empty response
@@ -396,6 +461,8 @@ public final class Localize {
             return "Empty response"
         case .German:
             return "Empty response"
+        case .Polish:
+            return "Pusta odpowiedź"
         }
     }
     // key: Excessive response size
@@ -407,6 +474,8 @@ public final class Localize {
             return "Excessive response size"
         case .German:
             return "Excessive response size"
+        case .Polish:
+            return "Zbyt duży rozmiar odpowiedzi"
         }
     }
     // key: Expire
@@ -418,6 +487,8 @@ public final class Localize {
             return "Expire"
         case .German:
             return "Auslaufen lassen"
+        case .Polish:
+            return "Wygaśnięcie"
         }
     }
     // key: Follow @dns-inspector.com on Bluesky
@@ -429,6 +500,8 @@ public final class Localize {
             return "Follow @dns-inspector.com on Bluesky"
         case .German:
             return "Folge @dns-inspector.com auf Bluesky"
+        case .Polish:
+            return "Obserwuj @dns-inspector.com na Bluesky"
         }
     }
     // key: Follow @dnsinspector on Mastodon
@@ -440,6 +513,8 @@ public final class Localize {
             return "Sigue a @dnsinspector en Mastodon"
         case .German:
             return "Folge @dnsinspector auf Mastodon"
+        case .Polish:
+            return "Obserwuj @dnsinspector na Mastodon"
         }
     }
     // key: Format binary data as
@@ -451,6 +526,8 @@ public final class Localize {
             return "Format binary data as"
         case .German:
             return "Format binary data as"
+        case .Polish:
+            return "Formatuj dane binarne jako"
         }
     }
     // key: Friendly Name
@@ -462,6 +539,8 @@ public final class Localize {
             return "Friendly Name"
         case .German:
             return "Friendly-Name"
+        case .Polish:
+            return "Przyjazna nazwa"
         }
     }
     // key: General
@@ -473,6 +552,8 @@ public final class Localize {
             return "General"
         case .German:
             return "Allgemein"
+        case .Polish:
+            return "Ogólne"
         }
     }
     // key: Get Involved
@@ -484,6 +565,8 @@ public final class Localize {
             return "Involucrarse"
         case .German:
             return "Werde involviert"
+        case .Polish:
+            return "Dołącz do projektu"
         }
     }
     // key: HTTP {code}
@@ -494,6 +577,8 @@ public final class Localize {
         case .Spanish:
             return "HTTP \(code)"
         case .German:
+            return "HTTP \(code)"
+        case .Polish:
             return "HTTP \(code)"
         }
     }
@@ -506,6 +591,8 @@ public final class Localize {
             return "Hashed Next Name"
         case .German:
             return "Hashed Next Name"
+        case .Polish:
+            return "Haszowana następna nazwa"
         }
     }
     // key: Horizontal Precision
@@ -517,6 +604,8 @@ public final class Localize {
             return "Horizontal Precision"
         case .German:
             return "Horizontal Precision"
+        case .Polish:
+            return "Dokładność pozioma"
         }
     }
     // key: IPv4 Hints
@@ -528,6 +617,8 @@ public final class Localize {
             return "IPv4 Hints"
         case .German:
             return "IPv4-Hints"
+        case .Polish:
+            return "Wskazówki IPv4"
         }
     }
     // key: IPv6 Hints
@@ -539,6 +630,8 @@ public final class Localize {
             return "IPv6 Hints"
         case .German:
             return "IPv6-Hints"
+        case .Polish:
+            return "Wskazówki IPv6"
         }
     }
     // key: IconDefault
@@ -550,6 +643,8 @@ public final class Localize {
             return "Default"
         case .German:
             return "Default"
+        case .Polish:
+            return "Domyślna"
         }
     }
     // key: IconPride
@@ -560,6 +655,8 @@ public final class Localize {
         case .Spanish:
             return "Pride"
         case .German:
+            return "Pride"
+        case .Polish:
             return "Pride"
         }
     }
@@ -572,6 +669,8 @@ public final class Localize {
             return "Trans"
         case .German:
             return "Trans"
+        case .Polish:
+            return "Trans"
         }
     }
     // key: Internal error: {details}
@@ -583,6 +682,8 @@ public final class Localize {
             return "Internal error: \(details)"
         case .German:
             return "Internal error: \(details)"
+        case .Polish:
+            return "Błąd wewnętrzny: \(details)"
         }
     }
     // key: Invalid URL
@@ -594,6 +695,8 @@ public final class Localize {
             return "Invalid URL"
         case .German:
             return "Invalid URL"
+        case .Polish:
+            return "Nieprawidłowy adres URL"
         }
     }
     // key: Invalid content type: {details}
@@ -605,6 +708,8 @@ public final class Localize {
             return "Invalid content type: \(details)"
         case .German:
             return "Invalid content type: \(details)"
+        case .Polish:
+            return "Nieprawidłowy typ zawartości: \(details)"
         }
     }
     // key: Invalid data: {details}
@@ -616,6 +721,8 @@ public final class Localize {
             return "Invalid data: \(details)"
         case .German:
             return "Invalid data: \(details)"
+        case .Polish:
+            return "Nieprawidłowe dane: \(details)"
         }
     }
     // key: Invalid response: {details}
@@ -627,6 +734,8 @@ public final class Localize {
             return "Invalid response: \(details)"
         case .German:
             return "Invalid response: \(details)"
+        case .Polish:
+            return "Nieprawidłowa odpowiedź: \(details)"
         }
     }
     // key: Key Usage
@@ -638,6 +747,8 @@ public final class Localize {
             return "Key Usage"
         case .German:
             return "Schlüssel-Gebrauch"
+        case .Polish:
+            return "Użycie klucza"
         }
     }
     // key: Key signing key
@@ -649,6 +760,8 @@ public final class Localize {
             return "Key signing key"
         case .German:
             return "Schlüsselsignierungsschlüssel"
+        case .Polish:
+            return "Klucz podpisujący klucze"
         }
     }
     // key: Key tag
@@ -660,6 +773,8 @@ public final class Localize {
             return "Key tag"
         case .German:
             return "Schlüsseletikett"
+        case .Polish:
+            return "Tag klucza"
         }
     }
     // key: Loading...
@@ -671,6 +786,8 @@ public final class Localize {
             return "Cargando..."
         case .German:
             return "Lädt..."
+        case .Polish:
+            return "Ładowanie..."
         }
     }
     // key: Main name server
@@ -682,6 +799,8 @@ public final class Localize {
             return "Main name server"
         case .German:
             return "Hauptnamensserver"
+        case .Polish:
+            return "Główny serwer nazw"
         }
     }
     // key: Maximum History Size
@@ -693,6 +812,8 @@ public final class Localize {
             return "Maximum History Size"
         case .German:
             return "Maximum History Size"
+        case .Polish:
+            return "Maksymalny rozmiar historii"
         }
     }
     // key: Minimum
@@ -703,6 +824,8 @@ public final class Localize {
         case .Spanish:
             return "Minimum"
         case .German:
+            return "Minimum"
+        case .Polish:
             return "Minimum"
         }
     }
@@ -715,6 +838,8 @@ public final class Localize {
             return "Missing data: \(details)"
         case .German:
             return "Missing data: \(details)"
+        case .Polish:
+            return "Brak danych: \(details)"
         }
     }
     // key: Missing keys: {details}
@@ -726,6 +851,8 @@ public final class Localize {
             return "Missing keys: \(details)"
         case .German:
             return "Missing keys: \(details)"
+        case .Polish:
+            return "Brak kluczy: \(details)"
         }
     }
     // key: More from the developer
@@ -737,6 +864,8 @@ public final class Localize {
             return "Más apps del desarrollador"
         case .German:
             return "Weiteres vom Entwickler"
+        case .Polish:
+            return "Więcej od dewelopera"
         }
     }
     // key: My Server
@@ -748,6 +877,8 @@ public final class Localize {
             return "My Server"
         case .German:
             return "My Server"
+        case .Polish:
+            return "Mój serwer"
         }
     }
     // key: Name
@@ -759,6 +890,8 @@ public final class Localize {
             return "Nombre"
         case .German:
             return "Name"
+        case .Polish:
+            return "Nazwa"
         }
     }
     // key: Network
@@ -770,6 +903,8 @@ public final class Localize {
             return "Red"
         case .German:
             return "Netzwerk"
+        case .Polish:
+            return "Sieć"
         }
     }
     // key: New Saved Server
@@ -781,6 +916,8 @@ public final class Localize {
             return "New Saved Server"
         case .German:
             return "New Saved Server"
+        case .Polish:
+            return "Zapisz nowy serwer"
         }
     }
     // key: New query
@@ -792,6 +929,8 @@ public final class Localize {
             return "Nueva petición"
         case .German:
             return "Neue Anfrage"
+        case .Polish:
+            return "Nowe zapytanie"
         }
     }
     // key: Next Name
@@ -803,6 +942,8 @@ public final class Localize {
             return "Next Name"
         case .German:
             return "Next Name"
+        case .Polish:
+            return "Następna nazwa"
         }
     }
     // key: No default ALPN
@@ -814,6 +955,8 @@ public final class Localize {
             return "No default ALPN"
         case .German:
             return "Kein standardmäßiges ALPN"
+        case .Polish:
+            return "Brak domyślnego ALPN"
         }
     }
     // key: No signatures: {details}
@@ -825,6 +968,8 @@ public final class Localize {
             return "No signatures: \(details)"
         case .German:
             return "No signatures: \(details)"
+        case .Polish:
+            return "Brak podpisów: \(details)"
         }
     }
     // key: Open source licenses & attributions
@@ -836,6 +981,8 @@ public final class Localize {
             return "Open source licenses & attributions"
         case .German:
             return "Open source licenses & attributions"
+        case .Polish:
+            return "Licencje open source i atrybuty"
         }
     }
     // key: Options
@@ -847,6 +994,8 @@ public final class Localize {
             return "Opciones"
         case .German:
             return "Optionen"
+        case .Polish:
+            return "Opcje"
         }
     }
     // key: Port
@@ -857,6 +1006,8 @@ public final class Localize {
         case .Spanish:
             return "Port"
         case .German:
+            return "Port"
+        case .Polish:
             return "Port"
         }
     }
@@ -869,6 +1020,8 @@ public final class Localize {
             return "Priority"
         case .German:
             return "Priorität"
+        case .Polish:
+            return "Priorytet"
         }
     }
     // key: Provide feedback
@@ -880,6 +1033,8 @@ public final class Localize {
             return "Provide feedback"
         case .German:
             return "Feedback hinterlassen"
+        case .Polish:
+            return "Przekaż opinię"
         }
     }
     // key: Public key
@@ -891,6 +1046,8 @@ public final class Localize {
             return "Public key"
         case .German:
             return "Öffentlicher Schlüssel"
+        case .Polish:
+            return "Klucz publiczny"
         }
     }
     // key: Query
@@ -902,6 +1059,8 @@ public final class Localize {
             return "Petición"
         case .German:
             return "Anfrage"
+        case .Polish:
+            return "Zapytanie"
         }
     }
     // key: Question
@@ -913,6 +1072,8 @@ public final class Localize {
             return "Pregunta"
         case .German:
             return "Frage"
+        case .Polish:
+            return "Pytanie"
         }
     }
     // key: Rate in App Store
@@ -924,6 +1085,8 @@ public final class Localize {
             return "Calificar en la App Store"
         case .German:
             return "Im App-Store bewerten"
+        case .Polish:
+            return "Oceń w App Store"
         }
     }
     // key: Recent queries
@@ -935,6 +1098,8 @@ public final class Localize {
             return "Peticiones recientes"
         case .German:
             return "Letzte Anfragen"
+        case .Polish:
+            return "Ostatnie zapytania"
         }
     }
     // key: Record Type
@@ -946,6 +1111,8 @@ public final class Localize {
             return "Record Type"
         case .German:
             return "Record Type"
+        case .Polish:
+            return "Typ rekordu"
         }
     }
     // key: Record Types
@@ -957,6 +1124,8 @@ public final class Localize {
             return "Record Types"
         case .German:
             return "Record Types"
+        case .Polish:
+            return "Typy rekordów"
         }
     }
     // key: Refresh
@@ -968,6 +1137,8 @@ public final class Localize {
             return "Refresh"
         case .German:
             return "Neu laden"
+        case .Polish:
+            return "Odśwież"
         }
     }
     // key: Relative
@@ -979,6 +1150,8 @@ public final class Localize {
             return "Relativo"
         case .German:
             return "Verwandt"
+        case .Polish:
+            return "Względne"
         }
     }
     // key: Remember last server
@@ -990,6 +1163,8 @@ public final class Localize {
             return "Recordar último servidor"
         case .German:
             return "Letzten Server merken"
+        case .Polish:
+            return "Zapamiętaj ostatni serwer"
         }
     }
     // key: Remember recent queries
@@ -1001,6 +1176,8 @@ public final class Localize {
             return "Recordar peticiones recientes"
         case .German:
             return "Letzte Anfragen merken"
+        case .Polish:
+            return "Zapamiętaj ostatnie zapytania"
         }
     }
     // key: Response
@@ -1012,6 +1189,8 @@ public final class Localize {
             return "Respuesta"
         case .German:
             return "Antwort"
+        case .Polish:
+            return "Odpowiedź"
         }
     }
     // key: Response contained no answers
@@ -1023,6 +1202,8 @@ public final class Localize {
             return "Response contained no answers"
         case .German:
             return "Response contained no answers"
+        case .Polish:
+            return "Nie zwrócono odpowiedzi"
         }
     }
     // key: Results
@@ -1034,6 +1215,8 @@ public final class Localize {
             return "Resultados"
         case .German:
             return "Resultat"
+        case .Polish:
+            return "Wyniki"
         }
     }
     // key: Retry
@@ -1045,6 +1228,8 @@ public final class Localize {
             return "Retry"
         case .German:
             return "Erneut versuchen"
+        case .Polish:
+            return "Ponów"
         }
     }
     // key: Save
@@ -1056,6 +1241,8 @@ public final class Localize {
             return "Guardar"
         case .German:
             return "Sichern"
+        case .Polish:
+            return "Zapisz"
         }
     }
     // key: Saved Server
@@ -1067,6 +1254,8 @@ public final class Localize {
             return "Saved Server"
         case .German:
             return "Saved Server"
+        case .Polish:
+            return "Zapisany serwer"
         }
     }
     // key: Saved Servers
@@ -1078,6 +1267,8 @@ public final class Localize {
             return "Saved Servers"
         case .German:
             return "Saved Servers"
+        case .Polish:
+            return "Zapisane serwery"
         }
     }
     // key: Seconds
@@ -1089,6 +1280,8 @@ public final class Localize {
             return "Seconds"
         case .German:
             return "Sekunden"
+        case .Polish:
+            return "Sekund"
         }
     }
     // key: Send traditional DNS requests using TCP
@@ -1100,6 +1293,8 @@ public final class Localize {
             return "Enviar peticiones DNS tradicionales con TCP"
         case .German:
             return "Sende herkömmliche DNS-Anfragen mittels TCP"
+        case .Polish:
+            return "Wysyłaj tradycyjne zapytania DNS przez TCP"
         }
     }
     // key: Serial
@@ -1111,6 +1306,8 @@ public final class Localize {
             return "Serial"
         case .German:
             return "Serie"
+        case .Polish:
+            return "Numer seryjny"
         }
     }
     // key: Server
@@ -1122,6 +1319,8 @@ public final class Localize {
             return "Servidor"
         case .German:
             return "Server"
+        case .Polish:
+            return "Serwer"
         }
     }
     // key: Server Addresses
@@ -1133,6 +1332,8 @@ public final class Localize {
             return "Server Addresses"
         case .German:
             return "Server Addresses"
+        case .Polish:
+            return "Adresy serwera"
         }
     }
     // key: Server Details
@@ -1144,6 +1345,8 @@ public final class Localize {
             return "Server Details"
         case .German:
             return "Server-Details"
+        case .Polish:
+            return "Szczegóły serwera"
         }
     }
     // key: Server IP
@@ -1155,6 +1358,8 @@ public final class Localize {
             return "IP del servidor"
         case .German:
             return "Server-IP"
+        case .Polish:
+            return "IP serwera"
         }
     }
     // key: Server IP Addresses (Optional)
@@ -1166,6 +1371,8 @@ public final class Localize {
             return "Server IP Addresses (Optional)"
         case .German:
             return "Server IP Addresses (Optional)"
+        case .Polish:
+            return "Adresy IP serwera (opcjonalnie)"
         }
     }
     // key: Server Type
@@ -1177,6 +1384,8 @@ public final class Localize {
             return "Tipo de servidor"
         case .German:
             return "Server-Typus"
+        case .Polish:
+            return "Typ serwera"
         }
     }
     // key: Server URL
@@ -1188,6 +1397,8 @@ public final class Localize {
             return "URL del servidor"
         case .German:
             return "Server-URL"
+        case .Polish:
+            return "Adres URL serwera"
         }
     }
     // key: Share & Feedback
@@ -1199,6 +1410,8 @@ public final class Localize {
             return "Compartir y comentarios"
         case .German:
             return "Teilen & Feedback"
+        case .Polish:
+            return "Udostępnianie i opinie"
         }
     }
     // key: Share DNS Inspector
@@ -1210,6 +1423,8 @@ public final class Localize {
             return "Compartir DNS Inspector"
         case .German:
             return "DNS-Inspector teilen"
+        case .Polish:
+            return "Udostępnij DNS Inspector"
         }
     }
     // key: Show DNS record descriptions
@@ -1221,6 +1436,8 @@ public final class Localize {
             return "Show DNS record descriptions"
         case .German:
             return "Beschreibungen der DNS-Aufzeichnungen anzeigen"
+        case .Polish:
+            return "Pokaż opisy rekordów DNS"
         }
     }
     // key: Show TTL values as
@@ -1232,6 +1449,8 @@ public final class Localize {
             return "Mostrar valores TTL (tiempo de vidxa) como"
         case .German:
             return "Zeige TTL-Wert als"
+        case .Polish:
+            return "Pokazuj wartości TTL jako"
         }
     }
     // key: Signature
@@ -1243,6 +1462,8 @@ public final class Localize {
             return "Signature"
         case .German:
             return "Signatur"
+        case .Polish:
+            return "Podpis"
         }
     }
     // key: Signature Validation Failed
@@ -1254,6 +1475,8 @@ public final class Localize {
             return "Signature Validation Failed"
         case .German:
             return "Signaturvalidierung fehlgeschlagen"
+        case .Polish:
+            return "Weryfikacja podpisu nie powiodła się"
         }
     }
     // key: Signature failed
@@ -1265,6 +1488,8 @@ public final class Localize {
             return "Signature failed"
         case .German:
             return "Signature failed"
+        case .Polish:
+            return "Podpis nieprawidłowy"
         }
     }
     // key: Supported Versions
@@ -1276,6 +1501,8 @@ public final class Localize {
             return "Supported Versions"
         case .German:
             return "Unterstütze Versionen"
+        case .Polish:
+            return "Obsługiwane wersje"
         }
     }
     // key: System DNS
@@ -1287,6 +1514,8 @@ public final class Localize {
             return "System DNS"
         case .German:
             return "System DNS"
+        case .Polish:
+            return "Systemowy DNS"
         }
     }
     // key: TLS Inspector
@@ -1298,6 +1527,8 @@ public final class Localize {
             return "TLS Inspector"
         case .German:
             return "TLS-Inspector"
+        case .Polish:
+            return "TLS Inspector"
         }
     }
     // key: Target
@@ -1309,6 +1540,8 @@ public final class Localize {
             return "Target"
         case .German:
             return "Ziel"
+        case .Polish:
+            return "Cel"
         }
     }
     // key: Timed out
@@ -1320,6 +1553,8 @@ public final class Localize {
             return "Timed out"
         case .German:
             return "Timed out"
+        case .Polish:
+            return "Przekroczono limit czasu"
         }
     }
     // key: Too many redirects
@@ -1331,6 +1566,8 @@ public final class Localize {
             return "Too many redirects"
         case .German:
             return "Too many redirects"
+        case .Polish:
+            return "Zbyt wiele przekierowań"
         }
     }
     // key: Traditional DNS
@@ -1342,6 +1579,8 @@ public final class Localize {
             return "Traditional DNS"
         case .German:
             return "Traditional DNS"
+        case .Polish:
+            return "Tradycyjny DNS"
         }
     }
     // key: Trust Establishment Failed
@@ -1353,6 +1592,8 @@ public final class Localize {
             return "Trust Establishment Failed"
         case .German:
             return "Vertrauensetablierung fehlgeschlagen"
+        case .Polish:
+            return "Nie udało się ustanowić relacji zaufania"
         }
     }
     // key: Trusted
@@ -1364,6 +1605,8 @@ public final class Localize {
             return "Trusted"
         case .German:
             return "Vertraut"
+        case .Polish:
+            return "Zaufany"
         }
     }
     // key: Unable to save your changes
@@ -1375,6 +1618,8 @@ public final class Localize {
             return "Unable to save your changes"
         case .German:
             return "Unable to save your changes"
+        case .Polish:
+            return "Nie można zapisać zmian"
         }
     }
     // key: Unexpected response: {details}
@@ -1386,6 +1631,8 @@ public final class Localize {
             return "Unexpected response: \(details)"
         case .German:
             return "Unexpected response: \(details)"
+        case .Polish:
+            return "Nieoczekiwana odpowiedź: \(details)"
         }
     }
     // key: Unsupported algorithm
@@ -1397,6 +1644,8 @@ public final class Localize {
             return "Unsupported algorithm"
         case .German:
             return "Unsupported algorithm"
+        case .Polish:
+            return "Nieobsługiwany algorytm"
         }
     }
     // key: Untrusted
@@ -1408,6 +1657,8 @@ public final class Localize {
             return "Untrusted"
         case .German:
             return "Misstraut"
+        case .Polish:
+            return "Niezaufany"
         }
     }
     // key: Untrusted root signing key
@@ -1419,6 +1670,8 @@ public final class Localize {
             return "Untrusted root signing key"
         case .German:
             return "Untrusted root signing key"
+        case .Polish:
+            return "Niezaufany główny klucz podpisujący"
         }
     }
     // key: Unverified
@@ -1430,6 +1683,8 @@ public final class Localize {
             return "Unverified"
         case .German:
             return "Falsifiziert"
+        case .Polish:
+            return "Niezweryfikowany"
         }
     }
     // key: Use HTTP/2
@@ -1441,6 +1696,8 @@ public final class Localize {
             return "Use HTTP/2"
         case .German:
             return "Use HTTP/2"
+        case .Polish:
+            return "Używaj HTTP/2"
         }
     }
     // key: Use System Language
@@ -1452,6 +1709,8 @@ public final class Localize {
             return "Use System Language"
         case .German:
             return "Use System Language"
+        case .Polish:
+            return "Użyj języka systemowego"
         }
     }
     // key: Verbose logging
@@ -1463,6 +1722,8 @@ public final class Localize {
             return "Verbose logging"
         case .German:
             return "Erweitertes Protokollieren"
+        case .Polish:
+            return "Szczegółowe logowanie"
         }
     }
     // key: Verified
@@ -1474,6 +1735,8 @@ public final class Localize {
             return "Verified"
         case .German:
             return "Verifiziert"
+        case .Polish:
+            return "Zweryfikowany"
         }
     }
     // key: Version {version} (build {build})
@@ -1485,6 +1748,8 @@ public final class Localize {
             return "Versión \(version) (compilación \(build))"
         case .German:
             return "Version \(version) (Build \(build))"
+        case .Polish:
+            return "Wersja \(version) (kompilacja \(build))"
         }
     }
     // key: Vertical Precision
@@ -1496,6 +1761,8 @@ public final class Localize {
             return "Vertical Precision"
         case .German:
             return "Vertical Precision"
+        case .Polish:
+            return "Dokładność pionowa"
         }
     }
     // key: View All
@@ -1507,6 +1774,8 @@ public final class Localize {
             return "Ver todo"
         case .German:
             return "Alle ansehen"
+        case .Polish:
+            return "Zobacz wszystko"
         }
     }
     // key: View DNSSEC Information
@@ -1518,6 +1787,8 @@ public final class Localize {
             return "View DNSSEC Information"
         case .German:
             return "DNSSEC-Information anschauen"
+        case .Polish:
+            return "Zobacz informacje DNSSEC"
         }
     }
     // key: WHOIS not supported on this domain
@@ -1529,6 +1800,8 @@ public final class Localize {
             return "WHOIS not supported on this domain"
         case .German:
             return "WHOIS not supported on this domain"
+        case .Polish:
+            return "WHOIS nie jest obsługiwany dla tej domeny"
         }
     }
     // key: Your changes will take affect only quitting and restarting DNS Inspector
@@ -1540,6 +1813,8 @@ public final class Localize {
             return "Your changes will take affect only quitting and restarting DNS Inspector"
         case .German:
             return "Deine Änderungen werden erst nach Beenden und Neustart von DNS-Inspector wirksam"
+        case .Polish:
+            return "Zmiany zostaną zastosowane dopiero po zamknięciu i ponownym uruchomieniu DNS Inspector"
         }
     }
     // key: Zone signing key
@@ -1551,6 +1826,8 @@ public final class Localize {
             return "Zone signing key"
         case .German:
             return "Zonensignaturschlüssel"
+        case .Polish:
+            return "Klucz podpisujący strefę"
         }
     }
     // key: about_footer_{year}
@@ -1562,6 +1839,8 @@ public final class Localize {
             return "DNS Inspector es software libre y gratuito bajo licencia GNU GPLv3. Derechos de autor de DNS Inspector © 2023-\(year) Ian Spence."
         case .German:
             return "DNS-Inspector ist eine kostenlose & freie, quelloffene Software, lizenziert unter GNU GPLv3. DNS-Inspector besitzt das Copyright © 2023-\(year) Ian Spence."
+        case .Polish:
+            return "DNS Inspector to darmowe i wolne oprogramowanie open source licencjonowane na warunkach GNU GPLv3. Prawa autorskie do DNS Inspector © 2023-\(year) Ian Spence. DNS Inspector jest tworzony całkowicie bez użycia Sztucznej Inteligencji (AI) ani Dużych Modeli Językowych (LLM)."
         }
     }
     // key: dns_server_doh_bootstrap
@@ -1573,6 +1852,8 @@ public final class Localize {
             return "You can specify the IP addresses of this DNS over HTTPS server for enhanced privacy."
         case .German:
             return "You can specify the IP addresses of this DNS over HTTPS server for enhanced privacy."
+        case .Polish:
+            return "Możesz podać adresy IP tego serwera DNS przez HTTPS, aby zwiększyć prywatność."
         }
     }
     // key: dns_server_target_help_dns
@@ -1584,6 +1865,8 @@ public final class Localize {
             return "We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets. You can specify multiple IP addresses and DNS Inspector will attempt to use all of them."
         case .German:
             return "We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets. You can specify multiple IP addresses and DNS Inspector will attempt to use all of them."
+        case .Polish:
+            return "Łączymy się z serwerem DNS przy użyciu adresu IP. Obsługiwane są adresy IPv4 i IPv6. Aby podać port dla adresu IPv6, umieść adres w nawiasach kwadratowych. Możesz podać wiele adresów IP, a DNS Inspector spróbuje użyć ich wszystkich."
         }
     }
     // key: dns_server_target_help_url
@@ -1595,6 +1878,8 @@ public final class Localize {
             return "We connect to the DNS server using a URL. Do not include the dns query parameter."
         case .German:
             return "We connect to the DNS server using a URL. Do not include the dns query parameter."
+        case .Polish:
+            return "Łączymy się z serwerem DNS przy użyciu adresu URL. Nie dołączaj parametru zapytania `dns`."
         }
     }
     // key: http2_bootstrap_ip_footer
@@ -1606,6 +1891,8 @@ public final class Localize {
             return "DNS Inspector does not support HTTP/2 when one or more server IP address is defined."
         case .German:
             return "DNS Inspector does not support HTTP/2 when one or more server IP address is defined."
+        case .Polish:
+            return "DNS Inspector nie obsługuje HTTP/2, gdy zdefiniowano co najmniej jeden adres IP serwera."
         }
     }
     // key: record_description_a
@@ -1617,6 +1904,8 @@ public final class Localize {
             return "Los registros DNS A contienen una dirección IPv4."
         case .German:
             return "DNS-A-Aufzeichnungen enthalten eine IPv4-Adresse."
+        case .Polish:
+            return "Rekordy DNS A zawierają adres IPv4."
         }
     }
     // key: record_description_aaaa
@@ -1628,6 +1917,8 @@ public final class Localize {
             return "Los registros DNS AAAA contienen una dirección IPv6."
         case .German:
             return "DNS-AAAA-Aufzeichnungen enthalten eine IPv6-Adresse."
+        case .Polish:
+            return "Rekordy DNS AAAA zawierają adres IPv6."
         }
     }
     // key: record_description_cname
@@ -1639,6 +1930,8 @@ public final class Localize {
             return "Los registros DNS CNAME contienen un nombre DNS al que seguir."
         case .German:
             return "DNS-CNAME-Aufzeichnungen enthalten Bestimmungs-DNS-Namen zum Verfolgen."
+        case .Polish:
+            return "Rekordy DNS CNAME zawierają docelową nazwę DNS do śledzenia."
         }
     }
     // key: record_description_dnskey
@@ -1650,6 +1943,8 @@ public final class Localize {
             return "DNS DNSKEY records contain cryptographic public keys used for authentication."
         case .German:
             return "DNS-DNSKEY-Aufzeichnungen enthalten den kryptographischen, öffentlichen Schlüssel zur Authentifizierung."
+        case .Polish:
+            return "Rekordy DNS DNSKEY zawierają kryptograficzne klucze publiczne używane do uwierzytelniania."
         }
     }
     // key: record_description_ds
@@ -1661,6 +1956,8 @@ public final class Localize {
             return "DNS DS records contain records of trusted delegation from the parent zone."
         case .German:
             return "DNS-DS-Aufzeichnungen enthalten Aufzeichnungen der vertrauten Delegation der Mutterzone."
+        case .Polish:
+            return "Rekordy DNS DS zawierają informacje o zaufanej delegacji ze strefy nadrzędnej."
         }
     }
     // key: record_description_https
@@ -1672,6 +1969,8 @@ public final class Localize {
             return "DNS HTTPS records contain information about HTTPS web servers."
         case .German:
             return "DNS-HTTPS-Aufzeichnungen enthalten Informationen über HTTPS-Web-Server."
+        case .Polish:
+            return "Rekordy DNS HTTPS zawierają informacje o serwerach WWW HTTPS."
         }
     }
     // key: record_description_loc
@@ -1683,6 +1982,8 @@ public final class Localize {
             return "DNS LOC records contain a geographical location."
         case .German:
             return "DNS LOC records contain a geographical location."
+        case .Polish:
+            return "Rekordy DNS LOC zawierają położenie geograficzne."
         }
     }
     // key: record_description_mx
@@ -1694,6 +1995,8 @@ public final class Localize {
             return "Los registros DNS MX contienen direcciones de servidores de intercambio de correos electrónicos."
         case .German:
             return "DNS-MX-Aufzeichnungen enthalten E-Mail-Austausch-Server-Adressen."
+        case .Polish:
+            return "Rekordy DNS MX zawierają adresy serwerów wymiany poczty."
         }
     }
     // key: record_description_ns
@@ -1705,6 +2008,8 @@ public final class Localize {
             return "DNS NS records contain the authoritative DNS server for this zone."
         case .German:
             return "DNS-NS-Aufzeichnungen enthalten den authorativen DNS-Server der jeweiligen Zone."
+        case .Polish:
+            return "Rekordy DNS NS zawierają autorytatywny serwer DNS dla tej strefy."
         }
     }
     // key: record_description_nsec
@@ -1716,6 +2021,8 @@ public final class Localize {
             return "DNS NSEC records contain security information about available records in a zone."
         case .German:
             return "DNS NSEC records contain security information about available records in a zone."
+        case .Polish:
+            return "Rekordy DNS NSEC zawierają informacje bezpieczeństwa o dostępnych rekordach w strefie."
         }
     }
     // key: record_description_nsec3
@@ -1727,6 +2034,8 @@ public final class Localize {
             return "DNS NSEC3 contains security information about available records in a zone."
         case .German:
             return "DNS NSEC3 contains security information about available records in a zone."
+        case .Polish:
+            return "Rekordy DNS NSEC3 zawierają informacje bezpieczeństwa o dostępnych rekordach w strefie."
         }
     }
     // key: record_description_ptr
@@ -1738,6 +2047,8 @@ public final class Localize {
             return "Los registros DNS PTR se usan para resolver un dominio DNS a partir de una dirección IP."
         case .German:
             return "DNS-PTR-Aufzeichnungen werden zur Auflösung einer Domain zu einer IP-Adresse genutzt."
+        case .Polish:
+            return "Rekordy DNS PTR służą do rozwiązywania nazwy domeny na podstawie adresu IP."
         }
     }
     // key: record_description_soa
@@ -1749,6 +2060,8 @@ public final class Localize {
             return "DNS SOA records contain administrative or ownership information about the domain."
         case .German:
             return "DNS-SOA-Aufzeichnungen enhalten Administrativ- oder Inhaberschaftsinformationen der Domain."
+        case .Polish:
+            return "Rekordy DNS SOA zawierają informacje administracyjne lub własnościowe o domenie."
         }
     }
     // key: record_description_srv
@@ -1760,6 +2073,8 @@ public final class Localize {
             return "Los registros DNS SRV contienen información para localizar un servicio específico."
         case .German:
             return "DNS-SRV-Aufzeichnungen enthalten Informationen zur Ausmachung eines spezifischen Dienstes."
+        case .Polish:
+            return "Rekordy DNS SRV zawierają informacje potrzebne do lokalizowania konkretnej usługi."
         }
     }
     // key: record_description_txt
@@ -1771,6 +2086,8 @@ public final class Localize {
             return "Los registros DNS TXT pueden contener texto arbitrario."
         case .German:
             return "DNS-TXT-Aufzeichnungen enthalten Textdaten."
+        case .Polish:
+            return "Rekordy DNS TXT zawierają dowolne dane tekstowe."
         }
     }
     // key: saved_server_footer
@@ -1782,6 +2099,8 @@ public final class Localize {
             return "DNS Inspector includes several saved servers to help you get started. Cloudflare, Google, and Quad9 are registered trademarks of their respective owners and are not affiliated with and do not endorse DNS Inspector."
         case .German:
             return "DNS Inspector includes several saved servers to help you get started. Cloudflare, Google, and Quad9 are registered trademarks of their respective owners and are not affiliated with and do not endorse DNS Inspector."
+        case .Polish:
+            return "DNS Inspector zawiera kilka zapisanych serwerów, które pomogą Ci zacząć. Cloudflare, Google i Quad9 są zastrzeżonymi znakami towarowymi ich właścicieli i nie są powiązane z DNS Inspector ani go nie wspierają."
         }
     }
     // key: {duration} microseconds
@@ -1793,6 +2112,8 @@ public final class Localize {
             return "\(duration) microsegundos"
         case .German:
             return "\(duration) Mikrosekunden"
+        case .Polish:
+            return "\(duration) mikrosekund"
         }
     }
     // key: {duration} milliseconds
@@ -1804,6 +2125,8 @@ public final class Localize {
             return "\(duration) milisegundos"
         case .German:
             return "\(duration) Millisekunden"
+        case .Polish:
+            return "\(duration) milisekund"
         }
     }
     // key: {duration} nanoseconds
@@ -1815,6 +2138,8 @@ public final class Localize {
             return "\(duration) nanosegundos"
         case .German:
             return "\(duration) Nanosekunden"
+        case .Polish:
+            return "\(duration) nanosekund"
         }
     }
     // key: {duration} seconds
@@ -1826,6 +2151,8 @@ public final class Localize {
             return "\(duration) segundos"
         case .German:
             return "\(duration) Sekunden"
+        case .Polish:
+            return "\(duration) sekund"
         }
     }
     // key: {record_type} Record
@@ -1837,6 +2164,8 @@ public final class Localize {
             return "Registro \(record_type)"
         case .German:
             return "\(record_type)-Aufzeichnung"
+        case .Polish:
+            return "Rekord \(record_type)"
         }
     }
 }
