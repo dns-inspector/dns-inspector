@@ -196,7 +196,7 @@ public final class Localize {
         case .German:
             return "The \"Progress\" pride flag was created by Daniel Quasar and is licensed under Create Commons BY-NC-SA. The trans flag was created by Monica Helms and was released to the public domain."
         case .Polish:
-            return "Flaga Pride została stworzona przez Daniela Quasara i jest licencjonowana na warunkach Creative Commons BY-NC-SA. Flaga Trans została stworzona przez Monicę Helms i udostępniona do domeny publicznej."
+            return "Ikona Pride została stworzona przez Daniela Quasara i jest licencjonowana na warunkach Creative Commons BY-NC-SA. Ikona Trans została stworzona przez Monicę Helms i udostępniona do domeny publicznej."
         }
     }
     // key: Appearance & Behaviour
@@ -2198,7 +2198,7 @@ public final class Localize {
         case .German:
             return "\(percent)% fertig"
         case .Polish:
-            return "\(percent)% ukończenia"
+            return "Ukończono \(percent)%"
         }
     }
     // key: {record_type} Record

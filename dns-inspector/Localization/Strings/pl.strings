@@ -9,7 +9,7 @@ Altitude	Wysokość
 Answers	Odpowiedzi
 App Icon	Ikona aplikacji
 App language	Język aplikacji
-AppIconFooter	Flaga Pride została stworzona przez Daniela Quasara i jest licencjonowana na warunkach Creative Commons BY-NC-SA. Flaga Trans została stworzona przez Monicę Helms i udostępniona do domeny publicznej.
+AppIconFooter	Ikona Pride została stworzona przez Daniela Quasara i jest licencjonowana na warunkach Creative Commons BY-NC-SA. Ikona Trans została stworzona przez Monicę Helms i udostępniona do domeny publicznej.
 Appearance & Behaviour	Wygląd i zachowanie
 Area	Obszar
 Authority	Autorytatywny
@@ -164,5 +164,5 @@ saved_server_footer	DNS Inspector zawiera kilka zapisanych serwerów, które pom
 {duration} milliseconds	{0} milisekund
 {duration} nanoseconds	{0} nanosekund
 {duration} seconds	{0} sekund
-{percent}% complete	{0}% ukończenia
+{percent}% complete	Ukończono {0}%
 {record_type} Record	Rekord {0}
