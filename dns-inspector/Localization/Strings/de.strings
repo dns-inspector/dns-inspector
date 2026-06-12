@@ -2,230 +2,163 @@
 % Licensed under CC BY-SA 4.0 Attribution-ShareAlike 4.0 International
 About	Über
 Absolute	Absolut
-# TODO
-Add Saved Server	Add Saved Server
+Add Saved Server	Gespeicherten Server hinzufügen
 Administrative address	Administrative Adresse
 Algorithm	Algorithmus
-# TODO
-Altitude	Altitude
+Altitude	Höhe
 Answers	Antworten
-# TODO
-App Icon	App Icon
-App language	App-Sprache
-# TODO
-AppIconFooter	The "Progress" pride flag was created by Daniel Quasar and is licensed under Create Commons BY-NC-SA. The trans flag was created by Monica Helms and was released to the public domain.
+App Icon	App Symbol
+App language	App Sprache
+AppIconFooter	Die Progress-Pride-Flagge wurde von Daniel Quasar entworfen und steht unter der Creative-Commons-Lizenz BY-NC-SA. Die Trans-Flagge wurde von Monica Helms entworfen und der Public Domain zur Verfügung gestellt.
 Appearance & Behaviour	Aussehen & Verhalten
-# TODO
-Area	Area
-# TODO
-Authority	Authority
-# TODO
-Bad signing key: {details}	Bad signing key: {0}
+Area	Gebiet
+Authority	Autorität
+Bad signing key: {details}	Ungültiger Signaturschlüssel: {0}
 Chain	Kette
 Connection Timeout	Verbindung ausgelaufen
-# TODO
-Connection error: {details}	Connection error: {0}
-Contribute to DNS Inspector	Zu DNS-Inspector beitragen
-# TODO
-Coordinates	Coordinates
-# TODO
-Custom Server	Custom Server
-DNS Inspector	DNS-Inspector
-# TODO
-DNS over HTTPS	DNS over HTTPS
-# TODO
-DNS over QUIC	DNS over QUIC
-# TODO
-DNS over TLS	DNS over TLS
-DNSSEC not enabled on this zone, no RRSIG returned.	DNSSEC für diese Zone nicht aktiviert, kein RRSIG wiedergegeben.
-# TODO
-Destination	Destination
-Digest	Verarbeiten
-# TODO
-Digest Type	Digest Type
+Connection error: {details}	Verbindungsfehler: {0}
+Contribute to DNS Inspector	Trage zu DNS Inspector bei
+Coordinates	Koordinaten
+Custom Server	Benutzerdefinierter Server
+DNS Inspector	DNS Inspector
+DNS over HTTPS	DNS über HTTPS
+DNS over QUIC	DNS über QUIC
+DNS over TLS	DNS über TLS
+DNSSEC not enabled on this zone, no RRSIG returned.	DNSSEC für diese Zone nicht aktiviert, kein RRSIG zurückgegeben.
+Destination	Ziel
+Digest	Zusammenfassung
+Digest Type	Zusammenfassungstyp
 Dismiss	Ignorieren
-Domain Information	Domain-Information
-# TODO
-Edit Saved Server	Edit Saved Server
-# TODO
-Edit Saved Servers	Edit Saved Servers
-# TODO
-Empty response	Empty response
-# TODO
-Excessive response size	Excessive response size
+Domain Information	Domain Information
+Edit Saved Server	Gespeicherten Server bearbeiten
+Edit Saved Servers	Gespeicherte Server bearbeiten
+Empty response	Leere Antwort
+Excessive response size	Übermäßige Antwortgröße
 Expire	Auslaufen lassen
-Follow @dns-inspector.com on Bluesky	Folge @dns-inspector.com auf Bluesky
-Follow @dnsinspector on Mastodon	Folge @dnsinspector auf Mastodon
-# TODO
-Format binary data as	Format binary data as
-Friendly Name	Friendly-Name
+Follow @dns-inspector.com on Bluesky	Folgen Sie @dns-inspector.com auf Bluesky
+Follow @dnsinspector on Mastodon	Folgen Sie @dnsinspector auf Mastodon
+Format binary data as	Binärdaten formatieren als
+Friendly Name	Anzeigename
 General	Allgemein
-Get Involved	Werde involviert
-# TODO
+Get Involved	Machen Sie mit
 HTTP {code}	HTTP {0}
-# TODO
-Hashed Next Name	Hashed Next Name
-# TODO
-Horizontal Precision	Horizontal Precision
-IPv4 Hints	IPv4-Hints
-IPv6 Hints	IPv6-Hints
-# TODO
-IconDefault	Default
-# TODO
+Hashed Next Name	Hash des nächsten Namens
+Horizontal Precision	Horizontale Genauigkeit
+IPv4 Hints	Tipps zu IPv4
+IPv6 Hints	Tipps zu IPv6
+IconDefault	Standard
 IconPride	Pride
-# TODO
 IconTrans	Trans
-# TODO
-Internal error: {details}	Internal error: {0}
-# TODO
-Invalid URL	Invalid URL
-# TODO
-Invalid content type: {details}	Invalid content type: {0}
-# TODO
-Invalid data: {details}	Invalid data: {0}
-# TODO
-Invalid response: {details}	Invalid response: {0}
+Internal error: {details}	Interner Fehler: {0}
+Invalid URL	Ungültige URL
+Invalid content type: {details}	Ungültiger Inhaltstyp: {0}
+Invalid data: {details}	Ungültige Daten: {0}
+Invalid response: {details}	Ungültige Antwort: {0}
 Key Usage	Schlüssel-Gebrauch
 Key signing key	Schlüsselsignierungsschlüssel
 Key tag	Schlüsseletikett
 Loading...	Lädt...
 Main name server	Hauptnamensserver
-# TODO
-Maximum History Size	Maximum History Size
+Maximum History Size	Maximale Größe des Verlaufs
 Minimum	Minimum
-# TODO
-Missing data: {details}	Missing data: {0}
-# TODO
-Missing keys: {details}	Missing keys: {0}
-More from the developer	Weiteres vom Entwickler
-# TODO
-My Server	My Server
+Missing data: {details}	Fehlende Daten: {0}
+Missing keys: {details}	Fehlende Schlüssel: {0}
+More from the developer	Mehr von diesem Entwickler
+My Server	Meine Server
 Name	Name
 Network	Netzwerk
-# TODO
-New Saved Server	New Saved Server
-New query	Neue Anfrage
-# TODO
-Next Name	Next Name
+New Saved Server	Neuer gespeicherter Server
+New query	Neue Abfrage
+Next Name	Nächster Name
 No default ALPN	Kein standardmäßiges ALPN
-# TODO
-No signatures: {details}	No signatures: {0}
-# TODO
-Open source licenses & attributions	Open source licenses & attributions
+No signatures: {details}	Keine Signaturen: {0}
+Open source licenses & attributions	Open-Source-Lizenzen und Quellenangaben
 Options	Optionen
 Port	Port
 Priority	Priorität
 Provide feedback	Feedback hinterlassen
 Public key	Öffentlicher Schlüssel
-Query	Anfrage
+Query	Abfrage
 Question	Frage
 Rate in App Store	Im App-Store bewerten
-Recent queries	Letzte Anfragen
-# TODO
-Record Type	Record Type
-# TODO
-Record Types	Record Types
+Recent queries	Letzte Abfragen
+Record Type	Datensatztyp
+Record Types	Datensatztypen
 Refresh	Neu laden
 Relative	Verwandt
 Remember last server	Letzten Server merken
-Remember recent queries	Letzte Anfragen merken
+Remember recent queries	Letzte Abfragen merken
 Response	Antwort
-# TODO
-Response contained no answers	Response contained no answers
-Results	Resultat
+Response contained no answers	Rückmeldung enthielt keine Antworten
+Results	Ergebnisse
 Retry	Erneut versuchen
 Save	Sichern
-# TODO
-Saved Server	Saved Server
-# TODO
-Saved Servers	Saved Servers
+Saved Server	Gespeicherter Server
+Saved Servers	Gespeicherte Server
 Seconds	Sekunden
-Send traditional DNS requests using TCP	Sende herkömmliche DNS-Anfragen mittels TCP
+Send traditional DNS requests using TCP	Sende herkömmliche DNS-Abfragen mittels TCP
 Serial	Serie
 Server	Server
-# TODO
-Server Addresses	Server Addresses
+Server Addresses	Server-Adressen
 Server Details	Server-Details
 Server IP	Server-IP
-# TODO
-Server IP Addresses (Optional)	Server IP Addresses (Optional)
-Server Type	Server-Typus
+Server IP Addresses (Optional)	Server IP-Adressen (Optional)
+Server Type	Server-Typ
 Server URL	Server-URL
 Share & Feedback	Teilen & Feedback
-Share DNS Inspector	DNS-Inspector teilen
-Show DNS record descriptions	Beschreibungen der DNS-Aufzeichnungen anzeigen
-Show TTL values as	Zeige TTL-Wert als
+Share DNS Inspector	DNS Inspector teilen
+Show DNS record descriptions	Beschreibungen der DNS-Einträge anzeigen
+Show TTL values as	Zeige TTL-Werte als
 Signature	Signatur
 Signature Validation Failed	Signaturvalidierung fehlgeschlagen
-# TODO
-Signature failed	Signature failed
+Signature failed	Signatur fehlgeschlagen
 Supported Versions	Unterstütze Versionen
-# TODO
 System DNS	System DNS
-TLS Inspector	TLS-Inspector
+TLS Inspector	TLS Inspector
 Target	Ziel
-# TODO
-Timed out	Timed out
-# TODO
-Too many redirects	Too many redirects
-# TODO
-Traditional DNS	Traditional DNS
+Timed out	Zeitüberschreitung
+Too many redirects	Zu viele Weiterleitungen
+Traditional DNS	Herkömmliches DNS
 Trust Establishment Failed	Vertrauensetablierung fehlgeschlagen
 Trusted	Vertraut
-# TODO
-Unable to save your changes	Unable to save your changes
-# TODO
-Unexpected response: {details}	Unexpected response: {0}
-# TODO
-Unsupported algorithm	Unsupported algorithm
-Untrusted	Misstraut
-# TODO
-Untrusted root signing key	Untrusted root signing key
-Unverified	Falsifiziert
-# TODO
-Use HTTP/2	Use HTTP/2
-# TODO
-Use System Language	Use System Language
-Verbose logging	Erweitertes Protokollieren
+Unable to save your changes	Ihre Änderungen können nicht gespeichert werden
+Unexpected response: {details}	Unerwartete Antwort: {0}
+Unsupported algorithm	Nicht unterstützter Algorithmus
+Untrusted	Nicht vertrauenswürdig
+Untrusted root signing key	Nicht vertrauenswürdiger Stamm-Signaturschlüssel
+Unverified	Nicht verifiziert
+Use HTTP/2	HTTP/2 verwenden
+Use System Language	Systemsprache verwenden
+Verbose logging	Ausführliche Protokollierung
 Verified	Verifiziert
 Version {version} (build {build})	Version {0} (Build {1})
-# TODO
-Vertical Precision	Vertical Precision
+Vertical Precision	Vertikale Präzision
 View All	Alle ansehen
-View DNSSEC Information	DNSSEC-Information anschauen
-# TODO
-WHOIS not supported on this domain	WHOIS not supported on this domain
-Your changes will take affect only quitting and restarting DNS Inspector	Deine Änderungen werden erst nach Beenden und Neustart von DNS-Inspector wirksam
+View DNSSEC Information	DNSSEC-Information ansehen
+WHOIS not supported on this domain	WHOIS wird für diese Domain nicht unterstützt
+Your changes will take affect only quitting and restarting DNS Inspector	Ihre Änderungen werden erst wirksam, wenn Sie den DNS Inspector beenden und neu starten
 Zone signing key	Zonensignaturschlüssel
-about_footer_{year}	DNS-Inspector ist eine kostenlose & freie, quelloffene Software, lizenziert unter GNU GPLv3. DNS-Inspector besitzt das Copyright © 2023-{0} Ian Spence.
-# TODO
-dns_server_doh_bootstrap	You can specify the IP addresses of this DNS over HTTPS server for enhanced privacy.
-# TODO
-dns_server_target_help_dns	We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets. You can specify multiple IP addresses and DNS Inspector will attempt to use all of them.
-# TODO
-dns_server_target_help_url	We connect to the DNS server using a URL. Do not include the dns query parameter.
-# TODO
-http2_bootstrap_ip_footer	DNS Inspector does not support HTTP/2 when one or more server IP address is defined.
-record_description_a	DNS-A-Aufzeichnungen enthalten eine IPv4-Adresse.
-record_description_aaaa	DNS-AAAA-Aufzeichnungen enthalten eine IPv6-Adresse.
-record_description_cname	DNS-CNAME-Aufzeichnungen enthalten Bestimmungs-DNS-Namen zum Verfolgen.
-record_description_dnskey	DNS-DNSKEY-Aufzeichnungen enthalten den kryptographischen, öffentlichen Schlüssel zur Authentifizierung.
-record_description_ds	DNS-DS-Aufzeichnungen enthalten Aufzeichnungen der vertrauten Delegation der Mutterzone.
-record_description_https	DNS-HTTPS-Aufzeichnungen enthalten Informationen über HTTPS-Web-Server.
-# TODO
-record_description_loc	DNS LOC records contain a geographical location.
-record_description_mx	DNS-MX-Aufzeichnungen enthalten E-Mail-Austausch-Server-Adressen.
-record_description_ns	DNS-NS-Aufzeichnungen enthalten den authorativen DNS-Server der jeweiligen Zone.
-# TODO
-record_description_nsec	DNS NSEC records contain security information about available records in a zone.
-# TODO
-record_description_nsec3	DNS NSEC3 contains security information about available records in a zone.
-record_description_ptr	DNS-PTR-Aufzeichnungen werden zur Auflösung einer Domain zu einer IP-Adresse genutzt.
-record_description_soa	DNS-SOA-Aufzeichnungen enhalten Administrativ- oder Inhaberschaftsinformationen der Domain.
-record_description_srv	DNS-SRV-Aufzeichnungen enthalten Informationen zur Ausmachung eines spezifischen Dienstes.
-record_description_txt	DNS-TXT-Aufzeichnungen enthalten Textdaten.
-# TODO
-saved_server_footer	DNS Inspector includes several saved servers to help you get started. Cloudflare, Google, and Quad9 are registered trademarks of their respective owners and are not affiliated with and do not endorse DNS Inspector.
+about_footer_{year}	DNS Inspector ist eine kostenlose, freie und quelloffene Software (FLOSS), die unter GNU General Public License Version 3 (GPLv3) lizenziert ist. Copyright © 2023-{0} Ian Spence und andere Mitwirkende an DNS Inspector.
+dns_server_doh_bootstrap	Sie können die IP-Adressen dieses DNS-über-HTTPS-Servers angeben, um den Datenschutz zu verbessern.
+dns_server_target_help_dns	Wir stellen über eine IP-Adresse eine Verbindung zum DNS-Server her. Es werden sowohl IPv4- als auch IPv6-Adressen unterstützt. Um einen Port für eine IPv6-Adresse anzugeben, setzen Sie die Adresse in eckige Klammern. Sie können mehrere IP-Adressen angeben; DNS Inspector versucht dann, alle zu verwenden.
+dns_server_target_help_url	Wir stellen über eine URL eine Verbindung zum DNS-Server her. Fügen Sie den Parameter „dnsquery“ nicht hinzu.
+http2_bootstrap_ip_footer	DNS Inspector unterstützt HTTP/2 nicht, wenn eine oder mehrere Server-IP-Adressen definiert sind.
+record_description_a	DNS-A-Einträge enthalten eine IPv4-Adresse.
+record_description_aaaa	DNS-AAAA-Einträge enthalten eine IPv6-Adresse.
+record_description_cname	DNS-CNAME-Einträge enthalten den Ziel-DNS-Namen, dem gefolgt werden soll.
+record_description_dnskey	DNS-DNSKEY-Einträge enthalten kryptografische öffentliche Schlüssel, die zur Authentifizierung verwendet werden.
+record_description_ds	DNS-DS-Einträge enthalten Aufzeichnungen über vertrauenswürdige Delegierungen aus der übergeordneten Zone.
+record_description_https	DNS-HTTPS-Einträge enthalten Informationen zu HTTPS-Webservern.
+record_description_loc	DNS-LOC-Einträge enthalten einen geografischen Standort.
+record_description_mx	DNS-MX-Einträge enthalten die Adressen von E-Mail-Servern.
+record_description_ns	DNS-NS-Einträge enthalten den autoritativen DNS-Server für diese Zone.
+record_description_nsec	DNS-NSEC-Einträge enthalten Sicherheitsinformationen zu den in einer Zone verfügbaren Einträgen.
+record_description_nsec3	DNS-NSEC3-Einträge enthalten Sicherheitsinformationen zu den in einer Zone verfügbaren Einträgen
+record_description_ptr	DNS-PTR-Einträge dienen dazu, einen Domainnamen anhand einer IP-Adresse aufzulösen.
+record_description_soa	DNS-SOA-Einträge enthalten administrative Informationen oder Angaben zum Eigentümer der Domain.
+record_description_srv	DNS-SRV-Einträge enthalten Informationen zum Auffinden eines bestimmten Dienstes.
+record_description_txt	DNS-TXT-Einträge können beliebige Textdaten enthalten.
+saved_server_footer	DNS Inspector enthält mehrere voreingestellte Server, die Ihnen den Einstieg erleichtern. Cloudflare, Google und Quad9 sind eingetragene Marken ihrer jeweiligen Eigentümer und stehen in keiner Verbindung zu DNS Inspector und unterstützen dieses Produkt nicht.
 {duration} microseconds	{0} Mikrosekunden
 {duration} milliseconds	{0} Millisekunden
 {duration} nanoseconds	{0} Nanosekunden
