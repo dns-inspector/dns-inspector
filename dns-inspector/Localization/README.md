@@ -14,7 +14,7 @@ you have a smooth process localizing the app into your language.
 
 To translate the app, please:
 
-1. Review section 1 ("How Localization Works in DNS Inspector") below
+1. Review section 1 ("How Localization Works in DNS Inspector"), and section 4 ("Licensing") below.
 2. Download a copy the [English strings file](https://github.com/dns-inspector/dns-inspector/blob/app-store/dns-inspector/Localization/Strings/en.strings)
 3. Translate all the string values
 
@@ -23,9 +23,12 @@ translated file to hello@dns-inspector.com and we will take care of the rest. Ot
 
 4. Fork this repo and add your translated file to `dns-inspector/Localization/Strings`. Name the
 file with your language's two-letter code, similar to the other files in that directory.
-5. Modify the `languages` and `languageNameMap` variables in `dns-inspector/Localization/lang.py`
+5. Modify the `languages` and `languageNameMap` variables in `dns-inspector/Localization/lang.py`.
+ `languages` should contains the two-letter code of the language, and `languageNameMap` should map
+ that two-letter code to the English name of the language.
 6. Run `lang.py` to update the localization source
-7. Submit a pull request with your changes
+7. Submit a pull request with your changes. Be sure to indicate how you want to be attributed, this
+ could be your name, an alias or username, or if you don't want to be publically attributed.
 
 ## 1. How Localization Works in DNS Inspector
 
@@ -48,8 +51,12 @@ both help translates understand what will go there, as well as identify that val
 programmers.
 
 In the value, we define the position of that variable with `{0}`. The number 0 is import here as it
-refers to the first parameter (`{name}`). The number is always one less, so `{0}`` refers to the
+refers to the first parameter (`{name}`). The number is always one less, so `{0}` refers to the
 first, `{1}` would refer to the second, so on.
+
+Because languages can use different orders of words (subject-verb-order, for example), the order of
+the values (`{0}`, `{1}`, so on) should reflect their correct positions in the language, rather than
+be in numerical sequence.
 
 ### 1.2. Strings Files
 
@@ -59,6 +66,8 @@ line in the format of the key and value separated by the TAB character (\t).
 There's a few rules with strings files that you should know:
 
 - The copyright and license at the top of the file is required and should not be changed.
+    - Note: you **will** recieve proper attribution for your contributions, however due to legal
+      requirements the copyright must be transfered.
 - Lines that begin with a `#` are ignored and can be used for comments.
 - If a string value must have a newline, instead use a literal `\n`.
 - Keys are case-insensitive, duplicate keys aren't allowed.
@@ -66,8 +75,9 @@ There's a few rules with strings files that you should know:
 English is the primary language, as that is the language best known by the developer. The English
 strings file is used as a reference for what strings needs to be present in the other string files.
 
-Keys that are in need of translation will have a preceding `#TODO` comment above the entry. Please
-remove this comment when the translation has been completed.
+Keys that are in need of translation will have a preceding `# TODO` comment above the entry. Please
+remove this comment when the translation has been completed. The presence of this comment is used to
+determine the overall completion of a language.
 
 ## 2. Compiling Localization
 
@@ -88,4 +98,21 @@ through as parameters to the function.
 ## 4. Licensing
 
 While DNS Inspector is primarily a GPL3.0 product, localization strings are
-licensed using CC BY-SA 4.0 Attribution-ShareAlike 4.0 International.
+licensed using CC BY-SA 4.0 Attribution-ShareAlike 4.0 International. The following license header
+must be present at the top of the file:
+
+```
+% Copyright Ian Spence and DNS Inspector Authors
+% Licensed under CC BY-SA 4.0 Attribution-ShareAlike 4.0 International
+```
+
+Your contributions **will** be credited in the app using a name of your choice.
+
+### 4.1. AI-Generated Content
+
+In keeping with the overall [contribution policy of DNS Inspector](https://github.com/dns-inspector/dns-inspector/blob/app-store/dns-inspector/Localization/Strings/en.strings)
+, it is **forbidden** to contribute any localization work that is generated using artificial
+intelligence tools such as, but not limited to, ChatGPT, Claude, or Gemini.
+
+We reserve the right to remove any content that was created, or is suspected to have been created,
+using these tools.
