@@ -50,7 +50,7 @@ struct AppLanguageView: View {
                 }
             } footer: {
                 // This is intentionally not localized
-                Text("• Spanish translation by Kevin López Brante.\n• German translation by ErminesRoper.\n• Polish translation by @marcinmajsc on Github.\n\nInterested in translating DNS Inspector to another language? Send us a message through the feedback link!")
+                Text("• Spanish translation by Kevin López Brante.\n• German translation by ErminesRoper and @marcinmajsc on Github.\n• Polish translation by @marcinmajsc on Github.\n\nInterested in translating DNS Inspector to another language? Send us a message through the feedback link!")
             }
         }
         .navigationTitle(Localize.applanguage())
