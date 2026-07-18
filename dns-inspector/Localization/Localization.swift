@@ -34,7 +34,7 @@ public enum SupportedLanguages: String, Sendable, Hashable, Identifiable, CaseIt
         switch self {
         case .English: return 100
         case .Spanish: return 29
-        case .German: return 59
+        case .German: return 100
         case .Polish: return 100
         }
     }
@@ -103,7 +103,7 @@ public final class Localize {
         case .Spanish:
             return "Add Saved Server"
         case .German:
-            return "Add Saved Server"
+            return "Gespeicherten Server hinzufügen"
         case .Polish:
             return "Dodaj zapisany serwer"
         }
@@ -142,7 +142,7 @@ public final class Localize {
         case .Spanish:
             return "Altitude"
         case .German:
-            return "Altitude"
+            return "Höhe"
         case .Polish:
             return "Wysokość"
         }
@@ -168,7 +168,7 @@ public final class Localize {
         case .Spanish:
             return "App Icon"
         case .German:
-            return "App Icon"
+            return "App Symbol"
         case .Polish:
             return "Ikona aplikacji"
         }
@@ -181,7 +181,7 @@ public final class Localize {
         case .Spanish:
             return "App language"
         case .German:
-            return "App-Sprache"
+            return "App Sprache"
         case .Polish:
             return "Język aplikacji"
         }
@@ -194,7 +194,7 @@ public final class Localize {
         case .Spanish:
             return "The \"Progress\" pride flag was created by Daniel Quasar and is licensed under Create Commons BY-NC-SA. The trans flag was created by Monica Helms and was released to the public domain."
         case .German:
-            return "The \"Progress\" pride flag was created by Daniel Quasar and is licensed under Create Commons BY-NC-SA. The trans flag was created by Monica Helms and was released to the public domain."
+            return "Die Progress-Pride-Flagge wurde von Daniel Quasar entworfen und steht unter der Creative-Commons-Lizenz BY-NC-SA. Die Trans-Flagge wurde von Monica Helms entworfen und der Public Domain zur Verfügung gestellt."
         case .Polish:
             return "Ikona Pride została stworzona przez Daniela Quasara i jest licencjonowana na warunkach Creative Commons BY-NC-SA. Ikona Trans została stworzona przez Monicę Helms i udostępniona do domeny publicznej."
         }
@@ -220,7 +220,7 @@ public final class Localize {
         case .Spanish:
             return "Area"
         case .German:
-            return "Area"
+            return "Gebiet"
         case .Polish:
             return "Obszar"
         }
@@ -233,7 +233,7 @@ public final class Localize {
         case .Spanish:
             return "Authority"
         case .German:
-            return "Authority"
+            return "Autorität"
         case .Polish:
             return "Autorytatywny"
         }
@@ -246,7 +246,7 @@ public final class Localize {
         case .Spanish:
             return "Bad signing key: \(details)"
         case .German:
-            return "Bad signing key: \(details)"
+            return "Ungültiger Signaturschlüssel: \(details)"
         case .Polish:
             return "Nieprawidłowy klucz podpisujący: \(details)"
         }
@@ -285,7 +285,7 @@ public final class Localize {
         case .Spanish:
             return "Connection error: \(details)"
         case .German:
-            return "Connection error: \(details)"
+            return "Verbindungsfehler: \(details)"
         case .Polish:
             return "Błąd połączenia: \(details)"
         }
@@ -298,7 +298,7 @@ public final class Localize {
         case .Spanish:
             return "Contribuir to DNS Inspector"
         case .German:
-            return "Zu DNS-Inspector beitragen"
+            return "Trage zu DNS Inspector bei"
         case .Polish:
             return "Współtwórz DNS Inspector"
         }
@@ -311,7 +311,7 @@ public final class Localize {
         case .Spanish:
             return "Coordinates"
         case .German:
-            return "Coordinates"
+            return "Koordinaten"
         case .Polish:
             return "Współrzędne"
         }
@@ -324,7 +324,7 @@ public final class Localize {
         case .Spanish:
             return "Custom Server"
         case .German:
-            return "Custom Server"
+            return "Benutzerdefinierter Server"
         case .Polish:
             return "Niestandardowy serwer"
         }
@@ -337,7 +337,7 @@ public final class Localize {
         case .Spanish:
             return "DNS Inspector"
         case .German:
-            return "DNS-Inspector"
+            return "DNS Inspector"
         case .Polish:
             return "DNS Inspector"
         }
@@ -350,7 +350,7 @@ public final class Localize {
         case .Spanish:
             return "DNS over HTTPS"
         case .German:
-            return "DNS over HTTPS"
+            return "DNS über HTTPS"
         case .Polish:
             return "DNS przez HTTPS"
         }
@@ -363,7 +363,7 @@ public final class Localize {
         case .Spanish:
             return "DNS over QUIC"
         case .German:
-            return "DNS over QUIC"
+            return "DNS über QUIC"
         case .Polish:
             return "DNS przez QUIC"
         }
@@ -376,7 +376,7 @@ public final class Localize {
         case .Spanish:
             return "DNS over TLS"
         case .German:
-            return "DNS over TLS"
+            return "DNS über TLS"
         case .Polish:
             return "DNS przez TLS"
         }
@@ -389,7 +389,7 @@ public final class Localize {
         case .Spanish:
             return "DNSSEC not enabled on this zone, no RRSIG returned."
         case .German:
-            return "DNSSEC für diese Zone nicht aktiviert, kein RRSIG wiedergegeben."
+            return "DNSSEC für diese Zone nicht aktiviert, kein RRSIG zurückgegeben."
         case .Polish:
             return "DNSSEC nie jest włączony dla tej strefy, nie zwrócono RRSIG."
         }
@@ -402,7 +402,7 @@ public final class Localize {
         case .Spanish:
             return "Destination"
         case .German:
-            return "Destination"
+            return "Ziel"
         case .Polish:
             return "Cel"
         }
@@ -415,7 +415,7 @@ public final class Localize {
         case .Spanish:
             return "Digest"
         case .German:
-            return "Verarbeiten"
+            return "Zusammenfassung"
         case .Polish:
             return "Skrót"
         }
@@ -428,7 +428,7 @@ public final class Localize {
         case .Spanish:
             return "Digest Type"
         case .German:
-            return "Digest Type"
+            return "Zusammenfassungstyp"
         case .Polish:
             return "Typ skrótu"
         }
@@ -454,7 +454,7 @@ public final class Localize {
         case .Spanish:
             return "Domain Information"
         case .German:
-            return "Domain-Information"
+            return "Domain Information"
         case .Polish:
             return "Informacje o domenie"
         }
@@ -467,7 +467,7 @@ public final class Localize {
         case .Spanish:
             return "Edit Saved Server"
         case .German:
-            return "Edit Saved Server"
+            return "Gespeicherten Server bearbeiten"
         case .Polish:
             return "Edytuj zapisany serwer"
         }
@@ -480,7 +480,7 @@ public final class Localize {
         case .Spanish:
             return "Edit Saved Servers"
         case .German:
-            return "Edit Saved Servers"
+            return "Gespeicherte Server bearbeiten"
         case .Polish:
             return "Edytuj zapisane serwery"
         }
@@ -493,7 +493,7 @@ public final class Localize {
         case .Spanish:
             return "Empty response"
         case .German:
-            return "Empty response"
+            return "Leere Antwort"
         case .Polish:
             return "Pusta odpowiedź"
         }
@@ -506,7 +506,7 @@ public final class Localize {
         case .Spanish:
             return "Excessive response size"
         case .German:
-            return "Excessive response size"
+            return "Übermäßige Antwortgröße"
         case .Polish:
             return "Zbyt duży rozmiar odpowiedzi"
         }
@@ -532,7 +532,7 @@ public final class Localize {
         case .Spanish:
             return "Follow @dns-inspector.com on Bluesky"
         case .German:
-            return "Folge @dns-inspector.com auf Bluesky"
+            return "Folgen Sie @dns-inspector.com auf Bluesky"
         case .Polish:
             return "Obserwuj @dns-inspector.com na Bluesky"
         }
@@ -545,7 +545,7 @@ public final class Localize {
         case .Spanish:
             return "Sigue a @dnsinspector en Mastodon"
         case .German:
-            return "Folge @dnsinspector auf Mastodon"
+            return "Folgen Sie @dnsinspector auf Mastodon"
         case .Polish:
             return "Obserwuj @dnsinspector na Mastodon"
         }
@@ -558,7 +558,7 @@ public final class Localize {
         case .Spanish:
             return "Format binary data as"
         case .German:
-            return "Format binary data as"
+            return "Binärdaten formatieren als"
         case .Polish:
             return "Formatuj dane binarne jako"
         }
@@ -571,7 +571,7 @@ public final class Localize {
         case .Spanish:
             return "Friendly Name"
         case .German:
-            return "Friendly-Name"
+            return "Anzeigename"
         case .Polish:
             return "Przyjazna nazwa"
         }
@@ -597,7 +597,7 @@ public final class Localize {
         case .Spanish:
             return "Involucrarse"
         case .German:
-            return "Werde involviert"
+            return "Machen Sie mit"
         case .Polish:
             return "Dołącz do projektu"
         }
@@ -623,7 +623,7 @@ public final class Localize {
         case .Spanish:
             return "Hashed Next Name"
         case .German:
-            return "Hashed Next Name"
+            return "Hash des nächsten Namens"
         case .Polish:
             return "Haszowana następna nazwa"
         }
@@ -636,7 +636,7 @@ public final class Localize {
         case .Spanish:
             return "Horizontal Precision"
         case .German:
-            return "Horizontal Precision"
+            return "Horizontale Genauigkeit"
         case .Polish:
             return "Dokładność pozioma"
         }
@@ -649,7 +649,7 @@ public final class Localize {
         case .Spanish:
             return "IPv4 Hints"
         case .German:
-            return "IPv4-Hints"
+            return "Tipps zu IPv4"
         case .Polish:
             return "Wskazówki IPv4"
         }
@@ -662,7 +662,7 @@ public final class Localize {
         case .Spanish:
             return "IPv6 Hints"
         case .German:
-            return "IPv6-Hints"
+            return "Tipps zu IPv6"
         case .Polish:
             return "Wskazówki IPv6"
         }
@@ -675,7 +675,7 @@ public final class Localize {
         case .Spanish:
             return "Default"
         case .German:
-            return "Default"
+            return "Standard"
         case .Polish:
             return "Domyślna"
         }
@@ -714,7 +714,7 @@ public final class Localize {
         case .Spanish:
             return "Internal error: \(details)"
         case .German:
-            return "Internal error: \(details)"
+            return "Interner Fehler: \(details)"
         case .Polish:
             return "Błąd wewnętrzny: \(details)"
         }
@@ -727,7 +727,7 @@ public final class Localize {
         case .Spanish:
             return "Invalid URL"
         case .German:
-            return "Invalid URL"
+            return "Ungültige URL"
         case .Polish:
             return "Nieprawidłowy adres URL"
         }
@@ -740,7 +740,7 @@ public final class Localize {
         case .Spanish:
             return "Invalid content type: \(details)"
         case .German:
-            return "Invalid content type: \(details)"
+            return "Ungültiger Inhaltstyp: \(details)"
         case .Polish:
             return "Nieprawidłowy typ zawartości: \(details)"
         }
@@ -753,7 +753,7 @@ public final class Localize {
         case .Spanish:
             return "Invalid data: \(details)"
         case .German:
-            return "Invalid data: \(details)"
+            return "Ungültige Daten: \(details)"
         case .Polish:
             return "Nieprawidłowe dane: \(details)"
         }
@@ -766,7 +766,7 @@ public final class Localize {
         case .Spanish:
             return "Invalid response: \(details)"
         case .German:
-            return "Invalid response: \(details)"
+            return "Ungültige Antwort: \(details)"
         case .Polish:
             return "Nieprawidłowa odpowiedź: \(details)"
         }
@@ -844,7 +844,7 @@ public final class Localize {
         case .Spanish:
             return "Maximum History Size"
         case .German:
-            return "Maximum History Size"
+            return "Maximale Größe des Verlaufs"
         case .Polish:
             return "Maksymalny rozmiar historii"
         }
@@ -870,7 +870,7 @@ public final class Localize {
         case .Spanish:
             return "Missing data: \(details)"
         case .German:
-            return "Missing data: \(details)"
+            return "Fehlende Daten: \(details)"
         case .Polish:
             return "Brak danych: \(details)"
         }
@@ -883,7 +883,7 @@ public final class Localize {
         case .Spanish:
             return "Missing keys: \(details)"
         case .German:
-            return "Missing keys: \(details)"
+            return "Fehlende Schlüssel: \(details)"
         case .Polish:
             return "Brak kluczy: \(details)"
         }
@@ -896,7 +896,7 @@ public final class Localize {
         case .Spanish:
             return "Más apps del desarrollador"
         case .German:
-            return "Weiteres vom Entwickler"
+            return "Mehr von diesem Entwickler"
         case .Polish:
             return "Więcej od dewelopera"
         }
@@ -909,7 +909,7 @@ public final class Localize {
         case .Spanish:
             return "My Server"
         case .German:
-            return "My Server"
+            return "Meine Server"
         case .Polish:
             return "Mój serwer"
         }
@@ -948,7 +948,7 @@ public final class Localize {
         case .Spanish:
             return "New Saved Server"
         case .German:
-            return "New Saved Server"
+            return "Neuer gespeicherter Server"
         case .Polish:
             return "Zapisz nowy serwer"
         }
@@ -961,7 +961,7 @@ public final class Localize {
         case .Spanish:
             return "Nueva petición"
         case .German:
-            return "Neue Anfrage"
+            return "Neue Abfrage"
         case .Polish:
             return "Nowe zapytanie"
         }
@@ -974,7 +974,7 @@ public final class Localize {
         case .Spanish:
             return "Next Name"
         case .German:
-            return "Next Name"
+            return "Nächster Name"
         case .Polish:
             return "Następna nazwa"
         }
@@ -1000,7 +1000,7 @@ public final class Localize {
         case .Spanish:
             return "No signatures: \(details)"
         case .German:
-            return "No signatures: \(details)"
+            return "Keine Signaturen: \(details)"
         case .Polish:
             return "Brak podpisów: \(details)"
         }
@@ -1013,7 +1013,7 @@ public final class Localize {
         case .Spanish:
             return "Open source licenses & attributions"
         case .German:
-            return "Open source licenses & attributions"
+            return "Open-Source-Lizenzen und Quellenangaben"
         case .Polish:
             return "Licencje open source i atrybuty"
         }
@@ -1091,7 +1091,7 @@ public final class Localize {
         case .Spanish:
             return "Petición"
         case .German:
-            return "Anfrage"
+            return "Abfrage"
         case .Polish:
             return "Zapytanie"
         }
@@ -1130,7 +1130,7 @@ public final class Localize {
         case .Spanish:
             return "Peticiones recientes"
         case .German:
-            return "Letzte Anfragen"
+            return "Letzte Abfragen"
         case .Polish:
             return "Ostatnie zapytania"
         }
@@ -1143,7 +1143,7 @@ public final class Localize {
         case .Spanish:
             return "Record Type"
         case .German:
-            return "Record Type"
+            return "Datensatztyp"
         case .Polish:
             return "Typ rekordu"
         }
@@ -1156,7 +1156,7 @@ public final class Localize {
         case .Spanish:
             return "Record Types"
         case .German:
-            return "Record Types"
+            return "Datensatztypen"
         case .Polish:
             return "Typy rekordów"
         }
@@ -1208,7 +1208,7 @@ public final class Localize {
         case .Spanish:
             return "Recordar peticiones recientes"
         case .German:
-            return "Letzte Anfragen merken"
+            return "Letzte Abfragen merken"
         case .Polish:
             return "Zapamiętaj ostatnie zapytania"
         }
@@ -1234,7 +1234,7 @@ public final class Localize {
         case .Spanish:
             return "Response contained no answers"
         case .German:
-            return "Response contained no answers"
+            return "Rückmeldung enthielt keine Antworten"
         case .Polish:
             return "Nie zwrócono odpowiedzi"
         }
@@ -1247,7 +1247,7 @@ public final class Localize {
         case .Spanish:
             return "Resultados"
         case .German:
-            return "Resultat"
+            return "Ergebnisse"
         case .Polish:
             return "Wyniki"
         }
@@ -1286,7 +1286,7 @@ public final class Localize {
         case .Spanish:
             return "Saved Server"
         case .German:
-            return "Saved Server"
+            return "Gespeicherter Server"
         case .Polish:
             return "Zapisany serwer"
         }
@@ -1299,7 +1299,7 @@ public final class Localize {
         case .Spanish:
             return "Saved Servers"
         case .German:
-            return "Saved Servers"
+            return "Gespeicherte Server"
         case .Polish:
             return "Zapisane serwery"
         }
@@ -1325,7 +1325,7 @@ public final class Localize {
         case .Spanish:
             return "Enviar peticiones DNS tradicionales con TCP"
         case .German:
-            return "Sende herkömmliche DNS-Anfragen mittels TCP"
+            return "Sende herkömmliche DNS-Abfragen mittels TCP"
         case .Polish:
             return "Wysyłaj tradycyjne zapytania DNS przez TCP"
         }
@@ -1364,7 +1364,7 @@ public final class Localize {
         case .Spanish:
             return "Server Addresses"
         case .German:
-            return "Server Addresses"
+            return "Server-Adressen"
         case .Polish:
             return "Adresy serwera"
         }
@@ -1403,7 +1403,7 @@ public final class Localize {
         case .Spanish:
             return "Server IP Addresses (Optional)"
         case .German:
-            return "Server IP Addresses (Optional)"
+            return "Server IP-Adressen (Optional)"
         case .Polish:
             return "Adresy IP serwera (opcjonalnie)"
         }
@@ -1416,7 +1416,7 @@ public final class Localize {
         case .Spanish:
             return "Tipo de servidor"
         case .German:
-            return "Server-Typus"
+            return "Server-Typ"
         case .Polish:
             return "Typ serwera"
         }
@@ -1455,7 +1455,7 @@ public final class Localize {
         case .Spanish:
             return "Compartir DNS Inspector"
         case .German:
-            return "DNS-Inspector teilen"
+            return "DNS Inspector teilen"
         case .Polish:
             return "Udostępnij DNS Inspector"
         }
@@ -1468,7 +1468,7 @@ public final class Localize {
         case .Spanish:
             return "Show DNS record descriptions"
         case .German:
-            return "Beschreibungen der DNS-Aufzeichnungen anzeigen"
+            return "Beschreibungen der DNS-Einträge anzeigen"
         case .Polish:
             return "Pokaż opisy rekordów DNS"
         }
@@ -1481,7 +1481,7 @@ public final class Localize {
         case .Spanish:
             return "Mostrar valores TTL (tiempo de vidxa) como"
         case .German:
-            return "Zeige TTL-Wert als"
+            return "Zeige TTL-Werte als"
         case .Polish:
             return "Pokazuj wartości TTL jako"
         }
@@ -1520,7 +1520,7 @@ public final class Localize {
         case .Spanish:
             return "Signature failed"
         case .German:
-            return "Signature failed"
+            return "Signatur fehlgeschlagen"
         case .Polish:
             return "Podpis nieprawidłowy"
         }
@@ -1559,7 +1559,7 @@ public final class Localize {
         case .Spanish:
             return "TLS Inspector"
         case .German:
-            return "TLS-Inspector"
+            return "TLS Inspector"
         case .Polish:
             return "TLS Inspector"
         }
@@ -1585,7 +1585,7 @@ public final class Localize {
         case .Spanish:
             return "Timed out"
         case .German:
-            return "Timed out"
+            return "Zeitüberschreitung"
         case .Polish:
             return "Przekroczono limit czasu"
         }
@@ -1598,7 +1598,7 @@ public final class Localize {
         case .Spanish:
             return "Too many redirects"
         case .German:
-            return "Too many redirects"
+            return "Zu viele Weiterleitungen"
         case .Polish:
             return "Zbyt wiele przekierowań"
         }
@@ -1611,7 +1611,7 @@ public final class Localize {
         case .Spanish:
             return "Traditional DNS"
         case .German:
-            return "Traditional DNS"
+            return "Herkömmliches DNS"
         case .Polish:
             return "Tradycyjny DNS"
         }
@@ -1650,7 +1650,7 @@ public final class Localize {
         case .Spanish:
             return "Unable to save your changes"
         case .German:
-            return "Unable to save your changes"
+            return "Ihre Änderungen können nicht gespeichert werden"
         case .Polish:
             return "Nie można zapisać zmian"
         }
@@ -1663,7 +1663,7 @@ public final class Localize {
         case .Spanish:
             return "Unexpected response: \(details)"
         case .German:
-            return "Unexpected response: \(details)"
+            return "Unerwartete Antwort: \(details)"
         case .Polish:
             return "Nieoczekiwana odpowiedź: \(details)"
         }
@@ -1676,7 +1676,7 @@ public final class Localize {
         case .Spanish:
             return "Unsupported algorithm"
         case .German:
-            return "Unsupported algorithm"
+            return "Nicht unterstützter Algorithmus"
         case .Polish:
             return "Nieobsługiwany algorytm"
         }
@@ -1689,7 +1689,7 @@ public final class Localize {
         case .Spanish:
             return "Untrusted"
         case .German:
-            return "Misstraut"
+            return "Nicht vertrauenswürdig"
         case .Polish:
             return "Niezaufany"
         }
@@ -1702,7 +1702,7 @@ public final class Localize {
         case .Spanish:
             return "Untrusted root signing key"
         case .German:
-            return "Untrusted root signing key"
+            return "Nicht vertrauenswürdiger Stamm-Signaturschlüssel"
         case .Polish:
             return "Niezaufany główny klucz podpisujący"
         }
@@ -1715,7 +1715,7 @@ public final class Localize {
         case .Spanish:
             return "Unverified"
         case .German:
-            return "Falsifiziert"
+            return "Nicht verifiziert"
         case .Polish:
             return "Niezweryfikowany"
         }
@@ -1728,7 +1728,7 @@ public final class Localize {
         case .Spanish:
             return "Use HTTP/2"
         case .German:
-            return "Use HTTP/2"
+            return "HTTP/2 verwenden"
         case .Polish:
             return "Używaj HTTP/2"
         }
@@ -1741,7 +1741,7 @@ public final class Localize {
         case .Spanish:
             return "Use System Language"
         case .German:
-            return "Use System Language"
+            return "Systemsprache verwenden"
         case .Polish:
             return "Użyj języka systemowego"
         }
@@ -1754,7 +1754,7 @@ public final class Localize {
         case .Spanish:
             return "Verbose logging"
         case .German:
-            return "Erweitertes Protokollieren"
+            return "Ausführliche Protokollierung"
         case .Polish:
             return "Szczegółowe logowanie"
         }
@@ -1793,7 +1793,7 @@ public final class Localize {
         case .Spanish:
             return "Vertical Precision"
         case .German:
-            return "Vertical Precision"
+            return "Vertikale Präzision"
         case .Polish:
             return "Dokładność pionowa"
         }
@@ -1819,7 +1819,7 @@ public final class Localize {
         case .Spanish:
             return "View DNSSEC Information"
         case .German:
-            return "DNSSEC-Information anschauen"
+            return "DNSSEC-Information ansehen"
         case .Polish:
             return "Zobacz informacje DNSSEC"
         }
@@ -1832,7 +1832,7 @@ public final class Localize {
         case .Spanish:
             return "WHOIS not supported on this domain"
         case .German:
-            return "WHOIS not supported on this domain"
+            return "WHOIS wird für diese Domain nicht unterstützt"
         case .Polish:
             return "WHOIS nie jest obsługiwany dla tej domeny"
         }
@@ -1845,7 +1845,7 @@ public final class Localize {
         case .Spanish:
             return "Your changes will take affect only quitting and restarting DNS Inspector"
         case .German:
-            return "Deine Änderungen werden erst nach Beenden und Neustart von DNS-Inspector wirksam"
+            return "Ihre Änderungen werden erst wirksam, wenn Sie den DNS Inspector beenden und neu starten"
         case .Polish:
             return "Zmiany zostaną zastosowane dopiero po zamknięciu i ponownym uruchomieniu DNS Inspector"
         }
@@ -1871,7 +1871,7 @@ public final class Localize {
         case .Spanish:
             return "DNS Inspector es software libre y gratuito bajo licencia GNU GPLv3. Derechos de autor de DNS Inspector © 2023-\(year) Ian Spence."
         case .German:
-            return "DNS-Inspector ist eine kostenlose & freie, quelloffene Software, lizenziert unter GNU GPLv3. DNS-Inspector besitzt das Copyright © 2023-\(year) Ian Spence."
+            return "DNS Inspector ist eine kostenlose, freie und quelloffene Software (FLOSS), die unter GNU General Public License Version 3 (GPLv3) lizenziert ist. Copyright © 2023-\(year) Ian Spence und andere Mitwirkende an DNS Inspector."
         case .Polish:
             return "DNS Inspector to darmowe i wolne oprogramowanie open source licencjonowane na warunkach GNU GPLv3. Prawa autorskie do DNS Inspector © 2023-\(year) Ian Spence. DNS Inspector jest tworzony całkowicie bez użycia Sztucznej Inteligencji (AI) ani Dużych Modeli Językowych (LLM)."
         }
@@ -1884,7 +1884,7 @@ public final class Localize {
         case .Spanish:
             return "You can specify the IP addresses of this DNS over HTTPS server for enhanced privacy."
         case .German:
-            return "You can specify the IP addresses of this DNS over HTTPS server for enhanced privacy."
+            return "Sie können die IP-Adressen dieses DNS-über-HTTPS-Servers angeben, um den Datenschutz zu verbessern."
         case .Polish:
             return "Możesz podać adresy IP tego serwera DNS przez HTTPS, aby zwiększyć prywatność."
         }
@@ -1897,7 +1897,7 @@ public final class Localize {
         case .Spanish:
             return "We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets. You can specify multiple IP addresses and DNS Inspector will attempt to use all of them."
         case .German:
-            return "We connect to the DNS server using an IP address. IPv4 and IPv6 addresses are supported. To specify a port with an IPv6 address, wrap the address in square brackets. You can specify multiple IP addresses and DNS Inspector will attempt to use all of them."
+            return "Wir stellen über eine IP-Adresse eine Verbindung zum DNS-Server her. Es werden sowohl IPv4- als auch IPv6-Adressen unterstützt. Um einen Port für eine IPv6-Adresse anzugeben, setzen Sie die Adresse in eckige Klammern. Sie können mehrere IP-Adressen angeben; DNS Inspector versucht dann, alle zu verwenden."
         case .Polish:
             return "Łączymy się z serwerem DNS przy użyciu adresu IP. Obsługiwane są adresy IPv4 i IPv6. Aby podać port dla adresu IPv6, umieść adres w nawiasach kwadratowych. Możesz podać wiele adresów IP, a DNS Inspector spróbuje użyć ich wszystkich."
         }
@@ -1910,7 +1910,7 @@ public final class Localize {
         case .Spanish:
             return "We connect to the DNS server using a URL. Do not include the dns query parameter."
         case .German:
-            return "We connect to the DNS server using a URL. Do not include the dns query parameter."
+            return "Wir stellen über eine URL eine Verbindung zum DNS-Server her. Fügen Sie den Parameter „dnsquery“ nicht hinzu."
         case .Polish:
             return "Łączymy się z serwerem DNS przy użyciu adresu URL. Nie dołączaj parametru zapytania `dns`."
         }
@@ -1923,7 +1923,7 @@ public final class Localize {
         case .Spanish:
             return "DNS Inspector does not support HTTP/2 when one or more server IP address is defined."
         case .German:
-            return "DNS Inspector does not support HTTP/2 when one or more server IP address is defined."
+            return "DNS Inspector unterstützt HTTP/2 nicht, wenn eine oder mehrere Server-IP-Adressen definiert sind."
         case .Polish:
             return "DNS Inspector nie obsługuje HTTP/2, gdy zdefiniowano co najmniej jeden adres IP serwera."
         }
@@ -1936,7 +1936,7 @@ public final class Localize {
         case .Spanish:
             return "Los registros DNS A contienen una dirección IPv4."
         case .German:
-            return "DNS-A-Aufzeichnungen enthalten eine IPv4-Adresse."
+            return "DNS-A-Einträge enthalten eine IPv4-Adresse."
         case .Polish:
             return "Rekordy DNS A zawierają adres IPv4."
         }
@@ -1949,7 +1949,7 @@ public final class Localize {
         case .Spanish:
             return "Los registros DNS AAAA contienen una dirección IPv6."
         case .German:
-            return "DNS-AAAA-Aufzeichnungen enthalten eine IPv6-Adresse."
+            return "DNS-AAAA-Einträge enthalten eine IPv6-Adresse."
         case .Polish:
             return "Rekordy DNS AAAA zawierają adres IPv6."
         }
@@ -1962,7 +1962,7 @@ public final class Localize {
         case .Spanish:
             return "Los registros DNS CNAME contienen un nombre DNS al que seguir."
         case .German:
-            return "DNS-CNAME-Aufzeichnungen enthalten Bestimmungs-DNS-Namen zum Verfolgen."
+            return "DNS-CNAME-Einträge enthalten den Ziel-DNS-Namen, dem gefolgt werden soll."
         case .Polish:
             return "Rekordy DNS CNAME zawierają docelową nazwę DNS do śledzenia."
         }
@@ -1975,7 +1975,7 @@ public final class Localize {
         case .Spanish:
             return "DNS DNSKEY records contain cryptographic public keys used for authentication."
         case .German:
-            return "DNS-DNSKEY-Aufzeichnungen enthalten den kryptographischen, öffentlichen Schlüssel zur Authentifizierung."
+            return "DNS-DNSKEY-Einträge enthalten kryptografische öffentliche Schlüssel, die zur Authentifizierung verwendet werden."
         case .Polish:
             return "Rekordy DNS DNSKEY zawierają kryptograficzne klucze publiczne używane do uwierzytelniania."
         }
@@ -1988,7 +1988,7 @@ public final class Localize {
         case .Spanish:
             return "DNS DS records contain records of trusted delegation from the parent zone."
         case .German:
-            return "DNS-DS-Aufzeichnungen enthalten Aufzeichnungen der vertrauten Delegation der Mutterzone."
+            return "DNS-DS-Einträge enthalten Aufzeichnungen über vertrauenswürdige Delegierungen aus der übergeordneten Zone."
         case .Polish:
             return "Rekordy DNS DS zawierają informacje o zaufanej delegacji ze strefy nadrzędnej."
         }
@@ -2001,7 +2001,7 @@ public final class Localize {
         case .Spanish:
             return "DNS HTTPS records contain information about HTTPS web servers."
         case .German:
-            return "DNS-HTTPS-Aufzeichnungen enthalten Informationen über HTTPS-Web-Server."
+            return "DNS-HTTPS-Einträge enthalten Informationen zu HTTPS-Webservern."
         case .Polish:
             return "Rekordy DNS HTTPS zawierają informacje o serwerach WWW HTTPS."
         }
@@ -2014,7 +2014,7 @@ public final class Localize {
         case .Spanish:
             return "DNS LOC records contain a geographical location."
         case .German:
-            return "DNS LOC records contain a geographical location."
+            return "DNS-LOC-Einträge enthalten einen geografischen Standort."
         case .Polish:
             return "Rekordy DNS LOC zawierają położenie geograficzne."
         }
@@ -2027,7 +2027,7 @@ public final class Localize {
         case .Spanish:
             return "Los registros DNS MX contienen direcciones de servidores de intercambio de correos electrónicos."
         case .German:
-            return "DNS-MX-Aufzeichnungen enthalten E-Mail-Austausch-Server-Adressen."
+            return "DNS-MX-Einträge enthalten die Adressen von E-Mail-Servern."
         case .Polish:
             return "Rekordy DNS MX zawierają adresy serwerów wymiany poczty."
         }
@@ -2040,7 +2040,7 @@ public final class Localize {
         case .Spanish:
             return "DNS NS records contain the authoritative DNS server for this zone."
         case .German:
-            return "DNS-NS-Aufzeichnungen enthalten den authorativen DNS-Server der jeweiligen Zone."
+            return "DNS-NS-Einträge enthalten den autoritativen DNS-Server für diese Zone."
         case .Polish:
             return "Rekordy DNS NS zawierają autorytatywny serwer DNS dla tej strefy."
         }
@@ -2053,7 +2053,7 @@ public final class Localize {
         case .Spanish:
             return "DNS NSEC records contain security information about available records in a zone."
         case .German:
-            return "DNS NSEC records contain security information about available records in a zone."
+            return "DNS-NSEC-Einträge enthalten Sicherheitsinformationen zu den in einer Zone verfügbaren Einträgen."
         case .Polish:
             return "Rekordy DNS NSEC zawierają informacje bezpieczeństwa o dostępnych rekordach w strefie."
         }
@@ -2066,7 +2066,7 @@ public final class Localize {
         case .Spanish:
             return "DNS NSEC3 contains security information about available records in a zone."
         case .German:
-            return "DNS NSEC3 contains security information about available records in a zone."
+            return "DNS-NSEC3-Einträge enthalten Sicherheitsinformationen zu den in einer Zone verfügbaren Einträgen"
         case .Polish:
             return "Rekordy DNS NSEC3 zawierają informacje bezpieczeństwa o dostępnych rekordach w strefie."
         }
@@ -2079,7 +2079,7 @@ public final class Localize {
         case .Spanish:
             return "Los registros DNS PTR se usan para resolver un dominio DNS a partir de una dirección IP."
         case .German:
-            return "DNS-PTR-Aufzeichnungen werden zur Auflösung einer Domain zu einer IP-Adresse genutzt."
+            return "DNS-PTR-Einträge dienen dazu, einen Domainnamen anhand einer IP-Adresse aufzulösen."
         case .Polish:
             return "Rekordy DNS PTR służą do rozwiązywania nazwy domeny na podstawie adresu IP."
         }
@@ -2092,7 +2092,7 @@ public final class Localize {
         case .Spanish:
             return "DNS SOA records contain administrative or ownership information about the domain."
         case .German:
-            return "DNS-SOA-Aufzeichnungen enhalten Administrativ- oder Inhaberschaftsinformationen der Domain."
+            return "DNS-SOA-Einträge enthalten administrative Informationen oder Angaben zum Eigentümer der Domain."
         case .Polish:
             return "Rekordy DNS SOA zawierają informacje administracyjne lub własnościowe o domenie."
         }
@@ -2105,7 +2105,7 @@ public final class Localize {
         case .Spanish:
             return "Los registros DNS SRV contienen información para localizar un servicio específico."
         case .German:
-            return "DNS-SRV-Aufzeichnungen enthalten Informationen zur Ausmachung eines spezifischen Dienstes."
+            return "DNS-SRV-Einträge enthalten Informationen zum Auffinden eines bestimmten Dienstes."
         case .Polish:
             return "Rekordy DNS SRV zawierają informacje potrzebne do lokalizowania konkretnej usługi."
         }
@@ -2118,7 +2118,7 @@ public final class Localize {
         case .Spanish:
             return "Los registros DNS TXT pueden contener texto arbitrario."
         case .German:
-            return "DNS-TXT-Aufzeichnungen enthalten Textdaten."
+            return "DNS-TXT-Einträge können beliebige Textdaten enthalten."
         case .Polish:
             return "Rekordy DNS TXT zawierają dowolne dane tekstowe."
         }
@@ -2131,7 +2131,7 @@ public final class Localize {
         case .Spanish:
             return "DNS Inspector includes several saved servers to help you get started. Cloudflare, Google, and Quad9 are registered trademarks of their respective owners and are not affiliated with and do not endorse DNS Inspector."
         case .German:
-            return "DNS Inspector includes several saved servers to help you get started. Cloudflare, Google, and Quad9 are registered trademarks of their respective owners and are not affiliated with and do not endorse DNS Inspector."
+            return "DNS Inspector enthält mehrere voreingestellte Server, die Ihnen den Einstieg erleichtern. Cloudflare, Google und Quad9 sind eingetragene Marken ihrer jeweiligen Eigentümer und stehen in keiner Verbindung zu DNS Inspector und unterstützen dieses Produkt nicht."
         case .Polish:
             return "DNS Inspector zawiera kilka zapisanych serwerów, które pomogą Ci zacząć. Cloudflare, Google i Quad9 są zastrzeżonymi znakami towarowymi ich właścicieli i nie są powiązane z DNS Inspector ani go nie wspierają."
         }
