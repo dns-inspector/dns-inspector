@@ -19,6 +19,7 @@ Connection Timeout	Limit czasu połączenia
 Connection error: {details}	Błąd połączenia: {0}
 Contribute to DNS Inspector	Współtwórz DNS Inspector
 Coordinates	Współrzędne
+Critical	Krytyczny
 Custom Server	Niestandardowy serwer
 DNS Inspector	DNS Inspector
 DNS over HTTPS	DNS przez HTTPS
@@ -115,6 +116,7 @@ Signature failed	Podpis nieprawidłowy
 Supported Versions	Obsługiwane wersje
 System DNS	Systemowy DNS
 TLS Inspector	TLS Inspector
+Tag	Znacznik
 Target	Cel
 Timed out	Przekroczono limit czasu
 Too many redirects	Zbyt wiele przekierowań
@@ -129,6 +131,7 @@ Untrusted root signing key	Niezaufany główny klucz podpisujący
 Unverified	Niezweryfikowany
 Use HTTP/2	Używaj HTTP/2
 Use System Language	Użyj języka systemowego
+Value	Wartości
 Verbose logging	Szczegółowe logowanie
 Verified	Zweryfikowany
 Version {version} (build {build})	Wersja {0} (kompilacja {1})
@@ -145,6 +148,8 @@ dns_server_target_help_url	Łączymy się z serwerem DNS przy użyciu adresu URL
 http2_bootstrap_ip_footer	DNS Inspector nie obsługuje HTTP/2, gdy zdefiniowano co najmniej jeden adres IP serwera.
 record_description_a	Rekordy DNS A zawierają adres IPv4.
 record_description_aaaa	Rekordy DNS AAAA zawierają adres IPv6.
+# TODO
+record_description_caa	DNS CAA records describe rules for certificate authorities for certificate issuance against this domain.
 record_description_cname	Rekordy DNS CNAME zawierają docelową nazwę DNS do śledzenia.
 record_description_dnskey	Rekordy DNS DNSKEY zawierają kryptograficzne klucze publiczne używane do uwierzytelniania.
 record_description_ds	Rekordy DNS DS zawierają informacje o zaufanej delegacji ze strefy nadrzędnej.

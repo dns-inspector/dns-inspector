@@ -34,6 +34,7 @@ Connection error: {details}	Connection error: {0}
 Contribute to DNS Inspector	Contribuir to DNS Inspector
 # TODO
 Coordinates	Coordinates
+Critical	Crítico
 # TODO
 Custom Server	Custom Server
 DNS Inspector	DNS Inspector
@@ -197,6 +198,7 @@ Supported Versions	Supported Versions
 # TODO
 System DNS	System DNS
 TLS Inspector	TLS Inspector
+Tag	Etiqueta
 # TODO
 Target	Target
 # TODO
@@ -225,6 +227,7 @@ Unverified	Unverified
 Use HTTP/2	Use HTTP/2
 # TODO
 Use System Language	Use System Language
+Value	Valor
 # TODO
 Verbose logging	Verbose logging
 # TODO
@@ -252,6 +255,8 @@ dns_server_target_help_url	We connect to the DNS server using a URL. Do not incl
 http2_bootstrap_ip_footer	DNS Inspector does not support HTTP/2 when one or more server IP address is defined.
 record_description_a	Los registros DNS A contienen una dirección IPv4.
 record_description_aaaa	Los registros DNS AAAA contienen una dirección IPv6.
+# TODO
+record_description_caa	DNS CAA records describe rules for certificate authorities for certificate issuance against this domain.
 record_description_cname	Los registros DNS CNAME contienen un nombre DNS al que seguir.
 # TODO
 record_description_dnskey	DNS DNSKEY records contain cryptographic public keys used for authentication.

@@ -79,6 +79,8 @@ private struct RecordDataView: View {
             RecordViewNSEC(data: data as! NSECRecordData)
         case .NSEC3:
             RecordViewNSEC3(data: data as! NSEC3RecordData)
+        case .CAA:
+            RecordViewCAA(data: data as! CAARecordData)
         }
     }
     // swiftlint:enable force_cast

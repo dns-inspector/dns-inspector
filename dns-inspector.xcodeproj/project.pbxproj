@@ -44,6 +44,7 @@
 		3C9AA7CB2AF1FCF400B072FA /* RecentQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9AA7CA2AF1FCF400B072FA /* RecentQuery.swift */; };
 		3C9AA7CE2AF2082100B072FA /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9AA7CD2AF2082100B072FA /* AppInfo.swift */; };
 		3CA6E32B2E19BB9E00165BFD /* FixedWidthText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA6E32A2E19BB9400165BFD /* FixedWidthText.swift */; };
+		3CAC384B300B121000E50C79 /* RecordViewCAA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAC384A300B120900E50C79 /* RecordViewCAA.swift */; };
 		3CAD46A52B903E1000E97A04 /* MainViewRecentLookups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD46A42B903E1000E97A04 /* MainViewRecentLookups.swift */; };
 		3CC646C42C0A8AA80049CEC7 /* RecordViewSOA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC646C32C0A8AA80049CEC7 /* RecordViewSOA.swift */; };
 		3CC646C62C0A8F550049CEC7 /* RecordViewSRV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC646C52C0A8F550049CEC7 /* RecordViewSRV.swift */; };
@@ -126,6 +127,7 @@
 		3C9AA7CC2AF206D400B072FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C9AA7CD2AF2082100B072FA /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		3CA6E32A2E19BB9400165BFD /* FixedWidthText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedWidthText.swift; sourceTree = "<group>"; };
+		3CAC384A300B120900E50C79 /* RecordViewCAA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewCAA.swift; sourceTree = "<group>"; };
 		3CAD46A42B903E1000E97A04 /* MainViewRecentLookups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewRecentLookups.swift; sourceTree = "<group>"; };
 		3CC646C32C0A8AA80049CEC7 /* RecordViewSOA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewSOA.swift; sourceTree = "<group>"; };
 		3CC646C52C0A8F550049CEC7 /* RecordViewSRV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewSRV.swift; sourceTree = "<group>"; };
@@ -277,16 +279,17 @@
 		3CC646C22C0A8A930049CEC7 /* RecordView */ = {
 			isa = PBXGroup;
 			children = (
-				3C32E7352F8C8F4A00C13847 /* RecordViewNSEC3.swift */,
-				3C32E7332F8C8DAA00C13847 /* RecordViewNSEC.swift */,
-				3C5D66912E2C3DB600757247 /* RecordViewLOC.swift */,
 				3C7BD1C32C38A955004C2ECF /* RecordViewA.swift */,
 				3C7BD1C52C38A95C004C2ECF /* RecordViewAAAA.swift */,
 				3C7BD1C72C38A965004C2ECF /* RecordViewBasicName.swift */,
+				3CAC384A300B120900E50C79 /* RecordViewCAA.swift */,
 				3CC646C72C0A8FFC0049CEC7 /* RecordViewDNSKEY.swift */,
 				3CC646CB2C0A967D0049CEC7 /* RecordViewDS.swift */,
 				3C599C1E2C818467003BFC68 /* RecordViewHTTPS.swift */,
+				3C5D66912E2C3DB600757247 /* RecordViewLOC.swift */,
 				3C7BD1CF2C38AB26004C2ECF /* RecordViewMX.swift */,
+				3C32E7332F8C8DAA00C13847 /* RecordViewNSEC.swift */,
+				3C32E7352F8C8F4A00C13847 /* RecordViewNSEC3.swift */,
 				3CC646C32C0A8AA80049CEC7 /* RecordViewSOA.swift */,
 				3CC646C52C0A8F550049CEC7 /* RecordViewSRV.swift */,
 				3C7BD1CD2C38AB05004C2ECF /* RecordViewTXT.swift */,
@@ -507,6 +510,7 @@
 				3C7BD1D02C38AB26004C2ECF /* RecordViewMX.swift in Sources */,
 				3CC646C82C0A8FFC0049CEC7 /* RecordViewDNSKEY.swift in Sources */,
 				9A80CE402AEF6FF400E97A63 /* Text+Fixedwidth.swift in Sources */,
+				3CAC384B300B121000E50C79 /* RecordViewCAA.swift in Sources */,
 				9A80CE342AEF633700E97A63 /* SavedServerEditView.swift in Sources */,
 				3C4BB6BF2CE84F9900C7F78F /* Errors.swift in Sources */,
 				3CC646C62C0A8F550049CEC7 /* RecordViewSRV.swift in Sources */,
@@ -789,7 +793,7 @@
 			repositoryURL = "https://github.com/dns-inspector/dnskit";
 			requirement = {
 				kind = revision;
-				revision = b71d32fb7909b868eb4834b1fe34b857af87b84e;
+				revision = 45d498dc6d6d218b7a9f14c483c8fab64ee341d0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

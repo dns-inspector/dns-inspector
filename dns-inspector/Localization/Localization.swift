@@ -33,9 +33,9 @@ public enum SupportedLanguages: String, Sendable, Hashable, Identifiable, CaseIt
     public var percentTranslated: Int {
         switch self {
         case .English: return 100
-        case .Spanish: return 29
-        case .German: return 100
-        case .Polish: return 100
+        case .Spanish: return 30
+        case .German: return 99
+        case .Polish: return 99
         }
     }
 }
@@ -314,6 +314,19 @@ public final class Localize {
             return "Koordinaten"
         case .Polish:
             return "Współrzędne"
+        }
+    }
+    // key: Critical
+    public static func critical() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Critical"
+        case .Spanish:
+            return "Crítico"
+        case .German:
+            return "Kritisch"
+        case .Polish:
+            return "Krytyczny"
         }
     }
     // key: Custom Server
@@ -1564,6 +1577,19 @@ public final class Localize {
             return "TLS Inspector"
         }
     }
+    // key: Tag
+    public static func tag() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Tag"
+        case .Spanish:
+            return "Etiqueta"
+        case .German:
+            return "Tag"
+        case .Polish:
+            return "Znacznik"
+        }
+    }
     // key: Target
     public static func target() -> String {
         switch currentLanguage {
@@ -1744,6 +1770,19 @@ public final class Localize {
             return "Systemsprache verwenden"
         case .Polish:
             return "Użyj języka systemowego"
+        }
+    }
+    // key: Value
+    public static func value() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Value"
+        case .Spanish:
+            return "Valor"
+        case .German:
+            return "Wert"
+        case .Polish:
+            return "Wartości"
         }
     }
     // key: Verbose logging
@@ -1952,6 +1991,19 @@ public final class Localize {
             return "DNS-AAAA-Einträge enthalten eine IPv6-Adresse."
         case .Polish:
             return "Rekordy DNS AAAA zawierają adres IPv6."
+        }
+    }
+    // key: record_description_caa
+    public static func recorddescriptioncaa() -> String {
+        switch currentLanguage {
+        case .English:
+            return "DNS CAA records describe rules for certificate authorities for certificate issuance against this domain."
+        case .Spanish:
+            return "DNS CAA records describe rules for certificate authorities for certificate issuance against this domain."
+        case .German:
+            return "DNS CAA records describe rules for certificate authorities for certificate issuance against this domain."
+        case .Polish:
+            return "DNS CAA records describe rules for certificate authorities for certificate issuance against this domain."
         }
     }
     // key: record_description_cname

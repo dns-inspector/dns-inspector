@@ -53,6 +53,8 @@ public extension RecordType {
             return Localize.recorddescriptionnsec()
         case .NSEC3:
             return Localize.recorddescriptionnsec3()
+        case .CAA:
+            return Localize.recorddescriptioncaa()
         }
     }
     // swiftlint:enable cyclomatic_complexity

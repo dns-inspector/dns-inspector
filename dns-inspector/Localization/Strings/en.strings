@@ -19,6 +19,7 @@ Connection Timeout	Connection Timeout
 Connection error: {details}	Connection error: {0}
 Contribute to DNS Inspector	Contribute to DNS Inspector
 Coordinates	Coordinates
+Critical	Critical
 Custom Server	Custom Server
 DNS Inspector	DNS Inspector
 DNS over HTTPS	DNS over HTTPS
@@ -115,6 +116,7 @@ Signature failed	Signature failed
 Supported Versions	Supported Versions
 System DNS	System DNS
 TLS Inspector	TLS Inspector
+Tag	Tag
 Target	Target
 Timed out	Timed out
 Too many redirects	Too many redirects
@@ -129,6 +131,7 @@ Untrusted root signing key	Untrusted root signing key
 Unverified	Unverified
 Use HTTP/2	Use HTTP/2
 Use System Language	Use System Language
+Value	Value
 Verbose logging	Verbose logging
 Verified	Verified
 Version {version} (build {build})	Version {0} (build {1})
@@ -145,6 +148,7 @@ dns_server_target_help_url	We connect to the DNS server using a URL. Do not incl
 http2_bootstrap_ip_footer	DNS Inspector does not support HTTP/2 when one or more server IP address is defined.
 record_description_a	DNS A records contain an IPv4 address.
 record_description_aaaa	DNS AAAA records contain an IPv6 address.
+record_description_caa	DNS CAA records describe rules for certificate authorities for certificate issuance against this domain.
 record_description_cname	DNS CNAME records contain destination DNS name to follow.
 record_description_dnskey	DNS DNSKEY records contain cryptographic public keys used for authentication.
 record_description_ds	DNS DS records contain records of trusted delegation from the parent zone.
