@@ -35,7 +35,7 @@ public enum SupportedLanguages: String, Sendable, Hashable, Identifiable, CaseIt
         case .English: return 100
         case .Spanish: return 30
         case .German: return 99
-        case .Polish: return 99
+        case .Polish: return 100
         }
     }
 }
@@ -1587,7 +1587,7 @@ public final class Localize {
         case .German:
             return "Tag"
         case .Polish:
-            return "Znacznik"
+            return "Tag"
         }
     }
     // key: Target
@@ -1782,7 +1782,7 @@ public final class Localize {
         case .German:
             return "Wert"
         case .Polish:
-            return "Wartości"
+            return "Wartość"
         }
     }
     // key: Verbose logging
@@ -2003,7 +2003,7 @@ public final class Localize {
         case .German:
             return "DNS CAA records describe rules for certificate authorities for certificate issuance against this domain."
         case .Polish:
-            return "DNS CAA records describe rules for certificate authorities for certificate issuance against this domain."
+            return "Rekordy DNS CAA określają zasady dotyczące urzędów certyfikacji uprawnionych do wystawiania certyfikatów dla tej domeny."
         }
     }
     // key: record_description_cname
