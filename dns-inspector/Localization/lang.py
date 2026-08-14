@@ -353,7 +353,7 @@ if not validate:
 is_valid = True
 for entry in en_entries:
     q = "Localize." + normalizeKey(entry["key"])
-    r = subprocess.run(["git", "--no-pager", "grep", q, "../../../"], capture_output=True)
+    r = subprocess.run(["git", "--no-pager", "grep", q, "../../"], capture_output=True)
 
     if len(r.stdout) == 0:
         print("::error ::Unused localization key: " + entry["key"])
