@@ -17,24 +17,37 @@
 import SwiftUI
 
 struct AppIconView: View {
-    private let icons = ["Default", "Pride", "Trans"]
+    private let icons = ["Default", "Liquid", "Pride", "Trans"]
+    @State private var isLoading = false
+    @State private var showError = false
+    @State private var setError: Error?
 
     var body: some View {
         List {
             Section {
                 ForEach(icons, id: \.self) { iconName in
                     Button {
-                        UIApplication.shared.setAlternateIconName("Icon\(iconName)")
+                        Task {
+                            await self.changeIcon(to: iconName == "Default" ? nil : "Icon\(iconName)")
+                        }
                     } label: {
                         HStack {
                             Image("Preview\(iconName)")
                             Text(localizedIconName(iconName))
                         }
-                    }
+                    }.disabled(isLoading)
                 }
             } footer: {
                 Text(Localize.appiconfooter())
             }
+            .alert("Unable to Set Alternate Icon", item: $setError) { _ in
+                Button("Dismiss") {
+                    setError = nil
+                }
+            } message: { error in
+                Text("\(error.localizedDescription)")
+            }
+
         }.navigationTitle(Localize.appicon())
     }
 
@@ -42,12 +55,59 @@ struct AppIconView: View {
         switch iconName {
         case "Default":
             return Localize.icondefault()
+        case "Liquid":
+            return "Liquid"
         case "Pride":
             return Localize.iconpride()
         case "Trans":
             return Localize.icontrans()
         default:
             return ""
+        }
+    }
+
+    func changeIcon(to icon: String?) async {
+        self.isLoading = true
+        defer {
+            self.isLoading = false
+        }
+
+        guard let icon else {
+            print("Restoring default icon")
+            do {
+                try await UIApplication.shared.setAlternateIconName(nil)
+            } catch {
+                print("Failed to set icon \(error)")
+                self.setError = error
+            }
+            return
+        }
+
+        do {
+            print("Attempting to set alternate icon to \(icon)")
+
+            guard UIApplication.shared.alternateIconName != icon else {
+                print("Alternate icon name is already \(icon)")
+                return
+            }
+            guard let bundleIcons = Bundle.main.infoDictionary?["CFBundleIcons"] as? [String: Any] else {
+                print("No bundle icons")
+                return
+            }
+            guard let alternateIcons = bundleIcons["CFBundleAlternateIcons"] as? [String: Any] else {
+                print("No alternate icons")
+                return
+            }
+            if alternateIcons[icon] == nil {
+                print("No alternate icon with name \(icon)")
+                return
+            }
+
+            try await UIApplication.shared.setAlternateIconName(icon)
+            print("Did set")
+        } catch {
+            print("Failed to set icon \(error)")
+            self.setError = error
         }
     }
 }
