@@ -28,7 +28,9 @@ const customWords = [
     'AAAA',
     'ALPN',
     'APL',
+    'CAA',
     'CNAME',
+    'dnsinspector',
     'DNSKEY',
     'DNSSEC',
     'DS',
@@ -36,14 +38,13 @@ const customWords = [
     'MX',
     'NSEC',
     'NSEC3',
+    'PTR',
     'Quad9',
     'RRSIG',
     'SOA',
     'SRV',
-    'PTR',
     'TXT',
     'WHOIS',
-    'dnsinspector',
 ];
 
 async function lint(key, value) {
@@ -102,7 +103,7 @@ async function main() {
     const stringsData = await fs.readFile(process.argv[2], { encoding: 'utf-8' });
     const lines = stringsData.split('\n');
     for (const line of lines) {
-        if (line.startsWith('#') || line === '') {
+        if (line.startsWith('%') || line.startsWith('#') || line === '') {
             continue;
         }
 
