@@ -14,6 +14,7 @@ Appearance & Behaviour	Appearance & Behaviour
 Area	Area
 Authority	Authority
 Bad signing key: {details}	Bad signing key: {0}
+Cancel	Cancel
 Chain	Chain
 Connection Timeout	Connection Timeout
 Connection error: {details}	Connection error: {0}

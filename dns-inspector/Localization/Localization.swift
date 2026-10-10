@@ -34,8 +34,8 @@ public enum SupportedLanguages: String, Sendable, Hashable, Identifiable, CaseIt
         switch self {
         case .English: return 100
         case .Spanish: return 30
-        case .German: return 99
-        case .Polish: return 100
+        case .German: return 98
+        case .Polish: return 99
         }
     }
 }
@@ -249,6 +249,19 @@ public final class Localize {
             return "Ungültiger Signaturschlüssel: \(details)"
         case .Polish:
             return "Nieprawidłowy klucz podpisujący: \(details)"
+        }
+    }
+    // key: Cancel
+    public static func cancel() -> String {
+        switch currentLanguage {
+        case .English:
+            return "Cancel"
+        case .Spanish:
+            return "Cancel"
+        case .German:
+            return "Cancel"
+        case .Polish:
+            return "Cancel"
         }
     }
     // key: Chain

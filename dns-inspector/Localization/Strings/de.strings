@@ -14,6 +14,8 @@ Appearance & Behaviour	Aussehen & Verhalten
 Area	Gebiet
 Authority	Autorität
 Bad signing key: {details}	Ungültiger Signaturschlüssel: {0}
+# TODO
+Cancel	Cancel
 Chain	Kette
 Connection Timeout	Verbindung ausgelaufen
 Connection error: {details}	Verbindungsfehler: {0}

@@ -32,6 +32,7 @@ public struct MainViewNewQueryView: View {
     public var disabled: Bool
     public var showEditSavedServerView: Binding<Bool>
     private let onSubmit: () -> Void
+    private let recordTypesForQuery: [RecordType]
     @State private var destination: RequestDestination
     @State private var customTransportType: TransportType = .DNS
     @State private var customServerAddress: String = ""
@@ -56,13 +57,17 @@ public struct MainViewNewQueryView: View {
             _customServerAddress = .init(initialValue: resolver.wrappedValue.addresses.first ?? "")
             _customTransportType = .init(initialValue: resolver.wrappedValue.type)
         }
+
+        self.recordTypesForQuery = RecordType.allCases.filter({ return $0.canQuery() }).sorted(by: { left, right in
+            return left.string() < right.string()
+        })
     }
 
     public var body: some View {
         Group {
             // Record Type
             Picker(selection: recordType) {
-                ForEach(RecordType.allCases.filter({ return $0.canQuery() }), id: \.self) { t in
+                ForEach(recordTypesForQuery, id: \.self) { t in
                     Text(t.string()).tag(t)
                 }
             } label: {

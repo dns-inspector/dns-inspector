@@ -44,6 +44,8 @@ func localizedErrorDetails(_ error: any Error) -> String {
             return Localize.httpcode(code: String(describing: details))
         case .invalidContentType(let details):
             return Localize.invalidcontenttypedetails(details: details)
+        case .userCancelled:
+            return "User cancelled request"
         case .internalError:
             // Should never be seen
             return ""
@@ -77,6 +79,8 @@ func localizedErrorDetails(_ error: any Error) -> String {
             return Localize.whoisnotsupportedonthisdomain()
         case .tooManyRedirects:
             return Localize.toomanyredirects()
+        case .userCancelled:
+            return "User cancelled request"
         }
     }
 

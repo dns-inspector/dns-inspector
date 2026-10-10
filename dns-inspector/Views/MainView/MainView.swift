@@ -32,6 +32,7 @@ private class MainViewQueryState: ObservableObject {
     @Published var recordType: RecordType
     @Published var name: String
     @Published var resolver: DNSResolver
+    @Published var query: Query?
 
     init(recordType: RecordType = RecordType.A, name: String = "", resolver: DNSResolver? = nil) {
         self.recordType = recordType
@@ -45,6 +46,7 @@ private class MainViewQueryState: ObservableObject {
                 self.resolver = DNSResolver(type: .System, addresses: [])
             }
         }
+        self.query = nil
     }
 }
 
@@ -74,6 +76,11 @@ struct MainView: View {
                             Text(Localize.loading())
                                 .padding(.leading, 8)
                                 .foregroundStyle(.gray)
+                            Spacer()
+                            Button(Localize.cancel()) {
+                                self.lookupState.query?.cancel()
+                                self.lookupState.loading = false
+                            }
                         }
                     }
                     if let error = self.lookupState.error {
@@ -187,6 +194,7 @@ struct MainView: View {
         let query: Query
         do {
             query = try Query(transportType: resolver.type, transportOptions: transportOptions, serverAddresses: resolver.addresses, recordType: recordType, name: name, queryOptions: queryOptions)
+            self.lookupState.query = query
         } catch {
             print("initalize error: \(error)")
             withAnimation {
@@ -199,7 +207,9 @@ struct MainView: View {
         let response: Response
         do {
             response = try await query.execute()
+            self.lookupState.query = nil
         } catch {
+            self.lookupState.query = nil
             print("execute error: \(error)")
             withAnimation {
                 self.lookupState.error = error

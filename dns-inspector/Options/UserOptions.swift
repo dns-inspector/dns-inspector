@@ -36,7 +36,6 @@ private let defaultSavedServers: [DNSResolver] = [
     DNSResolver(name: "Cloudflare", type: .TLS, addresses: ["1.1.1.1", "1.0.0.1", "2606:4700:4700::1111", "2606:4700:4700::1001"], id: UUID(uuidString: "18796193-dea5-4a92-b742-42a1b7481d65")!),
     DNSResolver(name: "Quad9", type: .DNS, addresses: ["9.9.9.9", "149.112.112.112", "2620:fe::fe", "2620:fe::9"], id: UUID(uuidString: "a10e153d-859c-4d3d-86fd-2791f13c96e4")!),
     DNSResolver(name: "Google", type: .HTTPS, addresses: ["dns.google/dns-query"], httpsBootstrapIps: ["8.8.8.8", "8.8.4.4", "2001:4860:4860::8888", "2001:4860:4860::8844"], id: UUID(uuidString: "3d5afcfb-e251-472b-90dc-a3dc4c2a36b7")!),
-    DNSResolver(name: "DNS Inspector", type: .QUIC, addresses: ["20.47.87.112:853", "20.47.87.115:853", "[2603:1030:f02:3::3fd]:853", "[2603:1030:f02:3::430]:853"], id: UUID(uuidString: "ba689402-b08b-4f66-b8e6-e5a0ddd3ac12")!),
 ]
 
 /// Schema history:

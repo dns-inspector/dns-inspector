@@ -26,6 +26,8 @@ Authority	Authority
 # TODO
 Bad signing key: {details}	Bad signing key: {0}
 # TODO
+Cancel	Cancel
+# TODO
 Chain	Chain
 # TODO
 Connection Timeout	Connection Timeout
