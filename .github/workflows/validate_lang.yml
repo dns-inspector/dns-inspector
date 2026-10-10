@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/validate_lang.yml'
+      - '.github/spellcheck/**'
       - 'dns-inspector/Localization/**'
   pull_request:
     paths:
