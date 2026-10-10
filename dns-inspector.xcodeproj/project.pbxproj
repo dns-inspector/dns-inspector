@@ -12,7 +12,6 @@
 		3C0C6B302B38F35F006D3F41 /* AboutTableViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C6B2F2B38F35F006D3F41 /* AboutTableViewRepresentable.swift */; };
 		3C0C6B322B38F944006D3F41 /* ActionTipTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C6B312B38F944006D3F41 /* ActionTipTarget.swift */; };
 		3C0C6B342B39108B006D3F41 /* ErrorCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0C6B332B39108B006D3F41 /* ErrorCellView.swift */; };
-		3C1F20952E8339E800C3E900 /* DNSKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3C1F20942E8339E800C3E900 /* DNSKit */; };
 		3C26AD802BA6775E0022BABD /* WHOISView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C26AD7F2BA6775E0022BABD /* WHOISView.swift */; };
 		3C2E21002E4E7CE700E87842 /* DNSResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2E20FF2E4E7CE300E87842 /* DNSResolver.swift */; };
 		3C32E7342F8C8DB100C13847 /* RecordViewNSEC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C32E7332F8C8DAA00C13847 /* RecordViewNSEC.swift */; };
@@ -28,6 +27,7 @@
 		3C5511512E46AFAF009C4F70 /* Localization+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5511502E46AFA6009C4F70 /* Localization+Extra.swift */; };
 		3C599C1F2C818467003BFC68 /* RecordViewHTTPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C599C1E2C818467003BFC68 /* RecordViewHTTPS.swift */; };
 		3C5D66922E2C3DBC00757247 /* RecordViewLOC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5D66912E2C3DB600757247 /* RecordViewLOC.swift */; };
+		3C60A126307AFB27008AADF0 /* DNSKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3C60A125307AFB27008AADF0 /* DNSKit */; };
 		3C61432E2BA7B179006A8B14 /* View+Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C61432D2BA7B179006A8B14 /* View+Destination.swift */; };
 		3C62351D2CD6FA3D00387F6E /* FullScreenTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62351C2CD6FA3500387F6E /* FullScreenTextView.swift */; };
 		3C6CCD5A2B3BAC4700A3B6F2 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6CCD592B3BAC4700A3B6F2 /* Globals.swift */; };
@@ -38,6 +38,8 @@
 		3C7BD1C82C38A965004C2ECF /* RecordViewBasicName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7BD1C72C38A965004C2ECF /* RecordViewBasicName.swift */; };
 		3C7BD1CE2C38AB05004C2ECF /* RecordViewTXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7BD1CD2C38AB05004C2ECF /* RecordViewTXT.swift */; };
 		3C7BD1D02C38AB26004C2ECF /* RecordViewMX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7BD1CF2C38AB26004C2ECF /* RecordViewMX.swift */; };
+		3C8FFEE73055CFB000044DCA /* DNSKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3C8FFEE63055CFB000044DCA /* DNSKit */; };
+		3C8FFEEA3055CFE300044DCA /* DNSKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3C8FFEE93055CFE300044DCA /* DNSKit */; };
 		3C9AA7C52AF1E45B00B072FA /* DNSAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9AA7C42AF1E45B00B072FA /* DNSAnswerView.swift */; };
 		3C9AA7C72AF1E94100B072FA /* View+RoundedCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9AA7C62AF1E94100B072FA /* View+RoundedCorners.swift */; };
 		3C9AA7C92AF1F43F00B072FA /* DNSQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9AA7C82AF1F43F00B072FA /* DNSQuestionView.swift */; };
@@ -164,7 +166,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CCCC60E2E7CA71E00C388B9 /* DNSKit in Frameworks */,
-				3C1F20952E8339E800C3E900 /* DNSKit in Frameworks */,
+				3C8FFEE73055CFB000044DCA /* DNSKit in Frameworks */,
+				3C8FFEEA3055CFE300044DCA /* DNSKit in Frameworks */,
+				3C60A126307AFB27008AADF0 /* DNSKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +414,9 @@
 			name = "DNS Inspector";
 			packageProductDependencies = (
 				3CCCC60D2E7CA71E00C388B9 /* DNSKit */,
-				3C1F20942E8339E800C3E900 /* DNSKit */,
+				3C8FFEE63055CFB000044DCA /* DNSKit */,
+				3C8FFEE93055CFE300044DCA /* DNSKit */,
+				3C60A125307AFB27008AADF0 /* DNSKit */,
 			);
 			productName = "dns-inspector";
 			productReference = 9AA8C1362ADCA98000B93E45 /* DNS Inspector.app */;
@@ -441,7 +447,7 @@
 			);
 			mainGroup = 9AA8C12D2ADCA98000B93E45;
 			packageReferences = (
-				3C1F20932E8339E800C3E900 /* XCRemoteSwiftPackageReference "dnskit" */,
+				3C60A124307AFB27008AADF0 /* XCRemoteSwiftPackageReference "dnskit" */,
 			);
 			productRefGroup = 9AA8C1372ADCA98000B93E45 /* Products */;
 			projectDirPath = "";
@@ -697,10 +703,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DNS-Inspector/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "DNS Inspector";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -740,10 +746,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "DNS-Inspector/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "DNS Inspector";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -790,20 +796,28 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3C1F20932E8339E800C3E900 /* XCRemoteSwiftPackageReference "dnskit" */ = {
+		3C60A124307AFB27008AADF0 /* XCRemoteSwiftPackageReference "dnskit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dns-inspector/dnskit";
 			requirement = {
 				kind = revision;
-				revision = 45d498dc6d6d218b7a9f14c483c8fab64ee341d0;
+				revision = 1277f41964f29c4b088815fdc98d2b358a2c163e;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3C1F20942E8339E800C3E900 /* DNSKit */ = {
+		3C60A125307AFB27008AADF0 /* DNSKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3C1F20932E8339E800C3E900 /* XCRemoteSwiftPackageReference "dnskit" */;
+			package = 3C60A124307AFB27008AADF0 /* XCRemoteSwiftPackageReference "dnskit" */;
+			productName = DNSKit;
+		};
+		3C8FFEE63055CFB000044DCA /* DNSKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DNSKit;
+		};
+		3C8FFEE93055CFE300044DCA /* DNSKit */ = {
+			isa = XCSwiftPackageProductDependency;
 			productName = DNSKit;
 		};
 		3CCCC60D2E7CA71E00C388B9 /* DNSKit */ = {
