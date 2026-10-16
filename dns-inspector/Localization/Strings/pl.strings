@@ -14,8 +14,7 @@ Appearance & Behaviour	Wygląd i zachowanie
 Area	Obszar
 Authority	Autorytatywny
 Bad signing key: {details}	Nieprawidłowy klucz podpisujący: {0}
-# TODO
-Cancel	Cancel
+Cancel	Anuluj
 Chain	Łańcuch
 Connection Timeout	Limit czasu połączenia
 Connection error: {details}	Błąd połączenia: {0}
