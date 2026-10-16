@@ -35,7 +35,7 @@ public enum SupportedLanguages: String, Sendable, Hashable, Identifiable, CaseIt
         case .English: return 100
         case .Spanish: return 30
         case .German: return 98
-        case .Polish: return 99
+        case .Polish: return 100
         }
     }
 }
@@ -261,7 +261,7 @@ public final class Localize {
         case .German:
             return "Cancel"
         case .Polish:
-            return "Cancel"
+            return "Anuluj"
         }
     }
     // key: Chain
